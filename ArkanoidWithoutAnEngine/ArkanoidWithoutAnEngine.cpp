@@ -4,7 +4,10 @@
 #include "ArkanoidWithoutAnEngine.h"
 
 #define MAX_LOADSTRING 100
-#define PIXELS_MULTIPLICATION 5
+#define SCALE_MULTIPLIER 6
+
+#define BRICK_WIDTH 15
+#define BRICK_HEIGHT 7
 
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
@@ -21,46 +24,50 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_ARKANOIDWITHOUTANENGINE, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    // Perform application initialization:
     if (!InitInstance (hInstance, nCmdShow))
         return FALSE;
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_ARKANOIDWITHOUTANENGINE));
-    MSG msg;
+    MSG message;
+    const HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_ARKANOIDWITHOUTANENGINE));
 
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (GetMessage(&message, nullptr, 0, 0))
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (!TranslateAccelerator(message.hwnd, hAccelTable, &message))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            TranslateMessage(&message);
+            DispatchMessage(&message);
         }
     }
 
-    return (int)msg.wParam;
+    return (int)message.wParam;
+}
+
+//----------------------------------------------------------------------------------------------------
+void DrawBrick(HDC hdc, COLORREF color, int x, int y)
+{
+    const HPEN pen = CreatePen(PS_SOLID, 0, color);
+    const HBRUSH brush = CreateSolidBrush(color);
+
+    SelectObject(hdc, pen);
+    SelectObject(hdc, brush);
+    RoundRect(hdc, x * SCALE_MULTIPLIER, y * SCALE_MULTIPLIER, (x + BRICK_WIDTH) * SCALE_MULTIPLIER, (y + BRICK_HEIGHT) * SCALE_MULTIPLIER, 10, 10);
 }
 
 //----------------------------------------------------------------------------------------------------
 void DrawFrame(HDC hdc)
 {
-    HPEN violetPen = CreatePen(PS_SOLID, 0, RGB(255, 85, 255));
-    HPEN bluePen = CreatePen(PS_SOLID, 0, RGB(85, 255, 255));
+    constexpr COLORREF violet = RGB(255, 85, 255);
+    constexpr COLORREF blue = RGB(85, 255, 255);
 
-    HBRUSH violetBrush = CreateSolidBrush(RGB(255, 85, 255));
-    HBRUSH blueBrush = CreateSolidBrush(RGB(85, 255, 255));
+    DrawBrick(hdc, violet, 8, 6);
+    DrawBrick(hdc, blue, 8, 6 + (BRICK_HEIGHT + 1));
 
-    SelectObject(hdc, violetPen);
-    SelectObject(hdc, violetBrush);
-    RoundRect(hdc, 8 * PIXELS_MULTIPLICATION, 6 * PIXELS_MULTIPLICATION, (15 + 8) * PIXELS_MULTIPLICATION, 13 * PIXELS_MULTIPLICATION, 10, 15);
-
-    SelectObject(hdc, bluePen);
-    SelectObject(hdc, blueBrush);
-    RoundRect(hdc, 8 * PIXELS_MULTIPLICATION, (6 + 8) * PIXELS_MULTIPLICATION, (15 + 8) * PIXELS_MULTIPLICATION, (13 + 8) * PIXELS_MULTIPLICATION, 10, 15);
+    DrawBrick(hdc, blue, 8 + (BRICK_WIDTH + 1), 6);
+    DrawBrick(hdc, violet, 8 + (BRICK_WIDTH + 1), 6 + (BRICK_HEIGHT + 1));
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -95,15 +102,14 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    RECT windowRect;
-   hInst = hInstance;
 
    windowRect.left = 0;
    windowRect.top = 0;
-   windowRect.right = 320 * PIXELS_MULTIPLICATION;
-   windowRect.bottom = 200 * PIXELS_MULTIPLICATION;
+   windowRect.right = 320 * SCALE_MULTIPLIER;
+   windowRect.bottom = 200 * SCALE_MULTIPLIER;
    AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+   const HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
@@ -124,43 +130,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            switch (wmId)
+        case WM_COMMAND:
             {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
+                switch (LOWORD(wParam))
+                {
+                    case IDM_ABOUT:
+                        DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                        break;
+                    
+                    case IDM_EXIT:
+                        DestroyWindow(hWnd);
+                        break;
+                    
+                    default:
+                        return DefWindowProc(hWnd, message, wParam, lParam);
+                }
             }
-        }
-        break;
-
-
-    case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-
-            DrawFrame(hdc);
-            EndPaint(hWnd, &ps);
-        }
-        break;
-
-
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-
-
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
+            break;
+        
+        case WM_PAINT:
+            {
+                PAINTSTRUCT ps;
+                DrawFrame(BeginPaint(hWnd, &ps));
+                EndPaint(hWnd, &ps);
+            }
+            break;
+    
+        case WM_DESTROY:
+            PostQuitMessage(0);
+            break;
+        
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
     }
+    
     return 0;
 }
 
@@ -170,17 +173,20 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     UNREFERENCED_PARAMETER(lParam);
     switch (message)
     {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
+        case WM_INITDIALOG:
+            return TRUE;
 
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-        {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        break;
+        case WM_COMMAND:
+            if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+                {
+                EndDialog(hDlg, LOWORD(wParam));
+                return TRUE;
+            }
+            break;
+        
+        default:;
     }
-    return (INT_PTR)FALSE;
+    
+    return FALSE;
 }
 //----------------------------------------------------------------------------------------------------
