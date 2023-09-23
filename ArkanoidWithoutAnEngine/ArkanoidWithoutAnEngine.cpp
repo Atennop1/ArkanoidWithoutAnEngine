@@ -4,27 +4,22 @@
 #include "ArkanoidWithoutAnEngine.h"
 
 #define MAX_LOADSTRING 100
+#define PIXELS_MULTIPLICATION 5
 
-// Global Variables:
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-// Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+ 
+//----------------------------------------------------------------------------------------------------
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
-    // TODO: Place code here.
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -47,16 +42,33 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
-    return (int) msg.wParam;
+    return (int)msg.wParam;
 }
 
+//----------------------------------------------------------------------------------------------------
+void DrawFrame(HDC hdc)
+{
+    HPEN violetPen = CreatePen(PS_SOLID, 0, RGB(255, 85, 255));
+    HPEN bluePen = CreatePen(PS_SOLID, 0, RGB(85, 255, 255));
 
+    HBRUSH violetBrush = CreateSolidBrush(RGB(255, 85, 255));
+    HBRUSH blueBrush = CreateSolidBrush(RGB(85, 255, 255));
+
+    SelectObject(hdc, violetPen);
+    SelectObject(hdc, violetBrush);
+    RoundRect(hdc, 8 * PIXELS_MULTIPLICATION, 6 * PIXELS_MULTIPLICATION, (15 + 8) * PIXELS_MULTIPLICATION, 13 * PIXELS_MULTIPLICATION, 10, 15);
+
+    SelectObject(hdc, bluePen);
+    SelectObject(hdc, blueBrush);
+    RoundRect(hdc, 8 * PIXELS_MULTIPLICATION, (6 + 8) * PIXELS_MULTIPLICATION, (15 + 8) * PIXELS_MULTIPLICATION, (13 + 8) * PIXELS_MULTIPLICATION, 10, 15);
+}
+
+//----------------------------------------------------------------------------------------------------
 //  FUNCTION: MyRegisterClass()
 //  PURPOSE: Registers the window class.
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
-
     wcex.cbSize = sizeof(WNDCLASSEX);
 
     wcex.style          = CS_HREDRAW | CS_VREDRAW;
@@ -66,7 +78,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ARKANOIDWITHOUTANENGINE));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
+    wcex.hbrBackground  = CreateSolidBrush(RGB(0, 0, 0));
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_ARKANOIDWITHOUTANENGINE);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
@@ -74,7 +86,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     return RegisterClassExW(&wcex);
 }
 
-
+//----------------------------------------------------------------------------------------------------
 //   FUNCTION: InitInstance(HINSTANCE, int)
 //   PURPOSE: Saves instance handle and creates main window
 //   COMMENTS:
@@ -82,21 +94,27 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        create and display the main program window.
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // Store instance handle in our global variable
+   RECT windowRect;
+   hInst = hInstance;
+
+   windowRect.left = 0;
+   windowRect.top = 0;
+   windowRect.right = 320 * PIXELS_MULTIPLICATION;
+   windowRect.bottom = 200 * PIXELS_MULTIPLICATION;
+   AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
       return FALSE;
 
-
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-
    return TRUE;
 }
 
+//----------------------------------------------------------------------------------------------------
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //  PURPOSE: Processes messages for the main window.
 //  WM_COMMAND  - process the application menu
@@ -122,23 +140,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: Add any drawing code that uses hdc here...
+
+            DrawFrame(hdc);
             EndPaint(hWnd, &ps);
         }
         break;
+
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;
 }
 
+//----------------------------------------------------------------------------------------------------
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
@@ -157,3 +183,4 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
+//----------------------------------------------------------------------------------------------------
