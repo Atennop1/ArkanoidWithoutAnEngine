@@ -1,16 +1,10 @@
-// ArkanoidWithoutAnEngine.cpp : Defines the entry point for the application.
-
-#include "framework.h"
-#include "ArkanoidWithoutAnEngine.h"
+#include "Main.h"
+#include "C:\Users\User\source\repos\ArkanoidWithoutAnEngine\ArkanoidWithoutAnEngine\Engine\Engine.h"
 
 #define MAX_LOADSTRING 100
-#define SCALE_MULTIPLIER 6
-
-#define BRICK_WIDTH 15
-#define BRICK_HEIGHT 7
 
 HINSTANCE hInst;                                // current instance
-WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
+WCHAR szTitle[MAX_LOADSTRING];                  // the title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -44,30 +38,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     }
 
     return (int)message.wParam;
-}
-
-//----------------------------------------------------------------------------------------------------
-void DrawBrick(HDC hdc, COLORREF color, int x, int y)
-{
-    const HPEN pen = CreatePen(PS_SOLID, 0, color);
-    const HBRUSH brush = CreateSolidBrush(color);
-
-    SelectObject(hdc, pen);
-    SelectObject(hdc, brush);
-    RoundRect(hdc, x * SCALE_MULTIPLIER, y * SCALE_MULTIPLIER, (x + BRICK_WIDTH) * SCALE_MULTIPLIER, (y + BRICK_HEIGHT) * SCALE_MULTIPLIER, 10, 10);
-}
-
-//----------------------------------------------------------------------------------------------------
-void DrawFrame(HDC hdc)
-{
-    constexpr COLORREF violet = RGB(255, 85, 255);
-    constexpr COLORREF blue = RGB(85, 255, 255);
-
-    DrawBrick(hdc, violet, 8, 6);
-    DrawBrick(hdc, blue, 8, 6 + (BRICK_HEIGHT + 1));
-
-    DrawBrick(hdc, blue, 8 + (BRICK_WIDTH + 1), 6);
-    DrawBrick(hdc, violet, 8 + (BRICK_WIDTH + 1), 6 + (BRICK_HEIGHT + 1));
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -151,7 +121,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_PAINT:
             {
                 PAINTSTRUCT ps;
-                DrawFrame(BeginPaint(hWnd, &ps));
+                Update(BeginPaint(hWnd, &ps));
                 EndPaint(hWnd, &ps);
             }
             break;
