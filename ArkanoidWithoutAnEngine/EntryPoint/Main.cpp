@@ -1,5 +1,6 @@
 #include "Main.h"
 #include "C:\Users\User\source\repos\ArkanoidWithoutAnEngine\ArkanoidWithoutAnEngine\Engine\Engine.h"
+#include <C:\Users\User\source\repos\ArkanoidWithoutAnEngine\ArkanoidWithoutAnEngine\Engine\RenderingConsts.h>
 
 #define MAX_LOADSTRING 100
 
@@ -72,6 +73,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    RECT windowRect;
+    Init();
 
    windowRect.left = 0;
    windowRect.top = 0;

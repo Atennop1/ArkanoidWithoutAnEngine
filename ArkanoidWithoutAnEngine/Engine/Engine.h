@@ -1,6 +1,5 @@
 ﻿#pragma once
-
 #include <Windows.h>
-#define SCALE_MULTIPLIER 6
 
+void Init();
 void Update(HDC hdc);

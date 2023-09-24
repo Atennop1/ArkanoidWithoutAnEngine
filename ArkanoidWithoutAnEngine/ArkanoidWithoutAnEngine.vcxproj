@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\RenderingConsts.h" />
     <ClInclude Include="EntryPoint\Main.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="resource.h" />
