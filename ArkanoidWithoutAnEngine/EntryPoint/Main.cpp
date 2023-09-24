@@ -1,6 +1,6 @@
 #include "Main.h"
-#include "C:\Users\User\source\repos\ArkanoidWithoutAnEngine\ArkanoidWithoutAnEngine\Engine\Engine.h"
-#include <C:\Users\User\source\repos\ArkanoidWithoutAnEngine\ArkanoidWithoutAnEngine\Engine\RenderingConsts.h>
+#include "../Engine/Engine.h"
+#include "../Engine/Rendering/RenderingConsts.h"
 
 #define MAX_LOADSTRING 100
 
