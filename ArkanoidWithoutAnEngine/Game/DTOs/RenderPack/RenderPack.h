@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include "Windows.h"
+#include "windows.h"
 
-class RenderPack
+struct RenderPack
 {
 private:
     HPEN m_pen;

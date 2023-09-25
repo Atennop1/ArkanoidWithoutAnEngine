@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 #include "Windows.h"
-#include "../RenderPack/RenderPack.h"
+#include "../../DTOs/RenderPack/RenderPack.h"
+#include "../../DTOs/Vector2/Vector2.h"
 using namespace std;
 
 class LevelRenderer
@@ -19,7 +20,7 @@ private:
     RenderPack m_violetRenderPack;
     RenderPack m_blueRenderPack;
 
-    void DrawBrick(HDC hdc, RenderPack renderPack, int x, int y) const;
+    void RenderBrick(HDC hdc, Vector2 position, RenderPack renderPack) const;
     
 public:
     LevelRenderer(RenderPack violetRenderPack, RenderPack blueRenderPack);

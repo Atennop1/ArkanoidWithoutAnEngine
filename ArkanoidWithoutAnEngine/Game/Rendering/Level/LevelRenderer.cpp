@@ -1,6 +1,7 @@
 ﻿#include <array>
 #include "LevelRenderer.h"
 #include "../RenderingConsts.h"
+#include "../../Shortcuts/Shortcuts.h"
 
 enum BrickType
 {
@@ -13,15 +14,7 @@ enum BrickType
 LevelRenderer::LevelRenderer(RenderPack violetRenderPack, RenderPack blueRenderPack)
 {
     m_blueRenderPack = blueRenderPack;
-    m_violetRenderPack =violetRenderPack;
-}
-
-//----------------------------------------------------------------------------------------------------
-void LevelRenderer::DrawBrick(HDC hdc, RenderPack renderPack, int x, int y) const
-{
-    SelectObject(hdc, renderPack.Pen());
-    SelectObject(hdc, renderPack.Brush());
-    RoundRect(hdc, x * SCALE_MULTIPLIER, y * SCALE_MULTIPLIER, (x + BRICK_WIDTH) * SCALE_MULTIPLIER, (y + BRICK_HEIGHT) * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER);
+    m_violetRenderPack = violetRenderPack;
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -35,9 +28,16 @@ void LevelRenderer::Render(HDC hdc, const array<array<char, 12>, 14> &level) con
                 continue;
 
             const RenderPack renderPack = level[i][j] == 1 ? m_violetRenderPack : m_blueRenderPack;
-            DrawBrick(hdc, renderPack, LEVEL_OFFSET_X + CELL_WIDTH * j, LEVEL_OFFSET_Y + CELL_HEIGHT * i);
+            RenderBrick(hdc, Vector2(LEVEL_OFFSET_X + CELL_WIDTH * j, LEVEL_OFFSET_Y + CELL_HEIGHT * i), renderPack);
         }
     }
+}
+
+//----------------------------------------------------------------------------------------------------
+void LevelRenderer::RenderBrick(HDC hdc, Vector2 position, RenderPack renderPack) const
+{
+    Shortcuts::SelectRenderPack(hdc, renderPack);
+    RoundRect(hdc, position.X * SCALE_MULTIPLIER, position.Y * SCALE_MULTIPLIER, (position.X + BRICK_WIDTH) * SCALE_MULTIPLIER, (position.Y + BRICK_HEIGHT) * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER);
 }
 
 //----------------------------------------------------------------------------------------------------
