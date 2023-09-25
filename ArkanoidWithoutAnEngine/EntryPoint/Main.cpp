@@ -1,12 +1,13 @@
 #include "Main.h"
-#include "../Engine/Engine.h"
-#include "../Engine/Rendering/RenderingConsts.h"
+#include "../Game/Game.h"
+#include "../Game/Rendering/RenderingConsts.h"
 
 #define MAX_LOADSTRING 100
 
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // the title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+Game game;                                      // game instance
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -72,24 +73,24 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        create and display the main program window.
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   RECT windowRect;
-    Init();
+    RECT windowRect;
+    game = Game();
 
-   windowRect.left = 0;
-   windowRect.top = 0;
-   windowRect.right = 320 * SCALE_MULTIPLIER;
-   windowRect.bottom = 200 * SCALE_MULTIPLIER;
-   AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
+    windowRect.left = 0;
+    windowRect.top = 0;
+    windowRect.right = 320 * SCALE_MULTIPLIER;
+    windowRect.bottom = 200 * SCALE_MULTIPLIER;
+    AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
 
-   const HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
+    const HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+       0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
-      return FALSE;
+    if (!hWnd)
+        return FALSE;
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
-   return TRUE;
+    ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);
+    return TRUE;
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -102,38 +103,38 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-        case WM_COMMAND:
+    case WM_COMMAND:
+        {
+            switch (LOWORD(wParam))
             {
-                switch (LOWORD(wParam))
-                {
-                    case IDM_ABOUT:
-                        DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                        break;
+            case IDM_ABOUT:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
                     
-                    case IDM_EXIT:
-                        DestroyWindow(hWnd);
-                        break;
+            case IDM_EXIT:
+                DestroyWindow(hWnd);
+                break;
                     
-                    default:
-                        return DefWindowProc(hWnd, message, wParam, lParam);
-                }
+            default:
+                return DefWindowProc(hWnd, message, wParam, lParam);
             }
-            break;
+        }
+        break;
         
-        case WM_PAINT:
-            {
-                PAINTSTRUCT ps;
-                Update(BeginPaint(hWnd, &ps));
-                EndPaint(hWnd, &ps);
-            }
-            break;
+    case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            game.Update(BeginPaint(hWnd, &ps));
+            EndPaint(hWnd, &ps);
+        }
+        break;
     
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            break;
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
         
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
+    default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
     }
     
     return 0;
