@@ -1,9 +1,9 @@
 ﻿#pragma once
 
+#include <array>
 #include "Windows.h"
 #include "../../DTOs/RenderPack/RenderPack.h"
 #include "../../DTOs/Vector2/Vector2.h"
-using namespace std;
 
 class LevelRenderer
 {
@@ -24,6 +24,6 @@ private:
     
 public:
     LevelRenderer(RenderPack violetRenderPack, RenderPack blueRenderPack);
-    void Render(HDC hdc, const array<array<char, 12>, 14>&) const;
+    void Render(HDC hdc, const std::array<std::array<char, 12>, 14> *level) const;
 };
 

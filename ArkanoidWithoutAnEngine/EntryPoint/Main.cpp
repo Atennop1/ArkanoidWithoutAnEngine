@@ -1,5 +1,6 @@
 #include "Main.h"
 #include "../Game/Game.h"
+#include "../Game/Converters/Converters.h"
 #include "../Game/Rendering/RenderingConsts.h"
 
 #define MAX_LOADSTRING 100
@@ -7,7 +8,7 @@
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // the title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
-Game game;                                      // game instance
+Game* game;                                     // game instance
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -74,7 +75,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     RECT windowRect;
-    game = Game();
+    game = new Game();
 
     windowRect.left = 0;
     windowRect.top = 0;
@@ -124,14 +125,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            game.Update(BeginPaint(hWnd, &ps));
+            game->Render(BeginPaint(hWnd, &ps));
             EndPaint(hWnd, &ps);
         }
         break;
     
     case WM_DESTROY:
+        free(game);
         PostQuitMessage(0);
         break;
+
+    case WM_KEYDOWN:
+    {
+        const KeyType keyType = Converters::FromWParam(wParam);
+
+        if (keyType != KT_None)
+            game->OnKeyDown(keyType);
+        
+        break;
+    }
         
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
