@@ -29,8 +29,11 @@ void LevelRenderer::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *
 //----------------------------------------------------------------------------------------------------
 void LevelRenderer::RenderBrick(HDC hdc, Vector2 position, RenderPack renderPack) const
 {
+    const int x = position.X();
+    const int y = position.Y();
+    
     Shortcuts::SelectRenderPack(hdc, renderPack);
-    RoundRect(hdc, position.X * SCALE_MULTIPLIER, position.Y * SCALE_MULTIPLIER, (position.X + BRICK_WIDTH) * SCALE_MULTIPLIER, (position.Y + BRICK_HEIGHT) * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER);
+    RoundRect(hdc, x * SCALE_MULTIPLIER, y * SCALE_MULTIPLIER, (x + BRICK_WIDTH) * SCALE_MULTIPLIER, (y + BRICK_HEIGHT) * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER, 2 * SCALE_MULTIPLIER);
 }
 
 //----------------------------------------------------------------------------------------------------

@@ -1,29 +1,29 @@
-﻿#include "Vector2.h"
+﻿#include "WindowHandles.h"
 
 //----------------------------------------------------------------------------------------------------
-Vector2::Vector2()
+WindowHandles::WindowHandles(::HDC* HDC, ::HWND* HWND)
 {
-    m_x = 0;
-    m_y = 0;
+    m_HDC = HDC;
+    m_HWND = HWND;
 }
 
 //----------------------------------------------------------------------------------------------------
-Vector2::Vector2(int x, int y)
+HDC* WindowHandles::HDC() const
 {
-    m_x = x;
-    m_y = y;
+    return m_HDC;
 }
 
 //----------------------------------------------------------------------------------------------------
-int Vector2::X() const
+HWND* WindowHandles::HWND() const
 {
-    return m_x;
+    return m_HWND;
 }
 
 //----------------------------------------------------------------------------------------------------
-int Vector2::Y() const
+WindowHandles::~WindowHandles()
 {
-    return m_y;
+    free(m_HDC);
+    free(m_HWND);
 }
 
 //----------------------------------------------------------------------------------------------------

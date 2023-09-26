@@ -51,7 +51,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     WNDCLASSEXW wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.style          = CS_HREDRAW | CS_VREDRAW;
+    wcex.style          = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
     wcex.lpfnWndProc    = WndProc;
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
@@ -75,7 +75,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     RECT windowRect;
-    game = new Game();
 
     windowRect.left = 0;
     windowRect.top = 0;
@@ -89,6 +88,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     if (!hWnd)
         return FALSE;
 
+    game = new Game(hWnd);
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
     return TRUE;

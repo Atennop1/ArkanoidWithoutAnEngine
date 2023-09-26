@@ -1,7 +1,6 @@
 ﻿#include "Game.h"
 #include "Levels/Levels.h"
 #include "Rendering/Level/LevelRenderer.h"
-#include "Rendering/Platform/PlatformRenderer.h"
 
 //----------------------------------------------------------------------------------------------------
 void Game::OnKeyDown(KeyType keyType) const
@@ -27,18 +26,21 @@ void Game::Render(HDC hdc) const
 {
     const auto level = Levels::First();
     m_levelRenderer->Render(hdc, &level);
-    m_platformRenderer->Render(hdc, Vector2(100, 185));
+    m_platformRenderer->Display(Vector2(100, 100));
 }
 
 //----------------------------------------------------------------------------------------------------
-Game::Game() 
+Game::Game(HWND hwnd) 
 {
-    const auto violetRenderPack = RenderPack(RGB(255, 85, 255));
-    const auto blueRenderPack = RenderPack(RGB(85, 255, 255));
-    const auto whitePen = CreatePen(PS_SOLID, 3, RGB(255, 255, 255));
+    auto *violetRenderPack = new RenderPack(RGB(255, 85, 255));
+    auto *blueRenderPack = new RenderPack(RGB(85, 255, 255));
+    const HPEN whitePen = CreatePen(PS_SOLID, 3, RGB(255, 255, 255));
 
-    m_levelRenderer = new LevelRenderer(violetRenderPack, blueRenderPack);
-    m_platformRenderer = new PlatformRenderer(violetRenderPack, blueRenderPack, whitePen);
+    HDC hdc = GetDC(hwnd);
+    m_windowHandles = new WindowHandles(&hdc, &hwnd);
+
+    m_levelRenderer = new LevelRenderer(*violetRenderPack, *blueRenderPack);
+    m_platformRenderer = new PlatformView(m_windowHandles, violetRenderPack, blueRenderPack, whitePen);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -46,6 +48,7 @@ Game::~Game()
 {
     free(m_levelRenderer);
     free(m_platformRenderer);
+    free(m_windowHandles);
 }
 
 //----------------------------------------------------------------------------------------------------
