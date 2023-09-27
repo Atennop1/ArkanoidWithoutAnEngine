@@ -290,8 +290,8 @@
     <ClInclude Include="Game\Levels\Levels.h" />
     <ClInclude Include="Game\Platform\Model\Platform.h" />
     <ClInclude Include="Game\Platform\View\PlatformView.h" />
-    <ClInclude Include="Game\Rendering\Level\LevelRenderer.h" />
-    <ClInclude Include="Game\Rendering\RenderingConsts.h" />
+    <ClInclude Include="Game\View\Level\LevelView.h" />
+    <ClInclude Include="Game\View\VisualizationConsts.h" />
     <ClInclude Include="EntryPoint\Main.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game\Shortcuts\Shortcuts.h" />
@@ -307,7 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp" />
-    <ClCompile Include="Game\Rendering\Level\LevelRenderer.cpp" />
+    <ClCompile Include="Game\View\Level\LevelView.cpp" />
     <ClCompile Include="EntryPoint\Main.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

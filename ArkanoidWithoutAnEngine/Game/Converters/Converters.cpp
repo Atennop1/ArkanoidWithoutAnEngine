@@ -11,7 +11,7 @@ KeyType Converters::FromWParam(WPARAM wParam)
         return KT_Right;
 
     case VK_SPACE:
-        return  KT_Space;
+        return KT_Space;
 
     default:
         return KT_None;

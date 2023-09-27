@@ -1,17 +1,17 @@
 ﻿#include <array>
-#include "LevelRenderer.h"
-#include "../RenderingConsts.h"
+#include "LevelView.h"
+#include "..\VisualizationConsts.h"
 #include "../../Shortcuts/Shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
-LevelRenderer::LevelRenderer(RenderPack violetRenderPack, RenderPack blueRenderPack)
+LevelView::LevelView(RenderPack violetRenderPack, RenderPack blueRenderPack)
 {
     m_blueRenderPack = blueRenderPack;
     m_violetRenderPack = violetRenderPack;
 }
 
 //----------------------------------------------------------------------------------------------------
-void LevelRenderer::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *level) const
+void LevelView::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *level) const
 {
     for (int i = 0; i < 14; i++)
     {
@@ -27,7 +27,7 @@ void LevelRenderer::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *
 }
 
 //----------------------------------------------------------------------------------------------------
-void LevelRenderer::RenderBrick(HDC hdc, Vector2 position, RenderPack renderPack) const
+void LevelView::RenderBrick(HDC hdc, Vector2 position, RenderPack renderPack) const
 {
     const int x = position.X();
     const int y = position.Y();

@@ -5,7 +5,7 @@
 #include "../../DTOs/RenderPack/RenderPack.h"
 #include "../../DTOs/Vector2/Vector2.h"
 
-class LevelRenderer
+class LevelView
 {
 private:
     const int BRICK_WIDTH = 15;
@@ -23,7 +23,7 @@ private:
     void RenderBrick(HDC hdc, Vector2 position, RenderPack renderPack) const;
     
 public:
-    LevelRenderer(RenderPack violetRenderPack, RenderPack blueRenderPack);
+    LevelView(RenderPack violetRenderPack, RenderPack blueRenderPack);
     void Render(HDC hdc, const std::array<std::array<char, 12>, 14> *level) const;
 };
 
