@@ -8,7 +8,8 @@
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // the title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
-Game* game;                                     // game instance
+HDC currentHDC;                                 // current HDC instance
+Game *game;                                     // game instance
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -82,13 +83,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     windowRect.bottom = 200 * SCALE_MULTIPLIER;
     AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
 
-    const HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
        0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
     if (!hWnd)
         return FALSE;
 
-    game = new Game(hWnd);
+    game = new Game(new WindowHandles(&currentHDC, &hWnd));
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
     return TRUE;
@@ -125,7 +126,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            game->Render(BeginPaint(hWnd, &ps));
+            currentHDC = BeginPaint(hWnd, &ps);
+            
+            game->Render(currentHDC);
             EndPaint(hWnd, &ps);
         }
         break;

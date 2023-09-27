@@ -12,7 +12,5 @@ public:
     ~WindowHandles();
 
     HWND* HWND() const;
-    
     HDC* HDC() const;
-    void SetHDC(::HDC* hdc);
 };

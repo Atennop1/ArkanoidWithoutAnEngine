@@ -15,7 +15,7 @@ private:
     PlatformView *m_platformRenderer;
     
 public:
-    Game(HWND hwnd);
+    Game(WindowHandles *windowHandles);
     ~Game();
     
     void Render(HDC hdc) const;
