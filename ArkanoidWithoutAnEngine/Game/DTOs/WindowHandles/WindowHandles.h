@@ -10,7 +10,9 @@ private:
 public:
     WindowHandles(HDC *HDC, HWND *HWND);
     ~WindowHandles();
+
+    HWND* HWND() const;
     
     HDC* HDC() const;
-    HWND* HWND() const;
+    void SetHDC(::HDC* hdc);
 };

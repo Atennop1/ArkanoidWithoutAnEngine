@@ -6,5 +6,5 @@ using namespace std;
 class Levels
 {
 public:
-    static array<array<char, 12>, 14> First();
+    const static array<array<char, 12>, 14> First;
 };
