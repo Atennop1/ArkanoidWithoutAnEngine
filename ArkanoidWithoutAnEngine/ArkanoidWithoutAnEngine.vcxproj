@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EntryPoint\Application\Application.cpp" />
     <ClCompile Include="Game\Converters\Converters.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -281,6 +282,7 @@
     <ClCompile Include="Game\Platform\Model\Platform.cpp" />
     <ClCompile Include="Game\Platform\View\PlatformView.cpp" />
     <ClCompile Include="Game\Shortcuts\Shortcuts.cpp" />
+    <ClInclude Include="EntryPoint\Application\Application.h" />
     <ClInclude Include="Game\Converters\Converters.h" />
     <ClInclude Include="Game\DTOs\RenderPack\RenderPack.h" />
     <ClInclude Include="Game\DTOs\Vector2\Vector2.h" />

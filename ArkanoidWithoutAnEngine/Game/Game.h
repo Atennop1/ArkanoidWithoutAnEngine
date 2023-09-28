@@ -5,13 +5,13 @@
 #include "DTOs/WindowHandles/WindowHandles.h"
 #include "Input/KeyType.h"
 #include "Platform/View/PlatformView.h"
-#include "Rendering/Level/LevelRenderer.h"
+#include "View/Level/LevelView.h"
 
 class Game
 {
 private:
     WindowHandles *m_windowHandles;
-    LevelRenderer *m_levelRenderer;
+    LevelView *m_levelView;
     PlatformView *m_platformRenderer;
     
 public:

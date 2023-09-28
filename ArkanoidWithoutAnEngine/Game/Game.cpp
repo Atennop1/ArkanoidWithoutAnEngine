@@ -1,6 +1,5 @@
 ﻿#include "Game.h"
 #include "Levels/Levels.h"
-#include "Rendering/Level/LevelRenderer.h"
 
 //----------------------------------------------------------------------------------------------------
 void Game::OnKeyDown(KeyType keyType) const
@@ -24,7 +23,7 @@ void Game::OnKeyDown(KeyType keyType) const
 //----------------------------------------------------------------------------------------------------
 void Game::Render(HDC hdc) const
 {
-    m_levelRenderer->Render(hdc, &Levels::First);
+    m_levelView->Render(hdc, &Levels::First);
     m_platformRenderer->Display(Vector2(100, 120));
 }
 
@@ -36,14 +35,14 @@ Game::Game(WindowHandles *windowHandles)
     const HPEN whitePen = CreatePen(PS_SOLID, 3, RGB(255, 255, 255));
 
     m_windowHandles = windowHandles;
-    m_levelRenderer = new LevelRenderer(*violetRenderPack, *blueRenderPack);
+    m_levelView = new LevelView(*violetRenderPack, *blueRenderPack);
     m_platformRenderer = new PlatformView(m_windowHandles, violetRenderPack, blueRenderPack, whitePen);
 }
 
 //----------------------------------------------------------------------------------------------------
 Game::~Game()
 {
-    free(m_levelRenderer);
+    free(m_levelView);
     free(m_platformRenderer);
     free(m_windowHandles);
 }
