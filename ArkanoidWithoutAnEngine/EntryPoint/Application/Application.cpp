@@ -1,10 +1,23 @@
 ﻿#include "Application.h"
-
-#include "winuser.h"
 #include "../../resource.h"
 #include "../../Game/Game.h"
 #include "../../Game/View/VisualizationConsts.h"
 
+//----------------------------------------------------------------------------------------------------
+LRESULT StaticProcessWindow(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    if(message == WM_NCCREATE)
+    {
+        const LONG dwNewLong = (long)(((LPCREATESTRUCT)lParam)->lpCreateParams);
+        SetWindowLong(hWnd, GWLP_USERDATA, dwNewLong);
+        return TRUE;
+    }
+
+    auto* application = (Application*)GetWindowLong(hWnd, GWLP_USERDATA);
+    return application->ProcessWindow(hWnd, message, wParam, lParam);
+}
+
+//----------------------------------------------------------------------------------------------------
 Application::Application(HINSTANCE instance, HINSTANCE previousInstance, LPWSTR lpCmdLine, int cmdShow)
     : m_sizeTitle { }, m_sizeWindowClass { }
 {
@@ -13,10 +26,11 @@ Application::Application(HINSTANCE instance, HINSTANCE previousInstance, LPWSTR 
     m_lpCmdLine = lpCmdLine;
     m_cmdShow = cmdShow;
 
-    Game = nullptr;
-    CurrentHDC = nullptr;
+    m_game = nullptr;
+    m_currentHDC = nullptr;
 }
 
+//----------------------------------------------------------------------------------------------------
 BOOL Application::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     RECT windowRect;
@@ -28,49 +42,42 @@ BOOL Application::InitInstance(HINSTANCE hInstance, int nCmdShow)
     AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
 
     HWND hWnd = CreateWindowW(m_sizeWindowClass, m_sizeTitle, WS_OVERLAPPEDWINDOW,
-       0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, this);
+       0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, NULL, NULL, hInstance, this);
 
     if (!hWnd)
         return FALSE;
 
-    SetWindowLongPtr(hWnd, GWLP_USERDATA, (long)(void*)this);
-    Game = new ::Game(new WindowHandles(&CurrentHDC, &hWnd));
+    m_game = new Game(new WindowHandles(&m_currentHDC, &hWnd));
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
     return TRUE;
 }
 
+//----------------------------------------------------------------------------------------------------
 ATOM Application::RegisterWindow(HINSTANCE hInstance) const
 {
     WNDCLASSEXW wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.cbClsExtra     = 0;
-    wcex.cbWndExtra     = 0;
-    wcex.style          = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-    wcex.lpfnWndProc    = ProceedWindow;
-    wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ARKANOIDWITHOUTANENGINE));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = CreateSolidBrush(RGB(0, 0, 0));
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_ARKANOIDWITHOUTANENGINE);
-    wcex.lpszClassName  = m_sizeWindowClass;
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.cbClsExtra = 0;
+    wcex.cbWndExtra = 0;
+    wcex.hInstance = hInstance;
+    wcex.lpszClassName = m_sizeWindowClass;
+    
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ARKANOIDWITHOUTANENGINE));
+    wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_ARKANOIDWITHOUTANENGINE);
+    wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
+    wcex.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
+    wcex.lpfnWndProc = StaticProcessWindow;
     return RegisterClassExW(&wcex);
 }
 
-LRESULT Application::ProceedWindow(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+//----------------------------------------------------------------------------------------------------
+LRESULT Application::ProcessWindow(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    Application *application = nullptr;
-    const long userData = GetWindowLongPtr(hWnd, GWLP_USERDATA);
-
-    if (userData != 0)
-    {
-        const auto ptr = (void*)userData;
-        application = (Application*)ptr;
-    }
-
     switch (message)
     {
     case WM_COMMAND:
@@ -90,15 +97,15 @@ LRESULT Application::ProceedWindow(HWND hWnd, UINT message, WPARAM wParam, LPARA
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            application->CurrentHDC = BeginPaint(hWnd, &ps);
-            
-            application->Game->Render(application->CurrentHDC);
+            m_currentHDC = BeginPaint(hWnd, &ps);
+
+            m_game->Render(m_currentHDC);
             EndPaint(hWnd, &ps);
         }
         break;
     
     case WM_DESTROY:
-        free(application);
+        free(m_game);
         PostQuitMessage(0);
         break;
 
@@ -107,7 +114,7 @@ LRESULT Application::ProceedWindow(HWND hWnd, UINT message, WPARAM wParam, LPARA
             const KeyType keyType = Converters::FromWParam(wParam);
 
             if (keyType != KT_None)
-                application->Game->OnKeyDown(keyType);
+                m_game->OnKeyDown(keyType);
         
             break;
         }
@@ -119,6 +126,7 @@ LRESULT Application::ProceedWindow(HWND hWnd, UINT message, WPARAM wParam, LPARA
     return 0;
 }
 
+//----------------------------------------------------------------------------------------------------
 MSG Application::Run()
 {
     UNREFERENCED_PARAMETER(m_previousInstance);
@@ -126,7 +134,7 @@ MSG Application::Run()
 
     LoadStringW(m_instance, IDS_APP_TITLE, m_sizeTitle, 100);
     LoadStringW(m_instance, IDC_ARKANOIDWITHOUTANENGINE, m_sizeWindowClass, 100);
-    
+
     RegisterWindow(m_instance);
     InitInstance(m_instance, m_cmdShow);
 
@@ -145,3 +153,4 @@ MSG Application::Run()
     return message;
 }
 
+//----------------------------------------------------------------------------------------------------
