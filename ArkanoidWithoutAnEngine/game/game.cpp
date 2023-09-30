@@ -1,5 +1,7 @@
 ﻿#include "game.h"
-#include "Levels/levels.h"
+#include <cwchar>
+#include "levels/levels.h"
+#include "shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
 void Game::OnKeyDown(KeyType key_type) const
@@ -21,9 +23,9 @@ void Game::OnKeyDown(KeyType key_type) const
 }
 
 //----------------------------------------------------------------------------------------------------
-void Game::Render(HDC hdc) const
+void Game::Update(float delta) const
 {
-    m_level_view_->Render(hdc, &Levels::kFirst);
+    Shortcuts::PrintDebugString(L"Delta: %f\n", delta);
     m_platform_view_->Display(Vector2(100, 120));
 }
 

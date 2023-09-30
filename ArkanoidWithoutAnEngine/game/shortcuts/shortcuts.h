@@ -6,5 +6,9 @@
 class Shortcuts
 {
 public:
+    static void PrintDebugString(const wchar_t *string, ...);
     static void SelectRenderPack(HDC hdc, RenderPack render_pack);
 };
+
+
+

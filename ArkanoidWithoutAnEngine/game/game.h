@@ -17,7 +17,7 @@ public:
     Game(WindowHandles *window_handles);
     ~Game();
     
-    void Render(HDC hdc) const;
+    void Update(float delta) const;
     void OnKeyDown(KeyType key_type) const;
 };
 

@@ -28,6 +28,12 @@ Application::Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR
 
     m_command_line_ = command_line;
     m_window_showing_type_ = window_showing_type;
+
+    UNREFERENCED_PARAMETER(m_previous_instance_);
+    UNREFERENCED_PARAMETER(m_command_line_);
+
+    LoadStringW(m_instance_, IDS_APP_TITLE, m_title_buffer_size, 100);
+    LoadStringW(m_instance_, IDC_ARKANOIDWITHOUTANENGINE, m_window_buffer_size, 100);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -98,14 +104,11 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
         {
             PAINTSTRUCT ps;
             m_current_hdc_ = BeginPaint(window, &ps);
-
-            m_game_->Render(m_current_hdc_);
             EndPaint(window, &ps);
         }
         break;
     
     case WM_DESTROY:
-        free(m_game_);
         PostQuitMessage(0);
         break;
 
@@ -129,27 +132,46 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
 //----------------------------------------------------------------------------------------------------
 MSG Application::Run()
 {
-    UNREFERENCED_PARAMETER(m_previous_instance_);
-    UNREFERENCED_PARAMETER(m_command_line_);
-
-    LoadStringW(m_instance_, IDS_APP_TITLE, m_title_buffer_size, 100);
-    LoadStringW(m_instance_, IDC_ARKANOIDWITHOUTANENGINE, m_window_buffer_size, 100);
-
     RegisterWindow(m_instance_);
     InitInstance(m_instance_, m_window_showing_type_);
 
+    
+    float delta = 0;
+    int64_t counter_elapsed = 0;
+    
     MSG message;
-    const HACCEL accel_table = LoadAccelerators(m_instance_, MAKEINTRESOURCE(IDC_ARKANOIDWITHOUTANENGINE));
+    LARGE_INTEGER current_counter;
 
-    while (GetMessage(&message, nullptr, 0, 0))
+    LARGE_INTEGER cpu_frequency;
+    LARGE_INTEGER last_counter;
+    
+    QueryPerformanceFrequency(&cpu_frequency);
+    QueryPerformanceCounter(&last_counter);
+
+    while (true)
     {
-        if (!TranslateAccelerator(message.hwnd, accel_table, &message))
+        QueryPerformanceCounter(&current_counter);
+        counter_elapsed = current_counter.QuadPart - last_counter.QuadPart;
+        
+        delta = (float)counter_elapsed / (float)cpu_frequency.QuadPart;
+        last_counter = current_counter;
+        
+        while (PeekMessage(&message, nullptr, 0, 0, PM_REMOVE))
         {
+            if (message.message == WM_QUIT)
+            {
+                free(m_game_);
+                goto OutOfLoop;
+            }
+            
             TranslateMessage(&message);
             DispatchMessage(&message);
         }
+
+        m_game_->Update(delta);
     }
 
+    OutOfLoop:
     return message;
 }
 
