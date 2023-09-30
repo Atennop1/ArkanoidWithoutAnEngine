@@ -6,28 +6,30 @@
 //----------------------------------------------------------------------------------------------------
 LRESULT StaticProcessWindow(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    if(message == WM_NCCREATE)
+    if (message == WM_NCCREATE)
     {
-        const LONG dwNewLong = (long)(((LPCREATESTRUCT)lParam)->lpCreateParams);
-        SetWindowLong(hWnd, GWLP_USERDATA, dwNewLong);
+        const auto lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
+        auto* application = static_cast<Application*>(lpcs->lpCreateParams);
+        
+        SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LPARAM>(application));
         return TRUE;
     }
 
-    auto* application = (Application*)GetWindowLong(hWnd, GWLP_USERDATA);
+    auto* application = reinterpret_cast<Application*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
     return application->ProcessWindow(hWnd, message, wParam, lParam);
 }
 
 //----------------------------------------------------------------------------------------------------
 Application::Application(HINSTANCE instance, HINSTANCE previousInstance, LPWSTR lpCmdLine, int cmdShow)
-    : m_sizeTitle { }, m_sizeWindowClass { }
+    : m_sizeTitle(), m_sizeWindowClass()
 {
     m_instance = instance;
     m_previousInstance = previousInstance;
     m_lpCmdLine = lpCmdLine;
     m_cmdShow = cmdShow;
-
-    m_game = nullptr;
+    
     m_currentHDC = nullptr;
+    m_game = nullptr;
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -76,7 +78,7 @@ ATOM Application::RegisterWindow(HINSTANCE hInstance) const
 }
 
 //----------------------------------------------------------------------------------------------------
-LRESULT Application::ProcessWindow(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK Application::ProcessWindow(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
