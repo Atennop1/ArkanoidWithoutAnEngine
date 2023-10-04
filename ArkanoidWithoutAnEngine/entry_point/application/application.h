@@ -23,6 +23,6 @@ private:
 public:
     Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR command_line, int window_showing_type);
     
-    MSG Run();
+    MSG Activate();
     LRESULT CALLBACK ProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter);
 };

@@ -109,7 +109,12 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
         break;
     
     case WM_DESTROY:
+        free(m_game_);
         PostQuitMessage(0);
+        break;
+
+    case WM_QUIT:
+        free(m_game_);
         break;
 
     case WM_KEYDOWN:
@@ -130,48 +135,19 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
 }
 
 //----------------------------------------------------------------------------------------------------
-MSG Application::Run()
+MSG Application::Activate()
 {
     RegisterWindow(m_instance_);
     InitInstance(m_instance_, m_window_showing_type_);
-
-    
-    float delta = 0;
-    int64_t counter_elapsed = 0;
+    m_game_->Activate();
     
     MSG message;
-    LARGE_INTEGER current_counter;
-
-    LARGE_INTEGER cpu_frequency;
-    LARGE_INTEGER last_counter;
-    
-    QueryPerformanceFrequency(&cpu_frequency);
-    QueryPerformanceCounter(&last_counter);
-
-    while (true)
+    while (PeekMessage(&message, nullptr, 0, 0, PM_REMOVE))
     {
-        QueryPerformanceCounter(&current_counter);
-        counter_elapsed = current_counter.QuadPart - last_counter.QuadPart;
-        
-        delta = (float)counter_elapsed / (float)cpu_frequency.QuadPart;
-        last_counter = current_counter;
-        
-        while (PeekMessage(&message, nullptr, 0, 0, PM_REMOVE))
-        {
-            if (message.message == WM_QUIT)
-            {
-                free(m_game_);
-                goto OutOfLoop;
-            }
-            
-            TranslateMessage(&message);
-            DispatchMessage(&message);
-        }
-
-        m_game_->Update(delta);
+        TranslateMessage(&message);
+        DispatchMessage(&message);
     }
 
-    OutOfLoop:
     return message;
 }
 

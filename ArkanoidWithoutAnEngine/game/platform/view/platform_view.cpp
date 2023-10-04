@@ -31,6 +31,12 @@ void PlatformView::Display(Vector2 position) const
 }
 
 //----------------------------------------------------------------------------------------------------
+void PlatformView::Update(float delta)
+{
+    Display(Vector2(100, 120));
+}
+
+//----------------------------------------------------------------------------------------------------
 PlatformView::~PlatformView()
 {
     free(m_window_handles_);

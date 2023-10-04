@@ -1,5 +1,4 @@
 ﻿#include "game.h"
-#include <cwchar>
 #include "levels/levels.h"
 #include "shortcuts/shortcuts.h"
 
@@ -23,13 +22,6 @@ void Game::OnKeyDown(KeyType key_type) const
 }
 
 //----------------------------------------------------------------------------------------------------
-void Game::Update(float delta) const
-{
-    Shortcuts::PrintDebugString(L"Delta: %f\n", delta);
-    m_platform_view_->Display(Vector2(100, 120));
-}
-
-//----------------------------------------------------------------------------------------------------
 Game::Game(WindowHandles *window_handles) 
 {
     auto *violet_render_pack = new RenderPack(RGB(255, 85, 255));
@@ -39,6 +31,15 @@ Game::Game(WindowHandles *window_handles)
     m_window_handles_ = window_handles;
     m_level_view_ = new LevelView(*violet_render_pack, *blue_render_pack);
     m_platform_view_ = new PlatformView(m_window_handles_, violet_render_pack, blue_render_pack, white_pen);
+
+    game_loop_ = new GameLoop();
+    game_loop_->Add(m_platform_view_);
+}
+
+//----------------------------------------------------------------------------------------------------
+void Game::Activate() const
+{
+    game_loop_->Activate();
 }
 
 //----------------------------------------------------------------------------------------------------

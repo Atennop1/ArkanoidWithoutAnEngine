@@ -280,6 +280,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="game\loop\game_loop.cpp" />
     <ClCompile Include="game\platform\model\platform.cpp" />
     <ClCompile Include="game\platform\PlatformController.cpp" />
     <ClCompile Include="game\platform\view\platform_view.cpp" />
@@ -296,6 +297,8 @@
     <ClInclude Include="game\input\input.h" />
     <ClInclude Include="game\input\key_type.h" />
     <ClInclude Include="game\levels\levels.h" />
+    <ClInclude Include="game\loop\game_loop.h" />
+    <ClInclude Include="game\loop\updatable.h" />
     <ClInclude Include="game\platform\model\platform.h" />
     <ClInclude Include="game\platform\PlatformController.h" />
     <ClInclude Include="game\platform\view\platform_view.h" />

@@ -6,7 +6,7 @@
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE previous_instance, _In_ LPWSTR application_command_line, _In_ int window_showing_type)
 {    
     const auto application = new Application(instance, previous_instance, application_command_line, window_showing_type);
-    const MSG message = application->Run();
+    const MSG message = application->Activate();
     
     return (int)message.wParam;
 }
