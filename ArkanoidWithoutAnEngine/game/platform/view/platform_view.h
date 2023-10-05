@@ -4,9 +4,8 @@
 #include "../../DTOs/render_pack/render_pack.h"
 #include "../../DTOs/Vector2/vector2.h"
 #include "../../DTOs/window_handles/window_handles.h"
-#include "../../loop/updatable.h"
 
-class PlatformView : public IUpdatable
+class PlatformView
 {
 private:
     const int kPlatformCircleSize = 7;
@@ -20,9 +19,8 @@ private:
 
 public:
     PlatformView(WindowHandles *window_handles, RenderPack *violet_render_pack, RenderPack *blue_render_pack, HPEN white_pen);
-    ~PlatformView() override;
+    ~PlatformView();
     
     void Display(Vector2 position) const;
-    void Update(float delta) override;
 };
 

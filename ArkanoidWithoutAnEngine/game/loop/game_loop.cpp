@@ -45,7 +45,7 @@ void GameLoop::Activate() const
 }
 
 //----------------------------------------------------------------------------------------------------
-void GameLoop::Add(IUpdatable* updatable)
+void GameLoop::Add(IUpdatable *updatable)
 {
     if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) != m_updatables_.end())
         throw std::exception("Updatable already in loop");
@@ -54,7 +54,7 @@ void GameLoop::Add(IUpdatable* updatable)
 }
 
 //----------------------------------------------------------------------------------------------------
-void GameLoop::Remove(IUpdatable* updatable)
+void GameLoop::Remove(IUpdatable *updatable)
 {
     if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) == m_updatables_.end())
         throw std::exception("Updatable doesn't in loop");

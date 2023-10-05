@@ -116,16 +116,6 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
     case WM_QUIT:
         free(m_game_);
         break;
-
-    case WM_KEYDOWN:
-        {
-            const KeyType keyType = Converters::FromWParamToKeyType(word_parameter);
-
-            if (keyType != kNone)
-                m_game_->OnKeyDown(keyType);
-        
-            break;
-        }
         
     default:
         return DefWindowProc(window, message, word_parameter, long_parameter);
