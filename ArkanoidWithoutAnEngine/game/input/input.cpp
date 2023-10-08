@@ -1,5 +1,6 @@
 ﻿#include "input.h"
 #include "../converters/converters.h"
+#include "../shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
 Input::Input()
