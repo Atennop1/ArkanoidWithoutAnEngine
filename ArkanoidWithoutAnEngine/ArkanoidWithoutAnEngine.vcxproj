@@ -371,7 +371,8 @@
     <ClInclude Include="game\input\key_type.h" />
     <ClInclude Include="game\levels\levels.h" />
     <ClInclude Include="game\loop\game_loop.h" />
-    <ClInclude Include="game\loop\updatable.h" />
+    <ClInclude Include="game\loop\updatables\system_updatable.h" />
+    <ClInclude Include="game\loop\updatables\updatable.h" />
     <ClInclude Include="game\platform\controller\platform_controller.h" />
     <ClInclude Include="game\platform\model\platform.h" />
     <ClInclude Include="game\platform\view\platform_view.h" />

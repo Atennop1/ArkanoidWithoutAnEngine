@@ -1,6 +1,6 @@
 ﻿#include "input.h"
+#include <ostream>
 #include "../converters/converters.h"
-#include "../shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
 Input::Input()
@@ -29,30 +29,21 @@ bool Input::IsKeyPressedThisFrame(KeyType key_type) const
 }
 
 //----------------------------------------------------------------------------------------------------
-void Input::Update(float delta)
+void Input::Update(MSG *message)
 {
     m_pressed_this_frame_keys_->clear();
-}
-
-//----------------------------------------------------------------------------------------------------
-BOOL Input::PreTranslateMessage(MSG *message)
-{
+    
     const WPARAM word_parameter = message->wParam;
     const KeyType key_type = Converters::FromWParamToKeyType(word_parameter);
     
-    if (word_parameter == WM_KEYUP)
-    {
+    if (message->message == WM_KEYUP)
         m_pressed_keys_->remove(key_type);
-        return 0;
-    }
-    
-    if (word_parameter == WM_KEYDOWN)
+
+    if (message->message == WM_KEYDOWN)
     {
         m_pressed_this_frame_keys_->push_back(key_type);
         m_pressed_keys_->push_back(key_type);
     }
-
-    return 0;
 }
 
 //----------------------------------------------------------------------------------------------------

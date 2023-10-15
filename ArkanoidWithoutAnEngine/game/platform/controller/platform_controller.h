@@ -1,5 +1,7 @@
 ﻿#pragma once
+
 #include "../../input/input.h"
+#include "../../loop/updatables/updatable.h"
 #include "../model/platform.h"
 
 class PlatformController : IUpdatable

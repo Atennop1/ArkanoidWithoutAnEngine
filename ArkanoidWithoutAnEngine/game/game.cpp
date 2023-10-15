@@ -25,8 +25,8 @@ Game::Game(WindowHandles *window_handles)
     const auto platform_controller = new PlatformController(input, platform);
 
     m_game_loop_ = new GameLoop();
-    m_game_loop_->Add((IUpdatable*)input);
-    m_game_loop_->Add((IUpdatable*)platform_controller);
+    m_game_loop_->AddSystemUpdatable((ISystemUpdatable*)input);
+    m_game_loop_->AddUpdatable((IUpdatable*)platform_controller);
 }
 
 //----------------------------------------------------------------------------------------------------

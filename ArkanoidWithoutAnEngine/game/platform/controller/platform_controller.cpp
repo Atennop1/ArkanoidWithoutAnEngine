@@ -1,7 +1,5 @@
 ﻿#include "platform_controller.h"
 
-#include "../../shortcuts/shortcuts.h"
-
 //----------------------------------------------------------------------------------------------------
 PlatformController::PlatformController(Input *input, Platform *platform)
 {

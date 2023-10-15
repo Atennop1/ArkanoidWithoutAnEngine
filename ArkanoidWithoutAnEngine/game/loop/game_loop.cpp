@@ -1,9 +1,8 @@
-﻿#include "game_loop.h"
-
-#include <string>
+﻿#include <string>
 #include <thread>
+
+#include "game_loop.h"
 #include "../Converters/Converters.h"
-#include "../shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
 void GameLoop::Activate() const
@@ -33,7 +32,10 @@ void GameLoop::Activate() const
             TranslateMessage(&message);
             DispatchMessage(&message);
 
-            for (IUpdatable* updatable : m_updatables_)
+            for (ISystemUpdatable *system_updatable : m_system_updatables_)
+                system_updatable->Update(&message);
+            
+            for (IUpdatable *updatable : m_updatables_)
                 updatable->Update(delta);
         }
     }
@@ -42,7 +44,7 @@ void GameLoop::Activate() const
 }
 
 //----------------------------------------------------------------------------------------------------
-void GameLoop::Add(IUpdatable *updatable)
+void GameLoop::AddUpdatable(IUpdatable *updatable)
 {
     if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) != m_updatables_.end())
         throw std::exception("Updatable already in loop");
@@ -51,7 +53,7 @@ void GameLoop::Add(IUpdatable *updatable)
 }
 
 //----------------------------------------------------------------------------------------------------
-void GameLoop::Remove(IUpdatable *updatable)
+void GameLoop::RemoveUpdatable(IUpdatable *updatable)
 {
     if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) == m_updatables_.end())
         throw std::exception("Updatable doesn't in loop");
@@ -60,20 +62,43 @@ void GameLoop::Remove(IUpdatable *updatable)
 }
 
 //----------------------------------------------------------------------------------------------------
-GameLoop::GameLoop()
+void GameLoop::AddSystemUpdatable(ISystemUpdatable *updatable)
 {
-    m_updatables_ = std::list<IUpdatable*>();
+    if (std::find(m_system_updatables_.begin(), m_system_updatables_.end(), updatable) != m_system_updatables_.end())
+        throw std::exception("SystemUpdatable already in loop");
+
+    m_system_updatables_.push_front(updatable);
 }
 
 //----------------------------------------------------------------------------------------------------
-GameLoop::GameLoop(const std::list<IUpdatable*> *updatables)
+void GameLoop::RemoveSystemUpdatable(ISystemUpdatable *updatable)
+{
+    if (std::find(m_system_updatables_.begin(), m_system_updatables_.end(), updatable) == m_system_updatables_.end())
+        throw std::exception("SystemUpdatable doesn't in loop");
+
+    std::remove(m_system_updatables_.begin(), m_system_updatables_.end(), updatable);
+}
+
+//----------------------------------------------------------------------------------------------------
+GameLoop::GameLoop()
+{
+    m_updatables_ = std::list<IUpdatable*>();
+    m_system_updatables_ = std::list<ISystemUpdatable*>();
+}
+
+//----------------------------------------------------------------------------------------------------
+GameLoop::GameLoop(const std::list<IUpdatable*> *updatables, const std::list<ISystemUpdatable*> *system_updatables)
 {
     m_updatables_ = *updatables;
+    m_system_updatables_ = *system_updatables;
 }
 
 //----------------------------------------------------------------------------------------------------
 GameLoop::~GameLoop()
 {
+    for (ISystemUpdatable* system_updatable : m_system_updatables_)
+        free(system_updatable);
+    
     for (IUpdatable* updatable : m_updatables_)
         free(updatable);
 }
