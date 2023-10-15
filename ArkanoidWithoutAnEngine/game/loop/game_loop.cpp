@@ -26,21 +26,19 @@ void GameLoop::Activate() const
         
         while (PeekMessage(&message, nullptr, 0, 0, PM_REMOVE))
         {
-            if (message.message == WM_QUIT)
-                goto OutOfLoop;
-
             TranslateMessage(&message);
             DispatchMessage(&message);
 
             for (ISystemUpdatable *system_updatable : m_system_updatables_)
                 system_updatable->Update(&message);
-            
-            for (IUpdatable *updatable : m_updatables_)
-                updatable->Update(delta);
         }
-    }
 
-    OutOfLoop:;
+        if (message.message == WM_QUIT)
+            break;
+                    
+        for (IUpdatable *updatable : m_updatables_)
+            updatable->Update(delta);
+    }
 }
 
 //----------------------------------------------------------------------------------------------------

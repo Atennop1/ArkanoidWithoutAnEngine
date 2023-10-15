@@ -10,7 +10,7 @@ private:
     Input *m_input_;
     Platform *m_platform_;
 
-    const int m_move_force = 5;
+    const int m_move_force_ = 5;
 
 public:
     PlatformController(Input *input, Platform *platform);
