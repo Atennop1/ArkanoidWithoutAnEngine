@@ -3,13 +3,13 @@
 struct Vector2
 {
 private:
-    int m_x;
-    int m_y;
+    float m_x;
+    float m_y;
     
 public:
     Vector2();
-    Vector2(int x, int y);
+    Vector2(float x, float y);
 
-    int X() const;
-    int Y() const;
+    float X() const;
+    float Y() const;
 };

@@ -35,7 +35,7 @@ void GameLoop::Activate() const
 
         if (message.message == WM_QUIT)
             break;
-                    
+
         for (IUpdatable *updatable : m_updatables_)
             updatable->Update(delta);
     }

@@ -29,10 +29,14 @@ bool Input::IsKeyPressedThisFrame(KeyType key_type) const
 }
 
 //----------------------------------------------------------------------------------------------------
-void Input::Update(MSG *message)
+void Input::Update(float delta)
 {
     m_pressed_this_frame_keys_->clear();
-    
+}
+
+//----------------------------------------------------------------------------------------------------
+void Input::Update(MSG *message)
+{
     const WPARAM word_parameter = message->wParam;
     const KeyType key_type = Converters::FromWParamToKeyType(word_parameter);
     
