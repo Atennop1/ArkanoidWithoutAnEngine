@@ -29,8 +29,8 @@ void LevelView::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *leve
 //----------------------------------------------------------------------------------------------------
 void LevelView::RenderBrick(HDC hdc, Vector2 position, RenderPack render_pack) const
 {
-    const int x = position.X();
-    const int y = position.Y();
+    const int x = static_cast<int>(position.X());
+    const int y = static_cast<int>(position.Y());
     
     Shortcuts::SelectRenderPack(hdc, render_pack);
     RoundRect(hdc, x * kScaleMultiplier, y * kScaleMultiplier, (x + kBrickWidth) * kScaleMultiplier, (y + kBrickHeight) * kScaleMultiplier, 2 * kScaleMultiplier, 2 * kScaleMultiplier);

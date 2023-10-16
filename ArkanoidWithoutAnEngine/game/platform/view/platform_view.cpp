@@ -3,31 +3,41 @@
 #include "../../Shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
-PlatformView::PlatformView(WindowHandles *window_handles, RenderPack *violet_render_pack, RenderPack *blue_render_pack, HPEN white_pen)
+PlatformView::PlatformView(WindowHandles *window_handles, RenderPack *white_render_pack, RenderPack *black_render_pack, RenderPack *violet_render_pack, RenderPack *blue_render_pack)
 {
+    m_window_handles_ = window_handles;
+
+    m_white_render_pack_ = white_render_pack;
+    m_background_render_pack_ = black_render_pack;
     m_violet_render_pack_ = violet_render_pack;
     m_blue_render_pack_ = blue_render_pack;
-    m_white_pen_ = white_pen;
-    m_window_handles_ = window_handles;
 }
 
 //----------------------------------------------------------------------------------------------------
-void PlatformView::Display(Vector2 position) const
+void PlatformView::Display(Vector2 position, Vector2 size)
 {
     const HDC hdc = *m_window_handles_->HDC();
-    const int x = position.X();
-    const int y = position.Y();
+    const int position_x = static_cast<int>(position.X());
+    const int position_y = static_cast<int>(position.Y());
+    
+    const int size_x = static_cast<int>(size.X());
+    const int size_y = static_cast<int>(size.Y());
+
+    Shortcuts::SelectRenderPack(hdc, *m_background_render_pack_);
+    Rectangle(hdc, static_cast<int>(last_platform_position.X()) * kScaleMultiplier, static_cast<int>(last_platform_position.Y()) * kScaleMultiplier, (static_cast<int>(last_platform_position.X()) + size_x + size_y) * kScaleMultiplier, (static_cast<int>(last_platform_position.Y()) + size_x + size_y) * kScaleMultiplier);
     
     Shortcuts::SelectRenderPack(hdc, *m_violet_render_pack_);
-    Ellipse(hdc, x * kScaleMultiplier, y * kScaleMultiplier, (x + kPlatformCircleSize) * kScaleMultiplier, (y + kPlatformCircleSize) * kScaleMultiplier);
-    Ellipse(hdc, (x + kPlatformWidth) * kScaleMultiplier, y * kScaleMultiplier, (x + kPlatformCircleSize + kPlatformWidth) * kScaleMultiplier, (y + kPlatformCircleSize) * kScaleMultiplier);
+    Ellipse(hdc, position_x * kScaleMultiplier, position_y * kScaleMultiplier, (position_x + size_y) * kScaleMultiplier, (position_y + size_y) * kScaleMultiplier);
+    Ellipse(hdc, (position_x + size_x) * kScaleMultiplier, position_y * kScaleMultiplier, (position_x + size_y + size_x) * kScaleMultiplier, (position_y + size_y) * kScaleMultiplier);
 
     Shortcuts::SelectRenderPack(hdc, *m_blue_render_pack_);
-    RoundRect(hdc, (x + 3) * kScaleMultiplier, (y + 1) * kScaleMultiplier, (x + 5 + kPlatformWidth - 1) * kScaleMultiplier, (y + 1 + 5) * kScaleMultiplier, 3 * kScaleMultiplier, 3 * kScaleMultiplier);
+    RoundRect(hdc, (position_x + 4) * kScaleMultiplier, (position_y + 1) * kScaleMultiplier, (position_x + 4 + size_x - 1) * kScaleMultiplier, (position_y + 1 + 5) * kScaleMultiplier, 3 * kScaleMultiplier, 3 * kScaleMultiplier);
+    
+    Shortcuts::SelectRenderPack(hdc, *m_white_render_pack_);
+    Arc(hdc, (position_x + 1) * kScaleMultiplier, (position_y + 1) * kScaleMultiplier, (position_x + size_y - 1) * kScaleMultiplier, (position_y + size_y - 1) * kScaleMultiplier,
+        (position_x + 1 + 1) * kScaleMultiplier, (position_y + 1) * kScaleMultiplier, (position_x + 1) * kScaleMultiplier, (position_y + 1 + 2) * kScaleMultiplier);
 
-    SelectObject(hdc, m_white_pen_);
-    Arc(hdc, (x + 1) * kScaleMultiplier, (y + 1) * kScaleMultiplier, (x + kPlatformCircleSize - 1) * kScaleMultiplier, (y + kPlatformCircleSize - 1) * kScaleMultiplier,
-        (x + 1 + 1) * kScaleMultiplier, (y + 1) * kScaleMultiplier, (x + 1) * kScaleMultiplier, (y + 1 + 2) * kScaleMultiplier);
+    last_platform_position = position;
 }
 
 //----------------------------------------------------------------------------------------------------
