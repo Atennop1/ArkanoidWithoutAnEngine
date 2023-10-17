@@ -359,6 +359,7 @@
     <ClCompile Include="game\platform\model\platform.cpp" />
     <ClCompile Include="game\platform\view\platform_view.cpp" />
     <ClCompile Include="game\shortcuts\shortcuts.cpp" />
+    <ClCompile Include="game\view\render_packs.cpp" />
     <ClInclude Include="core\includes\framework.h" />
     <ClInclude Include="core\includes\resource.h" />
     <ClInclude Include="core\includes\targetver.h" />
@@ -379,6 +380,7 @@
     <ClInclude Include="game\platform\model\platform.h" />
     <ClInclude Include="game\platform\view\platform_view.h" />
     <ClInclude Include="game\view\level\level_view.h" />
+    <ClInclude Include="game\view\render_packs.h" />
     <ClInclude Include="game\view\visualization_consts.h" />
     <ClInclude Include="entry_point\main.h" />
     <ClInclude Include="game\shortcuts\shortcuts.h" />

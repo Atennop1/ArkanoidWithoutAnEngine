@@ -14,14 +14,9 @@ Game::~Game()
 Game::Game(WindowHandles *window_handles) 
 {
     m_window_handles_ = window_handles;
-    
-    const auto violet_render_pack = new RenderPack(RGB(255, 85, 255));
-    const auto blue_render_pack = new RenderPack(RGB(85, 255, 255));
-    const auto white_render_pack = new RenderPack(RGB(255, 255, 255));
-    const auto black_render_pack = new RenderPack(RGB(0, 0, 0));
 
     const auto input = new Input();
-    const auto platform_view = new PlatformView(m_window_handles_, white_render_pack, black_render_pack, violet_render_pack, blue_render_pack);
+    const auto platform_view = new PlatformView(m_window_handles_);
     const auto platform = new Platform(platform_view);
     const auto platform_controller = new PlatformController(input, platform);
 

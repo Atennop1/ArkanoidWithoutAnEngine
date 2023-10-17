@@ -1,6 +1,7 @@
 ﻿#include <array>
 #include "level_view.h"
 #include "../visualization_consts.h"
+#include "../../dtos/vector2/int_vector2.h"
 #include "../../Shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -21,19 +22,16 @@ void LevelView::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *leve
                 continue;
 
             const RenderPack render_pack = (*level)[i][j] == 1 ? m_violet_render_pack_ : m_blue_render_pack_;
-            RenderBrick(hdc, Vector2(kLevelOffsetX + kCellWidth * j, kLevelOffsetY + kCellHeight * i), render_pack);
+            RenderBrick(hdc, IntVector2(m_level_offset_x_ + m_cell_width_ * j, m_level_offset_y_ + m_cell_height_ * i), render_pack);
         }
     }
 }
 
 //----------------------------------------------------------------------------------------------------
-void LevelView::RenderBrick(HDC hdc, Vector2 position, RenderPack render_pack) const
+void LevelView::RenderBrick(HDC hdc, IntVector2 position, RenderPack render_pack) const
 {
-    const int x = static_cast<int>(position.X());
-    const int y = static_cast<int>(position.Y());
-    
     Shortcuts::SelectRenderPack(hdc, render_pack);
-    RoundRect(hdc, x * kScaleMultiplier, y * kScaleMultiplier, (x + kBrickWidth) * kScaleMultiplier, (y + kBrickHeight) * kScaleMultiplier, 2 * kScaleMultiplier, 2 * kScaleMultiplier);
+    RoundRect(hdc, position.X() * kScaleMultiplier, position.Y() * kScaleMultiplier, (position.X() + m_brick_width_) * kScaleMultiplier, (position.Y() + m_brick_height_) * kScaleMultiplier, 2 * kScaleMultiplier, 2 * kScaleMultiplier);
 }
 
 //----------------------------------------------------------------------------------------------------
