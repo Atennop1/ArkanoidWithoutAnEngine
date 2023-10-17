@@ -3,8 +3,8 @@
 struct Vector2
 {
 private:
-    float m_x;
-    float m_y;
+    float m_x_;
+    float m_y_;
     
 public:
     Vector2();

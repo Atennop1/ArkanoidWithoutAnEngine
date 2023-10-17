@@ -4,8 +4,8 @@
 struct WindowHandles
 {
 private:
-    HDC *m_hdc;
-    HWND *m_hwnd;
+    HDC *m_hdc_;
+    HWND *m_hwnd_;
     
 public:
     WindowHandles(HDC *hdc, HWND *hwnd);

@@ -1,29 +1,36 @@
-﻿#include "window_handles.h"
+﻿#include "int_vector2.h"
 
 //----------------------------------------------------------------------------------------------------
-WindowHandles::WindowHandles(::HDC* hdc, ::HWND* hwnd)
+IntVector2::IntVector2()
 {
-    m_hdc_ = hdc;
-    m_hwnd_ = hwnd;
+    m_x_ = 0;
+    m_y_ = 0;
 }
 
 //----------------------------------------------------------------------------------------------------
-HWND* WindowHandles::HWND() const
+IntVector2::IntVector2(int x, int y)
 {
-    return m_hwnd_;
+    m_x_ = x;
+    m_y_ = y;
 }
 
 //----------------------------------------------------------------------------------------------------
-HDC* WindowHandles::HDC() const
+IntVector2::IntVector2(float x, float y)
 {
-    return m_hdc_;
+    m_x_ = static_cast<int>(x);
+    m_y_ = static_cast<int>(y);
 }
 
 //----------------------------------------------------------------------------------------------------
-WindowHandles::~WindowHandles()
+int IntVector2::X() const
 {
-    free(m_hdc_);
-    free(m_hwnd_);
+    return m_x_;
+}
+
+//----------------------------------------------------------------------------------------------------
+int IntVector2::Y() const
+{
+    return m_y_;
 }
 
 //----------------------------------------------------------------------------------------------------

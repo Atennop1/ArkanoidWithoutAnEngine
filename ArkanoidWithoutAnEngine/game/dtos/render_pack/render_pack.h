@@ -4,8 +4,8 @@
 struct RenderPack
 {
 private:
-    HPEN m_pen;
-    HBRUSH m_brush;
+    HPEN m_pen_;
+    HBRUSH m_brush_;
     
 public:
     RenderPack();

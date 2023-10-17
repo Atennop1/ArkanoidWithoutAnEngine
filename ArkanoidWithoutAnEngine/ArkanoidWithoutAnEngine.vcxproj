@@ -203,6 +203,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="game\dtos\render_pack\render_pack.cpp" />
+    <ClCompile Include="game\dtos\vector2\int_vector2.cpp" />
     <ClCompile Include="game\dtos\vector2\vector2.cpp" />
     <ClCompile Include="game\dtos\window_handles\window_handles.cpp" />
     <ClCompile Include="game\input\input.cpp" />
@@ -364,6 +365,7 @@
     <ClInclude Include="entry_point\application\application.h" />
     <ClInclude Include="game\converters\converters.h" />
     <ClInclude Include="game\dtos\render_pack\render_pack.h" />
+    <ClInclude Include="game\dtos\vector2\int_vector2.h" />
     <ClInclude Include="game\dtos\vector2\vector2.h" />
     <ClInclude Include="game\dtos\window_handles\window_handles.h" />
     <ClInclude Include="game\game.h" />
