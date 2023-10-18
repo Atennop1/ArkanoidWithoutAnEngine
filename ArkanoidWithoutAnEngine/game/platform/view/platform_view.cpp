@@ -13,9 +13,6 @@ PlatformView::PlatformView(WindowHandles *window_handles)
 void PlatformView::Display(IntVector2 position, IntVector2 size)
 {
     const HDC hdc = *m_window_handles_->HDC();
-
-    Shortcuts::SelectRenderPack(hdc, RenderPacks::kBlackRenderPack);
-    Rectangle(hdc, m_last_platform_position_.X() * kScaleMultiplier, m_last_platform_position_.Y() * kScaleMultiplier, (m_last_platform_position_.X() + size.X() + size.Y()) * kScaleMultiplier, (m_last_platform_position_.Y() + size.X() + size.Y()) * kScaleMultiplier);
     
     Shortcuts::SelectRenderPack(hdc, RenderPacks::kVioletRenderPack);
     Ellipse(hdc, position.X() * kScaleMultiplier, position.Y() * kScaleMultiplier, (position.X() + size.Y()) * kScaleMultiplier, (position.Y() + size.Y()) * kScaleMultiplier);

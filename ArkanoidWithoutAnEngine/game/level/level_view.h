@@ -2,8 +2,8 @@
 #include <array>
 #include "Windows.h"
 
-#include "../../DTOs/render_pack/render_pack.h"
-#include "../../DTOs/vector2/int_vector2.h"
+#include "../DTOs/render_pack/render_pack.h"
+#include "../DTOs/vector2/int_vector2.h"
 
 class LevelView
 {

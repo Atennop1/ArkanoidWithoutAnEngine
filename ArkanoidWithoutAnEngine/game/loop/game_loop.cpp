@@ -18,6 +18,8 @@ void GameLoop::Activate() const
 
     while (true)
     {
+        Sleep(16);
+        
         QueryPerformanceCounter(&current_counter);
         const int64_t counter_elapsed = current_counter.QuadPart - last_counter.QuadPart;
 
@@ -33,11 +35,11 @@ void GameLoop::Activate() const
                 system_updatable->Update(&message);
         }
 
-        if (message.message == WM_QUIT)
-            break;
-
         for (IUpdatable *updatable : m_updatables_)
             updatable->Update(delta);
+
+        if (message.message == WM_QUIT)
+            break;
     }
 }
 

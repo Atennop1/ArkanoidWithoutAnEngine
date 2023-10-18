@@ -1,8 +1,7 @@
 ﻿#include <array>
 #include "level_view.h"
-#include "../visualization_consts.h"
-#include "../../dtos/vector2/int_vector2.h"
-#include "../../Shortcuts/shortcuts.h"
+#include "../Shortcuts/shortcuts.h"
+#include "../view/visualization_consts.h"
 
 //----------------------------------------------------------------------------------------------------
 LevelView::LevelView(RenderPack violet_render_pack, RenderPack blue_render_pack)
