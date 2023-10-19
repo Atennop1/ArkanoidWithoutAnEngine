@@ -1,8 +1,6 @@
 ﻿#include "game.h"
 #include "platform/controller/platform_controller.h"
-#include "shortcuts/shortcuts.h"
 #include "view/screen_cleaner.h"
-#include "view/level/level_view.h"
 
 //----------------------------------------------------------------------------------------------------
 Game::~Game()
