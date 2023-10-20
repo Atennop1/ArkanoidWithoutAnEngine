@@ -8,8 +8,8 @@ private:
     int m_window_showing_type_;
     LPWSTR m_command_line_;
 
-    WCHAR m_title_buffer_size[100];
-    WCHAR m_window_buffer_size[100];
+    WCHAR m_title_buffer_size_[100];
+    WCHAR m_window_buffer_size_[100];
     
     HINSTANCE m_instance_;
     HINSTANCE m_previous_instance_;
@@ -24,5 +24,5 @@ public:
     Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR command_line, int window_showing_type);
     
     MSG Activate();
-    LRESULT CALLBACK ProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter);
+    LRESULT CALLBACK ProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter) const;
 };

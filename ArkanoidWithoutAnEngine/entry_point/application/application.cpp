@@ -8,20 +8,20 @@ LRESULT StaticProcessWindow(HWND window, UINT message, WPARAM word_parameter, LP
 {
     if (message == WM_NCCREATE)
     {
-        const auto longParamCreateStruct = reinterpret_cast<LPCREATESTRUCT>(long_parameter);
-        auto* application = static_cast<Application*>(longParamCreateStruct->lpCreateParams);
+        const auto long_param_create_struct = reinterpret_cast<LPCREATESTRUCT>(long_parameter);
+        auto* application = static_cast<Application*>(long_param_create_struct->lpCreateParams);
         
         SetWindowLongPtr(window, GWLP_USERDATA, reinterpret_cast<LPARAM>(application));
         return TRUE;
     }
 
-    auto* application = reinterpret_cast<Application*>(GetWindowLongPtr(window, GWLP_USERDATA));
+    const auto* application = reinterpret_cast<Application*>(GetWindowLongPtr(window, GWLP_USERDATA));
     return application->ProcessWindow(window, message, word_parameter, long_parameter);
 }
 
 //----------------------------------------------------------------------------------------------------
 Application::Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR command_line, int window_showing_type)
-    : m_title_buffer_size(), m_window_buffer_size(), m_game_(nullptr), m_current_hdc_(nullptr)
+    : m_title_buffer_size_(), m_window_buffer_size_(), m_game_(nullptr), m_current_hdc_(nullptr)
 {
     m_instance_ = instance;
     m_previous_instance_ = previous_instance;
@@ -32,8 +32,8 @@ Application::Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR
     UNREFERENCED_PARAMETER(m_previous_instance_);
     UNREFERENCED_PARAMETER(m_command_line_);
 
-    LoadStringW(m_instance_, IDS_APP_TITLE, m_title_buffer_size, 100);
-    LoadStringW(m_instance_, IDC_ARKANOIDWITHOUTANENGINE, m_window_buffer_size, 100);
+    LoadStringW(m_instance_, IDS_APP_TITLE, m_title_buffer_size_, 100);
+    LoadStringW(m_instance_, IDC_ARKANOIDWITHOUTANENGINE, m_window_buffer_size_, 100);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -47,13 +47,30 @@ BOOL Application::InitInstance(HINSTANCE instance, int window_showing_type)
     window_rectangle.bottom = 200 * kScaleMultiplier;
     AdjustWindowRect(&window_rectangle, WS_OVERLAPPEDWINDOW, TRUE);
 
-    auto window = CreateWindowW(m_window_buffer_size, m_title_buffer_size, WS_OVERLAPPEDWINDOW,
+    auto window = CreateWindowW(m_window_buffer_size_, m_title_buffer_size_, WS_OVERLAPPEDWINDOW,
        0, 0, window_rectangle.right - window_rectangle.left, window_rectangle.bottom - window_rectangle.top, NULL, NULL, instance, this);
 
     if (!window)
         return FALSE;
 
+    char buffer[320 * 6][200 * 6][3];
+    BITMAPINFO bitmap_info = { };
+    
+    bitmap_info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bitmap_info.bmiHeader.biWidth = window_rectangle.bottom;
+    bitmap_info.bmiHeader.biHeight = -window_rectangle.right;
+    bitmap_info.bmiHeader.biPlanes = 1;
+    bitmap_info.bmiHeader.biBitCount = 32;
+    bitmap_info.bmiHeader.biCompression = BI_RGB;
+
+    const HDC desktop_dc = GetDC(window);
+    const HBITMAP independent_bitmap = CreateDIBSection(desktop_dc, &bitmap_info, DIB_RGB_COLORS, (void**)&buffer, nullptr, 0);
+    const HDC independent_bitmap_dc = CreateCompatibleDC(desktop_dc);
+    SelectObject(independent_bitmap_dc, independent_bitmap);
+
+    m_current_hdc_ = desktop_dc;
     m_game_ = new Game(new WindowHandles(&m_current_hdc_, &window));
+    
     ShowWindow(window, window_showing_type);
     UpdateWindow(window);
     return TRUE;
@@ -68,7 +85,7 @@ ATOM Application::RegisterWindow(HINSTANCE instance) const
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = instance;
-    wcex.lpszClassName = m_window_buffer_size;
+    wcex.lpszClassName = m_window_buffer_size_;
     
     wcex.hIcon = LoadIcon(instance, MAKEINTRESOURCE(IDI_ARKANOIDWITHOUTANENGINE));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
@@ -82,7 +99,7 @@ ATOM Application::RegisterWindow(HINSTANCE instance) const
 }
 
 //----------------------------------------------------------------------------------------------------
-LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter)
+LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter) const
 {
     switch (message)
     {
@@ -103,7 +120,7 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            m_current_hdc_ = BeginPaint(window, &ps);
+            BitBlt(BeginPaint(window, &ps), 0, 0, 320 * kScaleMultiplier, 200 * kScaleMultiplier, m_current_hdc_, 0, 0, SRCCOPY);
             EndPaint(window, &ps);
         }
         break;
@@ -129,16 +146,9 @@ MSG Application::Activate()
 {
     RegisterWindow(m_instance_);
     InitInstance(m_instance_, m_window_showing_type_);
-    m_game_->Activate();
     
-    MSG message;
-    while (PeekMessage(&message, nullptr, 0, 0, PM_REMOVE))
-    {
-        TranslateMessage(&message);
-        DispatchMessage(&message);
-    }
-
-    return message;
+    m_game_->Activate();
+    return { };
 }
 
 //----------------------------------------------------------------------------------------------------
