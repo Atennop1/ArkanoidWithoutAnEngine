@@ -16,8 +16,8 @@ Platform::~Platform()
 //----------------------------------------------------------------------------------------------------
 void Platform::Update(float delta)
 {
-    const auto platform_size = IntVector2(m_platform_width_, m_platform_height_);
-    m_platform_view_->Display(Converters::FromVector2ToIntVector2(m_platform_position_), platform_size);
+    const auto platform_size = Vector2(m_platform_width_, m_platform_height_);
+    m_platform_view_->Display(m_platform_position_, platform_size);
 }
 
 //----------------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 ﻿#include "screen_cleaner.h"
 #include "render_packs.h"
-#include "visualization_consts.h"
+#include "rendering_consts.h"
 #include "../shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------

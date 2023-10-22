@@ -1,7 +1,7 @@
 ﻿#include <array>
 #include "level_view.h"
 #include "../Shortcuts/shortcuts.h"
-#include "../view/visualization_consts.h"
+#include "../rendering/rendering_consts.h"
 
 //----------------------------------------------------------------------------------------------------
 LevelView::LevelView(RenderPack violet_render_pack, RenderPack blue_render_pack)

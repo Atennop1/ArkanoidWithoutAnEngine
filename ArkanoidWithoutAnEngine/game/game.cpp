@@ -1,7 +1,7 @@
 ﻿#include "game.h"
 #include "platform/controller/platform_controller.h"
-#include "view/screen_applier.h"
-#include "view/screen_cleaner.h"
+#include "rendering/screen_applier.h"
+#include "rendering/screen_cleaner.h"
 
 //----------------------------------------------------------------------------------------------------
 Game::~Game()

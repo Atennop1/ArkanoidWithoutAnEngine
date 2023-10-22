@@ -1,7 +1,7 @@
 ﻿#include "application.h"
 #include "../../core/includes/resource.h"
 #include "../../Game/game.h"
-#include "../../game/view/visualization_consts.h"
+#include "../../game/rendering/rendering_consts.h"
 
 //----------------------------------------------------------------------------------------------------
 LRESULT StaticProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter)

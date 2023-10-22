@@ -1,5 +1,5 @@
 ﻿#include "screen_applier.h"
-#include "visualization_consts.h"
+#include "rendering_consts.h"
 
 //----------------------------------------------------------------------------------------------------
 ScreenApplier::ScreenApplier(WindowHandles *window_handles)
