@@ -5,17 +5,14 @@
 class Application
 {
 private:
+    HINSTANCE m_instance_;
     int m_window_showing_type_;
-    LPWSTR m_command_line_;
 
     WCHAR m_title_buffer_size_[100];
     WCHAR m_window_buffer_size_[100];
     
-    HINSTANCE m_instance_;
-    HINSTANCE m_previous_instance_;
-    
     Game *m_game_;
-    HDC m_current_hdc_;
+    WindowHandles *m_window_handles_;
     
     BOOL InitInstance(HINSTANCE instance, int window_showing_type);
     ATOM RegisterWindow(HINSTANCE instance) const;

@@ -2,7 +2,6 @@
 #include <thread>
 
 #include "game_loop.h"
-#include "../Converters/Converters.h"
 
 //----------------------------------------------------------------------------------------------------
 void GameLoop::Activate() const
@@ -32,10 +31,10 @@ void GameLoop::Activate() const
             for (ISystemUpdatable *system_updatable : m_system_updatables_)
                 system_updatable->Update(&message);
         }
-
+        
         for (IUpdatable *updatable : m_updatables_)
             updatable->Update(delta);
-
+        
         if (message.message == WM_QUIT)
             break;
     }
@@ -47,7 +46,7 @@ void GameLoop::AddUpdatable(IUpdatable *updatable)
     if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) != m_updatables_.end())
         throw std::exception("Updatable already in loop");
 
-    m_updatables_.push_front(updatable);
+    m_updatables_.push_back(updatable);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -65,7 +64,7 @@ void GameLoop::AddSystemUpdatable(ISystemUpdatable *updatable)
     if (std::find(m_system_updatables_.begin(), m_system_updatables_.end(), updatable) != m_system_updatables_.end())
         throw std::exception("SystemUpdatable already in loop");
 
-    m_system_updatables_.push_front(updatable);
+    m_system_updatables_.push_back(updatable);
 }
 
 //----------------------------------------------------------------------------------------------------

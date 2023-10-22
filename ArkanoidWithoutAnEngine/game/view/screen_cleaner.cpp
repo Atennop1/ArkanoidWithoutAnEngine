@@ -1,5 +1,6 @@
 ﻿#include "screen_cleaner.h"
 #include "render_packs.h"
+#include "visualization_consts.h"
 #include "../shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -11,12 +12,10 @@ ScreenCleaner::ScreenCleaner(WindowHandles *window_handles)
 //----------------------------------------------------------------------------------------------------
 void ScreenCleaner::Update(float delta)
 {
-    RECT rect;
-    if (GetWindowRect(*m_window_handles_->HWND(), &rect))
-    {
-        Shortcuts::SelectRenderPack(*m_window_handles_->HDC(), RenderPacks::kBlackRenderPack);
-        Rectangle(*m_window_handles_->HDC(), rect.left, rect.top, rect.right, rect.bottom);
-    }
+    const HDC hdc = *m_window_handles_->HDC();
+    
+    Shortcuts::SelectRenderPack(hdc, RenderPacks::kBlackRenderPack);
+    Rectangle(hdc, 0, 0, kWindowWidth, kWindowHeight);
 }
 
 //----------------------------------------------------------------------------------------------------

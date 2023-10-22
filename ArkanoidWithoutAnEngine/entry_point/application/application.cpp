@@ -1,7 +1,7 @@
 ﻿#include "application.h"
 #include "../../core/includes/resource.h"
 #include "../../Game/game.h"
-#include "../../Game/View/visualization_consts.h"
+#include "../../game/view/visualization_consts.h"
 
 //----------------------------------------------------------------------------------------------------
 LRESULT StaticProcessWindow(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter)
@@ -15,22 +15,19 @@ LRESULT StaticProcessWindow(HWND window, UINT message, WPARAM word_parameter, LP
         return TRUE;
     }
 
-    const auto* application = reinterpret_cast<Application*>(GetWindowLongPtr(window, GWLP_USERDATA));
+    const auto application = reinterpret_cast<Application*>(GetWindowLongPtr(window, GWLP_USERDATA));
     return application->ProcessWindow(window, message, word_parameter, long_parameter);
 }
 
 //----------------------------------------------------------------------------------------------------
 Application::Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR command_line, int window_showing_type)
-    : m_title_buffer_size_(), m_window_buffer_size_(), m_game_(nullptr), m_current_hdc_(nullptr)
+    : m_title_buffer_size_(), m_window_buffer_size_(), m_game_(nullptr), m_window_handles_(nullptr)
 {
     m_instance_ = instance;
-    m_previous_instance_ = previous_instance;
-
-    m_command_line_ = command_line;
     m_window_showing_type_ = window_showing_type;
 
-    UNREFERENCED_PARAMETER(m_previous_instance_);
-    UNREFERENCED_PARAMETER(m_command_line_);
+    UNREFERENCED_PARAMETER(previous_instance);
+    UNREFERENCED_PARAMETER(command_line);
 
     LoadStringW(m_instance_, IDS_APP_TITLE, m_title_buffer_size_, 100);
     LoadStringW(m_instance_, IDC_ARKANOIDWITHOUTANENGINE, m_window_buffer_size_, 100);
@@ -43,33 +40,22 @@ BOOL Application::InitInstance(HINSTANCE instance, int window_showing_type)
     
     window_rectangle.left = 0;
     window_rectangle.top = 0;
-    window_rectangle.right = 320 * kScaleMultiplier;
-    window_rectangle.bottom = 200 * kScaleMultiplier;
+    window_rectangle.right = kWindowWidth;
+    window_rectangle.bottom = kWindowHeight;
     AdjustWindowRect(&window_rectangle, WS_OVERLAPPEDWINDOW, TRUE);
 
-    auto window = CreateWindowW(m_window_buffer_size_, m_title_buffer_size_, WS_OVERLAPPEDWINDOW,
+    auto window  = CreateWindowW(m_window_buffer_size_, m_title_buffer_size_, WS_OVERLAPPEDWINDOW,
        0, 0, window_rectangle.right - window_rectangle.left, window_rectangle.bottom - window_rectangle.top, NULL, NULL, instance, this);
 
     if (!window)
         return FALSE;
-
-    char buffer[320 * 6][200 * 6][3];
-    BITMAPINFO bitmap_info = { };
     
-    bitmap_info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    bitmap_info.bmiHeader.biWidth = window_rectangle.bottom;
-    bitmap_info.bmiHeader.biHeight = -window_rectangle.right;
-    bitmap_info.bmiHeader.biPlanes = 1;
-    bitmap_info.bmiHeader.biBitCount = 32;
-    bitmap_info.bmiHeader.biCompression = BI_RGB;
-
-    const HDC desktop_dc = GetDC(window);
-    const HBITMAP independent_bitmap = CreateDIBSection(desktop_dc, &bitmap_info, DIB_RGB_COLORS, (void**)&buffer, nullptr, 0);
-    const HDC independent_bitmap_dc = CreateCompatibleDC(desktop_dc);
+    HDC independent_bitmap_dc = CreateCompatibleDC(nullptr);
+    const HBITMAP independent_bitmap = CreateCompatibleBitmap(GetDC(nullptr), kWindowWidth, kWindowHeight);
     SelectObject(independent_bitmap_dc, independent_bitmap);
 
-    m_current_hdc_ = desktop_dc;
-    m_game_ = new Game(new WindowHandles(&m_current_hdc_, &window));
+    m_window_handles_ = new WindowHandles(&independent_bitmap_dc, &window);
+    m_game_ = new Game(m_window_handles_);
     
     ShowWindow(window, window_showing_type);
     UpdateWindow(window);
@@ -116,11 +102,11 @@ LRESULT CALLBACK Application::ProcessWindow(HWND window, UINT message, WPARAM wo
             }
         }
         break;
-        
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            BitBlt(BeginPaint(window, &ps), 0, 0, 320 * kScaleMultiplier, 200 * kScaleMultiplier, m_current_hdc_, 0, 0, SRCCOPY);
+            BitBlt(BeginPaint(window, &ps), 0, 0, kWindowWidth, kWindowHeight, *m_window_handles_->HDC(), 0, 0, SRCCOPY);
             EndPaint(window, &ps);
         }
         break;
