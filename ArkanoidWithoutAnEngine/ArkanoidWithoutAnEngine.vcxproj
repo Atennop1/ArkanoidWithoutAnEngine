@@ -128,6 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="entry_point\application\application.cpp" />
+    <ClCompile Include="entry_point\application\window_factory.cpp" />
+    <ClCompile Include="entry_point\application\window_processor.cpp" />
     <ClCompile Include="game\converters\converters.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -440,6 +442,8 @@
     <ClInclude Include="core\includes\resource.h" />
     <ClInclude Include="core\includes\targetver.h" />
     <ClInclude Include="entry_point\application\application.h" />
+    <ClInclude Include="entry_point\application\window_factory.h" />
+    <ClInclude Include="entry_point\application\window_processor.h" />
     <ClInclude Include="game\converters\converters.h" />
     <ClInclude Include="game\dtos\render_pack\render_pack.h" />
     <ClInclude Include="game\dtos\vector2\int_vector2.h" />
