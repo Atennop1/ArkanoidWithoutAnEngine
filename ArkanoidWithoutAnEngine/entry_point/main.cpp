@@ -7,8 +7,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE previous_insta
 {    
     const auto application = new Application(instance, previous_instance, application_command_line, window_showing_type);
     application->Activate();
-    
-    return 0;
 }
 
 //----------------------------------------------------------------------------------------------------
