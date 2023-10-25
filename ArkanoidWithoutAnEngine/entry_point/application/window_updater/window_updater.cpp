@@ -21,7 +21,7 @@ LRESULT UpdateApplication(HWND window, UINT message, WPARAM word_parameter, LPAR
 //----------------------------------------------------------------------------------------------------
 LRESULT CALLBACK WindowUpdater::Update(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter) const
 {
-    if (message == WM_COMMAND && LOWORD(word_parameter) == IDM_EXIT)
+    if (message == WM_COMMAND && LOWORD(word_parameter) == IDM_EXIT || message == WM_QUIT)
     {
         DestroyWindow(window);
         return 0;

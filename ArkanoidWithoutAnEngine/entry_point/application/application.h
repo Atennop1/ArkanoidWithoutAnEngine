@@ -11,10 +11,11 @@ private:
 
     Game *m_game_;
     WindowHandles *m_window_handles_;
-    
-    HDC m_initial_hdc_;
-    HDC m_independent_hdc_;
+
     HWND m_window_;
+    HDC m_intermediate_hdc_;
+
+    void PrepareIntermediateHDC();
     
 public:
     Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR command_line, int window_showing_type);

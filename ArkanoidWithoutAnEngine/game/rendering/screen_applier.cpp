@@ -10,9 +10,11 @@ ScreenApplier::ScreenApplier(WindowHandles *window_handles)
 //----------------------------------------------------------------------------------------------------
 void ScreenApplier::Update(float delta)
 {
-    const auto hdc = GetDC(*m_window_handles_->HWND());
+    const auto window = *m_window_handles_->HWND();
+    const auto hdc = GetDC(window);
+    
     BitBlt(hdc, 0, 0, kWindowWidth, kWindowHeight, *m_window_handles_->HDC(), 0, 0, SRCCOPY);
-    ReleaseDC(*m_window_handles_->HWND(), hdc);
+    ReleaseDC(window, hdc);
 }
 
 //----------------------------------------------------------------------------------------------------
