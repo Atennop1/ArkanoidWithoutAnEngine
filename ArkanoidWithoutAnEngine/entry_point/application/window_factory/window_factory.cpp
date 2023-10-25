@@ -2,7 +2,7 @@
 
 #include <cwchar>
 #include "../window_updater/window_updater.h"
-#include "../../../game/rendering/rendering_consts.h"
+#include "../../../game/rendering/rendering_constants.h"
 #include "../../../core/includes/resource.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -34,8 +34,8 @@ HWND WindowFactory::CreateWindowInstance() const
     
     window_rectangle.left = 0;
     window_rectangle.top = 0;
-    window_rectangle.right = kWindowWidth;
-    window_rectangle.bottom = kWindowHeight;
+    window_rectangle.right = RenderingConstants::kWindowWidth;
+    window_rectangle.bottom = RenderingConstants::kWindowHeight;
     AdjustWindowRect(&window_rectangle, WS_OVERLAPPEDWINDOW, TRUE);
 
     const auto window = CreateWindowW(m_window_buffer_size_, m_title_buffer_size_, WS_OVERLAPPEDWINDOW, 0, 0, window_rectangle.right - window_rectangle.left, window_rectangle.bottom - window_rectangle.top, NULL, NULL, m_instance_, m_window_updater_);

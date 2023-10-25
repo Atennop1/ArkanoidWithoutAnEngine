@@ -1,6 +1,6 @@
 ﻿#include "window_updater.h"
 #include "../../../core/includes/resource.h"
-#include "../../../game/rendering/rendering_consts.h"
+#include "../../../game/rendering/rendering_constants.h"
 
 //----------------------------------------------------------------------------------------------------
 LRESULT UpdateApplication(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter)
@@ -21,16 +21,17 @@ LRESULT UpdateApplication(HWND window, UINT message, WPARAM word_parameter, LPAR
 //----------------------------------------------------------------------------------------------------
 LRESULT CALLBACK WindowUpdater::Update(HWND window, UINT message, WPARAM word_parameter, LPARAM long_parameter) const
 {
-    if (message == WM_COMMAND && LOWORD(word_parameter) == IDM_EXIT || message == WM_QUIT)
+    if (message == WM_COMMAND && LOWORD(word_parameter) == IDM_EXIT || message == WM_QUIT || message == WM_CLOSE)
     {
         DestroyWindow(window);
+        PostQuitMessage(0);
         return 0;
     }
 
     if (message == WM_PAINT)
     {
         PAINTSTRUCT ps;
-        BitBlt(BeginPaint(window, &ps), 0, 0, kWindowWidth, kWindowHeight, *m_window_handles_->HDC(), 0, 0, SRCCOPY);
+        BitBlt(BeginPaint(window, &ps), 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight, *m_window_handles_->HDC(), 0, 0, SRCCOPY);
         
         EndPaint(window, &ps);
         return 0;

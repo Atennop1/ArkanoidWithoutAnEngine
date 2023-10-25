@@ -1,6 +1,6 @@
 ﻿#include "application.h"
 #include "../../game/game.h"
-#include "../../game/rendering/rendering_consts.h"
+#include "../../game/rendering/rendering_constants.h"
 #include "window_factory/window_factory.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ void Application::PrepareIntermediateHDC()
 {
     m_intermediate_hdc_ = CreateCompatibleDC(nullptr);
     const auto initial_hdc = GetDC(nullptr);
-    const HBITMAP intermediate_bitmap = CreateCompatibleBitmap(initial_hdc, kWindowWidth, kWindowHeight);
+    const HBITMAP intermediate_bitmap = CreateCompatibleBitmap(initial_hdc, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight);
     
     SelectObject(m_intermediate_hdc_, intermediate_bitmap);
     ReleaseDC(m_window_, initial_hdc);

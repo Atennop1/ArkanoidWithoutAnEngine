@@ -1,7 +1,7 @@
 ﻿#include "converters.h"
 
 //----------------------------------------------------------------------------------------------------
-KeyType Converters::FromWParamToKeyType(WPARAM wParam)
+KeyType Converters::FromWParamToKeyType(const WPARAM wParam)
 {
     switch (wParam)
     {

@@ -1,7 +1,7 @@
 ﻿#include <array>
 #include "level_view.h"
 #include "../Shortcuts/shortcuts.h"
-#include "../rendering/rendering_consts.h"
+#include "../rendering/rendering_constants.h"
 
 //----------------------------------------------------------------------------------------------------
 LevelView::LevelView(RenderPack violet_render_pack, RenderPack blue_render_pack)
@@ -30,7 +30,10 @@ void LevelView::Render(HDC hdc, const std::array<std::array<char, 12>, 14> *leve
 void LevelView::RenderBrick(HDC hdc, IntVector2 position, RenderPack render_pack) const
 {
     Shortcuts::SelectRenderPack(hdc, render_pack);
-    RoundRect(hdc, position.X() * kScaleMultiplier, position.Y() * kScaleMultiplier, (position.X() + m_brick_width_) * kScaleMultiplier, (position.Y() + m_brick_height_) * kScaleMultiplier, 2 * kScaleMultiplier, 2 * kScaleMultiplier);
+    
+    RoundRect(hdc, position.X() * RenderingConstants::kScaleMultiplier, position.Y() * RenderingConstants::kScaleMultiplier,
+        (position.X() + m_brick_width_) * RenderingConstants::kScaleMultiplier, (position.Y() + m_brick_height_) * RenderingConstants::kScaleMultiplier,
+        2 * RenderingConstants::kScaleMultiplier, 2 * RenderingConstants::kScaleMultiplier);
 }
 
 //----------------------------------------------------------------------------------------------------

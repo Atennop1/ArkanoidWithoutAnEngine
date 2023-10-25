@@ -434,6 +434,7 @@
     </ClCompile>
     <ClCompile Include="game\platform\model\platform.cpp" />
     <ClCompile Include="game\platform\view\platform_view.cpp" />
+    <ClCompile Include="game\rendering\rendering_constants.cpp" />
     <ClCompile Include="game\shortcuts\render_packs.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -535,7 +536,7 @@
     <ClInclude Include="game\platform\view\platform_view.h" />
     <ClInclude Include="game\rendering\screen_applier.h" />
     <ClInclude Include="game\rendering\screen_cleaner.h" />
-    <ClInclude Include="game\rendering\rendering_consts.h" />
+    <ClInclude Include="game\rendering\rendering_constants.h" />
     <ClInclude Include="entry_point\main.h" />
     <ClInclude Include="game\shortcuts\render_packs.h" />
     <ClInclude Include="game\shortcuts\shortcuts.h" />
