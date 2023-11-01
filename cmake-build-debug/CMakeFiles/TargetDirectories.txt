@@ -1,0 +1,3 @@
+C:/Users/User/CLionProjects/ArkanoidWithoutAnEngine/cmake-build-debug/CMakeFiles/ArkanoidWithoutAnEngine.dir
+C:/Users/User/CLionProjects/ArkanoidWithoutAnEngine/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/User/CLionProjects/ArkanoidWithoutAnEngine/cmake-build-debug/CMakeFiles/rebuild_cache.dir

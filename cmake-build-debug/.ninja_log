@@ -1,0 +1,5 @@
+# ninja log v5
+0	345	7205403653225788	CMakeFiles/ArkanoidWithoutAnEngine.dir/main.c.obj	dbd4db94e3ca2dad
+2	94	7205409759894793	ArkanoidWithoutAnEngine.exe	97865a5c04837d5c
+0	445	7205431175073218	CMakeFiles/ArkanoidWithoutAnEngine.dir/source/entry_point/main.cpp.obj	7f20d5f78e69cb33
+446	534	7205431175933222	ArkanoidWithoutAnEngine.exe	4ad03db38f9de88e
