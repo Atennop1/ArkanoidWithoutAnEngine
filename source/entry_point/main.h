@@ -1,7 +1,4 @@
-#ifndef ARKANOIDWITHOUTANENGINE_MAIN_H
-#define ARKANOIDWITHOUTANENGINE_MAIN_H
+#pragma once
 
-
-
-
-#endif //ARKANOIDWITHOUTANENGINE_MAIN_H
+#include "../core/includes/resource.h"
+#include "../core/includes/framework.h"
