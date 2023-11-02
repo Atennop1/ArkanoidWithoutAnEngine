@@ -1,29 +1,29 @@
-﻿#include "window_handles.h"
+﻿#include "window_references.h"
 
 //----------------------------------------------------------------------------------------------------
-WindowHandles::WindowHandles(::HDC* hdc, ::HWND* hwnd)
+WindowReferences::WindowReferences(SDL_Window *window, SDL_Renderer *renderer)
 {
-    m_hdc_ = hdc;
-    m_hwnd_ = hwnd;
+    m_window_ = window;
+    m_renderer_ = renderer;
 }
 
 //----------------------------------------------------------------------------------------------------
-HWND* WindowHandles::HWND() const
+SDL_Window *WindowReferences::Window() const
 {
-    return m_hwnd_;
+    return m_window_;
 }
 
 //----------------------------------------------------------------------------------------------------
-HDC* WindowHandles::HDC() const
+SDL_Renderer *WindowReferences::Renderer() const
 {
-    return m_hdc_;
+    return m_renderer_;
 }
 
 //----------------------------------------------------------------------------------------------------
-WindowHandles::~WindowHandles()
+WindowReferences::~WindowReferences()
 {
-    free(m_hdc_);
-    free(m_hwnd_);
+    free(m_window_);
+    free(m_renderer_);
 }
 
 //----------------------------------------------------------------------------------------------------

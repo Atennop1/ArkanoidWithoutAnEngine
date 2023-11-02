@@ -1,14 +1,14 @@
 ﻿#pragma once
-#include "../dtos/window_handles/window_handles.h"
+#include "../dtos/window_handles/window_references.h"
 #include "../loop/updatables/updatable.h"
 
 class ScreenApplier : IUpdatable
 {
 private:
-    WindowHandles *m_window_handles_;
+    WindowReferences *m_window_references_;
     
 public:
-    ScreenApplier(WindowHandles *window_handles);
+    ScreenApplier(WindowReferences *window_references);
     ~ScreenApplier() override = default;
     
     void Update(float delta) override;

@@ -1,16 +1,16 @@
 ﻿#pragma once
 
+#include "SDL.h"
 #include "loop/game_loop.h"
-#include "platform/View/platform_view.h"
+#include "dtos/window_handles/window_references.h"
 
 class Game
 {
 private:
     GameLoop *m_game_loop_;
-    WindowHandles *m_window_handles_;
     
 public:
-    Game(WindowHandles *window_handles);
+    Game(WindowReferences *window_references);
     ~Game();
 
     void Activate() const;

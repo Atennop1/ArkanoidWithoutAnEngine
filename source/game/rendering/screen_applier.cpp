@@ -1,20 +1,15 @@
 ﻿#include "screen_applier.h"
-#include "rendering_constants.h"
 
 //----------------------------------------------------------------------------------------------------
-ScreenApplier::ScreenApplier(WindowHandles *window_handles)
+ScreenApplier::ScreenApplier(WindowReferences *window_references)
 {
-    m_window_handles_ = window_handles;
+    m_window_references_ = window_references;
 }
 
 //----------------------------------------------------------------------------------------------------
 void ScreenApplier::Update(float delta)
 {
-    const auto window = *m_window_handles_->HWND();
-    const auto hdc = GetDC(window);
-    
-    BitBlt(hdc, 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight, *m_window_handles_->HDC(), 0, 0, SRCCOPY);
-    ReleaseDC(window, hdc);
+    SDL_RenderPresent(m_window_references_->Renderer());
 }
 
 //----------------------------------------------------------------------------------------------------

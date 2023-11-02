@@ -1,7 +1,5 @@
 ﻿#include "application.h"
-#include "../../game/game.h"
 #include "../../game/rendering/rendering_constants.h"
-#include "window_factory/window_factory.h"
 
 //----------------------------------------------------------------------------------------------------
 void Application::Activate() const
@@ -10,34 +8,21 @@ void Application::Activate() const
 }
 
 //----------------------------------------------------------------------------------------------------
-Application::Application(HINSTANCE instance, HINSTANCE previous_instance, LPWSTR command_line, int window_showing_type)
+Application::Application()
 {
-    PrepareIntermediateHDC();
-    m_window_handles_ = new WindowHandles(&m_intermediate_hdc_, &m_window_);
-    m_window_updater_ = new WindowUpdater(m_window_handles_);
-    m_window_factory_ = new WindowFactory(m_window_updater_, instance, previous_instance, command_line, window_showing_type);
+    SDL_Init(SDL_INIT_EVERYTHING);
+    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight, SDL_WINDOW_FULLSCREEN);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-    m_window_ = m_window_factory_->Create();
-    m_game_ = new Game(m_window_handles_);
-}
-
-//----------------------------------------------------------------------------------------------------
-void Application::PrepareIntermediateHDC()
-{
-    m_intermediate_hdc_ = CreateCompatibleDC(nullptr);
-    const auto initial_hdc = GetDC(nullptr);
-    const HBITMAP intermediate_bitmap = CreateCompatibleBitmap(initial_hdc, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight);
-    
-    SelectObject(m_intermediate_hdc_, intermediate_bitmap);
-    ReleaseDC(nullptr, initial_hdc);
+    m_window_references_ = new WindowReferences(window, renderer);
+    m_game_ = new Game(m_window_references_);
 }
 
 //----------------------------------------------------------------------------------------------------
 Application::~Application()
 {
     free(m_game_);
-    free(m_window_factory_);
-    DeleteDC(m_intermediate_hdc_);
+    free(m_window_references_);
 }
 
 //----------------------------------------------------------------------------------------------------

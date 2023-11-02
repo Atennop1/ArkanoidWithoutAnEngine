@@ -7,8 +7,6 @@
 class Converters
 {
 public:
-    static KeyType FromWParamToKeyType(WPARAM wParam);
-
     static IntVector2 FromVector2ToIntVector2(Vector2 vector2);
     static Vector2 FromIntVector2ToVector2(IntVector2 int_vector2);
 };

@@ -6,19 +6,17 @@
 //----------------------------------------------------------------------------------------------------
 Game::~Game()
 {
-    free(m_window_handles_);
     free(m_game_loop_);
 }
 
 //----------------------------------------------------------------------------------------------------
-Game::Game(WindowHandles *window_handles) 
+Game::Game(WindowReferences *window_references)
 {
-    m_window_handles_ = window_handles;
-    const auto screen_cleaner = new ScreenCleaner(window_handles);
-    const auto screen_applier = new ScreenApplier(window_handles);
+    const auto screen_cleaner = new ScreenCleaner(window_references);
+    const auto screen_applier = new ScreenApplier(window_references);
     
     const auto input = new Input();
-    const auto platform_view = new PlatformView(m_window_handles_);
+    const auto platform_view = new PlatformView(window_references);
     const auto platform = new Platform(platform_view);
     const auto platform_controller = new PlatformController(input, platform);
 

@@ -1,21 +1,18 @@
 ﻿#include "screen_cleaner.h"
-#include "rendering_constants.h"
-#include "../shortcuts/render_packs.h"
+#include "../shortcuts/render_colors.h"
 #include "../shortcuts/shortcuts.h"
 
 //----------------------------------------------------------------------------------------------------
-ScreenCleaner::ScreenCleaner(WindowHandles *window_handles)
+ScreenCleaner::ScreenCleaner(WindowReferences *window_reference)
 {
-    m_window_handles_ = window_handles;
+    m_window_references_ = window_reference;
 }
 
 //----------------------------------------------------------------------------------------------------
 void ScreenCleaner::Update(float delta)
 {
-    const HDC hdc = *m_window_handles_->HDC();
-    
-    Shortcuts::SelectRenderPack(hdc, RenderPacks::kBlackRenderPack);
-    Rectangle(hdc, 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight);
+    Shortcuts::SelectColor(m_window_references_->Renderer(), RenderColors::kBlackColor);
+    SDL_RenderClear(m_window_references_->Renderer());
 }
 
 //----------------------------------------------------------------------------------------------------

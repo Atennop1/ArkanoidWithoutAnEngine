@@ -1,12 +1,11 @@
 ﻿#include "shortcuts.h"
 #include <cwchar>
-#include "Windows.h"
+#include <debugapi.h>
 
 //----------------------------------------------------------------------------------------------------
-void Shortcuts::SelectRenderPack(HDC hdc, RenderPack render_pack)
+void Shortcuts::SelectColor(SDL_Renderer *renderer, SDL_Color color)
 {
-    SelectObject(hdc, render_pack.Pen());
-    SelectObject(hdc, render_pack.Brush());
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -17,7 +16,7 @@ void Shortcuts::PrintDebugString(const wchar_t *string, ...)
     wchar_t char_buffer[256];
     
     vswprintf(char_buffer, 256, string, args);
-    OutputDebugString(char_buffer);
+    OutputDebugString(reinterpret_cast<LPCSTR>(char_buffer));
     va_end(args);
 }
 

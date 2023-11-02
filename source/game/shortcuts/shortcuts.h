@@ -1,13 +1,11 @@
 ﻿#pragma once
-
-#include "Windows.h"
-#include "../DTOs/render_pack/render_pack.h"
+#include "SDL.h"
 
 class Shortcuts
 {
 public:
+    static void SelectColor(SDL_Renderer *renderer, SDL_Color color);
     static void PrintDebugString(const wchar_t *string, ...);
-    static void SelectRenderPack(HDC hdc, RenderPack render_pack);
 };
 
 
