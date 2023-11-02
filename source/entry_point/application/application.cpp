@@ -1,10 +1,12 @@
-﻿#include "application.h"
+﻿#include <iostream>
+#include "application.h"
 #include "../../game/rendering/rendering_constants.h"
 
 //----------------------------------------------------------------------------------------------------
 void Application::Activate() const
 {
     m_game_->Activate();
+    std::cout << "Application activated";
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -16,13 +18,19 @@ Application::Application()
 
     m_window_references_ = new WindowReferences(window, renderer);
     m_game_ = new Game(m_window_references_);
+    std::cout << "Application initialized";
 }
 
 //----------------------------------------------------------------------------------------------------
 Application::~Application()
 {
+    SDL_DestroyWindow(m_window_references_->Window());
+    SDL_DestroyRenderer(m_window_references_->Renderer());
+    SDL_Quit();
+
     free(m_game_);
     free(m_window_references_);
+    std::cout << "Application cleared";
 }
 
 //----------------------------------------------------------------------------------------------------

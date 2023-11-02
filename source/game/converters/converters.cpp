@@ -1,4 +1,24 @@
 ﻿#include "converters.h"
+#include "SDL.h"
+
+//----------------------------------------------------------------------------------------------------
+KeyType Converters::FromEventToKeyType(SDL_Event event)
+{
+    switch (event.key.keysym.sym)
+    {
+        case SDKL_w:
+        case SDLK_LEFT:
+            return kLeft;
+
+        case SDLK_RIGHT:
+            return kRight;
+    
+        case SDLK_SPACE:
+            return kSpace;
+        default:
+            return kNone;
+    }
+}
 
 //----------------------------------------------------------------------------------------------------
 IntVector2 Converters::FromVector2ToIntVector2(Vector2 vector2)

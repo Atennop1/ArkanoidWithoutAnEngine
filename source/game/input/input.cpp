@@ -1,5 +1,6 @@
 ﻿#include "input.h"
 #include <ostream>
+#include <algorithm>
 #include "../converters/converters.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -35,15 +36,14 @@ void Input::Update(float delta)
 }
 
 //----------------------------------------------------------------------------------------------------
-void Input::Update(MSG *message)
+void Input::Update(SDL_Event *event)
 {
-    const WPARAM word_parameter = message->wParam;
-    const KeyType key_type = Converters::FromWParamToKeyType(word_parameter);
+    const KeyType key_type = Converters::FromEventToKeyType(event);
     
-    if (message->message == WM_KEYUP)
+    if (event.type == SDL_KEYUP)
         m_pressed_keys_->remove(key_type);
 
-    if (message->message == WM_KEYDOWN)
+    if (event.type == SDL_KEYDOWN)
     {
         m_pressed_this_frame_keys_->push_back(key_type);
         m_pressed_keys_->push_back(key_type);
