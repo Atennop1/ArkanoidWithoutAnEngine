@@ -6,15 +6,17 @@ KeyType Converters::FromEventToKeyType(SDL_Event event)
 {
     switch (event.key.keysym.sym)
     {
-        case SDKL_w:
+        case SDLK_a:
         case SDLK_LEFT:
             return kLeft;
 
+        case SDLK_d:
         case SDLK_RIGHT:
             return kRight;
     
         case SDLK_SPACE:
             return kSpace;
+            
         default:
             return kNone;
     }

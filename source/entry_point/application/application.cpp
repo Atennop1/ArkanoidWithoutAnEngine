@@ -6,7 +6,7 @@
 void Application::Activate() const
 {
     m_game_->Activate();
-    std::cout << "Application activated";
+    std::cout << "Application activated\n";
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ Application::Application()
 
     m_window_references_ = new WindowReferences(window, renderer);
     m_game_ = new Game(m_window_references_);
-    std::cout << "Application initialized";
+    std::cout << "Application initialized\n";
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ Application::~Application()
 
     free(m_game_);
     free(m_window_references_);
-    std::cout << "Application cleared";
+    std::cout << "Application cleared\n";
 }
 
 //----------------------------------------------------------------------------------------------------

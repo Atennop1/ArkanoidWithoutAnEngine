@@ -4,9 +4,11 @@ project(ArkanoidWithoutAnEngine)
 set(CMAKE_C_STANDARD 20)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
 set(SDL2_PATH ${CMAKE_SOURCE_DIR}/modules/SDL2)
+set(SDL2_IMAGE_PATH ${CMAKE_SOURCE_DIR}/modules/SDL2_image)
 
 find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR})
+find_package(SDL2_image REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
 
 add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/entry_point/application/application.cpp
@@ -15,7 +17,6 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/dtos/vector2/vector2.cpp
         source/game/dtos/window_handles/window_references.cpp
         source/game/input/input.cpp
-        source/game/level/level_view.cpp
         source/game/levels/levels.cpp
         source/game/loop/game_loop.cpp
         source/game/platform/controller/platform_controller.cpp
@@ -29,4 +30,4 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/shortcuts/render_colors.cpp
         source/game/game.cpp)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})

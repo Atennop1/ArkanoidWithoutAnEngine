@@ -2,11 +2,14 @@
 #include <stdexcept>
 #include "game_loop.h"
 #include "SDL.h"
+#include "SDL_image.h"
 
 //----------------------------------------------------------------------------------------------------
 void GameLoop::Activate() const
 {
+    SDL_Event event;
     float delta;
+
     unsigned long long last_time;
     unsigned long long current_time = SDL_GetPerformanceCounter();
 
@@ -15,12 +18,10 @@ void GameLoop::Activate() const
         last_time = current_time;
         current_time = SDL_GetPerformanceCounter();
         delta = (float)(current_time - last_time) * 1000 / (float)SDL_GetPerformanceFrequency(); // in milliseconds
-        
-        SDL_Event event;
-        SDL_PollEvent(&event);
 
-        for (ISystemUpdatable *system_updatable : m_system_updatables_)
-            system_updatable->Update(event);
+        if (SDL_PollEvent(&event) != 0)
+            for (ISystemUpdatable *system_updatable : m_system_updatables_)
+                system_updatable->Update(event);
         
         for (IUpdatable *updatable : m_updatables_)
             updatable->Update(delta);

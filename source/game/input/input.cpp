@@ -1,5 +1,4 @@
 ﻿#include "input.h"
-#include <ostream>
 #include <algorithm>
 #include "../converters/converters.h"
 
@@ -36,7 +35,7 @@ void Input::Update(float delta)
 }
 
 //----------------------------------------------------------------------------------------------------
-void Input::Update(SDL_Event *event)
+void Input::Update(SDL_Event event)
 {
     const KeyType key_type = Converters::FromEventToKeyType(event);
     
