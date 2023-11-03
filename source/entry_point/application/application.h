@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "../../game/game.h"
-#include "../../game/dtos/window_handles/window_references.h"
+#include "../../game/dtos/window_references/window_references.h"
 
 class Application
 {

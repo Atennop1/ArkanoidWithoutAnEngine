@@ -1,4 +1,5 @@
-﻿#include "platform.h"
+﻿#include <cstdlib>
+#include "platform.h"
 
 //----------------------------------------------------------------------------------------------------
 Platform::Platform(PlatformView* platform_view)
@@ -16,8 +17,7 @@ Platform::~Platform()
 //----------------------------------------------------------------------------------------------------
 void Platform::Update(float delta)
 {
-    const auto platform_size = Vector2(m_platform_width_, m_platform_height_);
-    m_platform_view_->Display(m_platform_position_, platform_size);
+    m_platform_view_->Display(m_platform_position_);
 }
 
 //----------------------------------------------------------------------------------------------------

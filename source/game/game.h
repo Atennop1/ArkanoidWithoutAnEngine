@@ -2,7 +2,7 @@
 
 #include "SDL.h"
 #include "loop/game_loop.h"
-#include "dtos/window_handles/window_references.h"
+#include "dtos/window_references/window_references.h"
 
 class Game
 {

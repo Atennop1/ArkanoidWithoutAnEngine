@@ -1,4 +1,5 @@
-﻿#include "screen_applier.h"
+﻿#include <stdexcept>
+#include "screen_applier.h"
 
 //----------------------------------------------------------------------------------------------------
 ScreenApplier::ScreenApplier(WindowReferences *window_references)

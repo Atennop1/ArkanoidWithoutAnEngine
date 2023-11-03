@@ -1,35 +1,36 @@
-﻿#include "platform_view.h"
+﻿#include <iostream>
+#include "platform_view.h"
 #include "../../rendering/rendering_constants.h"
-#include "../../shortcuts/render_colors.h"
 #include "../../Shortcuts/shortcuts.h"
+#include "SDL_image.h"
 
 //----------------------------------------------------------------------------------------------------
-PlatformView::PlatformView(WindowReferences *window_handles)
+PlatformView::PlatformView(WindowReferences *window_references)
 {
-    m_window_handles_ = window_handles;
+    m_window_handles_ = window_references;
+    m_displaying_rect_ = { 0, 0, 0, 0 };
+    m_platform_texture_ = IMG_LoadTexture(m_window_handles_->Renderer(), "assets/sprites/platform.png");
 }
 
 //----------------------------------------------------------------------------------------------------
-void PlatformView::Display(Vector2 position, Vector2 size) const
+void PlatformView::Display(Vector2 position)
 {
-    const HDC hdc = *m_window_handles_->HDC();
-    
-    Shortcuts::SelectRenderPack(hdc, RenderColors::kVioletColor);
-    Ellipse(hdc, static_cast<int>(position.X() * RenderingConstants::kScaleMultiplier), static_cast<int>(position.Y() * RenderingConstants::kScaleMultiplier), static_cast<int>((position.X() + size.Y()) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + size.Y()) * RenderingConstants::kScaleMultiplier));
-    Ellipse(hdc, static_cast<int>((position.X() + size.X()) * RenderingConstants::kScaleMultiplier), static_cast<int>(position.Y() * RenderingConstants::kScaleMultiplier), static_cast<int>((position.X() + size.Y() + size.X()) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + size.Y()) * RenderingConstants::kScaleMultiplier));
+    SDL_QueryTexture(m_platform_texture_, nullptr, nullptr, &m_displaying_rect_.w, &m_displaying_rect_.h);
 
-    Shortcuts::SelectRenderPack(hdc, RenderColors::kBlueColor);
-    RoundRect(hdc, static_cast<int>((position.X() + 4) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + 1) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.X() + 4 + size.X() - 1) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + 1 + 5) * RenderingConstants::kScaleMultiplier), 3 * RenderingConstants::kScaleMultiplier, 3 * RenderingConstants::kScaleMultiplier);
-    
-    Shortcuts::SelectRenderPack(hdc, RenderColors::kWhiteColor);
-    Arc(hdc, static_cast<int>((position.X() + 1) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + 1) * RenderingConstants::kScaleMultiplier), static_cast<int>(RenderingConstants::kScaleMultiplier * (size.Y() + position.X() - 1)), static_cast<int>((position.Y() + size.Y() - 1) * RenderingConstants::kScaleMultiplier),
-        static_cast<int>((position.X() + 1 + 2) * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + 1) * RenderingConstants::kScaleMultiplier), static_cast<int>(position.X() * RenderingConstants::kScaleMultiplier), static_cast<int>((position.Y() + 1 + 2) * RenderingConstants::kScaleMultiplier));
+    m_displaying_rect_.h = m_displaying_rect_.h * RenderingConstants::kScaleMultiplier;
+    m_displaying_rect_.w = m_displaying_rect_.w * RenderingConstants::kScaleMultiplier;
+    m_displaying_rect_.x = (int)(position.X() * (float)RenderingConstants::kScaleMultiplier);
+    m_displaying_rect_.y = (int)(position.Y() * (float)RenderingConstants::kScaleMultiplier);
+
+    SDL_RenderCopy(m_window_handles_->Renderer(), m_platform_texture_, nullptr, &m_displaying_rect_);
+
 }
 
 //----------------------------------------------------------------------------------------------------
 PlatformView::~PlatformView()
 {
     free(m_window_handles_);
+    free(m_platform_texture_);
 }
 
 //----------------------------------------------------------------------------------------------------

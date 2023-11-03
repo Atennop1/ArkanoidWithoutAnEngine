@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "../dtos/window_handles/window_references.h"
+#include "../dtos/window_references/window_references.h"
 #include "../loop/updatables/updatable.h"
 
 class ScreenCleaner : IUpdatable
