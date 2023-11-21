@@ -23,7 +23,6 @@ void PlatformView::Display(Vector2 position)
     m_displaying_rect_.y = (int)(position.Y() * (float)RenderingConstants::kScaleMultiplier);
 
     SDL_RenderCopy(m_window_handles_->Renderer(), m_platform_texture_, nullptr, &m_displaying_rect_);
-
 }
 
 //----------------------------------------------------------------------------------------------------
