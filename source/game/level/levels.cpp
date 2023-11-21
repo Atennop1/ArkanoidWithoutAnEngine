@@ -1,6 +1,6 @@
 ﻿#include "levels.h"
 
-const array<array<char, 12>, 14> Levels::kFirst = array<array<char, 12>, 14>
+const std::array<std::array<char, 12>, 14> Levels::kFirst = std::array<std::array<char, 12>, 14>
     {{
         {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
         {{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }},

@@ -17,7 +17,7 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/dtos/vector2/vector2.cpp
         source/game/dtos/window_references/window_references.cpp
         source/game/input/input.cpp
-        source/game/levels/levels.cpp
+        source/game/level/levels.cpp
         source/game/loop/game_loop.cpp
         source/game/platform/controller/platform_controller.cpp
         source/game/platform/model/platform.cpp
@@ -28,6 +28,6 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/shortcuts/render_colors.cpp
         source/game/shortcuts/shortcuts.cpp
         source/game/shortcuts/render_colors.cpp
-        source/game/game.cpp)
+        source/game/game.cpp source/game/level/view/level_view.cpp source/game/level/view/level_view.h)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})

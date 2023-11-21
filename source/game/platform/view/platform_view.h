@@ -7,10 +7,10 @@ private:
     SDL_Texture *m_platform_texture_;
     SDL_Rect m_displaying_rect_;
 
-    WindowReferences *m_window_handles_;
+    WindowReferences *m_window_references_;
 
 public:
-    PlatformView(WindowReferences *window_handles);
+    PlatformView(WindowReferences *window_references);
     ~PlatformView();
     
     void Display(Vector2 position);
