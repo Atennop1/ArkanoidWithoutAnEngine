@@ -3,7 +3,6 @@
 #include "rendering/screen_applier.h"
 #include "rendering/screen_cleaner.h"
 #include "level/view/level_view.h"
-#include "level/levels.h"
 
 //----------------------------------------------------------------------------------------------------
 Game::~Game()
@@ -22,15 +21,13 @@ Game::Game(WindowReferences *window_references)
     const auto platform = new Platform(platform_view);
     const auto platform_controller = new PlatformController(input, platform);
 
-    const auto level_view = new LevelView(window_references);
-
     m_game_loop_ = new GameLoop();
     m_game_loop_->AddSystemUpdatable((ISystemUpdatable*)input);
 
-    m_game_loop_->AddUpdatable((IUpdatable*)screen_cleaner);
+    m_game_loop_->AddUpdatable((IUpdatable*)screen_cleaner); // SYSTEM COMPONENT: clearing all render that was before this line
     m_game_loop_->AddUpdatable((IUpdatable*)platform_controller);
     m_game_loop_->AddUpdatable((IUpdatable*)platform);
-    m_game_loop_->AddUpdatable((IUpdatable*)screen_applier);
+    m_game_loop_->AddUpdatable((IUpdatable*)screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
 }
 
 //----------------------------------------------------------------------------------------------------

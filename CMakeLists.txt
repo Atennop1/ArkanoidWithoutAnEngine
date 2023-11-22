@@ -17,7 +17,7 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/dtos/vector2/vector2.cpp
         source/game/dtos/window_references/window_references.cpp
         source/game/input/input.cpp
-        source/game/level/levels.cpp
+        source/game/level/constants/levels.cpp
         source/game/loop/game_loop.cpp
         source/game/platform/controller/platform_controller.cpp
         source/game/platform/model/platform.cpp

@@ -5,8 +5,8 @@
 //----------------------------------------------------------------------------------------------------
 void Application::Activate() const
 {
-    m_game_->Activate();
     SDL_Log("Application activated\n");
+    m_game_->Activate();
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -24,13 +24,13 @@ Application::Application()
 //----------------------------------------------------------------------------------------------------
 Application::~Application()
 {
-    SDL_DestroyWindow(m_window_references_->Window());
-    SDL_DestroyRenderer(m_window_references_->Renderer());
-    SDL_Quit();
-
     free(m_game_);
     free(m_window_references_);
     SDL_Log("Application cleared\n");
+
+    SDL_DestroyWindow(m_window_references_->Window());
+    SDL_DestroyRenderer(m_window_references_->Renderer());
+    SDL_Quit();
 }
 
 //----------------------------------------------------------------------------------------------------

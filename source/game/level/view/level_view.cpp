@@ -1,7 +1,7 @@
 #include "level_view.h"
 #include "SDL_image.h"
 #include "../../rendering/rendering_constants.h"
-#include "../levels.h"
+#include "../constants/levels.h"
 
 //----------------------------------------------------------------------------------------------------
 LevelView::LevelView(WindowReferences *window_references)
@@ -33,7 +33,7 @@ void LevelView::Display(std::array<std::array<char, 12>, 14> level)
                 continue;
 
             SDL_Texture *texture = level[i][j] == 1 ? m_violet_brick_texture_ : m_blue_brick_texture_;
-            DisplayBrick(texture, IntVector2(m_level_offset_x_ + m_brick_width_ * j, m_level_offset_y_ + m_brick_height_ * i));
+            DisplayBrick(texture, IntVector2(m_level_offset_x_ + (m_brick_width_ + 1) * j, m_level_offset_y_ + (m_brick_height_ + 1) * i));
         }
     }
 }
@@ -47,12 +47,6 @@ void LevelView::DisplayBrick(SDL_Texture *texture, IntVector2 position)
     m_displaying_rect_.y = position.Y() * RenderingConstants::kScaleMultiplier;
 
     SDL_RenderCopy(m_window_references_->Renderer(), texture, nullptr, &m_displaying_rect_);
-}
-
-//----------------------------------------------------------------------------------------------------
-void LevelView::Update(float delta)
-{
-    Display(Levels::kFirst);
 }
 
 //----------------------------------------------------------------------------------------------------
