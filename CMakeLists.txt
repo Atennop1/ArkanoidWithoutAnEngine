@@ -28,6 +28,6 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/shortcuts/render_colors.cpp
         source/game/shortcuts/shortcuts.cpp
         source/game/shortcuts/render_colors.cpp
-        source/game/game.cpp source/game/level/view/level_view.cpp source/game/level/view/level_view.h)
+        source/game/game.cpp source/game/level/view/level_view.cpp source/game/level/view/level_view.h source/game/level/level.cpp source/game/level/level.h)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
