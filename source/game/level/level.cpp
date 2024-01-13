@@ -1,22 +1,9 @@
 #include "level.h"
 
-//----------------------------------------------------------------------------------------------------
-Level::Level(std::array<std::array<char, 12>, 14> map, LevelView *level_view)
-{
-    m_map_ = map;
-    m_level_view_ = level_view;
-}
+Level::Level(const std::array<std::array<char, 12>, 14> &map, const LevelView &level_view)
+    : m_level_view_(const_cast<LevelView&>(level_view)), m_map_(map) { }
 
-//----------------------------------------------------------------------------------------------------
-Level::~Level()
-{
-    free(m_level_view_);
-}
-
-//----------------------------------------------------------------------------------------------------
 void Level::Update(float delta)
 {
-    m_level_view_->Display(m_map_);
+    m_level_view_.Display(m_map_);
 }
-
-//----------------------------------------------------------------------------------------------------

@@ -5,11 +5,11 @@ class Level : IUpdatable
 {
 private:
     std::array<std::array<char, 12>, 14> m_map_;
-    LevelView *m_level_view_;
+    LevelView &m_level_view_;
 
 public:
-    Level(std::array<std::array<char, 12>, 14> map, LevelView *level_view);
-    ~Level() override;
+    Level(const std::array<std::array<char, 12>, 14> &map, const LevelView &level_view);
+    ~Level() override = default;
 
     void Update(float delta) override;
 };

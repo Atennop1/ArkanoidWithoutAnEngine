@@ -10,7 +10,7 @@ private:
     
 public:
     WindowReferences(SDL_Window *window, SDL_Renderer *renderer);
-    ~WindowReferences();
+    ~WindowReferences() = default;
 
     SDL_Window *Window() const;
     SDL_Renderer *Renderer() const;

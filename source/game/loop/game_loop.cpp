@@ -3,7 +3,38 @@
 #include "game_loop.h"
 #include "SDL.h"
 
-//----------------------------------------------------------------------------------------------------
+void GameLoop::AddUpdatable(IUpdatable *updatable)
+{
+    if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) != m_updatables_.end())
+        throw std::invalid_argument("Updatable already in loop");
+
+    m_updatables_.push_back(updatable);
+}
+
+void GameLoop::RemoveUpdatable(const IUpdatable *updatable)
+{
+    if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) == m_updatables_.end())
+        throw std::invalid_argument("Updatable doesn't in loop");
+
+    std::remove(m_updatables_.begin(), m_updatables_.end(), updatable);
+}
+
+GameLoop::GameLoop()
+{
+    m_updatables_ = std::list<IUpdatable*>();
+}
+
+GameLoop::GameLoop(const std::list<IUpdatable*> &updatables)
+{
+    m_updatables_ = updatables;
+}
+
+GameLoop::~GameLoop()
+{
+    for (IUpdatable* updatable : m_updatables_)
+        free(updatable);
+}
+
 void GameLoop::Activate() const
 {
     SDL_Event event;
@@ -18,10 +49,6 @@ void GameLoop::Activate() const
         current_time = SDL_GetPerformanceCounter();
         delta = (float)(current_time - last_time) / (float)SDL_GetPerformanceFrequency(); // in seconds
 
-        if (SDL_PollEvent(&event) != 0)
-            for (ISystemUpdatable *system_updatable : m_system_updatables_)
-                system_updatable->Update(event);
-        
         for (IUpdatable *updatable : m_updatables_)
             updatable->Update(delta);
 
@@ -29,65 +56,3 @@ void GameLoop::Activate() const
             break;
     }
 }
-
-//----------------------------------------------------------------------------------------------------
-void GameLoop::AddUpdatable(IUpdatable *updatable)
-{
-    if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) != m_updatables_.end())
-        throw std::invalid_argument("Updatable already in loop");
-
-    m_updatables_.push_back(updatable);
-}
-
-//----------------------------------------------------------------------------------------------------
-void GameLoop::RemoveUpdatable(IUpdatable *updatable)
-{
-    if (std::find(m_updatables_.begin(), m_updatables_.end(), updatable) == m_updatables_.end())
-        throw std::invalid_argument("Updatable doesn't in loop");
-
-    std::remove(m_updatables_.begin(), m_updatables_.end(), updatable);
-}
-
-//----------------------------------------------------------------------------------------------------
-void GameLoop::AddSystemUpdatable(ISystemUpdatable *updatable)
-{
-    if (std::find(m_system_updatables_.begin(), m_system_updatables_.end(), updatable) != m_system_updatables_.end())
-        throw std::invalid_argument("SystemUpdatable already in loop");
-
-    m_system_updatables_.push_back(updatable);
-}
-
-//----------------------------------------------------------------------------------------------------
-void GameLoop::RemoveSystemUpdatable(ISystemUpdatable *updatable)
-{
-    if (std::find(m_system_updatables_.begin(), m_system_updatables_.end(), updatable) == m_system_updatables_.end())
-        throw std::invalid_argument("SystemUpdatable doesn't in loop");
-
-    std::remove(m_system_updatables_.begin(), m_system_updatables_.end(), updatable);
-}
-
-//----------------------------------------------------------------------------------------------------
-GameLoop::GameLoop()
-{
-    m_updatables_ = std::list<IUpdatable*>();
-    m_system_updatables_ = std::list<ISystemUpdatable*>();
-}
-
-//----------------------------------------------------------------------------------------------------
-GameLoop::GameLoop(const std::list<IUpdatable*> *updatables, const std::list<ISystemUpdatable*> *system_updatables)
-{
-    m_updatables_ = *updatables;
-    m_system_updatables_ = *system_updatables;
-}
-
-//----------------------------------------------------------------------------------------------------
-GameLoop::~GameLoop()
-{
-    for (ISystemUpdatable* system_updatable : m_system_updatables_)
-        free(system_updatable);
-    
-    for (IUpdatable* updatable : m_updatables_)
-        free(updatable);
-}
-
-//----------------------------------------------------------------------------------------------------

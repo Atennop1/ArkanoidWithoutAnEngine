@@ -3,26 +3,23 @@
 #include "../../rendering/rendering_constants.h"
 #include "../constants/levels.h"
 
-//----------------------------------------------------------------------------------------------------
-LevelView::LevelView(WindowReferences *window_references)
+LevelView::LevelView(const WindowReferences &window_references)
+    : m_window_references_(const_cast<WindowReferences&>(window_references))
 {
-    m_window_references_ = window_references;
-    m_blue_brick_texture_ = IMG_LoadTexture(m_window_references_->Renderer(), "assets/sprites/blue_brick.png");
-    m_violet_brick_texture_ = IMG_LoadTexture(m_window_references_->Renderer(), "assets/sprites/violet_brick.png");
+    m_blue_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/blue_brick.png");
+    m_violet_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/violet_brick.png");
 
     SDL_QueryTexture(m_blue_brick_texture_, nullptr, nullptr, &m_displaying_rect_.w, &m_displaying_rect_.h);
     m_brick_height_ = m_displaying_rect_.h;
     m_brick_width_ = m_displaying_rect_.w;
 }
 
-//----------------------------------------------------------------------------------------------------
 LevelView::~LevelView()
 {
     free(m_blue_brick_texture_);
     free(m_violet_brick_texture_);
 }
 
-//----------------------------------------------------------------------------------------------------
 void LevelView::Display(std::array<std::array<char, 12>, 14> level)
 {
     for (int i = 0; i < 14; i++)
@@ -38,7 +35,6 @@ void LevelView::Display(std::array<std::array<char, 12>, 14> level)
     }
 }
 
-//----------------------------------------------------------------------------------------------------
 void LevelView::DisplayBrick(SDL_Texture *texture, IntVector2 position)
 {
     m_displaying_rect_.h = m_brick_height_ * RenderingConstants::kScaleMultiplier;
@@ -46,7 +42,5 @@ void LevelView::DisplayBrick(SDL_Texture *texture, IntVector2 position)
     m_displaying_rect_.x = position.X() * RenderingConstants::kScaleMultiplier;
     m_displaying_rect_.y = position.Y() * RenderingConstants::kScaleMultiplier;
 
-    SDL_RenderCopy(m_window_references_->Renderer(), texture, nullptr, &m_displaying_rect_);
+    SDL_RenderCopy(m_window_references_.Renderer(), texture, nullptr, &m_displaying_rect_);
 }
-
-//----------------------------------------------------------------------------------------------------

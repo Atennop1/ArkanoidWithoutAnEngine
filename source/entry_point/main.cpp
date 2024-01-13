@@ -2,7 +2,6 @@
 #include <vector>
 #include "application/application.h"
 
-//----------------------------------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
     auto application = new Application();
@@ -11,5 +10,3 @@ int main(int argc, char *argv[])
     free(application);
     return 0;
 }
-
-//----------------------------------------------------------------------------------------------------

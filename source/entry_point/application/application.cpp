@@ -2,14 +2,12 @@
 #include "application.h"
 #include "../../game/rendering/rendering_constants.h"
 
-//----------------------------------------------------------------------------------------------------
 void Application::Activate() const
 {
     SDL_Log("Application activated\n");
     m_game_->Activate();
 }
 
-//----------------------------------------------------------------------------------------------------
 Application::Application()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -17,11 +15,10 @@ Application::Application()
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
     m_window_references_ = new WindowReferences(window, renderer);
-    m_game_ = new Game(m_window_references_);
+    m_game_ = new Game(*m_window_references_);
     SDL_Log("Application initialized\n");
 }
 
-//----------------------------------------------------------------------------------------------------
 Application::~Application()
 {
     free(m_game_);
@@ -32,5 +29,3 @@ Application::~Application()
     SDL_DestroyRenderer(m_window_references_->Renderer());
     SDL_Quit();
 }
-
-//----------------------------------------------------------------------------------------------------

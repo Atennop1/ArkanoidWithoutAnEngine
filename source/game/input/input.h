@@ -3,23 +3,21 @@
 #include <list>
 #include "key_type.h"
 #include "Windows.h"
-#include "../loop/updatables/system_updatable.h"
-#include "../loop/updatables/updatable.h"
+#include "../loop/updatable.h"
 #include "SDL.h"
 
-class Input : ISystemUpdatable, IUpdatable
+class Input :  IUpdatable
 {
 private:
-    std::list<KeyType> *m_pressed_keys_;
-    std::list<KeyType> *m_pressed_this_frame_keys_;
+    std::list<KeyType> m_pressed_keys_;
+    std::list<KeyType> m_pressed_this_frame_keys_;
     
 public:
     Input();
-    ~Input() override;
+    ~Input() override = default;
     
     bool IsKeyPressed(KeyType key_type) const;
     bool IsKeyPressedThisFrame(KeyType key_type) const;
-    
-    void Update(SDL_Event event) override;
+
     void Update(float delta) override;
 };
