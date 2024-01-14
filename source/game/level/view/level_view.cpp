@@ -1,7 +1,7 @@
 #include "level_view.h"
-#include "SDL_image.h"
 #include "../../rendering/rendering_constants.h"
 #include "../constants/levels.h"
+#include "SDL_image.h"
 
 LevelView::LevelView(const WindowReferences &window_references)
     : m_window_references_(window_references)

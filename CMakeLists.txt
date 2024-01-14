@@ -23,17 +23,38 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/platform/controller/platform_controller.cpp
         source/game/platform/model/platform.cpp
         source/game/platform/view/platform_view.cpp
-        source/game/rendering/rendering_constants.cpp
         source/game/rendering/screen_applier.cpp
         source/game/rendering/screen_cleaner.cpp
-        source/game/shortcuts/render_colors.cpp
         source/game/shortcuts/shortcuts.cpp
-        source/game/shortcuts/render_colors.cpp
         source/game/game.cpp
         source/game/level/view/level_view.cpp
-        source/game/level/view/level_view.h
         source/game/level/level.cpp
         source/game/loop/time/average_game_time.cpp
-        source/game/loop/updatables/events_updatable.h)
+        source/game/input/input.h
+        source/game/input/key_type.h
+        source/game/game_object/game_object.h
+        source/game/dtos/window_references/window_references.h
+        source/game/dtos/vector2/vector2.h
+        source/game/dtos/vector2/int_vector2.h
+        source/game/converters/converters.h
+        source/entry_point/application/application.h
+        source/game/level/constants/levels.h
+        source/game/level/view/level_view.h
+        source/game/level/level.h
+        source/game/loop/time/average_game_time.h
+        source/game/loop/time/game_time.h
+        source/game/loop/time/read_only_game_time.h
+        source/game/loop/updatables/events_updatable.h
+        source/game/loop/updatables/updatable.h
+        source/game/loop/game_loop.h
+        source/game/platform/controller/platform_controller.h
+        source/game/platform/model/platform.h
+        source/game/platform/view/platform_view.h
+        source/game/rendering/rendering_constants.h
+        source/game/rendering/screen_applier.h
+        source/game/rendering/screen_cleaner.h
+        source/game/shortcuts/render_colors.h
+        source/game/shortcuts/shortcuts.h
+        source/game/game.h)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})

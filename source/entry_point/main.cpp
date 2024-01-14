@@ -1,5 +1,3 @@
-#include <SDL.h>
-#include <vector>
 #include "application/application.h"
 
 int main(int argc, char *argv[])

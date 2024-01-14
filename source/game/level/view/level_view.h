@@ -1,6 +1,9 @@
-#include "SDL.h"
+#ifndef ARKANOIDWITHOUTANENGINE_92ABB16FB39C42AF8EDF0477A386021D
+#define ARKANOIDWITHOUTANENGINE_92ABB16FB39C42AF8EDF0477A386021D
+
 #include "../../dtos/window_references/window_references.h"
 #include "../../loop/updatables/updatable.h"
+#include "SDL.h"
 #include <array>
 
 class LevelView
@@ -25,3 +28,4 @@ public:
     void Display(const std::array<std::array<char, 12>, 14> &level) const;
 };
 
+#endif //ARKANOIDWITHOUTANENGINE_92ABB16FB39C42AF8EDF0477A386021D

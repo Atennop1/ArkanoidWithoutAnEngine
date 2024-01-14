@@ -1,3 +1,6 @@
+#ifndef ARKANOIDWITHOUTANENGINE_0103D3895F094EC7AA8D9C8EAA1BE87F
+#define ARKANOIDWITHOUTANENGINE_0103D3895F094EC7AA8D9C8EAA1BE87F
+
 #include "../dtos/window_references/window_references.h"
 #include "view/level_view.h"
 
@@ -13,3 +16,5 @@ public:
 
     void Update(const float &delta) override;
 };
+
+#endif //ARKANOIDWITHOUTANENGINE_0103D3895F094EC7AA8D9C8EAA1BE87F

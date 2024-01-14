@@ -1,4 +1,5 @@
-﻿#pragma once
+#ifndef ARKANOIDWITHOUTANENGINE_9018F63D28364B1EA40B6207254C414C
+#define ARKANOIDWITHOUTANENGINE_9018F63D28364B1EA40B6207254C414C
 
 #include "../../input/input.h"
 #include "../../loop/updatables/updatable.h"
@@ -18,3 +19,5 @@ public:
 
     void Update(const float &delta) override;
 };
+
+#endif //ARKANOIDWITHOUTANENGINE_9018F63D28364B1EA40B6207254C414C

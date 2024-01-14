@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "platform_view.h"
+﻿#include "platform_view.h"
 #include "../../rendering/rendering_constants.h"
 #include "../../Shortcuts/shortcuts.h"
 #include "SDL_image.h"

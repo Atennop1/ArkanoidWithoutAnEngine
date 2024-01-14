@@ -1,6 +1,6 @@
 ﻿#include "input.h"
-#include <algorithm>
 #include "../converters/converters.h"
+#include <algorithm>
 
 Input::Input()
 {

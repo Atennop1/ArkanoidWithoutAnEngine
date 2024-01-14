@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "application.h"
+﻿#include "application.h"
 #include "../../game/rendering/rendering_constants.h"
 
 void Application::Activate() const
