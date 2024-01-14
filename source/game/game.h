@@ -7,11 +7,11 @@
 class Game
 {
 private:
-    GameLoop m_game_loop_;
-    
+    GameLoop *m_game_loop_;
+
 public:
     explicit Game(const WindowReferences &window_references);
-    ~Game() = default;
+    ~Game();
 
     void Activate() const;
 };

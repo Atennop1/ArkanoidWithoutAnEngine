@@ -10,7 +10,8 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
 
-add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
+add_executable(ArkanoidWithoutAnEngine
+        source/entry_point/main.cpp
         source/entry_point/application/application.cpp
         source/game/converters/converters.cpp
         source/game/dtos/vector2/int_vector2.cpp
@@ -32,7 +33,7 @@ add_executable(ArkanoidWithoutAnEngine source/entry_point/main.cpp
         source/game/level/view/level_view.cpp
         source/game/level/view/level_view.h
         source/game/level/level.cpp
-        source/game/level/level.h
-        source/game/game_object/game_object.h)
+        source/game/loop/time/average_game_time.cpp
+        source/game/loop/updatables/events_updatable.h)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})

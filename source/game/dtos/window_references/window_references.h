@@ -5,11 +5,11 @@
 struct WindowReferences
 {
 private:
-    SDL_Renderer *m_renderer_;
-    SDL_Window *m_window_;
+    const SDL_Renderer &m_renderer_;
+    const SDL_Window &m_window_;
     
 public:
-    WindowReferences(SDL_Window *window, SDL_Renderer *renderer);
+    WindowReferences(const SDL_Window &window, const SDL_Renderer &renderer);
     ~WindowReferences() = default;
 
     SDL_Window *Window() const;

@@ -4,6 +4,7 @@
 #include "rendering/screen_cleaner.h"
 #include "level/level.h"
 #include "level/constants/levels.h"
+#include "loop/time/average_game_time.h"
 
 Game::Game(const WindowReferences &window_references)
 {
@@ -18,17 +19,25 @@ Game::Game(const WindowReferences &window_references)
     const auto level_view = new LevelView(window_references);
     const auto level = new Level(Levels::kFirst, *level_view);
 
-    m_game_loop_ = GameLoop();
-    m_game_loop_.AddUpdatable((IUpdatable*)screen_cleaner); // SYSTEM COMPONENT: clearing all render that was before this line
-    m_game_loop_.AddUpdatable((IUpdatable*)input);
-    m_game_loop_.AddUpdatable((IUpdatable*)platform_controller);
-    m_game_loop_.AddUpdatable((IUpdatable*)platform);
-    m_game_loop_.AddUpdatable((IUpdatable*)level);
-    m_game_loop_.AddUpdatable((IUpdatable*)screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
+    auto *average_game_time = new AverageGameTime();
+    m_game_loop_ = new GameLoop(*(IReadOnlyGameTime*)average_game_time);
+
+    m_game_loop_->AddEventsUpdatable((IEventsUpdatable*)input);
+    m_game_loop_->AddUpdatable((IUpdatable*)platform_controller);
+    m_game_loop_->AddUpdatable((IUpdatable*)screen_cleaner); // SYSTEM COMPONENT: clearing all render that was before this line
+    m_game_loop_->AddUpdatable((IUpdatable*)platform);
+    m_game_loop_->AddUpdatable((IUpdatable*)level);
+    m_game_loop_->AddUpdatable((IUpdatable*)screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
+    m_game_loop_->AddUpdatable((IUpdatable*)input);
 }
 
 void Game::Activate() const
 {
-    m_game_loop_.Activate();
+    m_game_loop_->Activate();
+}
+
+Game::~Game()
+{
+    free(m_game_loop_);
 }
 

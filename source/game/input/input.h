@@ -2,11 +2,11 @@
 
 #include <list>
 #include "key_type.h"
-#include "Windows.h"
-#include "../loop/updatable.h"
 #include "SDL.h"
+#include "../loop/updatables/updatable.h"
+#include "../loop/updatables/events_updatable.h"
 
-class Input :  IUpdatable
+class Input : IUpdatable, IEventsUpdatable
 {
 private:
     std::list<KeyType> m_pressed_keys_;
@@ -19,5 +19,6 @@ public:
     bool IsKeyPressed(KeyType key_type) const;
     bool IsKeyPressedThisFrame(KeyType key_type) const;
 
-    void Update(float delta) override;
+    void Update(const float &delta) override;
+    void Update(const SDL_Event &event) override;
 };

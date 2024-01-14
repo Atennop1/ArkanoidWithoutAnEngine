@@ -1,6 +1,6 @@
 #include "SDL.h"
 #include "../../dtos/window_references/window_references.h"
-#include "../../loop/updatable.h"
+#include "../../loop/updatables/updatable.h"
 #include <array>
 
 class LevelView
@@ -12,18 +12,16 @@ private:
     int m_brick_width_;
     int m_brick_height_;
 
-    SDL_Rect m_displaying_rect_ { };
-    WindowReferences &m_window_references_;
-
+    const WindowReferences &m_window_references_;
     SDL_Texture *m_violet_brick_texture_;
     SDL_Texture *m_blue_brick_texture_;
 
-    void DisplayBrick(SDL_Texture *texture, IntVector2 position);
+    void DisplayBrick(SDL_Texture *texture, IntVector2 position) const;
 
 public:
     explicit LevelView(const WindowReferences &window_references);
     ~LevelView();
 
-    void Display(std::array<std::array<char, 12>, 14> level);
+    void Display(const std::array<std::array<char, 12>, 14> &level) const;
 };
 

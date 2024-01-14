@@ -3,9 +3,9 @@
 #include "../shortcuts/shortcuts.h"
 
 ScreenCleaner::ScreenCleaner(const WindowReferences &window_reference)
-    : m_window_references_(const_cast<WindowReferences&>(window_reference)) { }
+    : m_window_references_(window_reference) { }
 
-void ScreenCleaner::Update(float delta)
+void ScreenCleaner::Update(const float &delta)
 {
     Shortcuts::SelectColor(m_window_references_.Renderer(), RenderColors::kBlackColor);
     SDL_RenderClear(m_window_references_.Renderer());
