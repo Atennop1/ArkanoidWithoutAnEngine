@@ -13,7 +13,7 @@ public:
     explicit ScreenApplier(const WindowReferences &window_references);
     ~ScreenApplier() override = default;
 
-    void Update(const float &delta) override;
+    void Update(float delta) override;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_1C6EF8776F63439EA499802662F2706C
+#endif

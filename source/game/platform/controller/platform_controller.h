@@ -17,7 +17,7 @@ public:
     PlatformController(const Input &input, Platform &platform);
     ~PlatformController() override = default;
 
-    void Update(const float &delta) override;
+    void Update(float delta) override;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_9018F63D28364B1EA40B6207254C414C
+#endif

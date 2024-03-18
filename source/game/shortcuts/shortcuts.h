@@ -9,4 +9,4 @@ public:
     static void SelectColor(SDL_Renderer *renderer, SDL_Color color);
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_42444D6E1D354D3EB32E2796890CCEF1
+#endif

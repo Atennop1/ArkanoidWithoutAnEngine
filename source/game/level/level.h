@@ -14,7 +14,7 @@ public:
     Level(const std::array<std::array<char, 12>, 14> &map, const LevelView &level_view);
     ~Level() override = default;
 
-    void Update(const float &delta) override;
+    void Update(float delta) override;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_0103D3895F094EC7AA8D9C8EAA1BE87F
+#endif

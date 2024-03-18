@@ -16,4 +16,4 @@ public:
     void Display(Vector2 position) const;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_63298145BFEA4A2589E20B0AFEC992C7
+#endif

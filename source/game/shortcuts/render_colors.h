@@ -10,4 +10,4 @@ public:
     constexpr const static SDL_Color kBlackColor = { 0, 0, 0, 255 };
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_B05DBD4AD94A4206879D5C7A856E9E52
+#endif

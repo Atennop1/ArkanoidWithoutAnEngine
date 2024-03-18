@@ -26,4 +26,4 @@ public:
     void Activate() const;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_20D6708542884BF79266FBB1F0529814
+#endif

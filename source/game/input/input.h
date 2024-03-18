@@ -21,8 +21,8 @@ public:
     bool IsKeyPressed(KeyType key_type) const;
     bool IsKeyPressedThisFrame(KeyType key_type) const;
 
-    void Update(const float &delta) override;
+    void Update(float delta) override;
     void Update(const SDL_Event &event) override;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_629D06922D4E416DB500254C08D79DEE
+#endif

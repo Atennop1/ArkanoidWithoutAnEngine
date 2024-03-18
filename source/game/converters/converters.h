@@ -15,4 +15,4 @@ public:
     static Vector2 FromIntVector2ToVector2(IntVector2 int_vector2);
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_7C41A79821D446878DE991EC02215267
+#endif

@@ -6,9 +6,10 @@
 class IGameTime : public IReadOnlyGameTime
 {
 public:
-    ~IGameTime() override = default;
     virtual void Activate() = 0;
     virtual void Deactivate() = 0;
+
+    ~IGameTime() override = default;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_FA27939454C14A05BF7D4DDD3EF88C1A
+#endif

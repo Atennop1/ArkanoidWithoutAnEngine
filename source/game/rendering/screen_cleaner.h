@@ -13,7 +13,7 @@ public:
     explicit ScreenCleaner(const WindowReferences &window_references);
     ~ScreenCleaner() override = default;
 
-    void Update(const float &delta) override;
+    void Update(float delta) override;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_43CAC00ADE2A421E97BE51C8D45DF775
+#endif

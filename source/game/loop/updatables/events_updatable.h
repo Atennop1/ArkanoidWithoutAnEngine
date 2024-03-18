@@ -10,4 +10,4 @@ public:
     virtual void Update(const SDL_Event &event) = 0;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_8ACABEDE0DD949F088DEEF065A95DA26
+#endif

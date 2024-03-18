@@ -9,4 +9,4 @@ public:
     static const int kWindowHeight = 180 * kScaleMultiplier;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_8EFF7C74829C4E88913A49AE20F1DB41
+#endif

@@ -28,4 +28,4 @@ public:
     void Display(const std::array<std::array<char, 12>, 14> &level) const;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_92ABB16FB39C42AF8EDF0477A386021D
+#endif

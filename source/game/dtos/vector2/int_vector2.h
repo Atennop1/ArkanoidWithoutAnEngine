@@ -16,4 +16,4 @@ public:
     int Y() const;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_7EAA7E8723DB4A57B28F0AD5B213ADA8
+#endif

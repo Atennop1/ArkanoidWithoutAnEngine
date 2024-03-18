@@ -3,7 +3,7 @@
 ScreenApplier::ScreenApplier(const WindowReferences &window_references)
     : m_window_references_(window_references) { }
 
-void ScreenApplier::Update(const float &delta)
+void ScreenApplier::Update(float delta)
 {
     SDL_RenderPresent(m_window_references_.Renderer());
 }

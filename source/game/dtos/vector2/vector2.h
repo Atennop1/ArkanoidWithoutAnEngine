@@ -16,4 +16,4 @@ public:
     float Y() const;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_CE7F7BC940034A2092B12F6D6FAF9A58
+#endif

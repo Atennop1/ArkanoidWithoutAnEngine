@@ -15,4 +15,4 @@ public:
     void Deactivate() override;
 };
 
-#endif //ARKANOIDWITHOUTANENGINE_EBCF46318AB44062AAB0CE7E37310335
+#endif
