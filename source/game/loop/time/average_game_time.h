@@ -6,9 +6,11 @@
 class AverageGameTime : public IGameTime
 {
 private:
+    bool is_active;
     unsigned long long m_last_time_;
 
 public:
+    bool IsActive() override;
     float Delta() override;
 
     void Activate() override;

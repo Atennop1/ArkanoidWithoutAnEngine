@@ -1,14 +1,19 @@
 #include "average_game_time.h"
 #include "SDL.h"
 
+bool AverageGameTime::IsActive()
+{
+    return is_active;
+}
+
 void AverageGameTime::Activate()
 {
-    IsActive = true;
+    is_active = true;
 }
 
 void AverageGameTime::Deactivate()
 {
-    IsActive = false;
+    is_active = false;
 }
 
 float AverageGameTime::Delta()

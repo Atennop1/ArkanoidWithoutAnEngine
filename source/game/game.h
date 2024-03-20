@@ -3,16 +3,15 @@
 
 #include "loop/game_loop.h"
 #include "dtos/window_references/window_references.h"
+#include <memory>
 
 class Game
 {
 private:
-    GameLoop *m_game_loop_;
+    std::shared_ptr<GameLoop> m_game_loop_;
 
 public:
     explicit Game(const WindowReferences &window_references);
-    ~Game();
-
     void Activate() const;
 };
 

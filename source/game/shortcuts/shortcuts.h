@@ -6,7 +6,7 @@
 class Shortcuts
 {
 public:
-    static void SelectColor(SDL_Renderer *renderer, SDL_Color color);
+    static void SelectColor(SDL_Renderer *renderer, const SDL_Color &color);
 };
 
 #endif

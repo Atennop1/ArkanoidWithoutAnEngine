@@ -2,9 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-    auto application = new Application();
-    application->Activate();
-
-    free(application);
+    auto application = Application();
+    application.Activate();
     return 0;
 }

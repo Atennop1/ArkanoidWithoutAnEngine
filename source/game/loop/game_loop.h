@@ -4,24 +4,25 @@
 #include "updatables/updatable.h"
 #include "updatables/events_updatable.h"
 #include "time/game_time.h"
-#include <list>
+#include <vector>
 
 class GameLoop
 {
 private:
-    std::list<IUpdatable*> m_updatables_;
-    std::list<IEventsUpdatable*> m_events_updatables_;
     IReadOnlyGameTime &m_game_time_;
+    std::vector<std::reference_wrapper<IUpdatable>> m_updatables_;
+    std::vector<std::reference_wrapper<IEventsUpdatable>> m_events_updatables_;
 
 public:
-    explicit GameLoop(IReadOnlyGameTime &game_time, const std::list<IUpdatable*> &updatables = std::list<IUpdatable*>(), const std::list<IEventsUpdatable*> &events_updatables = std::list<IEventsUpdatable*>());
-    ~GameLoop();
+    explicit GameLoop(IReadOnlyGameTime &game_time);
+    GameLoop(IReadOnlyGameTime &game_time, const std::vector<std::reference_wrapper<IUpdatable>> &updatables);
+    GameLoop(IReadOnlyGameTime &game_time, const std::vector<std::reference_wrapper<IUpdatable>> &updatables, const std::vector<std::reference_wrapper<IEventsUpdatable>> &events_updatables);
 
-    void AddUpdatable(IUpdatable *updatable);
-    void RemoveUpdatable(const IUpdatable *updatable);
+    void AddUpdatable(IUpdatable &updatable);
+    void RemoveUpdatable(const IUpdatable &updatable);
 
-    void AddEventsUpdatable(IEventsUpdatable *updatable);
-    void RemoveEventsUpdatable(const IEventsUpdatable *updatable);
+    void AddEventsUpdatable(IEventsUpdatable &updatable);
+    void RemoveEventsUpdatable(const IEventsUpdatable &updatable);
 
     void Activate() const;
 };

@@ -4,7 +4,7 @@
 class IReadOnlyGameTime
 {
 public:
-    bool IsActive = true;
+    virtual bool IsActive() = 0;
     virtual float Delta() = 0;
 
     virtual ~IReadOnlyGameTime() = default;

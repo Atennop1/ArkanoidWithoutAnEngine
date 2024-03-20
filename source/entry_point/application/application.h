@@ -7,8 +7,8 @@
 class Application
 {
 private:
-    WindowReferences *m_window_references_;
-    Game *m_game_;
+    WindowReferences m_window_references_;
+    Game m_game_;
 
 public:
     Application();
