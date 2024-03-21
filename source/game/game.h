@@ -8,7 +8,7 @@
 class Game
 {
 private:
-    std::shared_ptr<GameLoop> m_game_loop_;
+    std::unique_ptr<GameLoop> m_game_loop_;
 
 public:
     explicit Game(const WindowReferences &window_references);

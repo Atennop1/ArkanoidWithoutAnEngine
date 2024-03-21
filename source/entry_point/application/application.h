@@ -7,8 +7,8 @@
 class Application
 {
 private:
-    WindowReferences m_window_references_;
-    Game m_game_;
+    std::unique_ptr<WindowReferences> m_window_references_;
+    std::unique_ptr<Game> m_game_;
 
 public:
     Application();

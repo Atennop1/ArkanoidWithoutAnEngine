@@ -8,7 +8,7 @@
 #include "SDL.h"
 #include <list>
 
-class Input : IUpdatable, IEventsUpdatable
+class Input : public IUpdatable, public IEventsUpdatable
 {
 private:
     std::list<KeyType> m_pressed_keys_;

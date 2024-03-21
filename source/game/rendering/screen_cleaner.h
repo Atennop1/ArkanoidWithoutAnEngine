@@ -4,7 +4,7 @@
 #include "../dtos/window_references/window_references.h"
 #include "../loop/updatables/updatable.h"
 
-class ScreenCleaner : IUpdatable
+class ScreenCleaner : public IUpdatable
 {
 private:
     const WindowReferences &m_window_references_;

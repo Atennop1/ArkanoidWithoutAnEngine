@@ -4,19 +4,18 @@
 #include "updatables/updatable.h"
 #include "updatables/events_updatable.h"
 #include "time/game_time.h"
+#include "time/average_game_time.h"
 #include <vector>
 
 class GameLoop
 {
 private:
     IReadOnlyGameTime &m_game_time_;
-    std::vector<std::reference_wrapper<IUpdatable>> m_updatables_;
-    std::vector<std::reference_wrapper<IEventsUpdatable>> m_events_updatables_;
+    std::vector<IUpdatable*> m_updatables_;
+    std::vector<IEventsUpdatable*> m_events_updatables_;
 
 public:
     explicit GameLoop(IReadOnlyGameTime &game_time);
-    GameLoop(IReadOnlyGameTime &game_time, const std::vector<std::reference_wrapper<IUpdatable>> &updatables);
-    GameLoop(IReadOnlyGameTime &game_time, const std::vector<std::reference_wrapper<IUpdatable>> &updatables, const std::vector<std::reference_wrapper<IEventsUpdatable>> &events_updatables);
 
     void AddUpdatable(IUpdatable &updatable);
     void RemoveUpdatable(const IUpdatable &updatable);

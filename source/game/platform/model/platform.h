@@ -5,7 +5,7 @@
 #include "../../loop/updatables/updatable.h"
 #include "../View/platform_view.h"
 
-class Platform : IUpdatable
+class Platform : public IUpdatable
 {
 private:
     Vector2 m_platform_position_ { };

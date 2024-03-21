@@ -4,7 +4,7 @@
 #include "../dtos/window_references/window_references.h"
 #include "view/level_view.h"
 
-class Level : IUpdatable
+class Level : public IUpdatable
 {
 private:
     const std::array<std::array<char, 12>, 14> &m_map_;

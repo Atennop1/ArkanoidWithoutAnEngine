@@ -17,8 +17,8 @@ LevelView::LevelView(const WindowReferences &window_references)
 
 LevelView::~LevelView()
 {
-    free(m_blue_brick_texture_);
-    free(m_violet_brick_texture_);
+    SDL_DestroyTexture(m_blue_brick_texture_);
+    SDL_DestroyTexture(m_violet_brick_texture_);
 }
 
 void LevelView::Display(const std::array<std::array<char, 12>, 14> &level) const

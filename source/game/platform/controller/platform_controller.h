@@ -5,7 +5,7 @@
 #include "../../loop/updatables/updatable.h"
 #include "../model/platform.h"
 
-class PlatformController : IUpdatable
+class PlatformController : public IUpdatable
 {
 private:
     const Input &m_input_;

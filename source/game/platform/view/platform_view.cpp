@@ -24,5 +24,5 @@ void PlatformView::Display(Vector2 position) const
 
 PlatformView::~PlatformView()
 {
-    free(m_platform_texture_);
+    SDL_DestroyTexture(m_platform_texture_);
 }
