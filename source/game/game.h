@@ -9,6 +9,7 @@ class Game
 {
 private:
     std::unique_ptr<GameLoop> m_game_loop_;
+    std::unique_ptr<IReadOnlyGameTime> m_game_time_;
 
 public:
     explicit Game(const WindowReferences &window_references);

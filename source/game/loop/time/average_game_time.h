@@ -6,7 +6,7 @@
 class AverageGameTime : public IGameTime
 {
 private:
-    bool is_active;
+    bool is_active = true;
     unsigned long long m_last_time_;
 
 public:
