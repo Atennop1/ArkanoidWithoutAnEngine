@@ -54,6 +54,6 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/rendering/screen_cleaner.h
         source/game/shortcuts/render_colors.h
         source/game/shortcuts/shortcuts.h
-        source/game/game.h)
+        source/game/game.h source/game/level/map/level_map.cpp source/game/level/map/level_map.h)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})

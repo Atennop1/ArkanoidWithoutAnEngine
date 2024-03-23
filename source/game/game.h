@@ -3,16 +3,17 @@
 
 #include "loop/game_loop.h"
 #include "dtos/window_references/window_references.h"
+#include "platform/model/platform.h"
 #include <memory>
 
 class Game
 {
 private:
+    std::shared_ptr<IReadOnlyGameTime> m_game_time_;
     std::unique_ptr<GameLoop> m_game_loop_;
-    std::unique_ptr<IReadOnlyGameTime> m_game_time_;
 
 public:
-    explicit Game(const WindowReferences &window_references);
+    explicit Game(const std::shared_ptr<WindowReferences> &window_references);
     void Activate() const;
 };
 

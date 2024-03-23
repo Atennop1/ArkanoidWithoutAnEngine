@@ -4,7 +4,9 @@
 #include "../../dtos/window_references/window_references.h"
 #include "../../loop/updatables/updatable.h"
 #include "SDL.h"
+#include "../map/level_map.h"
 #include <array>
+#include <memory>
 
 class LevelView
 {
@@ -15,17 +17,17 @@ private:
     int m_brick_width_;
     int m_brick_height_;
 
-    const WindowReferences &m_window_references_;
+    const std::shared_ptr<WindowReferences> &m_window_references_;
     SDL_Texture *m_violet_brick_texture_;
     SDL_Texture *m_blue_brick_texture_;
 
     void DisplayBrick(SDL_Texture *texture, IntVector2 position) const;
 
 public:
-    explicit LevelView(const WindowReferences &window_references);
+    explicit LevelView(const std::shared_ptr<WindowReferences> &window_references);
     ~LevelView();
 
-    void Display(const std::array<std::array<char, 12>, 14> &level) const;
+    void Display(const LevelMap &map) const;
 };
 
 #endif

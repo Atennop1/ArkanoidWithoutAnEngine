@@ -7,7 +7,7 @@
 class Application
 {
 private:
-    std::unique_ptr<WindowReferences> m_window_references_;
+    std::shared_ptr<WindowReferences> m_window_references_;
     std::unique_ptr<Game> m_game_;
 
 public:

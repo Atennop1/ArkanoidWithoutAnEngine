@@ -3,15 +3,16 @@
 
 #include "../dtos/window_references/window_references.h"
 #include "view/level_view.h"
+#include "map/level_map.h"
 
 class Level : public IUpdatable
 {
 private:
-    const std::array<std::array<char, 12>, 14> &m_map_;
-    const LevelView &m_level_view_;
+    const std::unique_ptr<LevelMap> m_map_;
+    const std::unique_ptr<LevelView> m_level_view_;
 
 public:
-    Level(const std::array<std::array<char, 12>, 14> &map, const LevelView &level_view);
+    Level(std::unique_ptr<LevelMap> &map, std::unique_ptr<LevelView> &level_view);
     ~Level() override = default;
 
     void Update(float delta) override;
