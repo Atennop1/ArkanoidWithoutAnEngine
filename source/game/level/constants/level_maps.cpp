@@ -1,8 +1,8 @@
-﻿#include "levels.h"
+﻿#include "level_maps.h"
 
 #include <memory>
 
-std::unique_ptr<LevelMap> Levels::kFirst = std::make_unique<LevelMap>(std::make_unique<std::array<std::array<char, 12>, 14>>(
+std::unique_ptr<LevelMap> LevelMaps::kFirst = std::make_unique<LevelMap>(std::make_unique<std::array<std::array<char, 12>, 14>>(
 std::array<std::array<char, 12>, 14>
 {{
     {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
@@ -21,7 +21,7 @@ std::array<std::array<char, 12>, 14>
     {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }}
 }}));
 
-std::unique_ptr<LevelMap>& Levels::First()
+std::unique_ptr<LevelMap>& LevelMaps::First()
 {
     return kFirst;
 }

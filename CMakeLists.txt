@@ -1,10 +1,23 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.22.1)
 project(ArkanoidWithoutAnEngine)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
-set(SDL2_PATH ${CMAKE_SOURCE_DIR}/modules/SDL2)
-set(SDL2_IMAGE_PATH ${CMAKE_SOURCE_DIR}/modules/SDL2_image)
+set(CMAKE_PREFIX_PATH ${CMAKE_MODULE_PATH})
+
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+    set(CMAKE_C_COMPILER "gcc")
+    set(CMAKE_CXX_COMPILER "g++")
+else()
+    set(CMAKE_SYSTEM_NAME Windows)
+    set(CMAKE_C_COMPILER x86_64-w64-mingw32-gcc)
+    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --static -std=c++0x")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
@@ -18,7 +31,7 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/dtos/vector2/vector2.cpp
         source/game/dtos/window_references/window_references.cpp
         source/game/input/input.cpp
-        source/game/level/constants/levels.cpp
+        source/game/level/constants/level_maps.cpp
         source/game/loop/game_loop.cpp
         source/game/platform/controller/platform_controller.cpp
         source/game/platform/model/platform.cpp
@@ -37,7 +50,7 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/dtos/vector2/int_vector2.h
         source/game/converters/converters.h
         source/entry_point/application/application.h
-        source/game/level/constants/levels.h
+        source/game/level/constants/level_maps.h
         source/game/level/view/level_view.h
         source/game/level/level.h
         source/game/loop/time/average_game_time.h
@@ -54,6 +67,9 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/rendering/screen_cleaner.h
         source/game/shortcuts/render_colors.h
         source/game/shortcuts/shortcuts.h
-        source/game/game.h source/game/level/map/level_map.cpp source/game/level/map/level_map.h)
+        source/game/game.h
+        source/game/level/map/level_map.cpp
+        source/game/level/map/level_map.h)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc")
+target_link_libraries(${PROJECT_NAME} ${SDL2_IMAGE_LIBRARIES} ${SDL2_LIBRARIES} -lmingw32 -lSDL2main -lSDL2 -lwinmm -limm32)

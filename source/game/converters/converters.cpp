@@ -1,5 +1,4 @@
 ﻿#include "converters.h"
-#include "SDL.h"
 
 KeyType Converters::FromEventToKeyType(SDL_Event event)
 {

@@ -5,7 +5,7 @@
 #include "rendering/screen_applier.h"
 #include "rendering/screen_cleaner.h"
 #include "level/level.h"
-#include "level/constants/levels.h"
+#include "level/constants/level_maps.h"
 #include "loop/time/average_game_time.h"
 
 Game::Game(const std::shared_ptr<WindowReferences> &window_references) : m_game_loop_(nullptr), m_game_time_(nullptr)
@@ -26,7 +26,7 @@ Game::Game(const std::shared_ptr<WindowReferences> &window_references) : m_game_
     m_game_loop_->AddUpdatable(std::move(platform_controller));
 
     auto level_view = std::make_unique<LevelView>(window_references);
-    auto level = std::make_unique<Level>(Levels::First(), level_view);
+    auto level = std::make_unique<Level>(LevelMaps::First(), level_view);
     m_game_loop_->AddUpdatable(std::move(level));
 
     auto screen_applier = std::make_unique<ScreenApplier>(window_references);

@@ -3,7 +3,6 @@
 
 #include "loop/game_loop.h"
 #include "dtos/window_references/window_references.h"
-#include "platform/model/platform.h"
 #include <memory>
 
 class Game

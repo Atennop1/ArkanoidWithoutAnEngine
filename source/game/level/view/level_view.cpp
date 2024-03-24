@@ -1,6 +1,6 @@
 #include "level_view.h"
 #include "../../rendering/rendering_constants.h"
-#include "../constants/levels.h"
+#include "../constants/level_maps.h"
 #include "SDL_image.h"
 
 LevelView::LevelView(const std::shared_ptr<WindowReferences> &window_references) : m_window_references_(window_references)
