@@ -5,15 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
 set(CMAKE_PREFIX_PATH ${CMAKE_MODULE_PATH})
 
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
-    set(CMAKE_C_COMPILER "gcc")
-    set(CMAKE_CXX_COMPILER "g++")
-else()
-    set(CMAKE_SYSTEM_NAME Windows)
-    set(CMAKE_C_COMPILER x86_64-w64-mingw32-gcc)
-    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
-endif()
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --static -std=c++0x")
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
@@ -70,6 +61,15 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/game.h
         source/game/level/map/level_map.cpp
         source/game/level/map/level_map.h)
+
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+    set(CMAKE_C_COMPILER "gcc")
+    set(CMAKE_CXX_COMPILER "g++")
+    add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${SDL2_BINDIR}/SDL2.dll" $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
+else()
+    set(CMAKE_C_COMPILER x86_64-w64-mingw32-gcc)
+    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+endif()
 
 set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc")
 target_link_libraries(${PROJECT_NAME} ${SDL2_IMAGE_LIBRARIES} ${SDL2_LIBRARIES} -lmingw32 -lSDL2main -lSDL2 -lwinmm -limm32)

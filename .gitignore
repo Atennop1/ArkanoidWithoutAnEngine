@@ -486,12 +486,9 @@ tmp/
 *.slo
 *.lo
 *.o
-*.a
-*.la
 *.lai
 *.so
 *.so.*
-*.dll
 *.dylib
 
 # Qt-es
@@ -511,7 +508,6 @@ qrc_*.cpp
 ui_*.h
 *.qmlc
 *.jsc
-Makefile*
 *build-*
 *.qm
 *.prl
@@ -918,7 +914,6 @@ CMakeCache.txt
 CMakeFiles
 CMakeScripts
 Testing
-Makefile
 cmake_install.cmake
 install_manifest.txt
 CTestTestfile.cmake
