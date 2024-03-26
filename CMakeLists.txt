@@ -2,17 +2,13 @@ cmake_minimum_required(VERSION 3.22.1)
 project(ArkanoidWithoutAnEngine)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
-set(CMAKE_PREFIX_PATH ${CMAKE_MODULE_PATH})
+set(CMAKE_LIBS_PATH ${CMAKE_SOURCE_DIR}/libs)
+set(CMAKE_PREFIX_PATH ${CMAKE_LIBS_PATH})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --static -std=c++0x")
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
-
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
 
 add_executable(ArkanoidWithoutAnEngine
         source/entry_point/main.cpp
@@ -62,14 +58,17 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/level/map/level_map.cpp
         source/game/level/map/level_map.h)
 
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+if(WIN32)
     set(CMAKE_C_COMPILER "gcc")
     set(CMAKE_CXX_COMPILER "g++")
+    find_library(SDL2_LIBRARIES NAMES SDL2 PATHS "${CMAKE_LIBS_PATH}/SDL2/win")
+    # find_library(SDL2_IMAGE_LIBRARIES NAMES SDL2_image PATHS "path/to/windows/libs")
     add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${SDL2_BINDIR}/SDL2.dll" $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
-else()
-    set(CMAKE_C_COMPILER x86_64-w64-mingw32-gcc)
-    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+elseif(UNIX)
+    find_library(SDL2_LIBRARIES NAMES SDL2 PATHS "${CMAKE_LIBS_PATH}/SDL2/linux")
+    # find_library(SDL2_IMAGE_LIBRARIES NAMES SDL2_image PATHS "path/to/linux/libs")
 endif()
 
 set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc")
-target_link_libraries(${PROJECT_NAME} ${SDL2_IMAGE_LIBRARIES} ${SDL2_LIBRARIES} -lmingw32 -lSDL2main -lSDL2 -lwinmm -limm32)
+include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} ${SDL2_IMAGE_LIBRARIES} ${SDL2_LIBRARIES})
