@@ -94,5 +94,4 @@ if(NOT TARGET SDL2_image::SDL2_image-static)
     )
 endif()
 
-unset(_sdl2image_bindir)
 unset(_sdl2image_libdir)
