@@ -20,13 +20,13 @@ Game::Game(const std::shared_ptr<WindowReferences> &window_references) : m_game_
     m_game_loop_->AddEventsUpdatable(*input);
 
     auto platform_view = std::make_unique<PlatformView>(window_references);
-    auto platform = std::make_unique<Platform>(platform_view);
+    auto platform = std::make_unique<Platform>(std::move(platform_view));
     m_game_loop_->AddUpdatable(*platform);
     auto platform_controller = std::make_unique<PlatformController>(input, platform);
     m_game_loop_->AddUpdatable(std::move(platform_controller));
 
     auto level_view = std::make_unique<LevelView>(window_references);
-    auto level = std::make_unique<Level>(LevelMaps::First(), level_view);
+    auto level = std::make_unique<Level>(std::move(LevelMaps::First()), std::move(level_view));
     m_game_loop_->AddUpdatable(std::move(level));
 
     auto screen_applier = std::make_unique<ScreenApplier>(window_references);

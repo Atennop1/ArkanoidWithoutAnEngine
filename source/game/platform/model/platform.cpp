@@ -1,6 +1,6 @@
 ﻿#include "platform.h"
 
-Platform::Platform(std::unique_ptr<PlatformView> &platform_view) : m_platform_view_(std::move(platform_view))
+Platform::Platform(std::unique_ptr<PlatformView> &&platform_view) : m_platform_view_(std::move(platform_view))
 {
     m_platform_position_ = Vector2(100, 155);
 }

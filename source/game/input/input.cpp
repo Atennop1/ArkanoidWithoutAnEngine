@@ -25,14 +25,17 @@ void Input::Update(float delta)
 
 void Input::Update(const SDL_Event &event)
 {
+    if (event.type != SDL_KEYDOWN && event.type != SDL_KEYUP)
+        return;
+
     const KeyType key_type = Converters::FromEventToKeyType(event);
 
     if (event.type == SDL_KEYUP)
-        m_pressed_keys_.remove(key_type);
-
-    if (event.type == SDL_KEYDOWN)
     {
-        m_pressed_this_frame_keys_.push_back(key_type);
-        m_pressed_keys_.push_back(key_type);
+        m_pressed_keys_.remove(key_type);
+        return;
     }
+
+    m_pressed_this_frame_keys_.push_back(key_type);
+    m_pressed_keys_.push_back(key_type);
 }
