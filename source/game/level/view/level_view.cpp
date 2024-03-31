@@ -30,19 +30,19 @@ void LevelView::Display(const LevelMap &map) const
                 continue;
 
             SDL_Texture *texture = map[i][j] == 1 ? m_violet_brick_texture_ : m_blue_brick_texture_;
-            DisplayBrick(texture, IntVector2(m_level_offset_x_ + (m_brick_width_ + 1) * j, m_level_offset_y_ + (m_brick_height_ + 1) * i));
+            DisplayBrick(texture, Box2D::Vec2(m_level_offset_x_ + (m_brick_width_ + 1.0f) * j, m_level_offset_y_ + (m_brick_height_ + 1.0f) * i));
         }
     }
 }
 
-void LevelView::DisplayBrick(SDL_Texture *texture, const IntVector2 position) const
+void LevelView::DisplayBrick(SDL_Texture *texture, const Box2D::Vec2 position) const
 {
     SDL_Rect temp_rect { };
 
     temp_rect.h = m_brick_height_ * RenderingConstants::kScaleMultiplier;
     temp_rect.w = m_brick_width_ * RenderingConstants::kScaleMultiplier;
-    temp_rect.x = position.X() * RenderingConstants::kScaleMultiplier;
-    temp_rect.y = position.Y() * RenderingConstants::kScaleMultiplier;
+    temp_rect.x = position.x * RenderingConstants::kScaleMultiplier;
+    temp_rect.y = position.y * RenderingConstants::kScaleMultiplier;
 
     SDL_RenderCopy(m_window_references_->Renderer(), texture, nullptr, &temp_rect);
 }

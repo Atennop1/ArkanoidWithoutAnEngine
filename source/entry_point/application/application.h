@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_44D9141BC18842C38125C68434DCEA08
 
 #include "../../game/game.h"
-#include "../../game/dtos/window_references/window_references.h"
+#include "../../game/rendering//window_references/window_references.h"
 
 class Application
 {

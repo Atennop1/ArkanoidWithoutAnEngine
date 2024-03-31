@@ -8,15 +8,15 @@ PlatformView::PlatformView(const std::shared_ptr<WindowReferences> &window_refer
     m_platform_texture_ = IMG_LoadTexture(m_window_references_->Renderer(), "assets/sprites/platform.png");
 }
 
-void PlatformView::Display(Vector2 position) const
+void PlatformView::Display(Box2D::Vec2 position) const
 {
     SDL_Rect temp_rect = { };
     SDL_QueryTexture(m_platform_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);
 
     temp_rect.h = temp_rect.h * RenderingConstants::kScaleMultiplier;
     temp_rect.w = temp_rect.w * RenderingConstants::kScaleMultiplier;
-    temp_rect.x = (int)(position.X() * (float)RenderingConstants::kScaleMultiplier);
-    temp_rect.y = (int)(position.Y() * (float)RenderingConstants::kScaleMultiplier);
+    temp_rect.x = (int)(position.x * (float)RenderingConstants::kScaleMultiplier);
+    temp_rect.y = (int)(position.y * (float)RenderingConstants::kScaleMultiplier);
 
     SDL_RenderCopy(m_window_references_->Renderer(), m_platform_texture_, nullptr, &temp_rect);
 }

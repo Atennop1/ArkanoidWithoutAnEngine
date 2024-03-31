@@ -1,15 +1,15 @@
 #ifndef ARKANOIDWITHOUTANENGINE_8858B4CB865344A4B80E85D21AC1B87D
 #define ARKANOIDWITHOUTANENGINE_8858B4CB865344A4B80E85D21AC1B87D
 
-#include <memory>
-#include "../../DTOs/Vector2/vector2.h"
 #include "../../loop/updatables/updatable.h"
 #include "../View/platform_view.h"
+#include "Box2D/Box2D.hpp"
+#include <memory>
 
 class Platform : public IUpdatable
 {
 private:
-    Vector2 m_platform_position_ { };
+    Box2D::Vec2 m_platform_position_ { };
     std::unique_ptr<PlatformView> m_platform_view_;
 
 public:
@@ -17,7 +17,7 @@ public:
     ~Platform() override = default;
 
     void Update(float delta) override;
-    void Move(Vector2 move_vector);
+    void Move(Box2D::Vec2 move_vector);
 };
 
 #endif

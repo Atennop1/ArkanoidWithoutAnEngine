@@ -1,9 +1,9 @@
 #ifndef ARKANOIDWITHOUTANENGINE_1C6EF8776F63439EA499802662F2706C
 #define ARKANOIDWITHOUTANENGINE_1C6EF8776F63439EA499802662F2706C
 
-#include <memory>
-#include "../dtos/window_references/window_references.h"
+#include "../rendering//window_references/window_references.h"
 #include "../loop/updatables/updatable.h"
+#include <memory>
 
 class ScreenApplier : public IUpdatable
 {

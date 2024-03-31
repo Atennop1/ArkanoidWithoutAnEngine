@@ -12,10 +12,8 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 add_executable(ArkanoidWithoutAnEngine
         source/entry_point/main.cpp
         source/entry_point/application/application.cpp
-        source/game/converters/converters.cpp
-        source/game/dtos/vector2/int_vector2.cpp
-        source/game/dtos/vector2/vector2.cpp
-        source/game/dtos/window_references/window_references.cpp
+        source/entry_point/application/application.h
+        source/game/rendering/window_references/window_references.cpp
         source/game/input/input.cpp
         source/game/level/constants/level_maps.cpp
         source/game/loop/game_loop.cpp
@@ -31,11 +29,7 @@ add_executable(ArkanoidWithoutAnEngine
         source/game/loop/time/average_game_time.cpp
         source/game/input/input.h
         source/game/input/key_type.h
-        source/game/dtos/window_references/window_references.h
-        source/game/dtos/vector2/vector2.h
-        source/game/dtos/vector2/int_vector2.h
-        source/game/converters/converters.h
-        source/entry_point/application/application.h
+        source/game/rendering/window_references/window_references.h
         source/game/level/constants/level_maps.h
         source/game/level/view/level_view.h
         source/game/level/level.h
@@ -60,18 +54,21 @@ add_executable(ArkanoidWithoutAnEngine
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)
     set(SDL2_image_DIR ${CMAKE_LIBS_PATH}/SDL2_image/windows/lib/cmake/SDL2_image)
+    set(Box2D ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d-d.dll)
 elseif(UNIX)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/linux/lib/cmake/SDL2)
     set(SDL2_image_DIR ${CMAKE_LIBS_PATH}/SDL2_image/linux/lib/cmake/SDL2_image)
+    set(Box2D ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d.so ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d.so.2.3.2)
 endif()
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 
-include_directories(${SDL2_INCLUDE_DIRS} ${_sdl2image_incdir})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} SDL2_image::SDL2_image)
+include_directories(${SDL2_INCLUDE_DIRS} ${_sdl2image_incdir} ${CMAKE_LIBS_PATH}/Box2D/include)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} SDL2_image::SDL2_image ${Box2D})
 
 if(WIN32)
     add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${SDL2_BINDIR}/SDL2.dll" $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
     add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${_sdl2image_bindir}/SDL2_image.dll" $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
+    add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  ${Box2D} $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
 endif()

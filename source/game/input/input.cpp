@@ -1,5 +1,4 @@
 ﻿#include "input.h"
-#include "../converters/converters.h"
 #include <algorithm>
 
 Input::Input()
@@ -15,7 +14,8 @@ bool Input::IsKeyPressed(const KeyType key_type) const
 
 bool Input::IsKeyPressedThisFrame(const KeyType key_type) const
 {
-    return std::find(m_pressed_this_frame_keys_.begin(), m_pressed_this_frame_keys_.end(), key_type) != m_pressed_this_frame_keys_.end();
+    return std::find(m_pressed_this_frame_keys_.begin(), m_pressed_this_frame_keys_.end(), key_type) !=
+           m_pressed_this_frame_keys_.end();
 }
 
 void Input::Update(float delta)
@@ -28,7 +28,23 @@ void Input::Update(const SDL_Event &event)
     if (event.type != SDL_KEYDOWN && event.type != SDL_KEYUP)
         return;
 
-    const KeyType key_type = Converters::FromEventToKeyType(event);
+    KeyType key_type = kNone;
+    switch (event.key.keysym.sym)
+    {
+        case SDLK_a:
+        case SDLK_LEFT:
+            key_type = kLeft;
+            break;
+
+        case SDLK_d:
+        case SDLK_RIGHT:
+            key_type = kRight;
+            break;
+
+        case SDLK_SPACE:
+            key_type = kSpace;
+            break;
+    }
 
     if (event.type == SDL_KEYUP)
     {
