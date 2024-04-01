@@ -16,7 +16,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/rendering/window_references/window_references.cpp
         src/game/input/input.cpp
         src/game/level/constants/level_maps.cpp
-        src/game/loop/game_loop.cpp
+        src/game/loop/logic/game_logic_loop.cpp
         src/game/platform/controller/platform_controller.cpp
         src/game/platform/model/platform.cpp
         src/game/platform/view/platform_view.cpp
@@ -36,9 +36,9 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/loop/time/average_game_time.hpp
         src/game/loop/time/game_time.hpp
         src/game/loop/time/read_only_game_time.hpp
-        src/game/loop/updatables/events_updatable.hpp
-        src/game/loop/updatables/updatable.hpp
-        src/game/loop/game_loop.hpp
+        src/game/loop/logic/updatables/events_updatable.hpp
+        src/game/loop/logic/updatables/updatable.hpp
+        src/game/loop/logic/game_logic_loop.hpp
         src/game/platform/controller/platform_controller.hpp
         src/game/platform/model/platform.hpp
         src/game/platform/view/platform_view.hpp
@@ -49,7 +49,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/shortcuts/shortcuts.hpp
         src/game/game.hpp
         src/game/level/map/level_map.cpp
-        src/game/level/map/level_map.hpp)
+        src/game/level/map/level_map.hpp src/game/loop/physics/game_physics_loop.cpp src/game/loop/physics/physics_object.h)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)

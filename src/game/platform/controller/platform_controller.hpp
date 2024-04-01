@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "../../input/input.hpp"
-#include "../../loop/updatables/updatable.hpp"
+#include "../../loop/logic/updatables/updatable.hpp"
 #include "../model/platform.hpp"
 
 class PlatformController : public IUpdatable

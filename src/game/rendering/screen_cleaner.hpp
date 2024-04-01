@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "window_references/window_references.hpp"
-#include "../loop/updatables/updatable.hpp"
+#include "../loop/logic/updatables/updatable.hpp"
 
 class ScreenCleaner : public IUpdatable
 {

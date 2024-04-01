@@ -1,7 +1,7 @@
 #ifndef ARKANOIDWITHOUTANENGINE_515C9CA98BC44C93A805F15EDDD26BCE
 #define ARKANOIDWITHOUTANENGINE_515C9CA98BC44C93A805F15EDDD26BCE
 
-#include "../../loop/updatables/updatable.hpp"
+#include "../../loop/logic/updatables/updatable.hpp"
 #include "../View/platform_view.hpp"
 #include "Box2D/Box2D.hpp"
 #include <memory>
