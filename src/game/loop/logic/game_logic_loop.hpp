@@ -4,10 +4,11 @@
 #include "updatables/updatable.hpp"
 #include "updatables/events_updatable.hpp"
 #include "../time/game_time.hpp"
+#include "../game_loop.hpp"
 #include <vector>
 #include <memory>
 
-class GameLogicLoop
+class GameLogicLoop : public IGameLoop
 {
 private:
     const std::shared_ptr<IReadOnlyGameTime> m_game_time_;
@@ -20,7 +21,8 @@ private:
 
 public:
     explicit GameLogicLoop(const std::shared_ptr<IReadOnlyGameTime> &game_time);
-    void Activate() const;
+    ~GameLogicLoop() override = default;
+    void Activate() override;
 
     void AddUpdatable(IUpdatable &updatable);
     void AddUpdatable(std::unique_ptr<IUpdatable> &&updatable);

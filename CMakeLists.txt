@@ -49,7 +49,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/shortcuts/shortcuts.hpp
         src/game/game.hpp
         src/game/level/map/level_map.cpp
-        src/game/level/map/level_map.hpp src/game/loop/physics/game_physics_loop.cpp src/game/loop/physics/physics_object.h)
+        src/game/level/map/level_map.hpp src/game/loop/physics/game_physics_loop.cpp src/game/loop/physics/physics_object.h src/game/loop/game_loop.hpp src/game/loop/game_loops.cpp src/game/loop/game_loops.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)

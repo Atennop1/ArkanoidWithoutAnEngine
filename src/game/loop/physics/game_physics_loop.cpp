@@ -1,16 +1,16 @@
 ﻿#include "game_physics_loop.hpp"
 
-GamePhysicsLoop::GamePhysicsLoop(std::shared_ptr<Box2D::World> &world)
-        : m_world_(world) { }
+GamePhysicsLoop::GamePhysicsLoop(std::shared_ptr<Box2D::World> &world, const std::shared_ptr<IReadOnlyGameTime> &game_time)
+    : m_world_(world), m_game_time_(game_time) { }
 
 void GamePhysicsLoop::Activate()
 {
     m_is_active_ = true;
-    Box2D::int32 velocityIterations = 6;
-    Box2D::int32 positionIterations = 2;
+    Box2D::int32 velocity_iterations = 6;
+    Box2D::int32 position_iterations = 2;
 
-    while (m_is_active_)
-        m_world_->Step(m_time_step_, velocityIterations, positionIterations);
+    while (m_is_active_ && m_game_time_->IsActive())
+        m_world_->Step(m_time_step_, velocity_iterations, position_iterations);
 }
 
 void GamePhysicsLoop::Deactivate()

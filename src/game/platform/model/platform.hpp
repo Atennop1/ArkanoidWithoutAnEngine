@@ -13,7 +13,7 @@ private:
     std::unique_ptr<PlatformView> m_platform_view_;
 
 public:
-    explicit Platform(std::unique_ptr<PlatformView> &&platform_view);
+    explicit Platform(std::unique_ptr<PlatformView> &platform_view);
     ~Platform() override = default;
 
     void Update(float delta) override;

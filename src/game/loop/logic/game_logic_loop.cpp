@@ -6,7 +6,7 @@
 GameLogicLoop::GameLogicLoop(const std::shared_ptr<IReadOnlyGameTime> &game_time)
     : m_game_time_(game_time) { }
 
-void GameLogicLoop::Activate() const
+void GameLogicLoop::Activate()
 {
     SDL_Event event;
     float delta;
