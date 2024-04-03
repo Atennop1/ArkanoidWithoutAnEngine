@@ -5,16 +5,14 @@
 #include <memory>
 #include "game_loop.hpp"
 
-class GameLoops : public IGameLoop
+class GameLoops
 {
 private:
     std::vector<std::unique_ptr<IGameLoop>> m_game_loops;
 
 public:
     explicit GameLoops(std::vector<std::unique_ptr<IGameLoop>> &loops);
-    ~GameLoops() override = default;
-
-    void Activate() override;
+    void Activate();
 };
 
 

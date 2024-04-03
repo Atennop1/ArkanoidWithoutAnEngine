@@ -6,28 +6,25 @@
 GameLogicLoop::GameLogicLoop(const std::shared_ptr<IReadOnlyGameTime> &game_time)
     : m_game_time_(game_time) { }
 
-void GameLogicLoop::Activate()
+void GameLogicLoop::Update()
 {
+    if (!m_game_time_->IsActive() || !IsActive())
+        return;
+
     SDL_Event event;
-    float delta;
+    float delta = m_game_time_->Delta();
 
-    while (true)
+    while (SDL_PollEvent(&event) != 0)
     {
-        if (!m_game_time_->IsActive())
-            continue;
-
-        delta = m_game_time_->Delta();
-
-        while (SDL_PollEvent(&event) != 0)
-            for (const auto &updatable: m_events_updatables_)
-                updatable->Update(event);
-
-        for (const auto &updatable: m_updatables_)
-            updatable->Update(delta);
+        for (const auto &updatable: m_events_updatables_)
+            updatable->Update(event);
 
         if (event.type == SDL_QUIT)
-            break;
+            m_is_active = false;
     }
+
+    for (const auto &updatable: m_updatables_)
+        updatable->Update(delta);
 }
 
 void GameLogicLoop::AddUpdatable(IUpdatable &updatable)

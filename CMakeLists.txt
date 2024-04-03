@@ -13,6 +13,8 @@ add_executable(ArkanoidWithoutAnEngine
         src/entry_point/main.cpp
         src/entry_point/application/application.cpp
         src/entry_point/application/application.hpp
+        src/game/game.cpp
+        src/game/game.hpp
         src/game/rendering/window_references/window_references.cpp
         src/game/input/input.cpp
         src/game/level/constants/level_maps.cpp
@@ -23,7 +25,6 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/rendering/screen_applier.cpp
         src/game/rendering/screen_cleaner.cpp
         src/game/shortcuts/shortcuts.cpp
-        src/game/game.cpp
         src/game/level/view/level_view.cpp
         src/game/level/level.cpp
         src/game/loop/time/average_game_time.cpp
@@ -47,9 +48,13 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/rendering/screen_cleaner.hpp
         src/game/shortcuts/render_colors.hpp
         src/game/shortcuts/shortcuts.hpp
-        src/game/game.hpp
         src/game/level/map/level_map.cpp
-        src/game/level/map/level_map.hpp src/game/loop/physics/game_physics_loop.cpp src/game/loop/physics/physics_object.h src/game/loop/game_loop.hpp src/game/loop/game_loops.cpp src/game/loop/game_loops.hpp)
+        src/game/level/map/level_map.hpp
+        src/game/loop/physics/game_physics_loop.cpp
+        src/game/loop/physics/physics_object.h
+        src/game/loop/game_loop.hpp
+        src/game/loop/game_loops.cpp
+        src/game/loop/game_loops.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)

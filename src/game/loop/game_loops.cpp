@@ -6,6 +6,14 @@ GameLoops::GameLoops(std::vector<std::unique_ptr<IGameLoop>> &loops)
 
 void GameLoops::Activate()
 {
-    for (auto &loop : m_game_loops)
-        loop->Activate();
+    while (true)
+    {
+        for (auto &loop: m_game_loops)
+        {
+            if (!loop->IsActive())
+                return;
+
+            loop->Update();
+        }
+    }
 }

@@ -5,7 +5,8 @@ class IGameLoop
 {
 public:
     virtual ~IGameLoop() = default;
-    virtual void Activate() = 0;
+    virtual void Update() = 0;
+    virtual bool IsActive() = 0;
 };
 
 #endif
