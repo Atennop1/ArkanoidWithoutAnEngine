@@ -7,6 +7,6 @@ ScreenCleaner::ScreenCleaner(const std::shared_ptr<WindowReferences> &window_ref
 
 void ScreenCleaner::Update(float delta)
 {
-    Shortcuts::SelectColor(m_window_references_->Renderer(), RenderColors::kBlackColor);
+    Shortcuts::SelectColor(m_window_references_->Renderer(), RenderColors::m_k_black_color_);
     SDL_RenderClear(m_window_references_->Renderer());
 }

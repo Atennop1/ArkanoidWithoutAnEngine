@@ -3,17 +3,17 @@
 
 bool AverageGameTime::IsActive()
 {
-    return is_active;
+    return m_is_active_;
 }
 
 void AverageGameTime::Activate()
 {
-    is_active = true;
+    m_is_active_ = true;
 }
 
 void AverageGameTime::Deactivate()
 {
-    is_active = false;
+    m_is_active_ = false;
 }
 
 float AverageGameTime::Delta()

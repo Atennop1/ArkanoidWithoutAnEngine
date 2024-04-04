@@ -28,21 +28,21 @@ void Input::Update(const SDL_Event &event)
     if (event.type != SDL_KEYDOWN && event.type != SDL_KEYUP)
         return;
 
-    KeyType key_type = kNone;
+    KeyType key_type = KNone;
     switch (event.key.keysym.sym)
     {
         case SDLK_a:
         case SDLK_LEFT:
-            key_type = kLeft;
+            key_type = KLeft;
             break;
 
         case SDLK_d:
         case SDLK_RIGHT:
-            key_type = kRight;
+            key_type = KRight;
             break;
 
         case SDLK_SPACE:
-            key_type = kSpace;
+            key_type = KSpace;
             break;
     }
 

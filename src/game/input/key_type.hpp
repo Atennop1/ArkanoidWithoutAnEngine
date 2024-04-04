@@ -3,10 +3,10 @@
 
 enum KeyType
 {
-    kNone,
-    kRight,
-    kLeft,
-    kSpace
+    KNone,
+    KRight,
+    KLeft,
+    KSpace
 };
 
 #endif

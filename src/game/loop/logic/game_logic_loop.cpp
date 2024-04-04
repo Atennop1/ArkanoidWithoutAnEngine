@@ -20,7 +20,7 @@ void GameLogicLoop::Update()
             updatable->Update(event);
 
         if (event.type == SDL_QUIT)
-            m_is_active = false;
+            m_is_active_ = false;
     }
 
     for (const auto &updatable: m_updatables_)

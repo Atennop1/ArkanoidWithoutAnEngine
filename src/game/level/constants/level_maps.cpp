@@ -2,7 +2,7 @@
 
 #include <memory>
 
-std::unique_ptr<LevelMap> LevelMaps::kFirst = std::make_unique<LevelMap>(std::make_unique<std::array<std::array<char, 12>, 14>>(
+std::unique_ptr<LevelMap> LevelMaps::m_k_first_ = std::make_unique<LevelMap>(std::make_unique<std::array<std::array<char, 12>, 14>>(
 std::array<std::array<char, 12>, 14>
 {{
     {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
@@ -23,6 +23,6 @@ std::array<std::array<char, 12>, 14>
 
 std::unique_ptr<LevelMap>& LevelMaps::First()
 {
-    return kFirst;
+    return m_k_first_;
 }
 

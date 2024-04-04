@@ -14,7 +14,7 @@
 Game::Game(const std::shared_ptr<WindowReferences> &window_references) : m_game_loops_(nullptr)
 {
     std::shared_ptr<IReadOnlyGameTime> game_time = std::make_shared<AverageGameTime>();
-    std::shared_ptr<Box2D::World> world = std::make_unique<Box2D::World>(Box2D::Vec2(0.0f, -10.0f));
+    std::shared_ptr<Box2D::World> world = std::make_unique<Box2D::World>(Box2D::Vector2(0.0f, -10.0f));
 
     std::vector<std::unique_ptr<IGameLoop>> loops { };
     std::unique_ptr<GameLogicLoop> game_logic_loop = std::make_unique<GameLogicLoop>(game_time);

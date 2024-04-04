@@ -1,8 +1,8 @@
-#ifndef ARKANOIDWITHOUTANENGINE_86223E08398A4495A18GE54TE4TTFEGE
-#define ARKANOIDWITHOUTANENGINE_86223E08398A4495A18GE54TE4TTFEGE
+#ifndef ARKANOIDWITHOUTANENGINE_B305C8DB68BB4964A93BEEE562797695
+#define ARKANOIDWITHOUTANENGINE_B305C8DB68BB4964A93BEEE562797695
 
 #include "physics_object.h"
-#include "Box2D/Box2D.hpp"
+#include "Box2D.hpp"
 #include "../game_loop.hpp"
 #include "../time/read_only_game_time.hpp"
 #include <vector>
@@ -14,8 +14,8 @@ private:
     const float m_fps_ = 60.0f;
     const float m_time_step_ = 1.0f / m_fps_;
 
-    const Box2D::int32 m_velocity_iterations_ = 6;
-    const Box2D::int32 m_position_iterations_ = 2;
+    const Box2D::Int32 m_velocity_iterations_ = 6;
+    const Box2D::Int32 m_position_iterations_ = 2;
 
     const std::shared_ptr<IReadOnlyGameTime> m_game_time_;
     std::vector<IPhysicsObject*> m_physics_objects_ = { };

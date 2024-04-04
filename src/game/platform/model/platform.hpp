@@ -3,13 +3,13 @@
 
 #include "../../loop/logic/updatables/updatable.hpp"
 #include "../View/platform_view.hpp"
-#include "Box2D/Box2D.hpp"
+#include "Box2D.hpp"
 #include <memory>
 
 class Platform : public IUpdatable
 {
 private:
-    Box2D::Vec2 m_platform_position_ { };
+    Box2D::Vector2 m_platform_position_ { };
     std::unique_ptr<PlatformView> m_platform_view_;
 
 public:
@@ -17,7 +17,7 @@ public:
     ~Platform() override = default;
 
     void Update(float delta) override;
-    void Move(Box2D::Vec2 move_vector);
+    void Move(Box2D::Vector2 move_vector);
 };
 
 #endif

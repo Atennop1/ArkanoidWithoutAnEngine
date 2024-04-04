@@ -12,7 +12,7 @@ void Application::Activate() const
 Application::Application() : m_game_(nullptr), m_window_references_(nullptr)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight, SDL_WINDOW_FULLSCREEN);
+    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, RenderingConstants::m_k_window_width_, RenderingConstants::m_k_window_height_, SDL_WINDOW_FULLSCREEN);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
     m_window_references_ = std::make_shared<WindowReferences>(*window, *renderer);
