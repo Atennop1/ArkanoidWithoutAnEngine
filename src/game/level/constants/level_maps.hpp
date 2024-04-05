@@ -8,10 +8,10 @@
 class LevelMaps
 {
 private:
-    static std::unique_ptr<LevelMap> m_k_first_;
+    static LevelMap m_k_first_;
 
 public:
-    static std::unique_ptr<LevelMap>& First();
+    static LevelMap& First();
 };
 
 #endif

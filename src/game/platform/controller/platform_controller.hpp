@@ -9,13 +9,13 @@
 class PlatformController : public IUpdatable
 {
 private:
-    std::shared_ptr<Input> m_input_;
-    std::unique_ptr<Platform> m_platform_;
+    const Input &m_input_;
+    Platform &m_platform_;
 
     const float m_move_speed_ = 40.0f;
 
 public:
-    PlatformController(const std::shared_ptr<Input> &input, std::unique_ptr<Platform> &platform);
+    PlatformController(const Input &input, Platform &platform);
     ~PlatformController() override = default;
 
     void Update(float delta) override;

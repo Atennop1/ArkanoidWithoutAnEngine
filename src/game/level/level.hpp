@@ -9,11 +9,11 @@
 class Level : public IUpdatable
 {
 private:
-    const std::unique_ptr<LevelMap> m_map_;
-    const std::unique_ptr<LevelView> m_level_view_;
+    const LevelMap &m_map_;
+    const LevelView &m_level_view_;
 
 public:
-    Level(std::unique_ptr<LevelMap> &map, std::unique_ptr<LevelView> &level_view);
+    Level(const LevelMap &map, const LevelView &level_view);
     ~Level() override = default;
 
     void Update(float delta) override;

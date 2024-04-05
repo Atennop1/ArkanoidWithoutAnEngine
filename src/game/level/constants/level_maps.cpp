@@ -1,27 +1,9 @@
 ﻿#include "level_maps.hpp"
+#include "level_layouts.hpp"
 
-#include <memory>
+LevelMap LevelMaps::m_k_first_ = LevelMap(LevelLayouts::First());
 
-std::unique_ptr<LevelMap> LevelMaps::m_k_first_ = std::make_unique<LevelMap>(std::make_unique<std::array<std::array<char, 12>, 14>>(
-std::array<std::array<char, 12>, 14>
-{{
-    {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
-    {{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }},
-    {{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }},
-    {{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }},
-    {{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }},
-    {{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }},
-    {{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }},
-    {{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }},
-    {{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }},
-    {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
-    {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
-    {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
-    {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }},
-    {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }}
-}}));
-
-std::unique_ptr<LevelMap>& LevelMaps::First()
+LevelMap& LevelMaps::First()
 {
     return m_k_first_;
 }

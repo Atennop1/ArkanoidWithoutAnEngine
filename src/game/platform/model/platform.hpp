@@ -10,10 +10,10 @@ class Platform : public IUpdatable
 {
 private:
     Box2D::Vector2 m_platform_position_ { };
-    std::unique_ptr<PlatformView> m_platform_view_;
+    PlatformView &m_platform_view_;
 
 public:
-    explicit Platform(std::unique_ptr<PlatformView> &platform_view);
+    explicit Platform(PlatformView &platform_view);
     ~Platform() override = default;
 
     void Update(float delta) override;

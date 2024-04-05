@@ -8,10 +8,10 @@
 class ScreenCleaner : public IUpdatable
 {
 private:
-    const std::shared_ptr<WindowReferences> &m_window_references_;
+    const WindowReferences &m_window_references_;
 
 public:
-    explicit ScreenCleaner(const std::shared_ptr<WindowReferences> &window_references);
+    explicit ScreenCleaner(const WindowReferences &window_references);
     ~ScreenCleaner() override = default;
 
     void Update(float delta) override;

@@ -2,11 +2,11 @@
 #include "../shortcuts/render_colors.hpp"
 #include "../shortcuts/shortcuts.hpp"
 
-ScreenCleaner::ScreenCleaner(const std::shared_ptr<WindowReferences> &window_reference)
+ScreenCleaner::ScreenCleaner(const WindowReferences &window_reference)
     : m_window_references_(window_reference) { }
 
 void ScreenCleaner::Update(float delta)
 {
-    Shortcuts::SelectColor(m_window_references_->Renderer(), RenderColors::m_k_black_color_);
-    SDL_RenderClear(m_window_references_->Renderer());
+    Shortcuts::SelectColor(m_window_references_.Renderer(), RenderColors::m_k_black_color_);
+    SDL_RenderClear(m_window_references_.Renderer());
 }

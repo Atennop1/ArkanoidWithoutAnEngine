@@ -3,9 +3,9 @@
 #include "../../shortcuts/shortcuts.hpp"
 #include "SDL_image.h"
 
-PlatformView::PlatformView(const std::shared_ptr<WindowReferences> &window_references) : m_window_references_(window_references)
+PlatformView::PlatformView(const WindowReferences &window_references) : m_window_references_(window_references)
 {
-    m_platform_texture_ = IMG_LoadTexture(m_window_references_->Renderer(), "assets/sprites/platform.png");
+    m_platform_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/platform.png");
 }
 
 void PlatformView::Display(Box2D::Vector2 position) const
@@ -18,7 +18,7 @@ void PlatformView::Display(Box2D::Vector2 position) const
     temp_rect.x = (int)(position.m_x_ * (float)RenderingConstants::m_k_scale_multiplier_);
     temp_rect.y = (int)(position.m_y_ * (float)RenderingConstants::m_k_scale_multiplier_);
 
-    SDL_RenderCopy(m_window_references_->Renderer(), m_platform_texture_, nullptr, &temp_rect);
+    SDL_RenderCopy(m_window_references_.Renderer(), m_platform_texture_, nullptr, &temp_rect);
 }
 
 PlatformView::~PlatformView()

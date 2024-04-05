@@ -6,8 +6,8 @@
 class RenderColors
 {
 public:
-    constexpr static SDL_Color m_k_white_color_ = {255, 255, 255, 255 };
-    constexpr const static SDL_Color m_k_black_color_ = {0, 0, 0, 255 };
+    constexpr static SDL_Color m_k_white_color_ = { 255, 255, 255, 255 };
+    constexpr const static SDL_Color m_k_black_color_ = { 0, 0, 0, 255 };
 };
 
 #endif

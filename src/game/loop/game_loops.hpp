@@ -8,10 +8,10 @@
 class GameLoops
 {
 private:
-    std::vector<std::unique_ptr<IGameLoop>> m_game_loops_;
+    std::vector<IGameLoop*> m_game_loops_;
 
 public:
-    explicit GameLoops(std::vector<std::unique_ptr<IGameLoop>> &loops);
+    explicit GameLoops(std::vector<IGameLoop*> loops);
     void Activate();
 };
 

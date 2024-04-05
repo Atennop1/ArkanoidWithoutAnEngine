@@ -9,10 +9,10 @@ class PlatformView
 {
 private:
     SDL_Texture *m_platform_texture_;
-    const std::shared_ptr<WindowReferences> &m_window_references_;
+    const WindowReferences &m_window_references_;
 
 public:
-    explicit PlatformView(const std::shared_ptr<WindowReferences> &window_references);
+    explicit PlatformView(const WindowReferences &window_references);
     ~PlatformView();
 
     void Display(Box2D::Vector2 position) const;

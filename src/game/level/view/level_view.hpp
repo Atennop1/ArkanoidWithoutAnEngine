@@ -16,14 +16,14 @@ private:
     int m_brick_width_;
     int m_brick_height_;
 
-    const std::shared_ptr<WindowReferences> &m_window_references_;
+    const WindowReferences &m_window_references_;
     SDL_Texture *m_violet_brick_texture_;
     SDL_Texture *m_blue_brick_texture_;
 
     void DisplayBrick(SDL_Texture *texture, Box2D::Vector2 position) const;
 
 public:
-    explicit LevelView(const std::shared_ptr<WindowReferences> &window_references);
+    explicit LevelView(const WindowReferences &window_references);
     ~LevelView();
 
     void Display(const LevelMap &map) const;

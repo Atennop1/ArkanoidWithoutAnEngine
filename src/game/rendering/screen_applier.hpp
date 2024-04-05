@@ -8,10 +8,10 @@
 class ScreenApplier : public IUpdatable
 {
 private:
-    const std::shared_ptr<WindowReferences> &m_window_references_;
+    const WindowReferences &m_window_references_;
 
 public:
-    explicit ScreenApplier(const std::shared_ptr<WindowReferences> &window_references);
+    explicit ScreenApplier(const WindowReferences &window_references);
     ~ScreenApplier() override = default;
 
     void Update(float delta) override;

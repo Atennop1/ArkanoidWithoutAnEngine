@@ -17,12 +17,12 @@ private:
     const Box2D::Int32 m_velocity_iterations_ = 6;
     const Box2D::Int32 m_position_iterations_ = 2;
 
-    const std::shared_ptr<IReadOnlyGameTime> m_game_time_;
+    IReadOnlyGameTime &m_game_time_;
+    Box2D::World &m_world_;
     std::vector<IPhysicsObject*> m_physics_objects_ = { };
-    const std::shared_ptr<Box2D::World> m_world_;
 
 public:
-    explicit GamePhysicsLoop(std::shared_ptr<Box2D::World> &world, const std::shared_ptr<IReadOnlyGameTime> &game_time);
+    explicit GamePhysicsLoop(Box2D::World &world, IReadOnlyGameTime &game_time);
     ~GamePhysicsLoop() override = default;
 
     void Update() override;

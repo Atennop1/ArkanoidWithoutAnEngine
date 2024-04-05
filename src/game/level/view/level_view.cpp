@@ -1,12 +1,11 @@
 #include "level_view.hpp"
 #include "../../rendering/rendering_constants.hpp"
-#include "../constants/level_maps.hpp"
 #include "SDL_image.h"
 
-LevelView::LevelView(const std::shared_ptr<WindowReferences> &window_references) : m_window_references_(window_references)
+LevelView::LevelView(const WindowReferences &window_references) : m_window_references_(window_references)
 {
-    m_blue_brick_texture_ = IMG_LoadTexture(m_window_references_->Renderer(), "assets/sprites/blue_brick.png");
-    m_violet_brick_texture_ = IMG_LoadTexture(m_window_references_->Renderer(), "assets/sprites/violet_brick.png");
+    m_blue_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/blue_brick.png");
+    m_violet_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/violet_brick.png");
 
     SDL_Rect temp_rect { };
     SDL_QueryTexture(m_blue_brick_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);
@@ -44,5 +43,5 @@ void LevelView::DisplayBrick(SDL_Texture *texture, const Box2D::Vector2 position
     temp_rect.x = position.m_x_ * RenderingConstants::m_k_scale_multiplier_;
     temp_rect.y = position.m_y_ * RenderingConstants::m_k_scale_multiplier_;
 
-    SDL_RenderCopy(m_window_references_->Renderer(), texture, nullptr, &temp_rect);
+    SDL_RenderCopy(m_window_references_.Renderer(), texture, nullptr, &temp_rect);
 }
