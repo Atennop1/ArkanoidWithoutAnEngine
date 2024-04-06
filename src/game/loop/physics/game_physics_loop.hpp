@@ -5,6 +5,7 @@
 #include "Box2D.hpp"
 #include "../game_loop.hpp"
 #include "../time/read_only_game_time.hpp"
+#include "shared_pointer.hpp"
 #include <vector>
 #include <memory>
 
@@ -17,12 +18,12 @@ private:
     const Box2D::Int32 m_velocity_iterations_ = 6;
     const Box2D::Int32 m_position_iterations_ = 2;
 
-    IReadOnlyGameTime &m_game_time_;
-    Box2D::World &m_world_;
+    SharedPointer<IReadOnlyGameTime> m_game_time_;
+    SharedPointer<Box2D::World> m_world_;
     std::vector<IPhysicsObject*> m_physics_objects_ = { };
 
 public:
-    explicit GamePhysicsLoop(Box2D::World &world, IReadOnlyGameTime &game_time);
+    explicit GamePhysicsLoop(SharedPointer<Box2D::World> &world, SharedPointer<IReadOnlyGameTime> &game_time);
     ~GamePhysicsLoop() override = default;
 
     void Update() override;

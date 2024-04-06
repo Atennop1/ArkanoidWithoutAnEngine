@@ -5,15 +5,16 @@
 #include "view/level_view.hpp"
 #include "map/level_map.hpp"
 #include "../loop/logic/updatables/updatable.hpp"
+#include "shared_pointer.hpp"
 
 class Level : public IUpdatable
 {
 private:
     const LevelMap &m_map_;
-    const LevelView &m_level_view_;
+    const SharedPointer<LevelView> m_level_view_;
 
 public:
-    Level(const LevelMap &map, const LevelView &level_view);
+    Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
     ~Level() override = default;
 
     void Update(float delta) override;

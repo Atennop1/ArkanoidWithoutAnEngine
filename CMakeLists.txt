@@ -54,7 +54,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/loop/physics/physics_object.h
         src/game/loop/game_loop.hpp
         src/game/loop/game_loops.cpp
-        src/game/loop/game_loops.hpp src/game/level/constants/level_layouts.cpp src/game/level/constants/level_layouts.hpp)
+        src/game/loop/game_loops.hpp src/game/level/constants/level_layouts.cpp src/game/level/constants/level_layouts.hpp src/tools/shared_pointer.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)
@@ -69,7 +69,7 @@ endif()
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 
-include_directories(${SDL2_INCLUDE_DIRS} ${_sdl2image_incdir} ${CMAKE_LIBS_PATH}/Box2D/include)
+include_directories(${SDL2_INCLUDE_DIRS} ${_sdl2image_incdir} ${CMAKE_LIBS_PATH}/Box2D/include src/tools/)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} SDL2_image::SDL2_image ${Box2D})
 
 if(WIN32)

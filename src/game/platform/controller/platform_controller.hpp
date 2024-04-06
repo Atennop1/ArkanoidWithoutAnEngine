@@ -5,17 +5,18 @@
 #include "../../input/input.hpp"
 #include "../../loop/logic/updatables/updatable.hpp"
 #include "../model/platform.hpp"
+#include "shared_pointer.hpp"
 
 class PlatformController : public IUpdatable
 {
 private:
-    const Input &m_input_;
-    Platform &m_platform_;
+    SharedPointer<Platform> m_platform_;
+    const SharedPointer<Input> m_input_;
 
     const float m_move_speed_ = 40.0f;
 
 public:
-    PlatformController(const Input &input, Platform &platform);
+    PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input);
     ~PlatformController() override = default;
 
     void Update(float delta) override;

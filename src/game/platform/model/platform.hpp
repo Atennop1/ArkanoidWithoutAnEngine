@@ -4,16 +4,16 @@
 #include "../../loop/logic/updatables/updatable.hpp"
 #include "../View/platform_view.hpp"
 #include "Box2D.hpp"
-#include <memory>
+#include "shared_pointer.hpp"
 
 class Platform : public IUpdatable
 {
 private:
     Box2D::Vector2 m_platform_position_ { };
-    PlatformView &m_platform_view_;
+    SharedPointer<PlatformView> m_platform_view_;
 
 public:
-    explicit Platform(PlatformView &platform_view);
+    explicit Platform(SharedPointer<PlatformView> &platform_view);
     ~Platform() override = default;
 
     void Update(float delta) override;

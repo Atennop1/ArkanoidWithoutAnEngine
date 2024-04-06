@@ -14,8 +14,7 @@ bool Input::IsKeyPressed(const KeyType key_type) const
 
 bool Input::IsKeyPressedThisFrame(const KeyType key_type) const
 {
-    return std::find(m_pressed_this_frame_keys_.begin(), m_pressed_this_frame_keys_.end(), key_type) !=
-           m_pressed_this_frame_keys_.end();
+    return std::find(m_pressed_this_frame_keys_.begin(), m_pressed_this_frame_keys_.end(), key_type) != m_pressed_this_frame_keys_.end();
 }
 
 void Input::Update(float delta)

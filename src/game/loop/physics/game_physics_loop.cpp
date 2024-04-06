@@ -1,12 +1,12 @@
 ﻿#include "game_physics_loop.hpp"
 
-GamePhysicsLoop::GamePhysicsLoop(Box2D::World &world, IReadOnlyGameTime &game_time)
+GamePhysicsLoop::GamePhysicsLoop(SharedPointer<Box2D::World> &world, SharedPointer<IReadOnlyGameTime> &game_time)
     : m_world_(world), m_game_time_(game_time) { }
 
 void GamePhysicsLoop::Update()
 {
-    if (m_game_time_.IsActive() && IsActive())
-        m_world_.Step(m_time_step_, m_velocity_iterations_, m_position_iterations_);
+    if (m_game_time_->IsActive() && IsActive())
+        m_world_->Step(m_time_step_, m_velocity_iterations_, m_position_iterations_);
 }
 
 void GamePhysicsLoop::AddPhysicsObject(IPhysicsObject &physics_object)

@@ -2,16 +2,16 @@
 #include "game_logic_loop.hpp"
 #include "SDL.h"
 
-GameLogicLoop::GameLogicLoop(IReadOnlyGameTime &game_time)
+GameLogicLoop::GameLogicLoop(SharedPointer<IReadOnlyGameTime> &game_time)
     : m_game_time_(game_time) { }
 
 void GameLogicLoop::Update()
 {
-    if (!m_game_time_.IsActive() || !IsActive())
+    if (!m_game_time_->IsActive() || !IsActive())
         return;
 
     SDL_Event event;
-    float delta = m_game_time_.Delta();
+    float delta = m_game_time_->Delta();
 
     while (SDL_PollEvent(&event) != 0)
     {
@@ -34,6 +34,11 @@ void GameLogicLoop::AddUpdatable(IUpdatable &updatable)
     m_updatables_.push_back(&updatable);
 }
 
+void GameLogicLoop::AddUpdatable(SharedPointer<IUpdatable> &updatable)
+{
+    AddUpdatable(*updatable.Get());
+    m_shared_updatables_.push_back(updatable);
+}
 
 void GameLogicLoop::RemoveUpdatable(const IUpdatable &updatable)
 {
@@ -51,6 +56,12 @@ void GameLogicLoop::AddEventsUpdatable(IEventsUpdatable &updatable)
         throw std::invalid_argument("EventsUpdatable already in loop");
 
     m_events_updatables_.push_back(&updatable);
+}
+
+void GameLogicLoop::AddEventsUpdatable(SharedPointer<IEventsUpdatable> &updatable)
+{
+    AddEventsUpdatable(*updatable.Get());
+    m_shared_events_updatables_.push_back(updatable);
 }
 
 void GameLogicLoop::RemoveEventsUpdatable(const IEventsUpdatable &updatable)

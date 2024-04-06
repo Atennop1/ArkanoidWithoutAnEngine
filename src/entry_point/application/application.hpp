@@ -7,14 +7,14 @@
 class Application
 {
 private:
-    WindowReferences m_window_references_;
-    Game *m_game_;
+    WindowReferences m_window_references_ = WindowReferences(nullptr, nullptr);
+    SharedPointer<Game> m_game_ = SharedPointer<Game>();
 
 public:
     Application();
     ~Application();
 
-    void Activate() const;
+    void Activate();
 };
 
 #endif
