@@ -2,7 +2,6 @@
 #define ARKANOIDWITHOUTANENGINE_E5C974F2C9AF47968137649F9460EC9F
 
 #include <array>
-#include <memory>
 
 class LevelMap
 {

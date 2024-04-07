@@ -1,6 +1,6 @@
-#include <stdexcept>
 #include "level_map.hpp"
 #include "../constants/level_layouts.hpp"
+#include <stdexcept>
 
 LevelMap::LevelMap()
     : m_map_(LevelLayouts::Empty()) { }

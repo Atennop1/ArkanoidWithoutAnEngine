@@ -16,7 +16,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/game.cpp
         src/game/game.hpp
         src/game/rendering/window_references/window_references.cpp
-        src/game/input/input.cpp
+        src/game/events/input/input.cpp
         src/game/level/constants/level_maps.cpp
         src/game/loop/game_loop.cpp
         src/game/platform/controller/platform_controller.cpp
@@ -28,8 +28,8 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/level/view/level_view.cpp
         src/game/level/level.cpp
         src/game/loop/time/average_game_time.cpp
-        src/game/input/input.hpp
-        src/game/input/key_type.hpp
+        src/game/events/input/input.hpp
+        src/game/events/input/key_type.hpp
         src/game/rendering/window_references/window_references.hpp
         src/game/level/constants/level_maps.hpp
         src/game/level/view/level_view.hpp
@@ -37,8 +37,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/loop/time/average_game_time.hpp
         src/game/loop/time/game_time.hpp
         src/game/loop/time/read_only_game_time.hpp
-        src/game/loop/updatables/game_loop_events_object.hpp
-        src/game/loop/updatables/game_loop_object.hpp
+        src/game/loop/game_loop_object.hpp
         src/game/loop/game_loop.hpp
         src/game/platform/controller/platform_controller.hpp
         src/game/platform/model/platform.hpp
@@ -55,7 +54,9 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/physics/physics_object.h
         src/game/level/constants/level_layouts.cpp
         src/game/level/constants/level_layouts.hpp
-        src/tools/shared_pointer.hpp)
+        src/tools/shared_pointer.hpp
+        src/game/events/application_events.cpp
+        src/game/events/application_events.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)

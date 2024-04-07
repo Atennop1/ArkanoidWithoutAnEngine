@@ -1,10 +1,9 @@
 #ifndef ARKANOIDWITHOUTANENGINE_B8E5742E42264A16AD64095AC06A4333
 #define ARKANOIDWITHOUTANENGINE_B8E5742E42264A16AD64095AC06A4333
 
-#include <memory>
-#include "../../input/input.hpp"
-#include "../../loop/updatables/game_loop_object.hpp"
+#include "../../loop/game_loop_object.hpp"
 #include "../model/platform.hpp"
+#include "../../events/input/input.hpp"
 #include "shared_pointer.hpp"
 
 class PlatformController : public IGameLoopObject

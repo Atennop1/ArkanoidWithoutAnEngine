@@ -10,7 +10,7 @@ private:
 
     void Clear()
     {
-        if (m_references_count_ != nullptr && --(*m_references_count_) > 0)
+        if (m_references_count_ != nullptr && (--*m_references_count_) > 0)
             return;
 
         delete m_references_count_;

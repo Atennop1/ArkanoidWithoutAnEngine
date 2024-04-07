@@ -2,12 +2,11 @@
 #define ARKANOIDWITHOUTANENGINE_6AC28A8B93A9403F88348E9AA6CEE1DF
 
 #include "physics_object.h"
-#include "Box2D.hpp"
 #include "../loop/time/read_only_game_time.hpp"
-#include "shared_pointer.hpp"
-#include "../loop/updatables/game_loop_object.hpp"
+#include "../loop/game_loop_object.hpp"
 #include <vector>
-#include <iostream>
+#include "Box2D.hpp"
+#include "shared_pointer.hpp"
 
 class PhysicsSimulation : public IGameLoopObject
 {

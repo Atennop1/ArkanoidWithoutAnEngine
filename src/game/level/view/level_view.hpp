@@ -5,7 +5,6 @@
 #include "../map/level_map.hpp"
 #include "SDL.h"
 #include "Box2D.hpp"
-#include <memory>
 
 class LevelView
 {

@@ -2,8 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_5927CB008F20454CA6ECC117FD5E93ED
 
 #include "../../rendering/window_references/window_references.hpp"
-#include "../../../../libs/Box2D/include/Box2D.hpp"
-#include <memory>
+#include "Box2D.hpp"
 
 class PlatformView
 {

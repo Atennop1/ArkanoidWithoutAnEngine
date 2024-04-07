@@ -1,6 +1,4 @@
 ﻿#include "application.hpp"
-
-#include <memory>
 #include "../../game/rendering/rendering_constants.hpp"
 
 void Application::Activate()

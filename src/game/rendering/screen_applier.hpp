@@ -2,8 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_733BD8BDA5C344A0A0EA2FCD927A7B43
 
 #include "window_references/window_references.hpp"
-#include "../loop/updatables/game_loop_object.hpp"
-#include <memory>
+#include "../loop/game_loop_object.hpp"
 
 class ScreenApplier : public IGameLoopObject
 {
