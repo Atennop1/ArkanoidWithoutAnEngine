@@ -2,13 +2,13 @@
 #define ARKANOIDWITHOUTANENGINE_B0581C2169124B399B807DBFF83F7B3F
 
 #include "key_type.hpp"
-#include "../loop/logic/updatables/updatable.hpp"
-#include "../loop/logic/updatables/events_updatable.hpp"
+#include "../loop/updatables/game_loop_object.hpp"
+#include "../loop/updatables/game_loop_events_object.hpp"
 
 #include "SDL.h"
 #include <list>
 
-class Input : public IUpdatable, public IEventsUpdatable
+class Input : public IGameLoopObject, public IGameLoopEventsObject
 {
 private:
     std::list<KeyType> m_pressed_keys_;

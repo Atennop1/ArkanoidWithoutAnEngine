@@ -1,7 +1,7 @@
 ﻿#include "game.hpp"
 #include "level/constants/level_maps.hpp"
-#include "loop/logic/game_logic_loop.hpp"
-#include "loop/physics/game_physics_loop.hpp"
+#include "loop/game_loop.hpp"
+#include "physics/physics_simulation.hpp"
 #include "level/level.hpp"
 #include "level/view/level_view.hpp"
 #include "loop/time/average_game_time.hpp"
@@ -17,9 +17,8 @@ Game::Game(const WindowReferences &window_references)
     auto game_time = SharedPointer<IReadOnlyGameTime>(new AverageGameTime());
     auto world = SharedPointer(new Box2D::World(Box2D::Vector2(0.0f, -10.0f)));
 
-    auto loops = std::vector<SharedPointer<IGameLoop>> { };
-    auto game_logic_loop = SharedPointer(new GameLogicLoop(game_time));
-    auto game_physics_loop = SharedPointer(new GamePhysicsLoop(world, game_time));
+    m_game_loop_ = SharedPointer(new GameLoop(game_time));
+    auto physics_simulation = SharedPointer(new PhysicsSimulation(world));
 
     auto screen_cleaner = SharedPointer(new ScreenCleaner(window_references));
     auto screen_applier = SharedPointer(new ScreenApplier(window_references));
@@ -32,20 +31,17 @@ Game::Game(const WindowReferences &window_references)
     auto level_view = SharedPointer(new LevelView(window_references));
     auto level = SharedPointer(new Level(LevelMaps::First(), level_view));
 
-    game_logic_loop->AddUpdatable(screen_cleaner); // SYSTEM COMPONENT: clearing all render that was before this line
-    game_logic_loop->AddEventsUpdatable(input);
-    game_logic_loop->AddUpdatable(platform);
-    game_logic_loop->AddUpdatable(platform_controller);
-    game_logic_loop->AddUpdatable(level);
-    game_logic_loop->AddUpdatable(screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
-    game_logic_loop->AddUpdatable(input);
-
-    loops.push_back(game_physics_loop);
-    loops.push_back(game_logic_loop);
-    m_game_loops_ = SharedPointer(new GameLoops(loops));
+    m_game_loop_->AddObject(physics_simulation); // SYSTEM COMPONENT: updates all physics before other logic
+    m_game_loop_->AddObject(screen_cleaner); // SYSTEM COMPONENT: clearing all render that was before this line
+    m_game_loop_->AddEventsObject(input);
+    m_game_loop_->AddObject(platform);
+    m_game_loop_->AddObject(platform_controller);
+    m_game_loop_->AddObject(level);
+    m_game_loop_->AddObject(screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
+    m_game_loop_->AddObject(input);
 }
 
 void Game::Activate()
 {
-    m_game_loops_->Activate();
+    m_game_loop_->Activate();
 }

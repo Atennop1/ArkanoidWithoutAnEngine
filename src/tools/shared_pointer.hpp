@@ -1,8 +1,6 @@
 #ifndef ARKANOIDWITHOUTANENGINE_ABA38CA09CAF4405AB79274B4E04045B
 #define ARKANOIDWITHOUTANENGINE_ABA38CA09CAF4405AB79274B4E04045B
 
-#include <iostream>
-
 template<class T>
 class SharedPointer
 {
@@ -29,7 +27,7 @@ private:
 
     void Assign(T *resource, int *references_count)
     {
-        if (references_count == nullptr)
+        if (resource == nullptr || references_count == nullptr)
             return;
 
         m_resource_ = resource;
@@ -57,7 +55,7 @@ public:
 
     SharedPointer<T>& operator=(T* pointer)
     {
-        if (pointer == m_resource_)
+        if (pointer != m_resource_)
             return *this;
 
         Clear();

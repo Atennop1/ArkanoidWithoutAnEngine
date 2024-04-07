@@ -3,12 +3,12 @@
 
 #include "shared_pointer.hpp"
 #include "rendering/window_references/window_references.hpp"
-#include "loop/game_loops.hpp"
+#include "loop/game_loop.hpp"
 
 class Game
 {
 private:
-    SharedPointer<GameLoops> m_game_loops_;
+    SharedPointer<GameLoop> m_game_loop_;
 
 public:
     explicit Game(const WindowReferences &window_references);

@@ -5,7 +5,7 @@ class IPhysicsObject
 {
 public:
     virtual ~IPhysicsObject() = default;
-    virtual void FixedUpdate(float delta) = 0;
+    virtual void FixedUpdate(float fixed_delta) = 0;
 };
 
 #endif

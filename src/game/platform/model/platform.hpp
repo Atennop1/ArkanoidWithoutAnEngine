@@ -1,12 +1,12 @@
 #ifndef ARKANOIDWITHOUTANENGINE_515C9CA98BC44C93A805F15EDDD26BCE
 #define ARKANOIDWITHOUTANENGINE_515C9CA98BC44C93A805F15EDDD26BCE
 
-#include "../../loop/logic/updatables/updatable.hpp"
+#include "../../loop/updatables/game_loop_object.hpp"
 #include "../View/platform_view.hpp"
 #include "Box2D.hpp"
 #include "shared_pointer.hpp"
 
-class Platform : public IUpdatable
+class Platform : public IGameLoopObject
 {
 private:
     Box2D::Vector2 m_platform_position_ { };

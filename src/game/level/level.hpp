@@ -4,10 +4,10 @@
 #include "../rendering/window_references/window_references.hpp"
 #include "view/level_view.hpp"
 #include "map/level_map.hpp"
-#include "../loop/logic/updatables/updatable.hpp"
+#include "../loop/updatables/game_loop_object.hpp"
 #include "shared_pointer.hpp"
 
-class Level : public IUpdatable
+class Level : public IGameLoopObject
 {
 private:
     const LevelMap &m_map_;

@@ -3,9 +3,9 @@
 
 #include <memory>
 #include "window_references/window_references.hpp"
-#include "../loop/logic/updatables/updatable.hpp"
+#include "../loop/updatables/game_loop_object.hpp"
 
-class ScreenCleaner : public IUpdatable
+class ScreenCleaner : public IGameLoopObject
 {
 private:
     const WindowReferences &m_window_references_;

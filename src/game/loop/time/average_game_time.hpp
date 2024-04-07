@@ -10,11 +10,12 @@ private:
     unsigned long long m_last_time_;
 
 public:
-    bool IsActive() override;
+    AverageGameTime();
+    bool IsActive() override { return m_is_active_; }
     float Delta() override;
 
-    void Activate() override;
-    void Deactivate() override;
+    void Activate() override { m_is_active_ = true; }
+    void Deactivate() override { m_is_active_ = false; }
 };
 
 #endif

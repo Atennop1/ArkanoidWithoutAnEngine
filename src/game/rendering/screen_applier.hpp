@@ -2,10 +2,10 @@
 #define ARKANOIDWITHOUTANENGINE_733BD8BDA5C344A0A0EA2FCD927A7B43
 
 #include "window_references/window_references.hpp"
-#include "../loop/logic/updatables/updatable.hpp"
+#include "../loop/updatables/game_loop_object.hpp"
 #include <memory>
 
-class ScreenApplier : public IUpdatable
+class ScreenApplier : public IGameLoopObject
 {
 private:
     const WindowReferences &m_window_references_;

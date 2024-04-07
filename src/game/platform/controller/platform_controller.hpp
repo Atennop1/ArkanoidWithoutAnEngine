@@ -3,11 +3,11 @@
 
 #include <memory>
 #include "../../input/input.hpp"
-#include "../../loop/logic/updatables/updatable.hpp"
+#include "../../loop/updatables/game_loop_object.hpp"
 #include "../model/platform.hpp"
 #include "shared_pointer.hpp"
 
-class PlatformController : public IUpdatable
+class PlatformController : public IGameLoopObject
 {
 private:
     SharedPointer<Platform> m_platform_;
