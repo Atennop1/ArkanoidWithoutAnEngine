@@ -10,137 +10,80 @@ private:
     T* m_resource_ = nullptr;
     int* m_references_count_ = nullptr;
 
-    void Clear();
-    void Assign(T *resource, int *references_count);
+    void Clear()
+    {
+        if (m_references_count_ != nullptr && --(*m_references_count_) > 0)
+            return;
+
+        delete m_references_count_;
+        delete m_resource_;
+    }
+
+    void Move(SharedPointer<T> &pointer)
+    {
+        m_references_count_ = pointer.m_references_count_;
+        m_resource_ = pointer.m_resource_;
+        pointer.m_resource_ = nullptr;
+        pointer.m_references_count_ = nullptr;
+    }
+
+    void Assign(T *resource, int *references_count)
+    {
+        if (references_count == nullptr)
+            return;
+
+        m_resource_ = resource;
+        m_references_count_ = references_count;
+        ++(*m_references_count_);
+    }
 
 public:
-    explicit SharedPointer(T* resource = nullptr, int* references = new int(0));
-    ~SharedPointer();
+    explicit SharedPointer(T* resource = nullptr, int* references_count = new int(0)) { Assign(resource, references_count); }
+    SharedPointer(const SharedPointer<T> &pointer) { Assign(pointer.m_resource_, pointer.m_references_count_); }
+    SharedPointer(SharedPointer<T> &&pointer) { Move(pointer); }
+    ~SharedPointer() { Clear(); }
 
-    SharedPointer(const SharedPointer<T> &pointer);
-    SharedPointer(SharedPointer<T> &&pointer);
+    T& operator*() { return *m_resource_; }
+    const T& operator*() const { return *m_resource_; }
 
-    SharedPointer<T>& operator=(T* pointer);
-    SharedPointer<T>& operator=(const SharedPointer<T> &pointer);
-    SharedPointer<T>& operator=(SharedPointer<T> &&pointer);
+    T* operator->() { return m_resource_; }
+    const T* operator->() const { return m_resource_; }
 
-    T& operator*();
-    const T& operator*() const;
-
-    T* operator->();
-    const T* operator->() const;
-
-    T* Get();
-    const T* Get() const;
+    T* Get() { return m_resource_; }
+    const T* Get() const { return m_resource_; }
 
     template<class U>
-    operator SharedPointer<U>();
+    operator SharedPointer<U>() { return SharedPointer<U>(dynamic_cast<U*>(m_resource_), m_references_count_); }
+
+    SharedPointer<T>& operator=(T* pointer)
+    {
+        if (pointer == m_resource_)
+            return *this;
+
+        Clear();
+        Assign(pointer, new int(0));
+        return *this;
+    }
+
+    SharedPointer<T>& operator=(const SharedPointer<T> &pointer)
+    {
+        if (&pointer == this)
+            return *this;
+
+        Clear();
+        Assign(pointer.m_resource_, pointer.m_references_count_);
+        return *this;
+    }
+
+    SharedPointer<T>& operator=(SharedPointer<T> &&pointer)
+    {
+        if (&pointer == this)
+            return *this;
+
+        Clear();
+        Move(pointer);
+        return *this;
+    }
 };
-
-template<class T>
-void SharedPointer<T>::Clear()
-{
-    if (m_references_count_ == nullptr)
-        return;
-
-    --(*m_references_count_);
-    if ((*m_references_count_) > 0)
-        return;
-
-    delete m_references_count_;
-    if (m_resource_ != nullptr)
-        delete m_resource_;
-}
-
-template<class T>
-void SharedPointer<T>::Assign(T *resource, int *references_count)
-{
-    if (references_count == nullptr)
-        return;
-
-    m_resource_ = resource;
-    m_references_count_ = references_count;
-    ++(*m_references_count_);
-}
-
-template<class T>
-SharedPointer<T>::SharedPointer(T *resource, int *references_count) { Assign(resource, references_count); }
-
-template<class T>
-SharedPointer<T>::~SharedPointer() { Clear(); }
-
-template<class T>
-SharedPointer<T>::SharedPointer(const SharedPointer<T> &pointer) { Assign(pointer.m_resource_, pointer.m_references_count_); }
-
-template<class T>
-SharedPointer<T>::SharedPointer(SharedPointer<T> &&pointer)
-{
-    m_references_count_ = pointer.m_references_count_;
-    m_resource_ = pointer.m_resource_;
-    pointer.m_resource_ = nullptr;
-    pointer.m_references_count_ = nullptr;
-}
-
-template<class T>
-SharedPointer<T>& SharedPointer<T>::operator=(T *pointer)
-{
-    if (pointer == m_resource_)
-        return *this;
-
-    Clear();
-    Assign(pointer, new int(0));
-    return *this;
-}
-
-template<class T>
-SharedPointer<T>& SharedPointer<T>::operator=(const SharedPointer<T> &pointer)
-{
-    if (&pointer == this)
-        return *this;
-
-    Clear();
-    Assign(pointer.m_resource_, pointer.m_references_count_);
-    return *this;
-}
-
-template<class T>
-SharedPointer<T>& SharedPointer<T>::operator=(SharedPointer<T> &&pointer)
-{
-    if (&pointer == this)
-        return *this;
-
-    Clear();
-    m_references_count_ = pointer.m_references_count_;
-    m_resource_ = pointer.m_resource_;
-    pointer.m_resource_ = nullptr;
-    pointer.m_references_count_ = nullptr;
-    return *this;
-}
-
-template<class T>
-T& SharedPointer<T>::operator*() { return *m_resource_; }
-
-template<class T>
-const T& SharedPointer<T>::operator*() const { return *m_resource_; }
-
-template<class T>
-T* SharedPointer<T>::operator->() { return m_resource_; }
-
-template<class T>
-const T* SharedPointer<T>::operator->() const { return m_resource_; }
-
-template<class T>
-const T *SharedPointer<T>::Get() const { return m_resource_; }
-
-template<class T>
-T *SharedPointer<T>::Get() { return m_resource_; }
-
-template<class T>
-template<class U>
-SharedPointer<T>::operator SharedPointer<U>()
-{
-    auto new_pointer = dynamic_cast<U*>(m_resource_);
-    return SharedPointer<U>(new_pointer, m_references_count_);
-}
 
 #endif
