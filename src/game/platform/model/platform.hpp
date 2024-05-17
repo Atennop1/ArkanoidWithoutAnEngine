@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_515C9CA98BC44C93A805F15EDDD26BCE
 
 #include "../../loop/game_loop_object.hpp"
-#include "../View/platform_view.hpp"
+#include "../view/platform_view.hpp"
 #include "Box2D.hpp"
 #include "shared_pointer.hpp"
 
