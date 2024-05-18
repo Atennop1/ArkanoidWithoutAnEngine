@@ -1,5 +1,6 @@
 ﻿#include "game_loop.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 GameLoop::GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events)
     : m_game_time_(game_time), m_events_(events) { }
@@ -22,7 +23,7 @@ void GameLoop::Activate()
 
 void GameLoop::Add(IGameLoopObject &object)
 {
-    if (std::find(m_objects_.begin(), m_objects_.end(), &object) != m_objects_.end())
+    if (std::ranges::find(m_objects_.begin(), m_objects_.end(), &object) != m_objects_.end())
         throw std::invalid_argument("Updatable already in loop");
 
     m_objects_.push_back(&object);
@@ -36,12 +37,12 @@ void GameLoop::Add(SharedPointer<IGameLoopObject> &object)
 
 void GameLoop::Remove(const IGameLoopObject &object)
 {
-    auto find_iterator = std::find(m_objects_.begin(), m_objects_.end(), &object);
+    auto find_iterator = std::ranges::find(m_objects_.begin(), m_objects_.end(), &object);
     if (find_iterator == m_objects_.end())
         throw std::invalid_argument("Updatable doesn't in loop");
 
     m_objects_.erase(find_iterator);
-    auto shared_find_iterator = std::find_if(m_shared_objects_.begin(), m_shared_objects_.end(), [&](SharedPointer<IGameLoopObject> &pointer) { return pointer.Get() == &object; });
+    auto shared_find_iterator = std::ranges::find_if(m_shared_objects_.begin(), m_shared_objects_.end(), [&](SharedPointer<IGameLoopObject> &pointer) { return pointer.Get() == &object; });
 
     if (shared_find_iterator != m_shared_objects_.end())
         m_shared_objects_.erase(shared_find_iterator);

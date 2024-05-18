@@ -1,13 +1,14 @@
-﻿#include "input.hpp"
+﻿#include <algorithm>
+#include "input.hpp"
 
 Input::Input(const SharedPointer<ApplicationEvents> &events)
     : m_events_(events) { }
 
 bool Input::IsKeyPressed(const KeyType key_type) const
-    { return std::find(m_pressed_keys_.begin(), m_pressed_keys_.end(), key_type) != m_pressed_keys_.end(); }
+    { return std::ranges::find(m_pressed_keys_.begin(), m_pressed_keys_.end(), key_type) != m_pressed_keys_.end(); }
 
 bool Input::IsKeyPressedThisFrame(const KeyType key_type) const
-    { return std::find(m_pressed_this_frame_keys_.begin(), m_pressed_this_frame_keys_.end(), key_type) != m_pressed_this_frame_keys_.end(); }
+    { return std::ranges::find(m_pressed_this_frame_keys_.begin(), m_pressed_this_frame_keys_.end(), key_type) != m_pressed_this_frame_keys_.end(); }
 
 void Input::Update(float delta)
 {

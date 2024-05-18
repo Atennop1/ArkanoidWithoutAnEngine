@@ -1,4 +1,5 @@
 #include "application_events.hpp"
+#include <algorithm>
 
 void ApplicationEvents::Update(float delta)
 {
@@ -14,7 +15,7 @@ std::vector<SDL_Event*> ApplicationEvents::GetEventsOfType(std::vector<Uint32> t
     auto result = std::vector<SDL_Event*> { };
 
     for (auto &event : m_events_)
-        if (std::find_if(types.begin(), types.end(), [&](Uint32 type) { return event.type == type; }) != types.end())
+        if (std::ranges::find_if(types.begin(), types.end(), [&](Uint32 type) { return event.type == type; }) != types.end())
             result.push_back(&event);
 
     return result;
