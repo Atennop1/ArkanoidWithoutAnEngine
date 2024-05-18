@@ -78,8 +78,9 @@ if(NOT TARGET SDL2_image::SDL2_image)
     else()
         set_target_properties(SDL2_image::SDL2_image
             PROPERTIES
-                IMPORTED_LOCATION "${_sdl2image_libdir}/${CMAKE_SHARED_LIBRARY_PREFIX}SDL2_image${CMAKE_SHARED_LIBRARY_SUFFIX}"
+                IMPORTED_LOCATION "${_sdl2image_libdir}/${CMAKE_SHARED_LIBRARY_PREFIX}SDL2_image-2.0.so.0.800.2"
         )
+        message("${_sdl2image_libdir}/${CMAKE_SHARED_LIBRARY_PREFIX}SDL2_image${CMAKE_SHARED_LIBRARY_SUFFIX}")
     endif()
 endif()
 

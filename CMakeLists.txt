@@ -65,7 +65,7 @@ if(WIN32)
 elseif(UNIX)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/linux/lib/cmake/SDL2)
     set(SDL2_image_DIR ${CMAKE_LIBS_PATH}/SDL2_image/linux/lib/cmake/SDL2_image)
-    set(Box2D ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d.so ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d.so.2.3.2)
+    set(Box2D ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d.so.2.3.2)
 endif()
 
 find_package(SDL2 REQUIRED)
