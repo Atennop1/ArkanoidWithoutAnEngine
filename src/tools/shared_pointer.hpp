@@ -50,6 +50,9 @@ public:
     T* Get() { return m_resource_; }
     const T* Get() const { return m_resource_; }
 
+    friend bool operator==(const SharedPointer<T> &first, const SharedPointer<T> &second) { return first.Get() == second.Get(); }
+    friend bool operator==(const SharedPointer<T> &&first, const SharedPointer<T> &&second) { return operator==(first, second);}
+
     template<class U>
     operator SharedPointer<U>() { return SharedPointer<U>(dynamic_cast<U*>(m_resource_), m_references_count_); }
 

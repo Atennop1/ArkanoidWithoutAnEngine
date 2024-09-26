@@ -13,7 +13,7 @@ void GameLoop::Activate()
             continue;
 
         float delta = m_game_time_->Delta();
-        for (const auto &updatable: m_objects_)
+        for (auto &updatable: m_objects_)
             updatable->Update(delta);
 
         if (!m_events_->GetEventsOfType(SDL_QUIT).empty())
@@ -21,29 +21,20 @@ void GameLoop::Activate()
     }
 }
 
-void GameLoop::Add(IGameLoopObject &object)
-{
-    if (std::ranges::find(m_objects_.begin(), m_objects_.end(), &object) != m_objects_.end())
-        throw std::invalid_argument("Updatable already in loop");
-
-    m_objects_.push_back(&object);
-}
-
 void GameLoop::Add(SharedPointer<IGameLoopObject> &object)
 {
-    Add(*object.Get());
-    m_shared_objects_.push_back(object);
+    if (std::ranges::find(m_objects_.begin(), m_objects_.end(), object) != m_objects_.end())
+        throw std::invalid_argument("Updatable already in loop");
+
+    m_objects_.push_back(object);
 }
 
 void GameLoop::Remove(const IGameLoopObject &object)
 {
-    auto find_iterator = std::ranges::find(m_objects_.begin(), m_objects_.end(), &object);
-    if (find_iterator == m_objects_.end())
-        throw std::invalid_argument("Updatable doesn't in loop");
+    auto find_iterator = std::ranges::find_if(m_objects_.begin(), m_objects_.end(), [&](auto &pointer) { return pointer.Get() == &object; });
+
+    if (!(find_iterator != m_objects_.end()))
+        throw std::invalid_argument("Updatable does not in loop");
 
     m_objects_.erase(find_iterator);
-    auto shared_find_iterator = std::ranges::find_if(m_shared_objects_.begin(), m_shared_objects_.end(), [&](SharedPointer<IGameLoopObject> &pointer) { return pointer.Get() == &object; });
-
-    if (shared_find_iterator != m_shared_objects_.end())
-        m_shared_objects_.erase(shared_find_iterator);
 }

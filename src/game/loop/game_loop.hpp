@@ -12,19 +12,19 @@ class GameLoop
 private:
     bool m_is_active_ = true;
     SharedPointer<IReadOnlyGameTime> m_game_time_;
-    SharedPointer<ApplicationEvents> m_events_;
 
-    std::vector<IGameLoopObject*> m_objects_ = { };
-    std::vector<SharedPointer<IGameLoopObject>> m_shared_objects_ = { };
+    SharedPointer<ApplicationEvents> m_events_;
+    std::vector<SharedPointer<IGameLoopObject>> m_objects_ = { };
 
 public:
     GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events);
-    void Activate();
 
-    void Add(IGameLoopObject &object);
+    void Activate();
     void Add(SharedPointer<IGameLoopObject> &object);
-    void Add(SharedPointer<IGameLoopObject> &&object) { Add(object); }
     void Remove(const IGameLoopObject &object);
+
+    void Add(IGameLoopObject &object) { Add(SharedPointer<IGameLoopObject>(&object)); }
+    void Add(SharedPointer<IGameLoopObject> &&object) { Add(object); }
 };
 
 #endif
