@@ -33,7 +33,7 @@ void GameLoop::Remove(const IGameLoopObject &object)
 {
     auto find_iterator = std::ranges::find_if(m_objects_.begin(), m_objects_.end(), [&](auto &pointer) { return pointer.Get() == &object; });
 
-    if (!(find_iterator != m_objects_.end()))
+    if (find_iterator == m_objects_.end())
         throw std::invalid_argument("Updatable does not in loop");
 
     m_objects_.erase(find_iterator);

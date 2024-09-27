@@ -15,30 +15,20 @@ void PhysicsSimulation::Update(float delta)
     }
 }
 
-void PhysicsSimulation::AddPhysicsObject(IPhysicsObject &physics_object)
+void PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
 {
-    if (std::ranges::find(m_physics_objects_.begin(), m_physics_objects_.end(), &physics_object) != m_physics_objects_.end())
+    if (std::ranges::find(m_objects_.begin(), m_objects_.end(), object) != m_objects_.end())
         throw std::invalid_argument("PhysicsObject already in loop");
 
-    m_physics_objects_.push_back(&physics_object);
+    m_objects_.push_back(object);
 }
 
-void PhysicsSimulation::AddPhysicsObject(SharedPointer<IPhysicsObject> &physics_object)
+void PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
 {
-    AddPhysicsObject(*physics_object.Get());
-    m_shared_physics_objects_.push_back(physics_object);
-}
+    auto find_iterator = std::ranges::find_if(m_objects_.begin(), m_objects_.end(), [&](auto pointer) { return pointer.Get() == &object; });
 
-void PhysicsSimulation::RemovePhysicsObject(const IPhysicsObject &physics_object)
-{
-    auto find_iterator = std::ranges::find(m_physics_objects_.begin(), m_physics_objects_.end(), &physics_object);
+    if (find_iterator == m_objects_.end())
+        throw std::invalid_argument("PhysicsObject doesn't in loop");
 
-    if (find_iterator != m_physics_objects_.end())
-        throw std::invalid_argument("Updatable doesn't in loop");
-
-    m_physics_objects_.erase(find_iterator);
-    auto shared_find_iterator = std::ranges::find_if(m_shared_physics_objects_.begin(), m_shared_physics_objects_.end(), [&](SharedPointer<IPhysicsObject> &pointer) { return pointer.Get() == &physics_object; });
-
-    if (shared_find_iterator != m_shared_physics_objects_.end())
-        m_shared_physics_objects_.erase(shared_find_iterator);
+    m_objects_.erase(find_iterator);
 }

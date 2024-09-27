@@ -10,7 +10,7 @@ private:
     static LevelMap m_k_first_;
 
 public:
-    static LevelMap& First();
+    static LevelMap& First() { return m_k_first_; }
 };
 
 #endif

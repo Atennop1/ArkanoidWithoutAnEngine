@@ -17,20 +17,20 @@ private:
 
     float m_elapsed_time_ = 0.0f;
     float m_last_update_time_ = 0.0f;
-    SharedPointer<Box2D::World> m_world_;
 
-    std::vector<IPhysicsObject*> m_physics_objects_ = { };
-    std::vector<SharedPointer<IPhysicsObject>> m_shared_physics_objects_ = { };
+    SharedPointer<Box2D::World> m_world_;
+    std::vector<SharedPointer<IPhysicsObject>> m_objects_ = { };
 
 public:
     explicit PhysicsSimulation(SharedPointer<Box2D::World> &world);
     void Update(float delta) override;
 
     // later there will be adding of ICollider classes to Box2D::World
-    void AddPhysicsObject(IPhysicsObject &physics_object);
-    void AddPhysicsObject(SharedPointer<IPhysicsObject> &physics_object);
-    void AddPhysicsObject(SharedPointer<IPhysicsObject> &&physics_object) { AddPhysicsObject(physics_object); }
-    void RemovePhysicsObject(const IPhysicsObject &physics_object);
+    void AddObject(SharedPointer<IPhysicsObject> &object);
+    void RemoveObject(const IPhysicsObject &object);
+
+    void AddObject(IPhysicsObject &object) { AddObject(SharedPointer(&object)); }
+    void AddObject(SharedPointer<IPhysicsObject> &&object) { AddObject(object); }
 };
 
 #endif
