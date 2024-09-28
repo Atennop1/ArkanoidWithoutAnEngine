@@ -2,10 +2,10 @@
 #include <stdexcept>
 #include <algorithm>
 
-GameLoop::GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events)
+arkanoid::GameLoop::GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events)
     : m_game_time_(game_time), m_events_(events) { }
 
-void GameLoop::Activate()
+void arkanoid::GameLoop::Activate()
 {
     while (m_is_active_)
     {
@@ -21,7 +21,7 @@ void GameLoop::Activate()
     }
 }
 
-void GameLoop::Add(SharedPointer<IGameLoopObject> &object)
+void arkanoid::GameLoop::Add(SharedPointer<IGameLoopObject> &object)
 {
     if (std::ranges::find(m_objects_.begin(), m_objects_.end(), object) != m_objects_.end())
         throw std::invalid_argument("Updatable already in loop");
@@ -29,7 +29,7 @@ void GameLoop::Add(SharedPointer<IGameLoopObject> &object)
     m_objects_.push_back(object);
 }
 
-void GameLoop::Remove(const IGameLoopObject &object)
+void arkanoid::GameLoop::Remove(const IGameLoopObject &object)
 {
     auto find_iterator = std::ranges::find_if(m_objects_.begin(), m_objects_.end(), [&](auto &pointer) { return pointer.Get() == &object; });
 

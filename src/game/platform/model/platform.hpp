@@ -6,18 +6,23 @@
 #include "Box2D.hpp"
 #include "shared_pointer.hpp"
 
-class Platform : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    box2d::Vector2 m_platform_position_ { };
-    SharedPointer<PlatformView> m_platform_view_;
+    class Platform : public IGameLoopObject
+    {
+    private:
+        box2d::Vector2 m_platform_position_{};
+        SharedPointer<PlatformView> m_platform_view_;
 
-public:
-    explicit Platform(SharedPointer<PlatformView> &platform_view);
-    ~Platform() override = default;
+    public:
+        explicit Platform(SharedPointer<PlatformView> &platform_view);
 
-    void Update(float delta) override;
-    void Move(box2d::Vector2 move_vector);
-};
+        ~Platform() override = default;
+
+        void Update(float delta) override;
+
+        void Move(box2d::Vector2 move_vector);
+    };
+}
 
 #endif

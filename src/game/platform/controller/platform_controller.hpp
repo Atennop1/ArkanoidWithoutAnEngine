@@ -6,19 +6,23 @@
 #include "../../events/input/input.hpp"
 #include "shared_pointer.hpp"
 
-class PlatformController : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    SharedPointer<Platform> m_platform_;
-    const SharedPointer<Input> m_input_;
+    class PlatformController : public IGameLoopObject
+    {
+    private:
+        SharedPointer<Platform> m_platform_;
+        const SharedPointer<Input> m_input_;
 
-    const float m_move_speed_ = 40.0f;
+        const float m_move_speed_ = 40.0f;
 
-public:
-    PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input);
-    ~PlatformController() override = default;
+    public:
+        PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input);
 
-    void Update(float delta) override;
-};
+        ~PlatformController() override = default;
+
+        void Update(float delta) override;
+    };
+}
 
 #endif

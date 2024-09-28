@@ -3,19 +3,28 @@
 
 #include "game_time.hpp"
 
-class AverageGameTime : public IGameTime
+namespace arkanoid
 {
-private:
-    bool m_is_active_ = true;
-    unsigned long long m_last_time_;
+    class AverageGameTime : public IGameTime
+    {
+    private:
+        bool m_is_active_ = true;
+        unsigned long long m_last_time_;
 
-public:
-    AverageGameTime();
-    bool IsActive() override { return m_is_active_; }
-    float Delta() override;
+    public:
+        AverageGameTime();
 
-    void Activate() override { m_is_active_ = true; }
-    void Deactivate() override { m_is_active_ = false; }
-};
+        bool IsActive() override
+        { return m_is_active_; }
+
+        float Delta() override;
+
+        void Activate() override
+        { m_is_active_ = true; }
+
+        void Deactivate() override
+        { m_is_active_ = false; }
+    };
+}
 
 #endif

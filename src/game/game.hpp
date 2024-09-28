@@ -5,14 +5,18 @@
 #include "rendering/window_references/window_references.hpp"
 #include "loop/game_loop.hpp"
 
-class Game
+namespace arkanoid
 {
-private:
-    SharedPointer<GameLoop> m_game_loop_;
+    class Game
+    {
+    private:
+        SharedPointer<GameLoop> m_game_loop_;
 
-public:
-    explicit Game(const WindowReferences &window_references);
-    void Activate();
-};
+    public:
+        explicit Game(const WindowReferences &window_references);
+
+        void Activate();
+    };
+}
 
 #endif

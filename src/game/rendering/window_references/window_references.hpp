@@ -3,17 +3,21 @@
 
 #include "SDL.h"
 
-struct WindowReferences
+namespace arkanoid
 {
-private:
-    SDL_Renderer *m_renderer_;
-    SDL_Window *m_window_;
+    struct WindowReferences
+    {
+    private:
+        SDL_Renderer *m_renderer_;
+        SDL_Window *m_window_;
 
-public:
-    WindowReferences(SDL_Window *window, SDL_Renderer *renderer);
+    public:
+        WindowReferences(SDL_Window *window, SDL_Renderer *renderer);
 
-    SDL_Window *Window() const;
-    SDL_Renderer *Renderer() const;
-};
+        SDL_Window *Window() const;
+
+        SDL_Renderer *Renderer() const;
+    };
+}
 
 #endif

@@ -1,90 +1,113 @@
 #ifndef ARKANOIDWITHOUTANENGINE_ABA38CA09CAF4405AB79274B4E04045B
 #define ARKANOIDWITHOUTANENGINE_ABA38CA09CAF4405AB79274B4E04045B
 
-template<class T>
-class SharedPointer
+namespace arkanoid
 {
-private:
-    T* m_resource_ = nullptr;
-    int* m_references_count_ = nullptr;
-
-    void Clear()
+    template<class T>
+    class SharedPointer
     {
-        if (m_references_count_ != nullptr && (--*m_references_count_) > 0)
-            return;
+    private:
+        T *m_resource_ = nullptr;
+        int *m_references_count_ = nullptr;
 
-        delete m_references_count_;
-        delete m_resource_;
-    }
+        void Clear()
+        {
+            if (m_references_count_ != nullptr && (--*m_references_count_) > 0)
+                return;
 
-    void Move(SharedPointer<T> &pointer)
-    {
-        m_references_count_ = pointer.m_references_count_;
-        m_resource_ = pointer.m_resource_;
-        pointer.m_resource_ = nullptr;
-        pointer.m_references_count_ = nullptr;
-    }
+            delete m_references_count_;
+            delete m_resource_;
+        }
 
-    void Assign(T *resource, int *references_count)
-    {
-        if (resource == nullptr || references_count == nullptr)
-            return;
+        void Move(SharedPointer<T> &pointer)
+        {
+            m_references_count_ = pointer.m_references_count_;
+            m_resource_ = pointer.m_resource_;
+            pointer.m_resource_ = nullptr;
+            pointer.m_references_count_ = nullptr;
+        }
 
-        m_resource_ = resource;
-        m_references_count_ = references_count;
-        ++(*m_references_count_);
-    }
+        void Assign(T *resource, int *references_count)
+        {
+            if (resource == nullptr || references_count == nullptr)
+                return;
 
-public:
-    explicit SharedPointer(T* resource = nullptr, int* references_count = new int(0)) { Assign(resource, references_count); }
-    SharedPointer(const SharedPointer<T> &pointer) { Assign(pointer.m_resource_, pointer.m_references_count_); }
-    SharedPointer(SharedPointer<T> &&pointer) { Move(pointer); }
-    ~SharedPointer() { Clear(); }
+            m_resource_ = resource;
+            m_references_count_ = references_count;
+            ++(*m_references_count_);
+        }
 
-    T& operator*() { return *m_resource_; }
-    const T& operator*() const { return *m_resource_; }
+    public:
+        explicit SharedPointer(T *resource = nullptr, int *references_count = new int(0))
+        { Assign(resource, references_count); }
 
-    T* operator->() { return m_resource_; }
-    const T* operator->() const { return m_resource_; }
+        SharedPointer(const SharedPointer<T> &pointer)
+        { Assign(pointer.m_resource_, pointer.m_references_count_); }
 
-    T* Get() { return m_resource_; }
-    const T* Get() const { return m_resource_; }
+        SharedPointer(SharedPointer<T> &&pointer)
+        { Move(pointer); }
 
-    friend bool operator==(const SharedPointer<T> &first, const SharedPointer<T> &second) { return first.Get() == second.Get(); }
-    friend bool operator==(const SharedPointer<T> &&first, const SharedPointer<T> &&second) { return operator==(first, second);}
+        ~SharedPointer()
+        { Clear(); }
 
-    template<class U>
-    operator SharedPointer<U>() { return SharedPointer<U>(dynamic_cast<U*>(m_resource_), m_references_count_); }
+        T &operator*()
+        { return *m_resource_; }
 
-    SharedPointer<T>& operator=(T* pointer)
-    {
-        if (pointer != m_resource_)
+        const T &operator*() const
+        { return *m_resource_; }
+
+        T *operator->()
+        { return m_resource_; }
+
+        const T *operator->() const
+        { return m_resource_; }
+
+        T *Get()
+        { return m_resource_; }
+
+        const T *Get() const
+        { return m_resource_; }
+
+        friend bool operator==(const SharedPointer<T> &first, const SharedPointer<T> &second)
+        { return first.Get() == second.Get(); }
+
+        friend bool operator==(const SharedPointer<T> &&first, const SharedPointer<T> &&second)
+        { return operator==(first, second); }
+
+        template<class U>
+        operator SharedPointer<U>()
+        { return SharedPointer<U>(dynamic_cast<U *>(m_resource_), m_references_count_); }
+
+        SharedPointer<T> &operator=(T *pointer)
+        {
+            if (pointer != m_resource_)
+                return *this;
+
+            Clear();
+            Assign(pointer, new int(0));
             return *this;
+        }
 
-        Clear();
-        Assign(pointer, new int(0));
-        return *this;
-    }
+        SharedPointer<T> &operator=(const SharedPointer<T> &pointer)
+        {
+            if (&pointer == this)
+                return *this;
 
-    SharedPointer<T>& operator=(const SharedPointer<T> &pointer)
-    {
-        if (&pointer == this)
+            Clear();
+            Assign(pointer.m_resource_, pointer.m_references_count_);
             return *this;
+        }
 
-        Clear();
-        Assign(pointer.m_resource_, pointer.m_references_count_);
-        return *this;
-    }
+        SharedPointer<T> &operator=(SharedPointer<T> &&pointer)
+        {
+            if (&pointer == this)
+                return *this;
 
-    SharedPointer<T>& operator=(SharedPointer<T> &&pointer)
-    {
-        if (&pointer == this)
+            Clear();
+            Move(pointer);
             return *this;
-
-        Clear();
-        Move(pointer);
-        return *this;
-    }
-};
+        }
+    };
+}
 
 #endif

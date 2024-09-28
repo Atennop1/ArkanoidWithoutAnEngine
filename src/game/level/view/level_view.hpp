@@ -6,26 +6,30 @@
 #include "SDL.h"
 #include "Box2D.hpp"
 
-class LevelView
+namespace arkanoid
 {
-private:
-    const float m_level_offset_x_ = 8.0f;
-    const float m_level_offset_y_ = 6.0f;
+    class LevelView
+    {
+    private:
+        const float m_level_offset_x_ = 8.0f;
+        const float m_level_offset_y_ = 6.0f;
 
-    int m_brick_width_;
-    int m_brick_height_;
+        int m_brick_width_;
+        int m_brick_height_;
 
-    const WindowReferences &m_window_references_;
-    SDL_Texture *m_violet_brick_texture_;
-    SDL_Texture *m_blue_brick_texture_;
+        const WindowReferences &m_window_references_;
+        SDL_Texture *m_violet_brick_texture_;
+        SDL_Texture *m_blue_brick_texture_;
 
-    void DisplayBrick(SDL_Texture *texture, box2d::Vector2 position) const;
+        void DisplayBrick(SDL_Texture *texture, box2d::Vector2 position) const;
 
-public:
-    explicit LevelView(const WindowReferences &window_references);
-    ~LevelView();
+    public:
+        explicit LevelView(const WindowReferences &window_references);
 
-    void Display(const LevelMap &map) const;
-};
+        ~LevelView();
+
+        void Display(const LevelMap &map) const;
+    };
+}
 
 #endif

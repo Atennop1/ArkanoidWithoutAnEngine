@@ -1,10 +1,10 @@
 ﻿#include "physics_simulation.hpp"
 #include <algorithm>
 
-PhysicsSimulation::PhysicsSimulation(SharedPointer<box2d::World> &world)
+arkanoid::PhysicsSimulation::PhysicsSimulation(SharedPointer<box2d::World> &world)
     : m_world_(world) { }
 
-void PhysicsSimulation::Update(float delta)
+void arkanoid::PhysicsSimulation::Update(float delta)
 {
     m_elapsed_time_ += delta;
 
@@ -15,7 +15,7 @@ void PhysicsSimulation::Update(float delta)
     }
 }
 
-void PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
+void arkanoid::PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
 {
     if (std::ranges::find(m_objects_.begin(), m_objects_.end(), object) != m_objects_.end())
         throw std::invalid_argument("PhysicsObject already in loop");
@@ -23,7 +23,7 @@ void PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
     m_objects_.push_back(object);
 }
 
-void PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
+void arkanoid::PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
 {
     auto find_iterator = std::ranges::find_if(m_objects_.begin(), m_objects_.end(), [&](auto pointer) { return pointer.Get() == &object; });
 

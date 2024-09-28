@@ -3,12 +3,12 @@
 #include "../../shortcuts/shortcuts.hpp"
 #include "SDL_image.h"
 
-PlatformView::PlatformView(const WindowReferences &window_references) : m_window_references_(window_references)
+arkanoid::PlatformView::PlatformView(const WindowReferences &window_references) : m_window_references_(window_references)
 {
     m_platform_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/platform.png");
 }
 
-void PlatformView::Display(box2d::Vector2 position) const
+void arkanoid::PlatformView::Display(box2d::Vector2 position) const
 {
     SDL_Rect temp_rect = { };
     SDL_QueryTexture(m_platform_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);
@@ -21,7 +21,7 @@ void PlatformView::Display(box2d::Vector2 position) const
     SDL_RenderCopy(m_window_references_.Renderer(), m_platform_texture_, nullptr, &temp_rect);
 }
 
-PlatformView::~PlatformView()
+arkanoid::PlatformView::~PlatformView()
 {
     SDL_DestroyTexture(m_platform_texture_);
 }

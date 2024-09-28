@@ -4,16 +4,20 @@
 #include "window_references/window_references.hpp"
 #include "../loop/game_loop_object.hpp"
 
-class ScreenCleaner : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    const WindowReferences &m_window_references_;
+    class ScreenCleaner : public IGameLoopObject
+    {
+    private:
+        const WindowReferences &m_window_references_;
 
-public:
-    explicit ScreenCleaner(const WindowReferences &window_references);
-    ~ScreenCleaner() override = default;
+    public:
+        explicit ScreenCleaner(const WindowReferences &window_references);
 
-    void Update(float delta) override;
-};
+        ~ScreenCleaner() override = default;
+
+        void Update(float delta) override;
+    };
+}
 
 #endif

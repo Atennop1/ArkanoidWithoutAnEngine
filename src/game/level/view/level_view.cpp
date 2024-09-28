@@ -2,7 +2,7 @@
 #include "../../rendering/rendering_constants.hpp"
 #include "SDL_image.h"
 
-LevelView::LevelView(const WindowReferences &window_references) : m_window_references_(window_references)
+arkanoid::LevelView::LevelView(const WindowReferences &window_references) : m_window_references_(window_references)
 {
     m_blue_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/blue_brick.png");
     m_violet_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/violet_brick.png");
@@ -13,13 +13,13 @@ LevelView::LevelView(const WindowReferences &window_references) : m_window_refer
     m_brick_width_ = temp_rect.w;
 }
 
-LevelView::~LevelView()
+arkanoid::LevelView::~LevelView()
 {
     SDL_DestroyTexture(m_blue_brick_texture_);
     SDL_DestroyTexture(m_violet_brick_texture_);
 }
 
-void LevelView::Display(const LevelMap &map) const
+void arkanoid::LevelView::Display(const LevelMap &map) const
 {
     for (int i = 0; i < 14; i++)
     {
@@ -34,7 +34,7 @@ void LevelView::Display(const LevelMap &map) const
     }
 }
 
-void LevelView::DisplayBrick(SDL_Texture *texture, const box2d::Vector2 position) const
+void arkanoid::LevelView::DisplayBrick(SDL_Texture *texture, const box2d::Vector2 position) const
 {
     SDL_Rect temp_rect { };
 

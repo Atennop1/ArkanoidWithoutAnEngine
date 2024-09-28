@@ -1,16 +1,16 @@
 ﻿#include "platform.hpp"
 
-Platform::Platform(SharedPointer<PlatformView> &platform_view) : m_platform_view_(platform_view)
+arkanoid::Platform::Platform(SharedPointer<PlatformView> &platform_view) : m_platform_view_(platform_view)
 {
     m_platform_position_ = box2d::Vector2(100, 155);
 }
 
-void Platform::Update(float delta)
+void arkanoid::Platform::Update(float delta)
 {
     m_platform_view_->Display(m_platform_position_);
 }
 
-void Platform::Move(box2d::Vector2 move_vector)
+void arkanoid::Platform::Move(box2d::Vector2 move_vector)
 {
     m_platform_position_ = box2d::Vector2(m_platform_position_.m_x_ + move_vector.m_x_, m_platform_position_.m_y_ + move_vector.m_y_);
 }

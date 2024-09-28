@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-    auto application = Application();
+    auto application = arkanoid::Application();
     application.Activate();
     return 0;
 }

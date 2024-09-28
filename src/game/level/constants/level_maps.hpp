@@ -4,13 +4,17 @@
 #include "../map/level_map.hpp"
 #include <array>
 
-class LevelMaps
+namespace arkanoid
 {
-private:
-    static LevelMap m_k_first_;
+    class LevelMaps
+    {
+    private:
+        static LevelMap m_k_first_;
 
-public:
-    static LevelMap& First() { return m_k_first_; }
-};
+    public:
+        static LevelMap &First()
+        { return m_k_first_; }
+    };
+}
 
 #endif

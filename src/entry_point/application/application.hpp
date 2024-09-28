@@ -4,17 +4,21 @@
 #include "../../game/game.hpp"
 #include "../../game/rendering//window_references/window_references.hpp"
 
-class Application
+namespace arkanoid
 {
-private:
-    WindowReferences m_window_references_ = WindowReferences(nullptr, nullptr);
-    SharedPointer<Game> m_game_ = SharedPointer<Game>();
+    class Application
+    {
+    private:
+        WindowReferences m_window_references_ = WindowReferences(nullptr, nullptr);
+        SharedPointer<Game> m_game_ = SharedPointer<Game>();
 
-public:
-    Application();
-    ~Application();
+    public:
+        Application();
 
-    void Activate();
-};
+        ~Application();
+
+        void Activate();
+    };
+}
 
 #endif

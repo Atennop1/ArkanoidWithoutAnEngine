@@ -8,29 +8,37 @@
 #include "Box2D.hpp"
 #include "shared_pointer.hpp"
 
-class PhysicsSimulation : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    const float m_time_step_ = 1.0f / 60.0f;
-    const box2d::Int32 m_velocity_iterations_ = 6;
-    const box2d::Int32 m_position_iterations_ = 2;
+    class PhysicsSimulation : public IGameLoopObject
+    {
+    private:
+        const float m_time_step_ = 1.0f / 60.0f;
+        const box2d::Int32 m_velocity_iterations_ = 6;
+        const box2d::Int32 m_position_iterations_ = 2;
 
-    float m_elapsed_time_ = 0.0f;
-    float m_last_update_time_ = 0.0f;
+        float m_elapsed_time_ = 0.0f;
+        float m_last_update_time_ = 0.0f;
 
-    SharedPointer<box2d::World> m_world_;
-    std::vector<SharedPointer<IPhysicsObject>> m_objects_ = { };
+        SharedPointer<box2d::World> m_world_;
+        std::vector<SharedPointer<IPhysicsObject>> m_objects_ = {};
 
-public:
-    explicit PhysicsSimulation(SharedPointer<box2d::World> &world);
-    void Update(float delta) override;
+    public:
+        explicit PhysicsSimulation(SharedPointer<box2d::World> &world);
 
-    // later there will be adding of ICollider classes to Box2D::World
-    void AddObject(SharedPointer<IPhysicsObject> &object);
-    void RemoveObject(const IPhysicsObject &object);
+        void Update(float delta) override;
 
-    void AddObject(IPhysicsObject &object) { AddObject(SharedPointer(&object)); }
-    void AddObject(SharedPointer<IPhysicsObject> &&object) { AddObject(object); }
-};
+        // later there will be adding of ICollider classes to Box2D::World
+        void AddObject(SharedPointer<IPhysicsObject> &object);
+
+        void RemoveObject(const IPhysicsObject &object);
+
+        void AddObject(IPhysicsObject &object)
+        { AddObject(SharedPointer(&object)); }
+
+        void AddObject(SharedPointer<IPhysicsObject> &&object)
+        { AddObject(object); }
+    };
+}
 
 #endif

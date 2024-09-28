@@ -7,17 +7,21 @@
 #include "../loop/game_loop_object.hpp"
 #include "shared_pointer.hpp"
 
-class Level : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    const LevelMap &m_map_;
-    const SharedPointer<LevelView> m_level_view_;
+    class Level : public IGameLoopObject
+    {
+    private:
+        const LevelMap &m_map_;
+        const SharedPointer<LevelView> m_level_view_;
 
-public:
-    Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
-    ~Level() override = default;
+    public:
+        Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
 
-    void Update(float delta) override;
-};
+        ~Level() override = default;
+
+        void Update(float delta) override;
+    };
+}
 
 #endif

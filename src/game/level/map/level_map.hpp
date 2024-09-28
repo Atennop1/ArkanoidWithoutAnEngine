@@ -3,17 +3,20 @@
 
 #include <array>
 
-class LevelMap
+namespace arkanoid
 {
-private:
-    const std::array<std::array<char, 12>, 14> &m_map_;
+    class LevelMap
+    {
+    private:
+        const std::array<std::array<char, 12>, 14> &m_map_;
 
-public:
-    LevelMap();
-    explicit LevelMap(std::array<std::array<char, 12>, 14> &map);
+    public:
+        LevelMap();
 
-    std::array<char, 12> operator[](int index) const;
-};
+        explicit LevelMap(std::array<std::array<char, 12>, 14> &map);
 
+        std::array<char, 12> operator[](int index) const;
+    };
+}
 
 #endif

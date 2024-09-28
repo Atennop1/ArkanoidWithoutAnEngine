@@ -4,17 +4,21 @@
 #include "../../rendering/window_references/window_references.hpp"
 #include "Box2D.hpp"
 
-class PlatformView
+namespace arkanoid
 {
-private:
-    SDL_Texture *m_platform_texture_;
-    const WindowReferences &m_window_references_;
+    class PlatformView
+    {
+    private:
+        SDL_Texture *m_platform_texture_;
+        const WindowReferences &m_window_references_;
 
-public:
-    explicit PlatformView(const WindowReferences &window_references);
-    ~PlatformView();
+    public:
+        explicit PlatformView(const WindowReferences &window_references);
 
-    void Display(box2d::Vector2 position) const;
-};
+        ~PlatformView();
+
+        void Display(box2d::Vector2 position) const;
+    };
+}
 
 #endif

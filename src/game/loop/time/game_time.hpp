@@ -3,13 +3,17 @@
 
 #include "read_only_game_time.hpp"
 
-class IGameTime : public IReadOnlyGameTime
+namespace arkanoid
 {
-public:
-    virtual void Activate() = 0;
-    virtual void Deactivate() = 0;
+    class IGameTime : public IReadOnlyGameTime
+    {
+    public:
+        virtual void Activate() = 0;
 
-    ~IGameTime() override = default;
-};
+        virtual void Deactivate() = 0;
+
+        ~IGameTime() override = default;
+    };
+}
 
 #endif

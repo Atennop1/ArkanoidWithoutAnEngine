@@ -4,16 +4,20 @@
 #include "window_references/window_references.hpp"
 #include "../loop/game_loop_object.hpp"
 
-class ScreenApplier : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    const WindowReferences &m_window_references_;
+    class ScreenApplier : public IGameLoopObject
+    {
+    private:
+        const WindowReferences &m_window_references_;
 
-public:
-    explicit ScreenApplier(const WindowReferences &window_references);
-    ~ScreenApplier() override = default;
+    public:
+        explicit ScreenApplier(const WindowReferences &window_references);
 
-    void Update(float delta) override;
-};
+        ~ScreenApplier() override = default;
+
+        void Update(float delta) override;
+    };
+}
 
 #endif

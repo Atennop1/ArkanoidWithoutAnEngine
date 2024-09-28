@@ -6,18 +6,23 @@
 #include <list>
 #include <vector>
 
-class ApplicationEvents : public IGameLoopObject
+namespace arkanoid
 {
-private:
-    std::list<SDL_Event> m_events_ = { };
+    class ApplicationEvents : public IGameLoopObject
+    {
+    private:
+        std::list<SDL_Event> m_events_ = {};
 
-public:
-    ~ApplicationEvents() override = default;
+    public:
+        ~ApplicationEvents() override = default;
 
-    void Update(float delta) override;
-    std::vector<SDL_Event*> GetEventsOfType(Uint32 type) { return GetEventsOfType(std::vector<Uint32> { type }); }
-    std::vector<SDL_Event*> GetEventsOfType(std::vector<Uint32> types);
-};
+        void Update(float delta) override;
 
+        std::vector<SDL_Event *> GetEventsOfType(Uint32 type)
+        { return GetEventsOfType(std::vector<Uint32>{type}); }
+
+        std::vector<SDL_Event *> GetEventsOfType(std::vector<Uint32> types);
+    };
+}
 
 #endif

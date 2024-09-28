@@ -3,10 +3,13 @@
 
 #include "SDL.h"
 
-class Shortcuts
+namespace arkanoid
 {
-public:
-    static void SelectColor(SDL_Renderer *renderer, const SDL_Color &color);
-};
+    class Shortcuts
+    {
+    public:
+        static void SelectColor(SDL_Renderer *renderer, const SDL_Color &color);
+    };
+}
 
 #endif

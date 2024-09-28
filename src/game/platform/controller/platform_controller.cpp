@@ -1,9 +1,9 @@
 ﻿#include "platform_controller.hpp"
 
-PlatformController::PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input)
+arkanoid::PlatformController::PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input)
     : m_input_(input), m_platform_(platform) { }
 
-void PlatformController::Update(float delta)
+void arkanoid::PlatformController::Update(float delta)
 {
     const bool is_left_key_pressed = m_input_->IsKeyPressed(KLeft);
     const bool is_right_key_pressed = m_input_->IsKeyPressed(KRight);
