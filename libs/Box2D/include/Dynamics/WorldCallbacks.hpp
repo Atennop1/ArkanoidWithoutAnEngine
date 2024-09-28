@@ -19,9 +19,9 @@
 #ifndef B2_WORLD_CALLBACKS_HPP
 #define B2_WORLD_CALLBACKS_HPP
 
-#include "Common/Settings.hpp"
+#include <Common/Settings.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 struct Vector2;
@@ -64,7 +64,7 @@ public:
 
 /// Contact impulses for reporting. Impulses are used instead of forces because
 /// sub-m_step_ forces may approach infinity for rigid body collisions. These
-/// match up one-to-one with the m_contact_ m_points_ in Box2D::Manifold.
+/// match up one-to-one with the m_contact_ m_points_ in box2d::Manifold.
 struct ContactImpulse
 {
 	Float32 m_normal_impulses_[max_manifold_points];
@@ -80,7 +80,7 @@ struct ContactImpulse
 /// single time m_step_.
 /// You should strive to make your callbacks efficient because there may be
 /// many callbacks per time m_step_.
-/// @warning You cannot create/destroy Box2D entities inside these callbacks.
+/// @warning You cannot create/destroy box2d entities inside these callbacks.
 class ContactListener
 {
 public:
@@ -122,7 +122,7 @@ public:
 };
 
 /// Callback class for AABB queries.
-/// See Box2D::World::Query
+/// See box2d::World::Query
 class QueryCallback
 {
 public:
@@ -134,7 +134,7 @@ public:
 };
 
 /// Callback class for ray casts.
-/// See Box2D::World::RayCast
+/// See box2d::World::RayCast
 class RayCastCallback
 {
 public:
@@ -155,6 +155,6 @@ public:
                                   const Vector2& normal, Float32 fraction) = 0;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_WORLD_CALLBACKS_HPP

@@ -19,12 +19,12 @@
 #ifndef B2_CONTACT_HPP
 #define B2_CONTACT_HPP
 
-#include "Common/Math.hpp"
-#include "Collision/Collision.hpp"
-#include "Collision/Shapes/Shape.hpp"
-#include "Dynamics/Fixture.hpp"
+#include <Common/Math.hpp>
+#include <Collision/Collision.hpp>
+#include <Collision/Shapes/Shape.hpp>
+#include <Dynamics/Fixture.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Body;
@@ -82,7 +82,7 @@ class Contact
 public:
 
 	/// Get the m_contact_ manifold. Do not modify the manifold unless you understand the
-	/// internals of Box2D.
+	/// internals of box2d.
 	Manifold* GetManifold();
 	const Manifold* GetManifold() const;
 
@@ -118,7 +118,7 @@ public:
 	/// Get the child primitive index for m_fixture_ B.
 	Int32 GetChildIndexB() const;
 
-	/// Override the default m_friction_ mixture. You can call this in Box2D::ContactListener::PreSolve.
+	/// Override the default m_friction_ mixture. You can call this in box2d::ContactListener::PreSolve.
 	/// This value persists until set or reset.
 	void SetFriction(Float32 friction);
 
@@ -128,7 +128,7 @@ public:
 	/// Reset the m_friction_ mixture to the default value.
 	void ResetFriction();
 
-	/// Override the default m_restitution_ mixture. You can call this in Box2D::ContactListener::PreSolve.
+	/// Override the default m_restitution_ mixture. You can call this in box2d::ContactListener::PreSolve.
 	/// The value persists until you set or reset.
 	void SetRestitution(Float32 restitution);
 
@@ -349,6 +349,6 @@ inline Float32 Contact::GetTangentSpeed() const
 	return m_tangent_speed_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_CONTACT_HPP

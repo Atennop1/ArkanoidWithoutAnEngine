@@ -19,9 +19,9 @@
 #ifndef B2_CHAIN_SHAPE_HPP
 #define B2_CHAIN_SHAPE_HPP
 
-#include "Shape.hpp"
+#include <Collision/Shapes/Shape.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class EdgeShape;
@@ -29,7 +29,7 @@ class EdgeShape;
 /// A chain m_shape_ is m_a_ free form sequence of line segments.
 /// The chain has two-sided collision, so you can use inside and outside collision.
 /// Therefore, you may use any winding order.
-/// Since there may be many m_vertices_, they are allocated using Box2D::Alloc.
+/// Since there may be many m_vertices_, they are allocated using box2d::Alloc.
 /// Connectivity information is used to create smooth collisions.
 /// WARNING: The chain will not m_collide_ properly if there are self-intersections.
 class ChainShape : public Shape
@@ -37,7 +37,7 @@ class ChainShape : public Shape
 public:
 	ChainShape();
 
-	/// The destructor frees the m_vertices_ using Box2D::Free.
+	/// The destructor frees the m_vertices_ using box2d::Free.
 	~ChainShape();
 
 	/// Clear all m_data_.
@@ -61,28 +61,28 @@ public:
 	/// Don'm_t_ call this for loops.
 	void SetNextVertex(const Vector2& nextVertex);
 
-	/// Implement Box2D::Shape. Vertices are cloned using Box2D::Alloc.
+	/// Implement box2d::Shape. Vertices are cloned using box2d::Alloc.
 	Shape* Clone(BlockAllocator* allocator) const;
 
-	/// @see Box2D::Shape::GetChildCount
+	/// @see box2d::Shape::GetChildCount
 	Int32 GetChildCount() const;
 
 	/// Get m_a_ child edge.
 	void GetChildEdge(EdgeShape* edge, Int32 index) const;
 
 	/// This always return false.
-	/// @see Box2D::Shape::TestPoint
+	/// @see box2d::Shape::TestPoint
 	bool TestPoint(const Transform& transform, const Vector2& p) const;
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	bool RayCast(RayCastOutput* output, const RayCastInput& input,
                  const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeAABB
+	/// @see box2d::Shape::ComputeAABB
 	void ComputeAABB(AABB* aabb, const Transform& transform, Int32 childIndex) const;
 
 	/// Chains have zero mass.
-	/// @see Box2D::Shape::ComputeMass
+	/// @see box2d::Shape::ComputeMass
 	void ComputeMass(MassData* massData, Float32 density) const;
 
 	/// The m_vertices_. Owned by this class.
@@ -105,6 +105,6 @@ inline ChainShape::ChainShape()
     m_has_next_vertex_ = false;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_CHAIN_SHAPE_HPP

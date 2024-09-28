@@ -1,7 +1,7 @@
 ﻿#include "physics_simulation.hpp"
 #include <algorithm>
 
-PhysicsSimulation::PhysicsSimulation(SharedPointer<Box2D::World> &world)
+PhysicsSimulation::PhysicsSimulation(SharedPointer<box2d::World> &world)
     : m_world_(world) { }
 
 void PhysicsSimulation::Update(float delta)

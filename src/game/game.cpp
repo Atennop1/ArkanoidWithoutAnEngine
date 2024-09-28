@@ -15,7 +15,7 @@
 Game::Game(const WindowReferences &window_references)
 {
     auto game_time = SharedPointer<IReadOnlyGameTime>(new AverageGameTime());
-    auto world = SharedPointer(new Box2D::World(Box2D::Vector2(0.0f, -10.0f)));
+    auto world = SharedPointer(new box2d::World(box2d::Vector2(0.0f, -10.0f)));
     auto application_events = SharedPointer(new ApplicationEvents());
 
     m_game_loop_ = SharedPointer(new GameLoop(game_time, application_events));

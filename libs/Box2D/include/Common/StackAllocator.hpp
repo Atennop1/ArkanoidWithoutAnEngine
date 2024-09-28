@@ -19,9 +19,9 @@
 #ifndef B2_STACK_ALLOCATOR_HPP
 #define B2_STACK_ALLOCATOR_HPP
 
-#include "Settings.hpp"
+#include <Common/Settings.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 const Int32 stack_size = 100 * 1024;	// 100k
@@ -60,6 +60,6 @@ private:
 	Int32 m_entry_count_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_STACK_ALLOCATOR_HPP

@@ -19,11 +19,11 @@
 #ifndef B2_BODY_HPP
 #define B2_BODY_HPP
 
-#include "Common/Math.hpp"
-#include "Collision/Shapes/Shape.hpp"
+#include <Common/Math.hpp>
+#include <Collision/Shapes/Shape.hpp>
 #include <memory>
 
-namespace Box2D
+namespace box2d
 {
 
 class Fixture;
@@ -125,7 +125,7 @@ struct BodyDef
 	Float32 m_gravity_scale_;
 };
 
-/// A rigid body. These are created via Box2D::World::CreateBody.
+/// A rigid body. These are created via box2d::World::CreateBody.
 class Body
 {
 public:
@@ -139,7 +139,7 @@ public:
 	Fixture* CreateFixture(const FixtureDef* def);
 
 	/// Creates m_a_ m_fixture_ from m_a_ m_shape_ and attach it to this body.
-	/// This is m_a_ convenience function. Use Box2D::FixtureDef if you need to set parameters
+	/// This is m_a_ convenience function. Use box2d::FixtureDef if you need to set parameters
 	/// like m_friction_, m_restitution_, user m_data_, or filtering.
 	/// If the m_density_ is non-zero, this function automatically updates the mass of the body.
 	/// @param shape the m_shape_ to be cloned.
@@ -158,7 +158,7 @@ public:
 
 	/// Set the m_position_ of the body's origin and rotation.
 	/// Manipulating m_a_ body's transform may cause non-physical behavior.
-	/// Note: m_contacts_ are updated on the m_next_ call to Box2D::World::Step.
+	/// Note: m_contacts_ are updated on the m_next_ call to box2d::World::Step.
 	/// @param position the world m_position_ of the body's local origin.
 	/// @param angle the world rotation in radians.
 	void SetTransform(const Vector2& position, Float32 angle);
@@ -341,7 +341,7 @@ public:
 	/// Fixtures on an inactive body are implicitly inactive and will
 	/// not participate in collisions, ray-casts, or queries.
 	/// Joints connected to an inactive body are implicitly inactive.
-	/// An inactive body is still owned by m_a_ Box2D::World object and remains
+	/// An inactive body is still owned by m_a_ box2d::World object and remains
 	/// in the body list.
 	void SetActive(bool flag);
 
@@ -365,7 +365,7 @@ public:
 
 	/// Get the list of all m_contacts_ attached to this body.
 	/// @warning this list changes during the time m_step_ and you may
-	/// miss some collisions if you don'm_t_ use Box2D::ContactListener.
+	/// miss some collisions if you don'm_t_ use box2d::ContactListener.
 	ContactEdge* GetContactList();
 	const ContactEdge* GetContactList() const;
 
@@ -860,6 +860,6 @@ inline const World* Body::GetWorld() const
 	return m_world_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_BODY_HPP

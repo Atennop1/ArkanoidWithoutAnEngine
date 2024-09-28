@@ -19,10 +19,10 @@
 #ifndef B2_DYNAMIC_TREE_HPP
 #define B2_DYNAMIC_TREE_HPP
 
-#include "Collision.hpp"
-#include "Common/GrowableStack.hpp"
+#include <Collision/Collision.hpp>
+#include <Common/GrowableStack.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 const Int32 null_node = -1;
@@ -289,6 +289,6 @@ inline void DynamicTree::RayCast(T* callback, const RayCastInput& input) const
 	}
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_DYNAMIC_TREE_HPP

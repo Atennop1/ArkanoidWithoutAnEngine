@@ -19,11 +19,11 @@
 #ifndef B2_ISLAND_HPP
 #define B2_ISLAND_HPP
 
-#include "Common/Math.hpp"
-#include "Body.hpp"
-#include "TimeStep.hpp"
+#include <Common/Math.hpp>
+#include <Dynamics/Body.hpp>
+#include <Dynamics/TimeStep.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Contact;
@@ -93,6 +93,6 @@ public:
 	Int32 m_joint_capacity_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_ISLAND_HPP

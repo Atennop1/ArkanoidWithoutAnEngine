@@ -19,13 +19,13 @@
 #ifndef B2_TIME_OF_IMPACT_HPP
 #define B2_TIME_OF_IMPACT_HPP
 
-#include "Common/Math.hpp"
-#include "Distance.hpp"
+#include <Common/Math.hpp>
+#include <Collision/Distance.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
-/// Input parameters for Box2D::TimeOfImpact
+/// Input parameters for box2d::TimeOfImpact
 struct TOIInput
 {
 	DistanceProxy m_proxy_a_;
@@ -35,7 +35,7 @@ struct TOIInput
 	Float32 m_t_max_;		// defines sweep interval [0, tMax]
 };
 
-// Output parameters for Box2D::TimeOfImpact.
+// Output parameters for box2d::TimeOfImpact.
 struct TOIOutput
 {
 	enum State
@@ -55,9 +55,9 @@ struct TOIOutput
 /// m_a_ m_fraction_ between [0,tMax]. This uses m_a_ swept separating axis and may miss some intermediate,
 /// non-tunneling collision. If you change the time interval, you should call this function
 /// again.
-/// Note: use Box2D::Distance to compute the m_contact_ point and m_normal_ at the time of impact.
+/// Note: use box2d::Distance to compute the m_contact_ point and m_normal_ at the time of impact.
 void TimeOfImpact(TOIOutput* output, const TOIInput* input);
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_TIME_OF_IMPACT_HPP

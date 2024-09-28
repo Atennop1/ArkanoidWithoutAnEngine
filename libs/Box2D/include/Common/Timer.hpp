@@ -19,9 +19,9 @@
 #ifndef B2_TIMER_HPP
 #define B2_TIMER_HPP
 
-#include "Settings.hpp"
+#include <Common/Settings.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Timer for profiling. This has platform specific code and may
@@ -50,6 +50,6 @@ private:
 #endif
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_TIMER_HPP

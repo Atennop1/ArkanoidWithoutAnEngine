@@ -19,12 +19,12 @@
 #ifndef B2_BROAD_PHASE_HPP
 #define B2_BROAD_PHASE_HPP
 
-#include "Common/Settings.hpp"
-#include "Collision.hpp"
-#include "DynamicTree.hpp"
+#include <Common/Settings.hpp>
+#include <Collision/Collision.hpp>
+#include <Collision/DynamicTree.hpp>
 #include <algorithm>
 
-namespace Box2D
+namespace box2d
 {
 
 struct Pair
@@ -158,7 +158,7 @@ inline bool BroadPhase::TestOverlap(Int32 proxyIdA, Int32 proxyIdB) const
 {
 	const AABB& aabbA = m_tree_.GetFatAABB(proxyIdA);
 	const AABB& aabbB = m_tree_.GetFatAABB(proxyIdB);
-	return Box2D::TestOverlap(aabbA, aabbB);
+	return box2d::TestOverlap(aabbA, aabbB);
 }
 
 inline const AABB& BroadPhase::GetFatAABB(Int32 proxyId) const
@@ -259,6 +259,6 @@ inline void BroadPhase::ShiftOrigin(const Vector2& newOrigin)
 	m_tree_.ShiftOrigin(newOrigin);
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_BROAD_PHASE_HPP

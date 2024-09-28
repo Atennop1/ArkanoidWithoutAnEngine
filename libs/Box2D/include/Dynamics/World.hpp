@@ -19,14 +19,14 @@
 #ifndef B2_WORLD_HPP
 #define B2_WORLD_HPP
 
-#include "Common/Math.hpp"
-#include "Common/BlockAllocator.hpp"
-#include "Common/StackAllocator.hpp"
-#include "ContactManager.hpp"
-#include "WorldCallbacks.hpp"
-#include "TimeStep.hpp"
+#include <Common/Math.hpp>
+#include <Common/BlockAllocator.hpp>
+#include <Common/StackAllocator.hpp>
+#include <Dynamics/ContactManager.hpp>
+#include <Dynamics/WorldCallbacks.hpp>
+#include <Dynamics/TimeStep.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 struct AABB;
@@ -65,7 +65,7 @@ public:
 	void SetContactListener(ContactListener* listener);
 
 	/// Register m_a_ routine for debug drawing. The debug draw functions are called
-	/// inside with Box2D::World::DrawDebugData method. The debug draw object is owned
+	/// inside with box2d::World::DrawDebugData method. The debug draw object is owned
 	/// by you and must remain in scope.
 	void SetDebugDraw(Draw* debugDraw);
 
@@ -124,23 +124,23 @@ public:
 	/// @param point2 the ray ending point
 	void RayCast(RayCastCallback* callback, const Vector2& point1, const Vector2& point2) const;
 
-	/// Get the world body list. With the returned body, use Box2D::Body::GetNext to get
+	/// Get the world body list. With the returned body, use box2d::Body::GetNext to get
 	/// the m_next_ body in the world list. A NULL body indicates the end of the list.
 	/// @return the head of the world body list.
 	Body* GetBodyList();
 	const Body* GetBodyList() const;
 
-	/// Get the world m_joint_ list. With the returned m_joint_, use Box2D::Joint::GetNext to get
+	/// Get the world m_joint_ list. With the returned m_joint_, use box2d::Joint::GetNext to get
 	/// the m_next_ m_joint_ in the world list. A NULL m_joint_ indicates the end of the list.
 	/// @return the head of the world m_joint_ list.
 	Joint* GetJointList();
 	const Joint* GetJointList() const;
 
-	/// Get the world m_contact_ list. With the returned m_contact_, use Box2D::Contact::GetNext to get
+	/// Get the world m_contact_ list. With the returned m_contact_, use box2d::Contact::GetNext to get
 	/// the m_next_ m_contact_ in the world list. A NULL m_contact_ indicates the end of the list.
 	/// @return the head of the world m_contact_ list.
 	/// @warning m_contacts_ are created and destroyed in the middle of m_a_ time m_step_.
-	/// Use Box2D::ContactListener to avoid missing m_contacts_.
+	/// Use box2d::ContactListener to avoid missing m_contacts_.
 	Contact* GetContactList();
 	const Contact* GetContactList() const;
 
@@ -354,6 +354,6 @@ inline const Profile& World::GetProfile() const
 	return m_profile_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_WORLD_HPP

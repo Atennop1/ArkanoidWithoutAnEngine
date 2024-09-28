@@ -19,9 +19,9 @@
 #ifndef B2_EDGE_SHAPE_HPP
 #define B2_EDGE_SHAPE_HPP
 
-#include "Shape.hpp"
+#include <Collision/Shapes/Shape.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// A line segment (edge) m_shape_. These can be connected in chains or loops
@@ -35,23 +35,23 @@ public:
 	/// Set this as an isolated edge.
 	void Set(const Vector2& v1, const Vector2& v2);
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	Shape* Clone(BlockAllocator* allocator) const;
 
-	/// @see Box2D::Shape::GetChildCount
+	/// @see box2d::Shape::GetChildCount
 	Int32 GetChildCount() const;
 
-	/// @see Box2D::Shape::TestPoint
+	/// @see box2d::Shape::TestPoint
 	bool TestPoint(const Transform& transform, const Vector2& p) const;
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	bool RayCast(RayCastOutput* output, const RayCastInput& input,
                  const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeAABB
+	/// @see box2d::Shape::ComputeAABB
 	void ComputeAABB(AABB* aabb, const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeMass
+	/// @see box2d::Shape::ComputeMass
 	void ComputeMass(MassData* massData, Float32 density) const;
 	
 	/// These are the edge m_vertices_
@@ -74,6 +74,6 @@ inline EdgeShape::EdgeShape()
     m_has_vertex3_ = false;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_EDGE_SHAPE_HPP

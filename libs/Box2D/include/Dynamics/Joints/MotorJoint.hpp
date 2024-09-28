@@ -19,9 +19,9 @@
 #ifndef B2_MOTOR_JOINT_HPP
 #define B2_MOTOR_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Motor m_joint_ definition.
@@ -94,7 +94,7 @@ public:
 	/// Get the m_position_ correction factor in the range [0,1].
 	Float32 GetCorrectionFactor() const;
 
-	/// Dump to Box2D::Log
+	/// Dump to box2d::Log
 	void Dump();
 
 protected:
@@ -133,6 +133,6 @@ protected:
 	Float32 m_angular_mass_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_MOTOR_JOINT_HPP

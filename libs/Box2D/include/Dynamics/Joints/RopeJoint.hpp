@@ -19,15 +19,15 @@
 #ifndef B2_ROPE_JOINT_HPP
 #define B2_ROPE_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Rope m_joint_ definition. This requires two body anchor m_points_ and
 /// m_a_ maximum lengths.
 /// Note: by default the connected objects will not m_collide_.
-/// see m_collide_connected_ in Box2D::JointDef.
+/// see m_collide_connected_ in box2d::JointDef.
 struct RopeJointDef : public JointDef
 {
 	RopeJointDef()
@@ -56,7 +56,7 @@ struct RopeJointDef : public JointDef
 /// the simulation you will get some non-physical behavior.
 /// A model that would allow you to dynamically modify the m_length_
 /// would have some sponginess, so I chose not to implement it
-/// that way. See Box2D::DistanceJoint if you want to dynamically
+/// that way. See box2d::DistanceJoint if you want to dynamically
 /// control m_length_.
 class RopeJoint : public Joint
 {
@@ -114,6 +114,6 @@ protected:
 	LimitState m_state_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_ROPE_JOINT_HPP

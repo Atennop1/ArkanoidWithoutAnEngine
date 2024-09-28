@@ -19,9 +19,9 @@
 #ifndef B2_POLYGON_SHAPE_HPP
 #define B2_POLYGON_SHAPE_HPP
 
-#include "Shape.hpp"
+#include <Collision/Shapes/Shape.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// A convex polygon. It is assumed that the interior of the polygon is to
@@ -33,10 +33,10 @@ class PolygonShape : public Shape
 public:
 	PolygonShape();
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	Shape* Clone(BlockAllocator* allocator) const;
 
-	/// @see Box2D::Shape::GetChildCount
+	/// @see box2d::Shape::GetChildCount
 	Int32 GetChildCount() const;
 
 	/// Create m_a_ convex hull from the given array of local m_points_.
@@ -58,17 +58,17 @@ public:
 	/// @param angle the rotation of the box in local coordinates.
 	void SetAsBox(Float32 hx, Float32 hy, const Vector2& center, Float32 angle);
 
-	/// @see Box2D::Shape::TestPoint
+	/// @see box2d::Shape::TestPoint
 	bool TestPoint(const Transform& transform, const Vector2& p) const;
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	bool RayCast(RayCastOutput* output, const RayCastInput& input,
                  const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeAABB
+	/// @see box2d::Shape::ComputeAABB
 	void ComputeAABB(AABB* aabb, const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeMass
+	/// @see box2d::Shape::ComputeMass
 	void ComputeMass(MassData* massData, Float32 density) const;
 
 	/// Get the vertex m_count_.
@@ -101,6 +101,6 @@ inline const Vector2& PolygonShape::GetVertex(Int32 index) const
 	return m_vertices_[index];
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_POLYGON_SHAPE_HPP

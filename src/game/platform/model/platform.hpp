@@ -9,7 +9,7 @@
 class Platform : public IGameLoopObject
 {
 private:
-    Box2D::Vector2 m_platform_position_ { };
+    box2d::Vector2 m_platform_position_ { };
     SharedPointer<PlatformView> m_platform_view_;
 
 public:
@@ -17,7 +17,7 @@ public:
     ~Platform() override = default;
 
     void Update(float delta) override;
-    void Move(Box2D::Vector2 move_vector);
+    void Move(box2d::Vector2 move_vector);
 };
 
 #endif

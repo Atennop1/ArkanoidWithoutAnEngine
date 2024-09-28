@@ -19,9 +19,9 @@
 #ifndef B2_CHAIN_AND_POLYGON_CONTACT_HPP
 #define B2_CHAIN_AND_POLYGON_CONTACT_HPP
 
-#include "Contact.hpp"
+#include <Dynamics/Contacts/Contact.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class BlockAllocator;
@@ -39,6 +39,6 @@ public:
 	void Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB);
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_CHAIN_AND_POLYGON_CONTACT_HPP

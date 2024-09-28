@@ -19,9 +19,9 @@
 #ifndef B2_REVOLUTE_JOINT_HPP
 #define B2_REVOLUTE_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Revolute m_joint_ definition. This requires defining an
@@ -154,7 +154,7 @@ public:
 	/// Unit is N*m.
 	Float32 GetMotorTorque(Float32 inv_dt) const;
 
-	/// Dump to Box2D::Log.
+	/// Dump to box2d::Log.
 	void Dump();
 
 protected:
@@ -204,6 +204,6 @@ inline Float32 RevoluteJoint::GetMotorSpeed() const
 	return m_motor_speed_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_REVOLUTE_JOINT_HPP

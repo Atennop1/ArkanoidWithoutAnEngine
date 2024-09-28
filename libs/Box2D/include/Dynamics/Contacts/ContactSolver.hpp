@@ -19,11 +19,11 @@
 #ifndef B2_CONTACT_SOLVER_HPP
 #define B2_CONTACT_SOLVER_HPP
 
-#include "Common/Math.hpp"
-#include "Collision/Collision.hpp"
-#include "Dynamics/TimeStep.hpp"
+#include <Common/Math.hpp>
+#include <Collision/Collision.hpp>
+#include <Dynamics/TimeStep.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Contact;
@@ -94,6 +94,6 @@ public:
 	int m_count_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_CONTACT_SOLVER_HPP

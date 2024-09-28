@@ -19,9 +19,9 @@
 #ifndef B2_ROPE_HPP
 #define B2_ROPE_HPP
 
-#include "Common/Math.hpp"
+#include <Common/Math.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Draw;
@@ -115,6 +115,6 @@ private:
 	Float32 m_k_3_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_ROPE_HPP

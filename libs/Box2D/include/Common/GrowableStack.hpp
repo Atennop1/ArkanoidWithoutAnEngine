@@ -18,10 +18,10 @@
 
 #ifndef B2_GROWABLE_STACK_HPP
 #define B2_GROWABLE_STACK_HPP
-#include "Settings.hpp"
+#include <Common/Settings.hpp>
 #include <cstring>
 
-namespace Box2D
+namespace box2d
 {
 
 /// This is m_a_ growable LIFO stack with an initial capacity of N.
@@ -84,6 +84,6 @@ private:
 	Int32 m_capacity_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_GROWABLE_STACK_HPP

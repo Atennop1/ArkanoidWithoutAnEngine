@@ -19,9 +19,9 @@
 #ifndef B2_CONTACT_MANAGER_HPP
 #define B2_CONTACT_MANAGER_HPP
 
-#include "Collision/BroadPhase.hpp"
+#include <Collision/BroadPhase.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Contact;
@@ -29,7 +29,7 @@ class ContactFilter;
 class ContactListener;
 class BlockAllocator;
 
-// Delegate of Box2D::World.
+// Delegate of box2d::World.
 class ContactManager
 {
 public:
@@ -52,6 +52,6 @@ public:
 	BlockAllocator* m_allocator_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_CONTACT_MANAGER_HPP

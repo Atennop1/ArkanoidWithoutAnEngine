@@ -14,7 +14,7 @@ public:
     explicit PlatformView(const WindowReferences &window_references);
     ~PlatformView();
 
-    void Display(Box2D::Vector2 position) const;
+    void Display(box2d::Vector2 position) const;
 };
 
 #endif

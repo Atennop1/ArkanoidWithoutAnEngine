@@ -19,9 +19,9 @@
 #ifndef B2_CIRCLE_SHAPE_HPP
 #define B2_CIRCLE_SHAPE_HPP
 
-#include "Shape.hpp"
+#include <Collision/Shapes/Shape.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// A circle m_shape_.
@@ -30,23 +30,23 @@ class CircleShape : public Shape
 public:
 	CircleShape();
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	Shape* Clone(BlockAllocator* allocator) const;
 
-	/// @see Box2D::Shape::GetChildCount
+	/// @see box2d::Shape::GetChildCount
 	Int32 GetChildCount() const;
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	bool TestPoint(const Transform& transform, const Vector2& p) const;
 
-	/// Implement Box2D::Shape.
+	/// Implement box2d::Shape.
 	bool RayCast(RayCastOutput* output, const RayCastInput& input,
                  const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeAABB
+	/// @see box2d::Shape::ComputeAABB
 	void ComputeAABB(AABB* aabb, const Transform& transform, Int32 childIndex) const;
 
-	/// @see Box2D::Shape::ComputeMass
+	/// @see box2d::Shape::ComputeMass
 	void ComputeMass(MassData* massData, Float32 density) const;
 
 	/// Get the supporting vertex index in the given direction.
@@ -58,7 +58,7 @@ public:
 	/// Get the vertex m_count_.
 	Int32 GetVertexCount() const { return 1; }
 
-	/// Get m_a_ vertex by index. Used by Box2D::Distance.
+	/// Get m_a_ vertex by index. Used by box2d::Distance.
 	const Vector2& GetVertex(Int32 index) const;
 
 	/// Position
@@ -91,6 +91,6 @@ inline const Vector2& CircleShape::GetVertex(Int32 index) const
 	return m_position_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_CIRCLE_SHAPE_HPP

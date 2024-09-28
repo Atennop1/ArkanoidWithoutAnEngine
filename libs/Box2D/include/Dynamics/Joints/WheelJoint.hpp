@@ -19,9 +19,9 @@
 #ifndef B2_WHEEL_JOINT_HPP
 #define B2_WHEEL_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Wheel m_joint_ definition. This requires defining m_a_ line of
@@ -129,7 +129,7 @@ public:
 	void SetSpringDampingRatio(Float32 ratio);
 	Float32 GetSpringDampingRatio() const;
 
-	/// Dump to Box2D::Log
+	/// Dump to box2d::Log
 	void Dump();
 
 protected:
@@ -210,6 +210,6 @@ inline Float32 WheelJoint::GetSpringDampingRatio() const
 	return m_damping_ratio_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_WHEEL_JOINT_HPP

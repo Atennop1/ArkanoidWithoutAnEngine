@@ -19,9 +19,9 @@
 #ifndef B2_FRICTION_JOINT_HPP
 #define B2_FRICTION_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Friction m_joint_ definition.
@@ -119,6 +119,6 @@ protected:
 	Float32 m_angular_mass_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_FRICTION_JOINT_HPP

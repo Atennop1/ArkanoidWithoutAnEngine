@@ -19,9 +19,9 @@
 #ifndef B2_JOINT_HPP
 #define B2_JOINT_HPP
 
-#include "Common/Math.hpp"
+#include <Common/Math.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Body;
@@ -228,6 +228,6 @@ inline bool Joint::GetCollideConnected() const
 	return m_collide_connected_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_JOINT_HPP

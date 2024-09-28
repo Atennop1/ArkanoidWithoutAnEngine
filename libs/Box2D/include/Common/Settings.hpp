@@ -25,7 +25,7 @@
 
 #define B2_NOT_USED(x) ((void)(x))
 
-namespace Box2D
+namespace box2d
 {
 
 typedef signed char	Int8;
@@ -52,7 +52,7 @@ const Float32 pi        = 3.14159265359f;
 const Int32 max_manifold_points	= 2;
 
 /// The maximum number of m_vertices_ on m_a_ convex polygon. You cannot increase
-/// this too much because Box2D::BlockAllocator has m_a_ maximum object m_size_.
+/// this too much because box2d::BlockAllocator has m_a_ maximum object m_size_.
 const Int32 max_polygon_vertices	= 8;
 
 /// This is used to fatten AABBs in the dynamic tree. This allows proxies
@@ -133,7 +133,7 @@ const Float32 angular_sleep_tolerance	= (2.0f / 180.0f * pi);
 /// Implement this function to use your own memory m_allocator_.
 void* Alloc(Int32 size);
 
-/// If you implement Box2D::Alloc, you should also implement this function.
+/// If you implement box2d::Alloc, you should also implement this function.
 void Free(void* mem);
 
 /// Logging function.
@@ -151,6 +151,6 @@ struct Version
 /// Current version.
 extern Version version;
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_SETTINGS_HPP

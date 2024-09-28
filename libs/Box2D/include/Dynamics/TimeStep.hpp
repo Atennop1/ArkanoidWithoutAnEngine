@@ -19,9 +19,9 @@
 #ifndef B2_TIME_STEP_HPP
 #define B2_TIME_STEP_HPP
 
-#include "Common/Math.hpp"
+#include <Common/Math.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Profiling m_data_. Times are in milliseconds.
@@ -70,6 +70,6 @@ struct SolverData
 	Velocity* m_velocities_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_TIME_STEP_HPP

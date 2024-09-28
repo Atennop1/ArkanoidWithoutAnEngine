@@ -19,10 +19,10 @@
 #ifndef B2_MATH_HPP
 #define B2_MATH_HPP
 
-#include "Settings.hpp"
+#include <Common/Settings.hpp>
 #include <cmath>
 
-namespace Box2D
+namespace box2d
 {
 
 /// This function is used to ensure that m_a_ floating point number is not m_a_ NaN or infinity.
@@ -104,7 +104,7 @@ struct Vector2
 	}
 
 	/// Get the m_length_ squared. For performance, use this instead of
-	/// Box2D::Vector2::Length (if possible).
+	/// box2d::Vector2::Length (if possible).
 	Float32 LengthSquared() const
 	{
 		return m_x_ * m_x_ + m_y_ * m_y_;
@@ -128,7 +128,7 @@ struct Vector2
 	/// Does this vector contain finite coordinates?
 	bool IsValid() const
 	{
-		return Box2D::IsValid(m_x_) && Box2D::IsValid(m_y_);
+		return box2d::IsValid(m_x_) && box2d::IsValid(m_y_);
 	}
 
 	/// Get the skew vector such that dot(skew_vec, m_other_) == cross(vec, m_other_)
@@ -717,6 +717,6 @@ inline void Sweep::Normalize()
     m_a_ -= d;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_MATH_HPP

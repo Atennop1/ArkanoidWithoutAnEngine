@@ -19,9 +19,9 @@
 #ifndef B2_MOUSE_JOINT_HPP
 #define B2_MOUSE_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Mouse m_joint_ definition. This requires m_a_ world m_target_ point,
@@ -64,16 +64,16 @@ class MouseJoint : public Joint
 {
 public:
 
-	/// Implements Box2D::Joint.
+	/// Implements box2d::Joint.
 	Vector2 GetAnchorA() const;
 
-	/// Implements Box2D::Joint.
+	/// Implements box2d::Joint.
 	Vector2 GetAnchorB() const;
 
-	/// Implements Box2D::Joint.
+	/// Implements box2d::Joint.
 	Vector2 GetReactionForce(Float32 inv_dt) const;
 
-	/// Implements Box2D::Joint.
+	/// Implements box2d::Joint.
 	Float32 GetReactionTorque(Float32 inv_dt) const;
 
 	/// Use this to update the m_target_ point.
@@ -95,7 +95,7 @@ public:
 	/// The mouse m_joint_ does not support dumping.
 	void Dump() { Log("Mouse m_joint_ dumping is not supported.\n"); }
 
-	/// Implement Box2D::Joint::ShiftOrigin
+	/// Implement box2d::Joint::ShiftOrigin
 	void ShiftOrigin(const Vector2& newOrigin);
 
 protected:
@@ -129,6 +129,6 @@ protected:
 	Vector2 m_c_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_MOUSE_JOINT_HPP

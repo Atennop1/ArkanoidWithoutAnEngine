@@ -20,9 +20,9 @@
 #ifndef B2_DISTANCE_HPP
 #define B2_DISTANCE_HPP
 
-#include "Common/Math.hpp"
+#include <Common/Math.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class Shape;
@@ -46,7 +46,7 @@ struct DistanceProxy
 	/// Get the vertex m_count_.
 	Int32 GetVertexCount() const;
 
-	/// Get m_a_ vertex by index. Used by Box2D::Distance.
+	/// Get m_a_ vertex by index. Used by box2d::Distance.
 	const Vector2& GetVertex(Int32 index) const;
 
 	Vector2 m_buffer_[2];
@@ -55,7 +55,7 @@ struct DistanceProxy
 	Float32 m_radius_;
 };
 
-/// Used to warm start Box2D::Distance.
+/// Used to warm start box2d::Distance.
 /// Set m_count_ to zero on first call.
 struct SimplexCache
 {
@@ -65,7 +65,7 @@ struct SimplexCache
 	UInt8 m_index_b_[3];	///< m_vertices_ on m_shape_ B
 };
 
-/// Input for Box2D::Distance.
+/// Input for box2d::Distance.
 /// You have to option to use the m_shape_ radii
 /// in the computation. Even 
 struct DistanceInput
@@ -77,7 +77,7 @@ struct DistanceInput
 	bool m_use_radii_;
 };
 
-/// Output for Box2D::Distance.
+/// Output for box2d::Distance.
 struct DistanceOutput
 {
 	Vector2 m_point_a_;		///< closest point on shapeA
@@ -87,8 +87,8 @@ struct DistanceOutput
 };
 
 /// Compute the closest m_points_ between two shapes. Supports any combination of:
-/// Box2D::CircleShape, Box2D::PolygonShape, Box2D::EdgeShape. The simplex cache is input/output.
-/// On the first call set Box2D::SimplexCache.m_count_ to zero.
+/// box2d::CircleShape, box2d::PolygonShape, box2d::EdgeShape. The simplex cache is input/output.
+/// On the first call set box2d::SimplexCache.m_count_ to zero.
 void Distance(DistanceOutput* output,
 				SimplexCache* cache, 
 				const DistanceInput* input);
@@ -141,6 +141,6 @@ inline const Vector2& DistanceProxy::GetSupportVertex(const Vector2& d) const
 	return m_vertices_[bestIndex];
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_DISTANCE_HPP

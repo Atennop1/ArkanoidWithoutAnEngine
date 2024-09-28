@@ -19,11 +19,11 @@
 #ifndef B2_SHAPE_HPP
 #define B2_SHAPE_HPP
 
-#include "Common/BlockAllocator.hpp"
-#include "Common/Math.hpp"
-#include "Collision/Collision.hpp"
+#include <Common/BlockAllocator.hpp>
+#include <Common/Math.hpp>
+#include <Collision/Collision.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// This holds the mass m_data_ computed for m_a_ m_shape_.
@@ -40,7 +40,7 @@ struct MassData
 };
 
 /// A m_shape_ is used for collision detection. You can create m_a_ m_shape_ however you like.
-/// Shapes used for simulation in Box2D::World are created automatically when m_a_ Box2D::Fixture
+/// Shapes used for simulation in box2d::World are created automatically when m_a_ box2d::Fixture
 /// is created. Shapes may encapsulate m_a_ one or more child shapes.
 class Shape
 {
@@ -101,6 +101,6 @@ inline Shape::Type Shape::GetType() const
 	return m_type_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_SHAPE_HPP

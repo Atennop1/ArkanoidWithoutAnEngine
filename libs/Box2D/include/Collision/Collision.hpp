@@ -19,10 +19,10 @@
 #ifndef B2_COLLISION_HPP
 #define B2_COLLISION_HPP
 
-#include "Common/Math.hpp"
+#include <Common/Math.hpp>
 #include <climits>
 
-namespace Box2D
+namespace box2d
 {
 
 /// @file
@@ -78,7 +78,7 @@ struct ManifoldPoint
 };
 
 /// A manifold for two touching convex shapes.
-/// Box2D supports multiple types of m_contact_:
+/// box2d supports multiple types of m_contact_:
 /// - clip point versus plane with radius
 /// - point versus point with radius (circles)
 /// The local point usage depends on the manifold m_type_:
@@ -154,7 +154,7 @@ struct RayCastInput
 };
 
 /// Ray-cast output m_data_. The ray hits at m_p1_ + m_fraction_ * (m_p2_ - m_p1_), where m_p1_ and m_p2_
-/// come from Box2D::RayCastInput.
+/// come from box2d::RayCastInput.
 struct RayCastOutput
 {
 	Vector2 m_normal_;
@@ -277,6 +277,6 @@ inline bool TestOverlap(const AABB& a, const AABB& b)
 	return true;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_COLLISION_HPP

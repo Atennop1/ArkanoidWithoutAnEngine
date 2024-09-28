@@ -8,7 +8,7 @@ PlatformView::PlatformView(const WindowReferences &window_references) : m_window
     m_platform_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/platform.png");
 }
 
-void PlatformView::Display(Box2D::Vector2 position) const
+void PlatformView::Display(box2d::Vector2 position) const
 {
     SDL_Rect temp_rect = { };
     SDL_QueryTexture(m_platform_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);

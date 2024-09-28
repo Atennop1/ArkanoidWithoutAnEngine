@@ -19,7 +19,7 @@ private:
     SDL_Texture *m_violet_brick_texture_;
     SDL_Texture *m_blue_brick_texture_;
 
-    void DisplayBrick(SDL_Texture *texture, Box2D::Vector2 position) const;
+    void DisplayBrick(SDL_Texture *texture, box2d::Vector2 position) const;
 
 public:
     explicit LevelView(const WindowReferences &window_references);

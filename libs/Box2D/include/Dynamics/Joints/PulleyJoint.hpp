@@ -19,9 +19,9 @@
 #ifndef B2_PULLEY_JOINT_HPP
 #define B2_PULLEY_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 const Float32 minPulleyLength = 2.0f;
@@ -112,7 +112,7 @@ public:
 	/// Dump m_joint_ to dmLog
 	void Dump();
 
-	/// Implement Box2D::Joint::ShiftOrigin
+	/// Implement box2d::Joint::ShiftOrigin
 	void ShiftOrigin(const Vector2& newOrigin);
 
 protected:
@@ -152,6 +152,6 @@ protected:
 	Float32 m_mass_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_PULLEY_JOINT_HPP

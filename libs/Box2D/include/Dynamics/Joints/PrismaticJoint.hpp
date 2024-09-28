@@ -19,9 +19,9 @@
 #ifndef B2_PRISMATIC_JOINT_HPP
 #define B2_PRISMATIC_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Prismatic m_joint_ definition. This requires defining m_a_ line of
@@ -147,7 +147,7 @@ public:
 	/// Get the current motor force given the inverse time m_step_, usually in N.
 	Float32 GetMotorForce(Float32 inv_dt) const;
 
-	/// Dump to Box2D::Log
+	/// Dump to box2d::Log
 	void Dump();
 
 protected:
@@ -196,6 +196,6 @@ inline Float32 PrismaticJoint::GetMotorSpeed() const
 	return m_motor_speed_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_PRISMATIC_JOINT_HPP

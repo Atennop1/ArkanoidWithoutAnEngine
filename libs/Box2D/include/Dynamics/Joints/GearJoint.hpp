@@ -19,9 +19,9 @@
 #ifndef B2_GEAR_JOINT_HPP
 #define B2_GEAR_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Gear m_joint_ definition. This definition requires two existing
@@ -43,7 +43,7 @@ struct GearJointDef : public JointDef
 	Joint* m_joint_2_;
 
 	/// The gear m_ratio_.
-	/// @see Box2D::GearJoint for explanation.
+	/// @see box2d::GearJoint for explanation.
 	Float32 m_ratio_;
 };
 
@@ -125,6 +125,6 @@ protected:
 	Float32 m_mass_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_GEAR_JOINT_HPP

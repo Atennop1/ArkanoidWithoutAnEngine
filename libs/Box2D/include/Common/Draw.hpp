@@ -19,9 +19,9 @@
 #ifndef B2_DRAW_HPP
 #define B2_DRAW_HPP
 
-#include "Math.hpp"
+#include <Common/Math.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Color for debug drawing. Each value has the range [0,1].
@@ -44,7 +44,7 @@ namespace Box2D
         Float32 m_r_, m_g_, m_b_, m_a_;
     };
 
-/// Implement and register this class with m_a_ Box2D::World to provide debug drawing of physics
+/// Implement and register this class with m_a_ box2d::World to provide debug drawing of physics
 /// entities in your game.
     class Draw
     {
@@ -98,6 +98,6 @@ namespace Box2D
         UInt32 m_draw_flags_;
     };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_DRAW_HPP

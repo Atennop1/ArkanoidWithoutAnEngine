@@ -19,9 +19,9 @@
 #ifndef B2_WELD_JOINT_HPP
 #define B2_WELD_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Weld m_joint_ definition. You need to specify local anchor m_points_
@@ -88,7 +88,7 @@ public:
 	void SetDampingRatio(Float32 ratio) { m_damping_ratio_ = ratio; }
 	Float32 GetDampingRatio() const { return m_damping_ratio_; }
 
-	/// Dump to Box2D::Log
+	/// Dump to box2d::Log
 	void Dump();
 
 protected:
@@ -126,6 +126,6 @@ protected:
 	Mat33 m_mass_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_WELD_JOINT_HPP

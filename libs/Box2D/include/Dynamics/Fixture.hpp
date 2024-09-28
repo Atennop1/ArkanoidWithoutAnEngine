@@ -19,11 +19,11 @@
 #ifndef B2_FIXTURE_HPP
 #define B2_FIXTURE_HPP
 
-#include "Body.hpp"
-#include "Collision/Collision.hpp"
-#include "Collision/Shapes/Shape.hpp"
+#include <Dynamics/Body.hpp>
+#include <Collision/Collision.hpp>
+#include <Collision/Shapes/Shape.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 class BlockAllocator;
@@ -105,7 +105,7 @@ struct FixtureProxy
 /// A m_fixture_ is used to attach m_a_ m_shape_ to m_a_ body for collision detection. A m_fixture_
 /// inherits its transform from its m_parent_. Fixtures hold additional non-geometric m_data_
 /// such as m_friction_, collision filters, etc.
-/// Fixtures are created via Box2D::Body::CreateFixture.
+/// Fixtures are created via box2d::Body::CreateFixture.
 /// @warning you cannot reuse fixtures.
 class Fixture
 {
@@ -135,7 +135,7 @@ public:
 	/// Get the m_contact_ filtering m_data_.
 	const Filter& GetFilterData() const;
 
-	/// Call this if you want to establish collision that was previously disabled by Box2D::ContactFilter::ShouldCollide.
+	/// Call this if you want to establish collision that was previously disabled by box2d::ContactFilter::ShouldCollide.
 	void Refilter();
 
 	/// Get the m_parent_ body of this m_fixture_. This is NULL if the m_fixture_ is not attached.
@@ -170,7 +170,7 @@ public:
 	void GetMassData(MassData* massData) const;
 
 	/// Set the m_density_ of this m_fixture_. This will _not_ automatically adjust the mass
-	/// of the body. You must call Box2D::Body::ResetMassData to update the body's mass.
+	/// of the body. You must call box2d::Body::ResetMassData to update the body's mass.
 	void SetDensity(Float32 density);
 
 	/// Get the m_density_ of this m_fixture_.
@@ -345,6 +345,6 @@ inline const AABB& Fixture::GetAABB(Int32 childIndex) const
 	return m_proxies_[childIndex].m_aabb_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_FIXTURE_HPP

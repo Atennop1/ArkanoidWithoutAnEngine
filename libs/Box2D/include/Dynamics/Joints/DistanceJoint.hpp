@@ -19,9 +19,9 @@
 #ifndef B2_DISTANCE_JOINT_HPP
 #define B2_DISTANCE_JOINT_HPP
 
-#include "Joint.hpp"
+#include <Dynamics/Joints/Joint.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 /// Distance m_joint_ definition. This requires defining an
@@ -169,6 +169,6 @@ inline Float32 DistanceJoint::GetDampingRatio() const
 	return m_damping_ratio_;
 }
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_DISTANCE_JOINT_HPP

@@ -19,9 +19,9 @@
 #ifndef B2_BLOCK_ALLOCATOR_HPP
 #define B2_BLOCK_ALLOCATOR_HPP
 
-#include "Settings.hpp"
+#include <Common/Settings.hpp>
 
-namespace Box2D
+namespace box2d
 {
 
 const Int32 chunk_size = 16 * 1024;
@@ -41,10 +41,10 @@ public:
 	BlockAllocator();
 	~BlockAllocator();
 
-	/// Allocate memory. This will use Box2D::Alloc if the m_size_ is larger than maxBlockSize.
+	/// Allocate memory. This will use box2d::Alloc if the m_size_ is larger than maxBlockSize.
 	void* Allocate(Int32 size);
 
-	/// Free memory. This will use Box2D::Free if the m_size_ is larger than maxBlockSize.
+	/// Free memory. This will use box2d::Free if the m_size_ is larger than maxBlockSize.
 	void Free(void* p, Int32 size);
 
 	void Clear();
@@ -62,6 +62,6 @@ private:
 	static bool m_s_block_size_lookup_initialized_;
 };
 
-} // namespace Box2D
+} // namespace box2d
 
 #endif // B2_BLOCK_ALLOCATOR_HPP
