@@ -45,4 +45,7 @@ arkanoid::Game::Game(const WindowReferences &window_references)
 void arkanoid::Game::Activate()
 {
     m_game_loop_->Activate();
+
+    box2d::BodyDef body_def;
+    body_def.m_position_ = box2d::Vector2(10, 5);
 }
