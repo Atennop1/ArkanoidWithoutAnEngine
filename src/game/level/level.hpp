@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_4DAF1F21C8B048A1AD3A916EA377A2ED
-#define ARKANOIDWITHOUTANENGINE_4DAF1F21C8B048A1AD3A916EA377A2ED
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LEVEL_LEVEL_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LEVEL_LEVEL_HPP_
 
 #include "../rendering/window_references/window_references.hpp"
 #include "view/level_view.hpp"
@@ -12,12 +12,11 @@ namespace arkanoid
     class Level : public IGameLoopObject
     {
     private:
-        const LevelMap &m_map_;
-        const SharedPointer<LevelView> m_level_view_;
+        const LevelMap &map_;
+        const SharedPointer<LevelView> level_view_;
 
     public:
         Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
-
         ~Level() override = default;
 
         void Update(float delta) override;

@@ -10,18 +10,18 @@ void arkanoid::Application::Activate()
 arkanoid::Application::Application()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, RenderingConstants::m_k_window_width_, RenderingConstants::m_k_window_height_, SDL_WINDOW_FULLSCREEN);
+    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight, SDL_WINDOW_FULLSCREEN);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-    m_window_references_ = WindowReferences(window, renderer);
-    m_game_ = SharedPointer(new Game(m_window_references_));
+    window_references_ = WindowReferences(window, renderer);
+    m_game_ = SharedPointer(new Game(window_references_));
     SDL_Log("Application initialized\n");
 }
 
 arkanoid::Application::~Application()
 {
     SDL_Log("Application cleared\n");
-    SDL_DestroyWindow(m_window_references_.Window());
-    SDL_DestroyRenderer(m_window_references_.Renderer());
+    SDL_DestroyWindow(window_references_.Window());
+    SDL_DestroyRenderer(window_references_.Renderer());
     SDL_Quit();
 }

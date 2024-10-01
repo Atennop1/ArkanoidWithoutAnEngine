@@ -1,13 +1,13 @@
 ﻿#include "platform_controller.hpp"
 
 arkanoid::PlatformController::PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input)
-    : m_input_(input), m_platform_(platform) { }
+    : input_(input), platform_(platform) { }
 
 void arkanoid::PlatformController::Update(float delta)
 {
-    const bool is_left_key_pressed = m_input_->IsKeyPressed(KLeft);
-    const bool is_right_key_pressed = m_input_->IsKeyPressed(KRight);
+    const bool kIsLeftKeyPressed = input_->IsKeyPressed(kLeft);
+    const bool kIsRightKeyPressed = input_->IsKeyPressed(kRight);
 
-    if (is_left_key_pressed ^ is_right_key_pressed)
-        m_platform_->Move(box2d::Vector2(m_move_speed_ * (is_left_key_pressed ? -1.0f : 1.0f) * delta, 0.0f));
+    if (kIsLeftKeyPressed ^ kIsRightKeyPressed)
+        platform_->Move(box2d::Vector2(move_speed_ * (kIsLeftKeyPressed ? -1.0f : 1.0f) * delta, 0.0f));
 }

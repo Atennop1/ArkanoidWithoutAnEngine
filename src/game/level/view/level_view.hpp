@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_1C6BD96ACE2042718FDD8457E44EFE5B
-#define ARKANOIDWITHOUTANENGINE_1C6BD96ACE2042718FDD8457E44EFE5B
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LEVEL_VIEW_LEVEL_VIEW_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LEVEL_VIEW_LEVEL_VIEW_HPP_
 
 #include "../../rendering//window_references/window_references.hpp"
 #include "../map/level_map.hpp"
@@ -11,21 +11,20 @@ namespace arkanoid
     class LevelView
     {
     private:
-        const float m_level_offset_x_ = 8.0f;
-        const float m_level_offset_y_ = 6.0f;
+        const float level_offset_x_ = 8.0f;
+        const float level_offset_y_ = 6.0f;
 
-        int m_brick_width_;
-        int m_brick_height_;
+        int brick_width_;
+        int brick_height_;
 
-        const WindowReferences &m_window_references_;
-        SDL_Texture *m_violet_brick_texture_;
-        SDL_Texture *m_blue_brick_texture_;
+        const WindowReferences &window_references_;
+        SDL_Texture *violet_brick_texture_;
+        SDL_Texture *blue_brick_texture_;
 
         void DisplayBrick(SDL_Texture *texture, box2d::Vector2 position) const;
 
     public:
         explicit LevelView(const WindowReferences &window_references);
-
         ~LevelView();
 
         void Display(const LevelMap &map) const;

@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_B8E5742E42264A16AD64095AC06A4333
-#define ARKANOIDWITHOUTANENGINE_B8E5742E42264A16AD64095AC06A4333
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_CONTROLLER_PLATFORM_CONTROLLER_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_CONTROLLER_PLATFORM_CONTROLLER_HPP_
 
 #include "../../loop/game_loop_object.hpp"
 #include "../model/platform.hpp"
@@ -11,14 +11,13 @@ namespace arkanoid
     class PlatformController : public IGameLoopObject
     {
     private:
-        SharedPointer<Platform> m_platform_;
-        const SharedPointer<Input> m_input_;
+        SharedPointer<Platform> platform_;
+        const SharedPointer<Input> input_;
 
-        const float m_move_speed_ = 40.0f;
+        const float move_speed_ = 40.0f;
 
     public:
         PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input);
-
         ~PlatformController() override = default;
 
         void Update(float delta) override;

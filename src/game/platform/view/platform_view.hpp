@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_5927CB008F20454CA6ECC117FD5E93ED
-#define ARKANOIDWITHOUTANENGINE_5927CB008F20454CA6ECC117FD5E93ED
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_VIEW_PLATFORM_VIEW_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_VIEW_PLATFORM_VIEW_HPP_
 
 #include "../../rendering/window_references/window_references.hpp"
 #include "Box2D.hpp"
@@ -9,12 +9,11 @@ namespace arkanoid
     class PlatformView
     {
     private:
-        SDL_Texture *m_platform_texture_;
-        const WindowReferences &m_window_references_;
+        SDL_Texture *platform_texture_;
+        const WindowReferences &window_references_;
 
     public:
         explicit PlatformView(const WindowReferences &window_references);
-
         ~PlatformView();
 
         void Display(box2d::Vector2 position) const;

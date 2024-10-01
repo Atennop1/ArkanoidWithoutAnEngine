@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_ABA38CA09CAF4405AB79274B4E04045B
-#define ARKANOIDWITHOUTANENGINE_ABA38CA09CAF4405AB79274B4E04045B
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_TOOLS_SHARED_POINTER_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_TOOLS_SHARED_POINTER_HPP_
 
 namespace arkanoid
 {
@@ -7,24 +7,24 @@ namespace arkanoid
     class SharedPointer
     {
     private:
-        T *m_resource_ = nullptr;
-        int *m_references_count_ = nullptr;
+        T *resource_ = nullptr;
+        int *references_count_ = nullptr;
 
         void Clear()
         {
-            if (m_references_count_ != nullptr && (--*m_references_count_) > 0)
+            if (references_count_ != nullptr && (--*references_count_) > 0)
                 return;
 
-            delete m_references_count_;
-            delete m_resource_;
+            delete references_count_;
+            delete resource_;
         }
 
         void Move(SharedPointer<T> &pointer)
         {
-            m_references_count_ = pointer.m_references_count_;
-            m_resource_ = pointer.m_resource_;
-            pointer.m_resource_ = nullptr;
-            pointer.m_references_count_ = nullptr;
+          references_count_ = pointer.references_count_;
+          resource_ = pointer.resource_;
+            pointer.resource_ = nullptr;
+            pointer.references_count_ = nullptr;
         }
 
         void Assign(T *resource, int *references_count)
@@ -32,9 +32,9 @@ namespace arkanoid
             if (resource == nullptr || references_count == nullptr)
                 return;
 
-            m_resource_ = resource;
-            m_references_count_ = references_count;
-            ++(*m_references_count_);
+          resource_ = resource;
+          references_count_ = references_count;
+            ++(*references_count_);
         }
 
     public:
@@ -42,7 +42,7 @@ namespace arkanoid
         { Assign(resource, references_count); }
 
         SharedPointer(const SharedPointer<T> &pointer)
-        { Assign(pointer.m_resource_, pointer.m_references_count_); }
+        { Assign(pointer.resource_, pointer.references_count_); }
 
         SharedPointer(SharedPointer<T> &&pointer)
         { Move(pointer); }
@@ -51,22 +51,22 @@ namespace arkanoid
         { Clear(); }
 
         T &operator*()
-        { return *m_resource_; }
+        { return *resource_; }
 
         const T &operator*() const
-        { return *m_resource_; }
+        { return *resource_; }
 
         T *operator->()
-        { return m_resource_; }
+        { return resource_; }
 
         const T *operator->() const
-        { return m_resource_; }
+        { return resource_; }
 
         T *Get()
-        { return m_resource_; }
+        { return resource_; }
 
         const T *Get() const
-        { return m_resource_; }
+        { return resource_; }
 
         friend bool operator==(const SharedPointer<T> &first, const SharedPointer<T> &second)
         { return first.Get() == second.Get(); }
@@ -76,11 +76,11 @@ namespace arkanoid
 
         template<class U>
         operator SharedPointer<U>()
-        { return SharedPointer<U>(dynamic_cast<U *>(m_resource_), m_references_count_); }
+        { return SharedPointer<U>(dynamic_cast<U *>(resource_), references_count_); }
 
         SharedPointer<T> &operator=(T *pointer)
         {
-            if (pointer != m_resource_)
+            if (pointer != resource_)
                 return *this;
 
             Clear();
@@ -94,7 +94,7 @@ namespace arkanoid
                 return *this;
 
             Clear();
-            Assign(pointer.m_resource_, pointer.m_references_count_);
+            Assign(pointer.resource_, pointer.references_count_);
             return *this;
         }
 

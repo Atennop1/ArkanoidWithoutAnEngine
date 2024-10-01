@@ -3,38 +3,38 @@
 #include <algorithm>
 
 arkanoid::GameLoop::GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events)
-    : m_game_time_(game_time), m_events_(events) { }
+    : game_time_(game_time), events_(events) { }
 
 void arkanoid::GameLoop::Activate()
 {
-    while (m_is_active_)
+    while (is_active_)
     {
-        if (!m_game_time_->IsActive())
+        if (!game_time_->IsActive())
             continue;
 
-        float delta = m_game_time_->Delta();
-        for (auto &updatable: m_objects_)
+        float delta = game_time_->Delta();
+        for (auto &updatable: objects_)
             updatable->Update(delta);
 
-        if (!m_events_->GetEventsOfType(SDL_QUIT).empty())
-            m_is_active_ = false;
+        if (!events_->GetEventsOfType(SDL_QUIT).empty())
+          is_active_ = false;
     }
 }
 
 void arkanoid::GameLoop::Add(SharedPointer<IGameLoopObject> &object)
 {
-    if (std::ranges::find(m_objects_.begin(), m_objects_.end(), object) != m_objects_.end())
+    if (std::ranges::find(objects_.begin(), objects_.end(), object) != objects_.end())
         throw std::invalid_argument("Updatable already in loop");
 
-    m_objects_.push_back(object);
+    objects_.push_back(object);
 }
 
 void arkanoid::GameLoop::Remove(const IGameLoopObject &object)
 {
-    auto find_iterator = std::ranges::find_if(m_objects_.begin(), m_objects_.end(), [&](auto &pointer) { return pointer.Get() == &object; });
+    auto find_iterator = std::ranges::find_if(objects_.begin(), objects_.end(), [&](auto &pointer) { return pointer.Get() == &object; });
 
-    if (find_iterator == m_objects_.end())
+    if (find_iterator == objects_.end())
         throw std::invalid_argument("Updatable does not in loop");
 
-    m_objects_.erase(find_iterator);
+    objects_.erase(find_iterator);
 }

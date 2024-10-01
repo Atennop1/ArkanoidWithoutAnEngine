@@ -2,21 +2,21 @@
 #include "../../rendering/rendering_constants.hpp"
 #include "SDL_image.h"
 
-arkanoid::LevelView::LevelView(const WindowReferences &window_references) : m_window_references_(window_references)
+arkanoid::LevelView::LevelView(const WindowReferences &window_references) : window_references_(window_references)
 {
-    m_blue_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/blue_brick.png");
-    m_violet_brick_texture_ = IMG_LoadTexture(m_window_references_.Renderer(), "assets/sprites/violet_brick.png");
+    blue_brick_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/blue_brick.png");
+    violet_brick_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/violet_brick.png");
 
     SDL_Rect temp_rect { };
-    SDL_QueryTexture(m_blue_brick_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);
-    m_brick_height_ = temp_rect.h;
-    m_brick_width_ = temp_rect.w;
+    SDL_QueryTexture(blue_brick_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);
+    brick_height_ = temp_rect.h;
+    brick_width_ = temp_rect.w;
 }
 
 arkanoid::LevelView::~LevelView()
 {
-    SDL_DestroyTexture(m_blue_brick_texture_);
-    SDL_DestroyTexture(m_violet_brick_texture_);
+    SDL_DestroyTexture(blue_brick_texture_);
+    SDL_DestroyTexture(violet_brick_texture_);
 }
 
 void arkanoid::LevelView::Display(const LevelMap &map) const
@@ -28,8 +28,8 @@ void arkanoid::LevelView::Display(const LevelMap &map) const
             if (map[i][j] == 0)
                 continue;
 
-            SDL_Texture *texture = map[i][j] == 1 ? m_violet_brick_texture_ : m_blue_brick_texture_;
-            DisplayBrick(texture, box2d::Vector2(m_level_offset_x_ + (m_brick_width_ + 1.0f) * j, m_level_offset_y_ + (m_brick_height_ + 1.0f) * i));
+            SDL_Texture *texture = map[i][j] == 1 ? violet_brick_texture_ : blue_brick_texture_;
+            DisplayBrick(texture, box2d::Vector2(level_offset_x_ + (brick_width_ + 1.0f) * j, level_offset_y_ + (brick_height_ + 1.0f) * i));
         }
     }
 }
@@ -38,10 +38,10 @@ void arkanoid::LevelView::DisplayBrick(SDL_Texture *texture, const box2d::Vector
 {
     SDL_Rect temp_rect { };
 
-    temp_rect.h = m_brick_height_ * RenderingConstants::m_k_scale_multiplier_;
-    temp_rect.w = m_brick_width_ * RenderingConstants::m_k_scale_multiplier_;
-    temp_rect.x = position.m_x_ * RenderingConstants::m_k_scale_multiplier_;
-    temp_rect.y = position.m_y_ * RenderingConstants::m_k_scale_multiplier_;
+    temp_rect.h = brick_height_ * RenderingConstants::kScaleMultiplier;
+    temp_rect.w = brick_width_ * RenderingConstants::kScaleMultiplier;
+    temp_rect.x = position.m_x_ * RenderingConstants::kScaleMultiplier;
+    temp_rect.y = position.m_y_ * RenderingConstants::kScaleMultiplier;
 
-    SDL_RenderCopy(m_window_references_.Renderer(), texture, nullptr, &temp_rect);
+    SDL_RenderCopy(window_references_.Renderer(), texture, nullptr, &temp_rect);
 }

@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_C2386548878343C9A8A53CE01BA4B335
-#define ARKANOIDWITHOUTANENGINE_C2386548878343C9A8A53CE01BA4B335
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_TIME_GAME_TIME_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_TIME_GAME_TIME_HPP_
 
 #include "read_only_game_time.hpp"
 
@@ -8,11 +8,10 @@ namespace arkanoid
     class IGameTime : public IReadOnlyGameTime
     {
     public:
-        virtual void Activate() = 0;
-
-        virtual void Deactivate() = 0;
-
         ~IGameTime() override = default;
+
+        virtual void Activate() = 0;
+        virtual void Deactivate() = 0;
     };
 }
 

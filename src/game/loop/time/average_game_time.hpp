@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_B180C9D1E1ED4AE4893F8F5CCFEE6662
-#define ARKANOIDWITHOUTANENGINE_B180C9D1E1ED4AE4893F8F5CCFEE6662
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_TIME_AVERAGE_GAME_TIME_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_TIME_AVERAGE_GAME_TIME_HPP_
 
 #include "game_time.hpp"
 
@@ -8,22 +8,17 @@ namespace arkanoid
     class AverageGameTime : public IGameTime
     {
     private:
-        bool m_is_active_ = true;
-        unsigned long long m_last_time_;
+        bool is_active_ = true;
+        unsigned long long last_time_;
 
     public:
         AverageGameTime();
 
-        bool IsActive() override
-        { return m_is_active_; }
-
         float Delta() override;
+        bool IsActive() override { return is_active_; }
 
-        void Activate() override
-        { m_is_active_ = true; }
-
-        void Deactivate() override
-        { m_is_active_ = false; }
+        void Activate() override { is_active_ = true; }
+        void Deactivate() override { is_active_ = false; }
     };
 }
 

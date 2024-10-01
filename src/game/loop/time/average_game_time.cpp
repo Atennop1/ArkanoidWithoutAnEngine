@@ -3,12 +3,12 @@
 
 arkanoid::AverageGameTime::AverageGameTime()
 {
-    m_last_time_ = SDL_GetPerformanceCounter();
+    last_time_ = SDL_GetPerformanceCounter();
 }
 
 float arkanoid::AverageGameTime::Delta()
 {
-    float delta = (float)(SDL_GetPerformanceCounter() - m_last_time_) / (float)SDL_GetPerformanceFrequency(); // in seconds
-    m_last_time_ = SDL_GetPerformanceCounter();
+    float delta = (float)(SDL_GetPerformanceCounter() - last_time_) / (float)SDL_GetPerformanceFrequency(); // in seconds
+    last_time_ = SDL_GetPerformanceCounter();
     return delta;
 }

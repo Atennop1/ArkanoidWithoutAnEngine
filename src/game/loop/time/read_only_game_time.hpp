@@ -1,16 +1,15 @@
-#ifndef ARKANOIDWITHOUTANENGINE_A0A0D9EF0A184C6DB6FF713603E29C83
-#define ARKANOIDWITHOUTANENGINE_A0A0D9EF0A184C6DB6FF713603E29C83
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_TIME_READ_ONLY_GAME_TIME_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_TIME_READ_ONLY_GAME_TIME_HPP_
 
 namespace arkanoid
 {
     class IReadOnlyGameTime
     {
     public:
-        virtual bool IsActive() = 0;
-
-        virtual float Delta() = 0;
-
         virtual ~IReadOnlyGameTime() = default;
+
+        virtual bool IsActive() = 0;
+        virtual float Delta() = 0;
     };
 }
 

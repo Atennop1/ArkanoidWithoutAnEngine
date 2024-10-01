@@ -1,14 +1,14 @@
-#ifndef ARKANOIDWITHOUTANENGINE_2CB98215F7A941FAA7C92CFFE3360F9E
-#define ARKANOIDWITHOUTANENGINE_2CB98215F7A941FAA7C92CFFE3360F9E
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_EVENTS_INPUT_KEY_TYPE_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_EVENTS_INPUT_KEY_TYPE_HPP_
 
 namespace arkanoid
 {
     enum KeyType
     {
-        KNone,
-        KRight,
-        KLeft,
-        KSpace
+        kNone,
+        kRight,
+        kLeft,
+        kSpace
     };
 }
 

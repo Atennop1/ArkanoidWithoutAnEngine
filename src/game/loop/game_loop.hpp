@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_18E73548EBC042429AF06C1A32E76175
-#define ARKANOIDWITHOUTANENGINE_18E73548EBC042429AF06C1A32E76175
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_GAME_LOOP_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_GAME_LOOP_HPP_
 
 #include "game_loop_object.hpp"
 #include "time/game_time.hpp"
@@ -12,26 +12,21 @@ namespace arkanoid
     class GameLoop
     {
     private:
-        bool m_is_active_ = true;
-        SharedPointer<IReadOnlyGameTime> m_game_time_;
+        bool is_active_ = true;
+        SharedPointer<IReadOnlyGameTime> game_time_;
 
-        SharedPointer<ApplicationEvents> m_events_;
-        std::vector<SharedPointer<IGameLoopObject>> m_objects_ = {};
+        SharedPointer<ApplicationEvents> events_;
+        std::vector<SharedPointer<IGameLoopObject>> objects_ = {};
 
     public:
         GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events);
-
         void Activate();
 
         void Add(SharedPointer<IGameLoopObject> &object);
-
         void Remove(const IGameLoopObject &object);
 
-        void Add(IGameLoopObject &object)
-        { Add(SharedPointer<IGameLoopObject>(&object)); }
-
-        void Add(SharedPointer<IGameLoopObject> &&object)
-        { Add(object); }
+        void Add(IGameLoopObject &object) { Add(SharedPointer<IGameLoopObject>(&object)); }
+        void Add(SharedPointer<IGameLoopObject> &&object) { Add(object); }
     };
 }
 
