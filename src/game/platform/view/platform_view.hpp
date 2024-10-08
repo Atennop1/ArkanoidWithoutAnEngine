@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_VIEW_PLATFORM_VIEW_HPP_
 
 #include "../../rendering/window_references/window_references.hpp"
-#include "Box2D.hpp"
+#include "../../physics/vector2.hpp"
 
 namespace arkanoid
 {
@@ -16,7 +16,7 @@ namespace arkanoid
         explicit PlatformView(const WindowReferences &window_references);
         ~PlatformView();
 
-        void Display(box2d::Vector2 position) const;
+        void Display(arkanoid::Vector2 position) const;
     };
 }
 

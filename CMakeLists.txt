@@ -56,16 +56,14 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/level/constants/level_layouts.hpp
         src/tools/shared_pointer.hpp
         src/game/events/application_events.cpp
-        src/game/events/application_events.hpp)
+        src/game/events/application_events.hpp src/game/physics/vector2.cpp src/game/physics/vector2.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)
     set(SDL2_image_DIR ${CMAKE_LIBS_PATH}/SDL2_image/windows/lib/cmake/SDL2_image)
-    set(Box2D ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d-d.dll)
 elseif(UNIX)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/linux/lib/cmake/SDL2)
     set(SDL2_image_DIR ${CMAKE_LIBS_PATH}/SDL2_image/linux/lib/cmake/SDL2_image)
-    set(Box2D ${CMAKE_LIBS_PATH}/Box2D/bin/libbox2d.so.2.3.2)
 endif()
 
 find_package(SDL2 REQUIRED)
@@ -77,5 +75,4 @@ target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} SDL2_image::SDL2_image $
 if(WIN32)
     add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${SDL2_BINDIR}/SDL2.dll" $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
     add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  "${_sdl2image_bindir}/SDL2_image.dll" $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
-    add_custom_command(TARGET ArkanoidWithoutAnEngine POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different  ${Box2D} $<TARGET_FILE_DIR:ArkanoidWithoutAnEngine>)
 endif()

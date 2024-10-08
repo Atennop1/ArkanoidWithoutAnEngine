@@ -1,8 +1,11 @@
 ﻿#include "physics_simulation.hpp"
 #include <algorithm>
 
-arkanoid::PhysicsSimulation::PhysicsSimulation(SharedPointer<box2d::World> &world)
-    : world_(world) { }
+arkanoid::PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects)
+    : objects_(objects) { }
+
+arkanoid::PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects)
+    : objects_(objects) { }
 
 void arkanoid::PhysicsSimulation::Update(float delta)
 {
@@ -10,8 +13,8 @@ void arkanoid::PhysicsSimulation::Update(float delta)
 
     while (last_update_time_ < elapsed_time_)
     {
-        world_->Step(time_step_, velocity_iterations_, position_iterations_);
-      last_update_time_ += time_step_;
+        // collision detection logic...
+        last_update_time_ += time_step_;
     }
 }
 

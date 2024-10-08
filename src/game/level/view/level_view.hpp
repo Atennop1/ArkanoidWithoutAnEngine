@@ -3,8 +3,8 @@
 
 #include "../../rendering//window_references/window_references.hpp"
 #include "../map/level_map.hpp"
+#include "../../physics/vector2.hpp"
 #include "SDL.h"
-#include "Box2D.hpp"
 
 namespace arkanoid
 {
@@ -21,7 +21,7 @@ namespace arkanoid
         SDL_Texture *violet_brick_texture_;
         SDL_Texture *blue_brick_texture_;
 
-        void DisplayBrick(SDL_Texture *texture, box2d::Vector2 position) const;
+        void DisplayBrick(SDL_Texture *texture, arkanoid::Vector2 position) const;
 
     public:
         explicit LevelView(const WindowReferences &window_references);

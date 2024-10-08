@@ -3,7 +3,6 @@
 
 #include "../../loop/game_loop_object.hpp"
 #include "../view/platform_view.hpp"
-#include "Box2D.hpp"
 #include "shared_pointer.hpp"
 
 namespace arkanoid
@@ -11,7 +10,7 @@ namespace arkanoid
     class Platform : public IGameLoopObject
     {
     private:
-        box2d::Vector2 platform_position_ { };
+        arkanoid::Vector2 platform_position_ { };
         SharedPointer<PlatformView> platform_view_;
 
     public:
@@ -19,7 +18,7 @@ namespace arkanoid
         ~Platform() override = default;
 
         void Update(float delta) override;
-        void Move(box2d::Vector2 move_vector);
+        void Move(arkanoid::Vector2 move_vector);
     };
 }
 
