@@ -1,16 +1,15 @@
 #ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_MODEL_PLATFORM_HPP_
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_MODEL_PLATFORM_HPP_
 
-#include "../../loop/game_loop_object.hpp"
 #include "../view/platform_view.hpp"
 #include "shared_pointer.hpp"
+#include "../../loop/objects/game_object.hpp"
 
 namespace arkanoid
 {
-    class Platform : public IGameLoopObject
+    class Platform : public IGameObject
     {
     private:
-        arkanoid::Vector2 platform_position_ { };
         SharedPointer<PlatformView> platform_view_;
 
     public:

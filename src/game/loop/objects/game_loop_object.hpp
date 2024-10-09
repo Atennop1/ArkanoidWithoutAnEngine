@@ -1,5 +1,5 @@
-#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_GAME_LOOP_OBJECT_HPP_
-#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_GAME_LOOP_OBJECT_HPP_
+#ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_OBJECTS_GAME_LOOP_OBJECT_HPP_
+#define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_OBJECTS_GAME_LOOP_OBJECT_HPP_
 
 namespace arkanoid
 {
@@ -7,7 +7,6 @@ namespace arkanoid
     {
     public:
         virtual ~IGameLoopObject() = default;
-
         virtual void Update(float delta) = 0;
     };
 }

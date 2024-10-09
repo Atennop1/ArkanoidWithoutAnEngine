@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_VIEW_PLATFORM_VIEW_HPP_
 
 #include "../../rendering/window_references/window_references.hpp"
-#include "../../physics/vector2.hpp"
+#include "../../math/vector2.hpp"
 
 namespace arkanoid
 {

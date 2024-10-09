@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_EVENTS_INPUT_INPUT_HPP_
 
 #include "key_type.hpp"
-#include "../../loop/game_loop_object.hpp"
+#include "../../loop/objects/game_loop_object.hpp"
 #include "../application_events.hpp"
 #include "shared_pointer.hpp"
 #include "SDL.h"

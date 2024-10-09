@@ -3,7 +3,7 @@
 
 #include "physics_object.h"
 #include "../loop/time/read_only_game_time.hpp"
-#include "../loop/game_loop_object.hpp"
+#include "../loop/objects/game_loop_object.hpp"
 #include "shared_pointer.hpp"
 #include <vector>
 

@@ -1,7 +1,7 @@
 #ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_EVENTS_APPLICATION_EVENTS_HPP_
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_EVENTS_APPLICATION_EVENTS_HPP_
 
-#include "../loop/game_loop_object.hpp"
+#include "../loop/objects/game_loop_object.hpp"
 #include <SDL.h>
 #include <list>
 #include <vector>

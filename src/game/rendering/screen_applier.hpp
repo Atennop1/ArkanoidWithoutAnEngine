@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_RENDERING_SCREEN_APPLIER_HPP_
 
 #include "window_references/window_references.hpp"
-#include "../loop/game_loop_object.hpp"
+#include "../loop/objects/game_loop_object.hpp"
 
 namespace arkanoid
 {

@@ -13,7 +13,7 @@ void arkanoid::PhysicsSimulation::Update(float delta)
 
     while (last_update_time_ < elapsed_time_)
     {
-        // collision detection logic...
+        // collision detection and handling logic...
         last_update_time_ += time_step_;
     }
 }

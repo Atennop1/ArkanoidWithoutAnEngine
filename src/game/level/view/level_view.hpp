@@ -3,7 +3,7 @@
 
 #include "../../rendering//window_references/window_references.hpp"
 #include "../map/level_map.hpp"
-#include "../../physics/vector2.hpp"
+#include "../../math/vector2.hpp"
 #include "SDL.h"
 
 namespace arkanoid

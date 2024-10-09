@@ -37,7 +37,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/loop/time/average_game_time.hpp
         src/game/loop/time/game_time.hpp
         src/game/loop/time/read_only_game_time.hpp
-        src/game/loop/game_loop_object.hpp
+        src/game/loop/objects/game_loop_object.hpp
         src/game/loop/game_loop.hpp
         src/game/platform/controller/platform_controller.hpp
         src/game/platform/model/platform.hpp
@@ -56,7 +56,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/level/constants/level_layouts.hpp
         src/tools/shared_pointer.hpp
         src/game/events/application_events.cpp
-        src/game/events/application_events.hpp src/game/physics/vector2.cpp src/game/physics/vector2.hpp)
+        src/game/events/application_events.hpp src/game/math/vector2.cpp src/game/math/vector2.hpp src/game/loop/objects/game_object.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)

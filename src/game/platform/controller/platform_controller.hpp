@@ -1,7 +1,7 @@
 #ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_CONTROLLER_PLATFORM_CONTROLLER_HPP_
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_PLATFORM_CONTROLLER_PLATFORM_CONTROLLER_HPP_
 
-#include "../../loop/game_loop_object.hpp"
+#include "../../loop/objects/game_loop_object.hpp"
 #include "../model/platform.hpp"
 #include "../../events/input/input.hpp"
 #include "shared_pointer.hpp"

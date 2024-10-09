@@ -1,7 +1,7 @@
 #ifndef ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_GAME_LOOP_HPP_
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_LOOP_GAME_LOOP_HPP_
 
-#include "game_loop_object.hpp"
+#include "objects/game_loop_object.hpp"
 #include "time/game_time.hpp"
 #include "shared_pointer.hpp"
 #include "../events/application_events.hpp"
