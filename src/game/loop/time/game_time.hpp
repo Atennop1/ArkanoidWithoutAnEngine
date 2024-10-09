@@ -5,14 +5,14 @@
 
 namespace arkanoid
 {
-    class IGameTime : public IReadOnlyGameTime
-    {
-    public:
-        ~IGameTime() override = default;
+class IGameTime : public IReadOnlyGameTime
+{
+public:
+    ~IGameTime() override = default;
 
-        virtual void Activate() = 0;
-        virtual void Deactivate() = 0;
-    };
+    virtual void Activate() = 0;
+    virtual void Deactivate() = 0;
+};
 }
 
 #endif

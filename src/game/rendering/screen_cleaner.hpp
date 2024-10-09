@@ -6,17 +6,17 @@
 
 namespace arkanoid
 {
-    class ScreenCleaner : public IGameLoopObject
-    {
-    private:
-        const WindowReferences &window_references_;
+class ScreenCleaner : public IGameLoopObject
+{
+private:
+    const WindowReferences &window_references_;
 
-    public:
-        explicit ScreenCleaner(const WindowReferences &window_references);
-        ~ScreenCleaner() override = default;
+public:
+    explicit ScreenCleaner(const WindowReferences &window_references);
+    ~ScreenCleaner() override = default;
 
-        void Update(float delta) override;
-    };
+    void Update(float delta) override;
+};
 }
 
 #endif

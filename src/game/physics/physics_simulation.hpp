@@ -9,27 +9,27 @@
 
 namespace arkanoid
 {
-    class PhysicsSimulation : public IGameLoopObject
-    {
-    private:
-        float elapsed_time_ = 0.0f;
-        float last_update_time_ = 0.0f;
+class PhysicsSimulation : public IGameLoopObject
+{
+private:
+    float elapsed_time_ = 0.0f;
+    float last_update_time_ = 0.0f;
 
-        const float time_step_ = 1.0f / 60.0f;
-        std::vector<SharedPointer<IPhysicsObject>> objects_ = { };
+    const float time_step_ = 1.0f / 60.0f;
+    std::vector<SharedPointer<IPhysicsObject>> objects_ = {};
 
-    public:
-        PhysicsSimulation() : PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> { }) { }
-        explicit PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects);
-        explicit PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects);
+public:
+    PhysicsSimulation() : PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>>{}) {}
+    explicit PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects);
+    explicit PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects);
 
-        void Update(float delta) override;
-        void AddObject(SharedPointer<IPhysicsObject> &object);
-        void RemoveObject(const IPhysicsObject &object);
+    void Update(float delta) override;
+    void AddObject(SharedPointer<IPhysicsObject> &object);
+    void RemoveObject(const IPhysicsObject &object);
 
-        void AddObject(IPhysicsObject &object) { AddObject(SharedPointer(&object)); }
-        void AddObject(SharedPointer<IPhysicsObject> &&object) { AddObject(object); }
-    };
+    void AddObject(IPhysicsObject &object) { AddObject(SharedPointer(&object)); }
+    void AddObject(SharedPointer<IPhysicsObject> &&object) { AddObject(object); }
+};
 }
 
 #endif

@@ -3,13 +3,13 @@
 
 namespace arkanoid
 {
-    class RenderingConstants
-    {
-    public:
-        static const int kScaleMultiplier = 6;
-        static const int kWindowWidth = 320 * kScaleMultiplier;
-        static const int kWindowHeight = 180 * kScaleMultiplier;
-    };
+class RenderingConstants
+{
+public:
+    static const int kScaleMultiplier = 6;
+    static const int kWindowWidth = 320 * kScaleMultiplier;
+    static const int kWindowHeight = 180 * kScaleMultiplier;
+};
 }
 
 #endif

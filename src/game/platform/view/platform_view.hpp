@@ -6,18 +6,18 @@
 
 namespace arkanoid
 {
-    class PlatformView
-    {
-    private:
-        SDL_Texture *platform_texture_;
-        const WindowReferences &window_references_;
+class PlatformView
+{
+private:
+    SDL_Texture *platform_texture_;
+    const WindowReferences &window_references_;
 
-    public:
-        explicit PlatformView(const WindowReferences &window_references);
-        ~PlatformView();
+public:
+    explicit PlatformView(const WindowReferences &window_references);
+    ~PlatformView();
 
-        void Display(arkanoid::Vector2 position) const;
-    };
+    void Display(Vector2 position) const;
+};
 }
 
 #endif

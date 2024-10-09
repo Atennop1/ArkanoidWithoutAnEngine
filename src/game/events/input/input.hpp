@@ -10,22 +10,22 @@
 
 namespace arkanoid
 {
-    class Input : public IGameLoopObject
-    {
-    private:
-        SharedPointer<ApplicationEvents> events_;
+class Input : public IGameLoopObject
+{
+private:
+    SharedPointer<ApplicationEvents> events_;
 
-        std::list<KeyType> pressed_keys_ = { };
-        std::list<KeyType> pressed_this_frame_keys_ = { };
+    std::list<KeyType> pressed_keys_ = {};
+    std::list<KeyType> pressed_this_frame_keys_ = {};
 
-    public:
-        Input(const SharedPointer<ApplicationEvents> &events);
-        ~Input() override = default;
+public:
+    Input(const SharedPointer<ApplicationEvents> &events);
+    ~Input() override = default;
 
-        void Update(float delta) override;
-        bool IsKeyPressed(KeyType key_type) const;
-        bool IsKeyPressedThisFrame(KeyType key_type) const;
-    };
+    void Update(float delta) override;
+    bool IsKeyPressed(KeyType key_type) const;
+    bool IsKeyPressedThisFrame(KeyType key_type) const;
+};
 }
 
 #endif

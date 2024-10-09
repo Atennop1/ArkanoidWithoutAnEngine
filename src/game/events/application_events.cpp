@@ -1,7 +1,9 @@
 #include "application_events.hpp"
 #include <algorithm>
 
-void arkanoid::ApplicationEvents::Update(float delta)
+namespace arkanoid
+{
+void ApplicationEvents::Update(float delta)
 {
     events_.clear();
     SDL_Event event;
@@ -10,7 +12,7 @@ void arkanoid::ApplicationEvents::Update(float delta)
         events_.push_back(event);
 }
 
-std::vector<SDL_Event*> arkanoid::ApplicationEvents::GetEventsOfType(std::vector<Uint32> types)
+std::vector<SDL_Event*> ApplicationEvents::GetEventsOfType(std::vector<Uint32> types)
 {
     auto result = std::vector<SDL_Event*> { };
 
@@ -19,4 +21,5 @@ std::vector<SDL_Event*> arkanoid::ApplicationEvents::GetEventsOfType(std::vector
             result.push_back(&event);
 
     return result;
+}
 }

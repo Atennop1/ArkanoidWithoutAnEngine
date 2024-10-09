@@ -8,27 +8,27 @@
 
 namespace arkanoid
 {
-    class LevelView
-    {
-    private:
-        const float level_offset_x_ = 8.0f;
-        const float level_offset_y_ = 6.0f;
+class LevelView
+{
+private:
+    const float level_offset_x_ = 8.0f;
+    const float level_offset_y_ = 6.0f;
 
-        int brick_width_;
-        int brick_height_;
+    int brick_width_;
+    int brick_height_;
 
-        const WindowReferences &window_references_;
-        SDL_Texture *violet_brick_texture_;
-        SDL_Texture *blue_brick_texture_;
+    const WindowReferences &window_references_;
+    SDL_Texture *violet_brick_texture_;
+    SDL_Texture *blue_brick_texture_;
 
-        void DisplayBrick(SDL_Texture *texture, arkanoid::Vector2 position) const;
+    void DisplayBrick(SDL_Texture *texture, Vector2 position) const;
 
-    public:
-        explicit LevelView(const WindowReferences &window_references);
-        ~LevelView();
+public:
+    explicit LevelView(const WindowReferences &window_references);
+    ~LevelView();
 
-        void Display(const LevelMap &map) const;
-    };
+    void Display(const LevelMap &map) const;
+};
 }
 
 #endif

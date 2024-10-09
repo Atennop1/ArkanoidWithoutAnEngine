@@ -5,12 +5,12 @@
 
 namespace arkanoid
 {
-    class RenderColors
-    {
-    public:
-        constexpr static SDL_Color kWhiteColor = {255, 255, 255, 255};
-        constexpr const static SDL_Color kBlackColor = {0, 0, 0, 255};
-    };
+class RenderColors
+{
+public:
+    constexpr static SDL_Color kWhiteColor = {255, 255, 255, 255};
+    constexpr const static SDL_Color kBlackColor = {0, 0, 0, 255};
+};
 }
 
 #endif

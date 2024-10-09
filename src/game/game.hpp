@@ -7,16 +7,16 @@
 
 namespace arkanoid
 {
-    class Game
-    {
-    private:
-        SharedPointer<GameLoop> game_loop_;
+class Game
+{
+private:
+    SharedPointer<GameLoop> game_loop_;
 
-    public:
-        explicit Game(const WindowReferences &window_references);
+public:
+    explicit Game(const WindowReferences &window_references);
 
-        void Activate();
-    };
+    void Activate();
+};
 }
 
 #endif

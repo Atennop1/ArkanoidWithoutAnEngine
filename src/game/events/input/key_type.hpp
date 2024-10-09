@@ -3,13 +3,13 @@
 
 namespace arkanoid
 {
-    enum KeyType
-    {
-        kNone,
-        kRight,
-        kLeft,
-        kSpace
-    };
+enum KeyType
+{
+    kNone,
+    kRight,
+    kLeft,
+    kSpace
+};
 }
 
 #endif

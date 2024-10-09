@@ -5,11 +5,11 @@
 
 namespace arkanoid
 {
-    class Shortcuts
-    {
-    public:
-        static void SelectColor(SDL_Renderer *renderer, const SDL_Color &color);
-    };
+class Shortcuts
+{
+public:
+    static void SelectColor(SDL_Renderer *renderer, const SDL_Color &color);
+};
 }
 
 #endif

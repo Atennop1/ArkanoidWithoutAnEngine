@@ -5,17 +5,17 @@
 
 namespace arkanoid
 {
-    class IPhysicsObject
-    {
-    public:
-        virtual ~IPhysicsObject() = default;
+class IPhysicsObject
+{
+public:
+    virtual ~IPhysicsObject() = default;
 
-        virtual Vector2 GetPosition() = 0;
-        virtual void SetPosition(Vector2 position) = 0;
+    virtual Vector2 GetPosition() = 0;
+    virtual void SetPosition(Vector2 position) = 0;
 
-        virtual void FixedUpdate(float fixed_delta) = 0;
-        virtual void HandleCollisionStart() = 0;
-    };
+    virtual void FixedUpdate(float fixed_delta) = 0;
+    virtual void HandleCollisionStart() = 0;
+};
 }
 
 #endif

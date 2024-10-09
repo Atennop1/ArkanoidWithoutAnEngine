@@ -3,12 +3,12 @@
 
 namespace arkanoid
 {
-    class IGameLoopObject
-    {
-    public:
-        virtual ~IGameLoopObject() = default;
-        virtual void Update(float delta) = 0;
-    };
+class IGameLoopObject
+{
+public:
+    virtual ~IGameLoopObject() = default;
+    virtual void Update(float delta) = 0;
+};
 }
 
 #endif

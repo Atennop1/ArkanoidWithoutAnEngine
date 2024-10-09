@@ -3,14 +3,14 @@
 
 namespace arkanoid
 {
-    class IReadOnlyGameTime
-    {
-    public:
-        virtual ~IReadOnlyGameTime() = default;
+class IReadOnlyGameTime
+{
+public:
+    virtual ~IReadOnlyGameTime() = default;
 
-        virtual bool IsActive() = 0;
-        virtual float Delta() = 0;
-    };
+    virtual bool IsActive() = 0;
+    virtual float Delta() = 0;
+};
 }
 
 #endif

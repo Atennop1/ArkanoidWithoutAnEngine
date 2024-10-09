@@ -1,16 +1,18 @@
 ﻿#include <algorithm>
 #include "input.hpp"
 
-arkanoid::Input::Input(const SharedPointer<ApplicationEvents> &events)
+namespace arkanoid
+{
+Input::Input(const SharedPointer<ApplicationEvents> &events)
     : events_(events) { }
 
-bool arkanoid::Input::IsKeyPressed(const KeyType key_type) const
+bool Input::IsKeyPressed(const KeyType key_type) const
     { return std::ranges::find(pressed_keys_.begin(), pressed_keys_.end(), key_type) != pressed_keys_.end(); }
 
-bool arkanoid::Input::IsKeyPressedThisFrame(const KeyType key_type) const
+bool Input::IsKeyPressedThisFrame(const KeyType key_type) const
     { return std::ranges::find(pressed_this_frame_keys_.begin(), pressed_this_frame_keys_.end(), key_type) != pressed_this_frame_keys_.end(); }
 
-void arkanoid::Input::Update(float delta)
+void Input::Update(float delta)
 {
     pressed_this_frame_keys_.clear();
     std::vector<SDL_Event*> events = events_->GetEventsOfType({SDL_KEYDOWN, SDL_KEYUP });
@@ -44,4 +46,5 @@ void arkanoid::Input::Update(float delta)
         pressed_this_frame_keys_.push_back(key_type);
         pressed_keys_.push_back(key_type);
     }
+}
 }

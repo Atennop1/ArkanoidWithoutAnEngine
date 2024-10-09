@@ -5,21 +5,21 @@
 
 namespace arkanoid
 {
-    class AverageGameTime : public IGameTime
-    {
-    private:
-        bool is_active_ = true;
-        unsigned long long last_time_;
+class AverageGameTime : public IGameTime
+{
+private:
+    bool is_active_ = true;
+    unsigned long long last_time_;
 
-    public:
-        AverageGameTime();
+public:
+    AverageGameTime();
 
-        float Delta() override;
-        bool IsActive() override { return is_active_; }
+    float Delta() override;
+    bool IsActive() override { return is_active_; }
 
-        void Activate() override { is_active_ = true; }
-        void Deactivate() override { is_active_ = false; }
-    };
+    void Activate() override { is_active_ = true; }
+    void Deactivate() override { is_active_ = false; }
+};
 }
 
 #endif

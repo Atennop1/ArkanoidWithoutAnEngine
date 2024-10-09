@@ -1,13 +1,15 @@
 ﻿#include "physics_simulation.hpp"
 #include <algorithm>
 
-arkanoid::PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects)
+namespace arkanoid
+{
+PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects)
     : objects_(objects) { }
 
-arkanoid::PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects)
+PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects)
     : objects_(objects) { }
 
-void arkanoid::PhysicsSimulation::Update(float delta)
+void PhysicsSimulation::Update(float delta)
 {
     elapsed_time_ += delta;
 
@@ -18,7 +20,7 @@ void arkanoid::PhysicsSimulation::Update(float delta)
     }
 }
 
-void arkanoid::PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
+void PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
 {
     if (std::ranges::find(objects_.begin(), objects_.end(), object) != objects_.end())
         throw std::invalid_argument("PhysicsObject already in loop");
@@ -26,7 +28,7 @@ void arkanoid::PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &objec
     objects_.push_back(object);
 }
 
-void arkanoid::PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
+void PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
 {
     auto find_iterator = std::ranges::find_if(objects_.begin(), objects_.end(), [&](auto pointer) { return pointer.Get() == &object; });
 
@@ -34,4 +36,5 @@ void arkanoid::PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
         throw std::invalid_argument("PhysicsObject doesn't in loop");
 
     objects_.erase(find_iterator);
+}
 }

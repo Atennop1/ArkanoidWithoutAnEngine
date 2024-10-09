@@ -1,13 +1,15 @@
 ﻿#include "application.hpp"
 #include "../../game/rendering/rendering_constants.hpp"
 
-void arkanoid::Application::Activate()
+namespace arkanoid
+{
+void Application::Activate()
 {
     SDL_Log("Application activated\n");
     m_game_->Activate();
 }
 
-arkanoid::Application::Application()
+Application::Application()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, RenderingConstants::kWindowWidth, RenderingConstants::kWindowHeight, SDL_WINDOW_FULLSCREEN);
@@ -18,10 +20,11 @@ arkanoid::Application::Application()
     SDL_Log("Application initialized\n");
 }
 
-arkanoid::Application::~Application()
+Application::~Application()
 {
     SDL_Log("Application cleared\n");
     SDL_DestroyWindow(window_references_.Window());
     SDL_DestroyRenderer(window_references_.Renderer());
     SDL_Quit();
+}
 }

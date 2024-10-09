@@ -12,7 +12,9 @@
 #include "platform/controller/platform_controller.hpp"
 #include "events/input/input.hpp"
 
-arkanoid::Game::Game(const WindowReferences &window_references)
+namespace arkanoid
+{
+Game::Game(const WindowReferences &window_references)
 {
     auto game_time = SharedPointer<IReadOnlyGameTime>(new AverageGameTime());
     auto application_events = SharedPointer(new ApplicationEvents());
@@ -41,7 +43,8 @@ arkanoid::Game::Game(const WindowReferences &window_references)
     game_loop_->Add(screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
 }
 
-void arkanoid::Game::Activate()
+void Game::Activate()
 {
     game_loop_->Activate();
+}
 }
