@@ -18,9 +18,11 @@ Game::Game(const WindowReferences &window_references)
 {
     auto game_time = SharedPointer<IReadOnlyGameTime>(new AverageGameTime());
     auto application_events = SharedPointer(new ApplicationEvents());
-
     game_loop_ = SharedPointer(new GameLoop(game_time, application_events));
-    auto physics_simulation = SharedPointer(new PhysicsSimulation());
+
+    auto collision_detector = SharedPointer(new CollisionDetector());
+    auto collision_solver = SharedPointer(new CollisionSolver());
+    auto physics_simulation = SharedPointer(new PhysicsSimulation(collision_detector, collision_solver));
 
     auto screen_cleaner = SharedPointer(new ScreenCleaner(window_references));
     auto screen_applier = SharedPointer(new ScreenApplier(window_references));

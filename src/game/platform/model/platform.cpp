@@ -9,12 +9,12 @@ Platform::Platform(SharedPointer<PlatformView> &platform_view) : platform_view_(
 
 void Platform::Update(float delta)
 {
-    platform_view_->Display(GetPosition());
+    platform_view_->Display(Position());
 }
 
 void Platform::Move(Vector2 move_vector)
 {
-    Vector2 position = GetPosition();
+    Vector2 position = Position();
     SetPosition(Vector2(position.X() + move_vector.X(), position.Y() + move_vector.Y()));
 }
 }

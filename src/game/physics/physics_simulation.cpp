@@ -3,11 +3,8 @@
 
 namespace arkanoid
 {
-PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects)
-    : objects_(objects) { }
-
-PhysicsSimulation::PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects)
-    : objects_(objects) { }
+PhysicsSimulation::PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver, std::vector<SharedPointer<IPhysicsObject>> &objects)
+    : collision_solver_(collision_solver), collision_detector_(collision_detector), objects_(objects) { }
 
 void PhysicsSimulation::Update(float delta)
 {
@@ -15,7 +12,10 @@ void PhysicsSimulation::Update(float delta)
 
     while (last_update_time_ < elapsed_time_)
     {
-        // collision detection and handling logic...
+        // positions updating...
+
+        auto collisions = collision_detector_->Detect(objects_);
+        collision_solver_->Solve(collisions);
         last_update_time_ += time_step_;
     }
 }

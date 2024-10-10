@@ -4,8 +4,8 @@ namespace arkanoid
 {
 Vector2::Vector2(float x, float y)
 {
-    m_x = x;
-    m_y = y;
+    x = x;
+    y = y;
 }
 
 Vector2 Vector2::operator+(Vector2 &other) const
@@ -26,5 +26,12 @@ Vector2 Vector2::operator*(float number) const
 Vector2 Vector2::operator/(float number) const
 {
     return Vector2(X() / number, Y() / number);
+}
+
+Vector2 Vector2::operator=(Vector2 &vector)
+{
+    x = vector.X();
+    y = vector.Y();
+    return *this;
 }
 }
