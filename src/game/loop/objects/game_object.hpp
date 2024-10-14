@@ -20,7 +20,7 @@ public:
 
     virtual void Update(float delta) { };
     virtual void FixedUpdate(float fixed_delta) { };
-    virtual void HandleCollisionStart() { };
+    virtual void HandleCollisionStart(CollisionData data) { };
 
 
     Vector2 Position() final { return position_; };

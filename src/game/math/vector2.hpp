@@ -34,6 +34,9 @@ public:
 
     Vector2 operator*(float number) const;
     Vector2 operator/(float number) const;
+
+    friend Vector2 operator*(float number, Vector2 vector) { return vector.operator*(number); }
+    friend Vector2 operator/(float number, Vector2 vector) { return vector.operator/(number); }
 };
 }
 

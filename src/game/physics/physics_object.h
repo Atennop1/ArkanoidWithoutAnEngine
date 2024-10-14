@@ -2,6 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_SRC_GAME_PHYSICS_PHYSICS_OBJECT_H_
 
 #include "../math/vector2.hpp"
+#include "collision_data.hpp"
 
 namespace arkanoid
 {
@@ -11,7 +12,7 @@ public:
     virtual ~IPhysicsObject() = default;
 
     virtual void FixedUpdate(float fixed_delta) = 0;
-    virtual void HandleCollisionStart() = 0;
+    virtual void HandleCollisionStart(CollisionData data) = 0;
 
 
     virtual Vector2 Position() = 0;

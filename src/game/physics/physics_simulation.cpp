@@ -12,7 +12,11 @@ void PhysicsSimulation::Update(float delta)
 
     while (last_update_time_ < elapsed_time_)
     {
-        // positions updating...
+        for (auto physics_object : objects_)
+        {
+            physics_object->SetVelocity(physics_object->Velocity() + physics_object->Acceleration() * delta);
+            physics_object->SetPosition(physics_object->Position() + physics_object->Velocity() * delta);
+        }
 
         auto collisions = collision_detector_->Detect(objects_);
         collision_solver_->Solve(collisions);
