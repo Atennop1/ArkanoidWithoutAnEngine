@@ -56,7 +56,7 @@ add_executable(ArkanoidWithoutAnEngine
         src/game/level/constants/level_layouts.hpp
         src/tools/shared_pointer.hpp
         src/game/events/application_events.cpp
-        src/game/events/application_events.hpp src/game/math/vector2.cpp src/game/math/vector2.hpp src/game/loop/objects/game_object.hpp src/game/physics/components/collision_detector.cpp src/game/physics/components/collision_detector.hpp src/game/physics/collision_data.hpp src/game/physics/components/collision_solver.cpp src/game/physics/components/collision_solver.hpp)
+        src/game/events/application_events.hpp src/game/math/vector2.cpp src/game/math/vector2.hpp src/game/loop/objects/game_object.hpp src/game/physics/components/collision_detector.cpp src/game/physics/components/collision_detector.hpp src/game/physics/collision_data.hpp src/game/physics/components/collision_solver.cpp src/game/physics/components/collision_solver.hpp src/game/physics/test_object.cpp src/game/physics/test_object.hpp)
 
 if(WIN32)
     set(SDL2_DIR ${CMAKE_LIBS_PATH}/SDL2/windows/lib/cmake/SDL2)

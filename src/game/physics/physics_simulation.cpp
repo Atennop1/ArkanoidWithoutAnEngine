@@ -14,8 +14,8 @@ void PhysicsSimulation::Update(float delta)
     {
         for (auto physics_object : objects_)
         {
-            physics_object->SetVelocity(physics_object->Velocity() + physics_object->Acceleration() * delta);
-            physics_object->SetPosition(physics_object->Position() + physics_object->Velocity() * delta);
+            physics_object->SetVelocity(physics_object->Velocity() + physics_object->Acceleration() * time_step_);
+            physics_object->SetPosition(physics_object->Position() + physics_object->Velocity() * time_step_);
         }
 
         auto collisions = collision_detector_->Detect(objects_);
@@ -24,7 +24,7 @@ void PhysicsSimulation::Update(float delta)
     }
 }
 
-void PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
+void PhysicsSimulation::Add(SharedPointer<IPhysicsObject> &object)
 {
     if (std::ranges::find(objects_.begin(), objects_.end(), object) != objects_.end())
         throw std::invalid_argument("PhysicsObject already in loop");
@@ -32,7 +32,7 @@ void PhysicsSimulation::AddObject(SharedPointer<IPhysicsObject> &object)
     objects_.push_back(object);
 }
 
-void PhysicsSimulation::RemoveObject(const IPhysicsObject &object)
+void PhysicsSimulation::Remove(const IPhysicsObject &object)
 {
     auto find_iterator = std::ranges::find_if(objects_.begin(), objects_.end(), [&](auto pointer) { return pointer.Get() == &object; });
 

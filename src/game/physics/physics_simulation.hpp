@@ -28,11 +28,11 @@ public:
     PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver, std::vector<SharedPointer<IPhysicsObject>> &&objects) : PhysicsSimulation(collision_detector, collision_solver, objects) { }
 
     void Update(float delta) override;
-    void AddObject(SharedPointer<IPhysicsObject> &object);
-    void RemoveObject(const IPhysicsObject &object);
+    void Add(SharedPointer<IPhysicsObject> &object);
+    void Remove(const IPhysicsObject &object);
 
-    void AddObject(IPhysicsObject &object) { AddObject(SharedPointer(&object)); }
-    void AddObject(SharedPointer<IPhysicsObject> &&object) { AddObject(object); }
+    void Add(IPhysicsObject &object) { Add(SharedPointer(&object)); }
+    void Add(SharedPointer<IPhysicsObject> &&object) { Add(object); }
 };
 }
 

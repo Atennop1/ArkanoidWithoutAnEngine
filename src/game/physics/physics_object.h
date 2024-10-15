@@ -26,6 +26,12 @@ public:
 
     virtual Vector2 Acceleration() = 0;
     virtual void SetAcceleration(Vector2 acceleration) = 0;
+
+
+    float Left() { return Position().X() - Size().X() / 2.f; }
+    float Right() { return Position().X() + Size().X() / 2.f; }
+    float Top() { return Position().Y() - Size().Y() / 2.f; }
+    float Bottom() { return Position().Y() + Size().Y() / 2.f; }
 };
 }
 

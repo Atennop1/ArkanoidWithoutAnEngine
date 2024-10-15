@@ -45,21 +45,16 @@ public:
     }
 
     SharedPointer(const SharedPointer<T> &pointer) { Assign(pointer.resource_, pointer.references_count_); }
-
     SharedPointer(SharedPointer<T> &&pointer) { Move(pointer); }
-
     ~SharedPointer() { Clear(); }
 
     T &operator*() { return *resource_; }
-
     const T &operator*() const { return *resource_; }
 
     T *operator->() { return resource_; }
-
     const T *operator->() const { return resource_; }
 
     T *Get() { return resource_; }
-
     const T *Get() const { return resource_; }
 
     friend bool operator==(const SharedPointer<T> &first, const SharedPointer<T> &second)

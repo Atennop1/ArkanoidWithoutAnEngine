@@ -4,8 +4,8 @@ namespace arkanoid
 {
 Vector2::Vector2(float x, float y)
 {
-    x = x;
-    y = y;
+    this->x = x;
+    this->y = y;
 }
 
 Vector2 Vector2::operator+(Vector2 &other) const
