@@ -11,15 +11,14 @@ namespace arkanoid
 {
 class Level : public IGameLoopObject
 {
+public:
+    Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
+
+    void Update(float delta) override;
+
 private:
     const LevelMap &map_;
     const SharedPointer<LevelView> level_view_;
-
-public:
-    Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
-    ~Level() override = default;
-
-    void Update(float delta) override;
 };
 }
 

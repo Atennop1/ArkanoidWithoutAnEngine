@@ -8,14 +8,13 @@ namespace arkanoid
 {
 class ScreenApplier : public IGameLoopObject
 {
-private:
-    const WindowReferences &window_references_;
-
 public:
     explicit ScreenApplier(const WindowReferences &window_references);
-    ~ScreenApplier() override = default;
 
     void Update(float delta) override;
+
+private:
+    const WindowReferences &window_references_;
 };
 }
 

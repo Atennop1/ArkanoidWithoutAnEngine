@@ -10,6 +10,12 @@ namespace arkanoid
 {
 class LevelView
 {
+public:
+    explicit LevelView(const WindowReferences &window_references);
+    ~LevelView();
+
+    void Display(const LevelMap &map) const;
+
 private:
     const float level_offset_x_ = 8.0f;
     const float level_offset_y_ = 6.0f;
@@ -22,12 +28,6 @@ private:
     SDL_Texture *blue_brick_texture_;
 
     void DisplayBrick(SDL_Texture *texture, Vector2 position) const;
-
-public:
-    explicit LevelView(const WindowReferences &window_references);
-    ~LevelView();
-
-    void Display(const LevelMap &map) const;
 };
 }
 

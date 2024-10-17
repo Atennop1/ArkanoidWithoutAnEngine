@@ -8,15 +8,15 @@ namespace arkanoid
 {
 class Application
 {
-private:
-    WindowReferences window_references_ = WindowReferences(nullptr, nullptr);
-    SharedPointer<Game> m_game_ = SharedPointer<Game>();
-
 public:
     Application();
     ~Application();
 
     void Activate();
+
+private:
+    WindowReferences window_references_ = WindowReferences(nullptr, nullptr);
+    SharedPointer<Game> m_game_ = SharedPointer<Game>();
 };
 }
 

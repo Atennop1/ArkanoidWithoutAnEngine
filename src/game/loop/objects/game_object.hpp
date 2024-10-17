@@ -8,13 +8,6 @@ namespace arkanoid
 {
 class IGameObject : public IGameLoopObject, public IPhysicsObject
 {
-private:
-    Vector2 position_;
-    Vector2 size_;
-
-    Vector2 velocity_;
-    Vector2 acceleration_;
-
 public:
     virtual ~IGameObject() = default;
 
@@ -34,6 +27,13 @@ public:
 
     Vector2 Acceleration() final { return acceleration_; };
     void SetAcceleration(Vector2 acceleration) final { acceleration_ = acceleration; };
+
+private:
+    Vector2 position_;
+    Vector2 size_;
+
+    Vector2 velocity_;
+    Vector2 acceleration_;
 };
 }
 

@@ -9,8 +9,10 @@ class TestObject : public IGameObject
 {
 public:
     TestObject(WindowReferences references);
+
     virtual void Update(float delta) override;
 
+private:
     WindowReferences references_;
 };
 }

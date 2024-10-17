@@ -8,11 +8,11 @@ namespace arkanoid
 {
 class LevelMaps
 {
-private:
-    static LevelMap kFirst;
-
 public:
     static LevelMap &First() { return kFirst; }
+
+private:
+    static LevelMap kFirst;
 };
 }
 

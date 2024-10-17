@@ -10,6 +10,11 @@ PlatformView::PlatformView(const WindowReferences &window_references) : window_r
     platform_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/platform.png");
 }
 
+PlatformView::~PlatformView()
+{
+    SDL_DestroyTexture(platform_texture_);
+}
+
 void PlatformView::Display(Vector2 position) const
 {
     SDL_Rect temp_rect = { };
@@ -21,10 +26,5 @@ void PlatformView::Display(Vector2 position) const
     temp_rect.y = (int)(position.Y() * (float)RenderingConstants::kScaleMultiplier);
 
     SDL_RenderCopy(window_references_.Renderer(), platform_texture_, nullptr, &temp_rect);
-}
-
-PlatformView::~PlatformView()
-{
-    SDL_DestroyTexture(platform_texture_);
 }
 }

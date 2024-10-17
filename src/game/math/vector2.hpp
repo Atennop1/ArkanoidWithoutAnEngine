@@ -7,10 +7,6 @@ namespace arkanoid
 {
 struct Vector2
 {
-private:
-    float x;
-    float y;
-
 public:
     Vector2(float x = 0, float y = 0);
     Vector2(Vector2 &vector) : Vector2(vector.X(), vector.Y()) { }
@@ -37,6 +33,10 @@ public:
 
     friend Vector2 operator*(float number, Vector2 vector) { return vector.operator*(number); }
     friend Vector2 operator/(float number, Vector2 vector) { return vector.operator/(number); }
+
+private:
+    float x;
+    float y;
 };
 }
 

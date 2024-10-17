@@ -7,10 +7,6 @@ namespace arkanoid
 {
 class AverageGameTime : public IGameTime
 {
-private:
-    bool is_active_ = true;
-    unsigned long long last_time_;
-
 public:
     AverageGameTime();
 
@@ -19,6 +15,10 @@ public:
 
     void Activate() override { is_active_ = true; }
     void Deactivate() override { is_active_ = false; }
+
+private:
+    bool is_active_ = true;
+    unsigned long long last_time_;
 };
 }
 

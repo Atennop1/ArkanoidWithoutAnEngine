@@ -11,13 +11,6 @@ namespace arkanoid
 {
 class GameLoop
 {
-private:
-    bool is_active_ = true;
-    SharedPointer<IReadOnlyGameTime> game_time_;
-
-    SharedPointer<ApplicationEvents> events_;
-    std::vector<SharedPointer<IGameLoopObject>> objects_ = {};
-
 public:
     GameLoop(SharedPointer<IReadOnlyGameTime> &game_time, SharedPointer<ApplicationEvents> &events);
     void Activate();
@@ -27,6 +20,13 @@ public:
 
     void Add(IGameLoopObject &object) { Add(SharedPointer<IGameLoopObject>(&object)); }
     void Add(SharedPointer<IGameLoopObject> &&object) { Add(object); }
+
+private:
+    bool is_active_ = true;
+    SharedPointer<IReadOnlyGameTime> game_time_;
+
+    SharedPointer<ApplicationEvents> events_;
+    std::vector<SharedPointer<IGameLoopObject>> objects_ = { };
 };
 }
 

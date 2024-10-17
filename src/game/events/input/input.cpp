@@ -6,12 +6,6 @@ namespace arkanoid
 Input::Input(const SharedPointer<ApplicationEvents> &events)
     : events_(events) { }
 
-bool Input::IsKeyPressed(const KeyType key_type) const
-    { return std::ranges::find(pressed_keys_.begin(), pressed_keys_.end(), key_type) != pressed_keys_.end(); }
-
-bool Input::IsKeyPressedThisFrame(const KeyType key_type) const
-    { return std::ranges::find(pressed_this_frame_keys_.begin(), pressed_this_frame_keys_.end(), key_type) != pressed_this_frame_keys_.end(); }
-
 void Input::Update(float delta)
 {
     pressed_this_frame_keys_.clear();
@@ -47,4 +41,10 @@ void Input::Update(float delta)
         pressed_keys_.push_back(key_type);
     }
 }
+
+bool Input::IsKeyPressed(const KeyType key_type) const
+    { return std::ranges::find(pressed_keys_.begin(), pressed_keys_.end(), key_type) != pressed_keys_.end(); }
+
+bool Input::IsKeyPressedThisFrame(const KeyType key_type) const
+    { return std::ranges::find(pressed_this_frame_keys_.begin(), pressed_this_frame_keys_.end(), key_type) != pressed_this_frame_keys_.end(); }
 }

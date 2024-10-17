@@ -10,17 +10,16 @@ namespace arkanoid
 {
 class PlatformController : public IGameLoopObject
 {
-private:
-    SharedPointer<Platform> platform_;
-    const SharedPointer<Input> input_;
-
-    const float move_speed_ = 40.0f;
-
 public:
     PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input);
-    ~PlatformController() override = default;
 
     void Update(float delta) override;
+
+private:
+    const float move_speed_ = 40.0f;
+
+    SharedPointer<Platform> platform_;
+    const SharedPointer<Input> input_;
 };
 }
 

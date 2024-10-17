@@ -5,10 +5,10 @@
 namespace arkanoid
 {
 LevelMap::LevelMap()
-    : map_(LevelLayouts::Empty()) {}
+    : map_(LevelLayouts::Empty()) { }
 
 LevelMap::LevelMap(std::array<std::array<char, 12>, 14> &map)
-    : map_(map) {}
+    : map_(map) { }
 
 std::array<char, 12> LevelMap::operator[](int index) const
 {

@@ -13,15 +13,6 @@ namespace arkanoid
 {
 class PhysicsSimulation : public IGameLoopObject
 {
-private:
-    float elapsed_time_ = 0.0f;
-    float last_update_time_ = 0.0f;
-    const float time_step_ = 1.0f / 60.0f;
-
-    SharedPointer<CollisionDetector> collision_detector_;
-    SharedPointer<CollisionSolver> collision_solver_;
-    std::vector<SharedPointer<IPhysicsObject>> objects_ = {};
-
 public:
     PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver, std::vector<SharedPointer<IPhysicsObject>> &objects);
     PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver) : PhysicsSimulation(collision_detector, collision_solver, { }) { }
@@ -33,6 +24,15 @@ public:
 
     void Add(IPhysicsObject &object) { Add(SharedPointer(&object)); }
     void Add(SharedPointer<IPhysicsObject> &&object) { Add(object); }
+
+private:
+    float elapsed_time_ = 0.0f;
+    float last_update_time_ = 0.0f;
+    const float time_step_ = 1.0f / 60.0f;
+
+    SharedPointer<CollisionDetector> collision_detector_;
+    SharedPointer<CollisionSolver> collision_solver_;
+    std::vector<SharedPointer<IPhysicsObject>> objects_ = { };
 };
 }
 

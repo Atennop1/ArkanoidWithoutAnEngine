@@ -15,6 +15,6 @@ void Platform::Update(float delta)
 void Platform::Move(Vector2 move_vector)
 {
     Vector2 position = Position();
-    SetPosition(Vector2(position.X() + move_vector.X(), position.Y() + move_vector.Y()));
+    SetPosition(position + move_vector);
 }
 }

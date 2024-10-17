@@ -2,6 +2,9 @@
 
 namespace arkanoid
 {
+TestObject::TestObject(WindowReferences references)
+    : references_(references) { }
+
 void TestObject::Update(float delta)
 {
     SDL_Rect rect;
@@ -13,5 +16,4 @@ void TestObject::Update(float delta)
     SDL_SetRenderDrawColor(references_.Renderer(), 255, 255, 255, 255);
     SDL_RenderDrawRect(references_.Renderer(), &rect);
 }
-TestObject::TestObject(WindowReferences references) : references_(references) { }
 }

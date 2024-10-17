@@ -9,13 +9,13 @@ namespace arkanoid
 {
 class Game
 {
-private:
-    SharedPointer<GameLoop> game_loop_;
-
 public:
     explicit Game(const WindowReferences &window_references);
 
     void Activate();
+
+private:
+    SharedPointer<GameLoop> game_loop_;
 };
 }
 

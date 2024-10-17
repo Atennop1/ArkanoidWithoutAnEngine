@@ -3,12 +3,6 @@
 
 namespace arkanoid
 {
-void Application::Activate()
-{
-    SDL_Log("Application activated\n");
-    m_game_->Activate();
-}
-
 Application::Application()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -26,5 +20,11 @@ Application::~Application()
     SDL_DestroyWindow(window_references_.Window());
     SDL_DestroyRenderer(window_references_.Renderer());
     SDL_Quit();
+}
+
+void Application::Activate()
+{
+    SDL_Log("Application activated\n");
+    m_game_->Activate();
 }
 }

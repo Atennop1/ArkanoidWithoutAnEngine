@@ -39,8 +39,8 @@ Game::Game(const WindowReferences &window_references)
     auto test_object = SharedPointer(new TestObject(window_references));
     test_object->SetPosition(Vector2(500, 500));
     test_object->SetSize(Vector2(50, 50));
-    test_object->SetVelocity(Vector2(10, 10));
-    test_object->SetAcceleration(Vector2(5, 5));
+    test_object->SetVelocity(Vector2(1, 1));
+    test_object->SetAcceleration(Vector2(10, 10));
     physics_simulation->Add(test_object);
 
     game_loop_->Add(application_events); // SYSTEM COMPONENT: gets all events from SDL2

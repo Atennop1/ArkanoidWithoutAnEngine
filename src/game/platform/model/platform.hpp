@@ -9,15 +9,14 @@ namespace arkanoid
 {
 class Platform : public IGameObject
 {
-private:
-    SharedPointer<PlatformView> platform_view_;
-
 public:
     explicit Platform(SharedPointer<PlatformView> &platform_view);
-    ~Platform() override = default;
 
     void Update(float delta) override;
     void Move(Vector2 move_vector);
+
+private:
+    SharedPointer<PlatformView> platform_view_;
 };
 }
 
