@@ -5,8 +5,6 @@
 #include "../loop/time/read_only_game_time.hpp"
 #include "../loop/objects/game_loop_object.hpp"
 #include "shared_pointer.hpp"
-#include "components/collision_detector.hpp"
-#include "components/collision_solver.hpp"
 #include <vector>
 
 namespace arkanoid
@@ -14,9 +12,9 @@ namespace arkanoid
 class PhysicsSimulation : public IGameLoopObject
 {
 public:
-    PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver, std::vector<SharedPointer<IPhysicsObject>> &objects);
-    PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver) : PhysicsSimulation(collision_detector, collision_solver, { }) { }
-    PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver, std::vector<SharedPointer<IPhysicsObject>> &&objects) : PhysicsSimulation(collision_detector, collision_solver, objects) { }
+    PhysicsSimulation() : PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> { }) { }
+    explicit PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &objects) : objects_(objects) { }
+    explicit PhysicsSimulation(std::vector<SharedPointer<IPhysicsObject>> &&objects) : PhysicsSimulation(objects) { }
 
     void Update(float delta) override;
     void Add(SharedPointer<IPhysicsObject> &object);
@@ -28,10 +26,8 @@ public:
 private:
     float elapsed_time_ = 0.0f;
     float last_update_time_ = 0.0f;
-    const float time_step_ = 1.0f / 60.0f;
 
-    SharedPointer<CollisionDetector> collision_detector_;
-    SharedPointer<CollisionSolver> collision_solver_;
+    const float time_step_ = 1.0f / 60.0f;
     std::vector<SharedPointer<IPhysicsObject>> objects_ = { };
 };
 }

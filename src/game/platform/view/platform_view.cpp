@@ -22,8 +22,8 @@ void PlatformView::Display(Vector2 position) const
 
     temp_rect.h = temp_rect.h * RenderingConstants::kScaleMultiplier;
     temp_rect.w = temp_rect.w * RenderingConstants::kScaleMultiplier;
-    temp_rect.x = (int)(position.X() * (float)RenderingConstants::kScaleMultiplier);
-    temp_rect.y = (int)(position.Y() * (float)RenderingConstants::kScaleMultiplier);
+    temp_rect.x = (int)(position.X());
+    temp_rect.y = (int)(position.Y());
 
     SDL_RenderCopy(window_references_.Renderer(), platform_texture_, nullptr, &temp_rect);
 }

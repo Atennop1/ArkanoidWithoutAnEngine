@@ -1,25 +1,38 @@
 ﻿#include "physics_simulation.hpp"
 #include <algorithm>
+#include <list>
 
 namespace arkanoid
 {
-PhysicsSimulation::PhysicsSimulation(SharedPointer<CollisionDetector> collision_detector, SharedPointer<CollisionSolver> collision_solver, std::vector<SharedPointer<IPhysicsObject>> &objects)
-    : collision_solver_(collision_solver), collision_detector_(collision_detector), objects_(objects) { }
-
 void PhysicsSimulation::Update(float delta)
 {
     elapsed_time_ += delta;
 
     while (last_update_time_ < elapsed_time_)
     {
+        std::list<std::pair<IPhysicsObject*, IPhysicsObject*>> collisions { };
         for (auto physics_object : objects_)
         {
-            physics_object->SetVelocity(physics_object->Velocity() + physics_object->Acceleration() * time_step_);
-            physics_object->SetPosition(physics_object->Position() + physics_object->Velocity() * time_step_);
+            physics_object->Properties().velocity = physics_object->Properties().velocity + physics_object->Properties().acceleration * time_step_;
+            physics_object->Properties().position = physics_object->Properties().position + physics_object->Properties().velocity * time_step_;
         }
 
-        auto collisions = collision_detector_->Detect(objects_);
-        collision_solver_->Solve(collisions);
+        for (auto object : objects_)
+        {
+            for (auto object2 : objects_)
+            {
+                if (object == object2)
+                    continue;
+
+                if (object->Properties().Right() >= object2->Properties().Left()
+                    && object->Properties().Left() <= object2->Properties().Right()
+                    && object->Properties().Bottom() >= object2->Properties().Top()
+                    && object->Properties().Top() <= object2->Properties().Bottom()) collisions.emplace_back(object.Get(), object2.Get());
+        }}
+
+        for (auto collision : collisions)
+            collision.first->HandleCollisionStart(collision.second);
+
         last_update_time_ += time_step_;
     }
 }

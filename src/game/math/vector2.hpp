@@ -22,6 +22,7 @@ public:
     Vector2 operator=(Vector2 &vector);
     Vector2 operator=(Vector2 &&vector) { return operator=(vector); }
 
+
     Vector2 operator+(Vector2 &other) const;
     Vector2 operator+(Vector2 &&other) const { return operator+(other); }
 
@@ -33,6 +34,19 @@ public:
 
     friend Vector2 operator*(float number, Vector2 vector) { return vector.operator*(number); }
     friend Vector2 operator/(float number, Vector2 vector) { return vector.operator/(number); }
+
+
+    Vector2 operator+=(Vector2 &vector);
+    Vector2 operator+=(Vector2 &&vector) { return operator+=(vector); }
+
+    Vector2 operator-=(Vector2 &vector);
+    Vector2 operator-=(Vector2 &&vector) { return operator-=(vector); }
+
+    Vector2 operator*=(float number);
+    Vector2 operator/=(float number);
+
+    friend Vector2 operator*=(float number, Vector2 vector) { return vector.operator*=(number); }
+    friend Vector2 operator/=(float number, Vector2 vector) { return vector.operator/=(number); }
 
 private:
     float x;

@@ -2,19 +2,16 @@
 
 namespace arkanoid
 {
-Platform::Platform(SharedPointer<PlatformView> &platform_view) : platform_view_(platform_view)
-{
-    SetPosition(Vector2(100, 155));
-}
+Platform::Platform(PhysicalProperties properties, SharedPointer<PlatformView> &platform_view)
+    : IGameObject(properties), platform_view_(platform_view) { }
 
 void Platform::Update(float delta)
 {
-    platform_view_->Display(Position());
+    platform_view_->Display(Properties().position);
 }
 
 void Platform::Move(Vector2 move_vector)
 {
-    Vector2 position = Position();
-    SetPosition(position + move_vector);
+    Properties().position += move_vector;
 }
 }

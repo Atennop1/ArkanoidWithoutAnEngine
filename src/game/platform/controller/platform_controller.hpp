@@ -16,7 +16,7 @@ public:
     void Update(float delta) override;
 
 private:
-    const float move_speed_ = 40.0f;
+    const float move_speed_ = 240.0f;
 
     SharedPointer<Platform> platform_;
     const SharedPointer<Input> input_;

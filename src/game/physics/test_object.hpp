@@ -8,9 +8,10 @@ namespace arkanoid
 class TestObject : public IGameObject
 {
 public:
-    TestObject(WindowReferences references);
+    TestObject(PhysicalProperties properties, WindowReferences references);
 
     virtual void Update(float delta) override;
+    virtual void HandleCollisionStart(IPhysicsObject* other) override;
 
 private:
     WindowReferences references_;
