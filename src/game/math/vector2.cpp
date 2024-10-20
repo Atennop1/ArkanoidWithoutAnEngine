@@ -1,4 +1,4 @@
-#include "vector2.hpp"
+#include "game/math/vector2.hpp"
 
 namespace arkanoid
 {

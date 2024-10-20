@@ -1,4 +1,4 @@
-#include "level.hpp"
+#include "game/level/level.hpp"
 
 namespace arkanoid
 {

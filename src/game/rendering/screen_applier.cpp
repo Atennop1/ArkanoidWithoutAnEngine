@@ -1,4 +1,4 @@
-﻿#include "screen_applier.hpp"
+﻿#include "game/rendering/screen_applier.hpp"
 
 namespace arkanoid
 {

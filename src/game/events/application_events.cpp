@@ -1,4 +1,4 @@
-#include "application_events.hpp"
+#include "game/events/application_events.hpp"
 #include <algorithm>
 
 namespace arkanoid

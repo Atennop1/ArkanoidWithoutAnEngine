@@ -1,4 +1,7 @@
-#include "level_layouts.hpp"
+#include "game/level/constants/level_layouts.hpp"
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCInconsistentNamingInspection"
 
 namespace arkanoid
 {
@@ -38,3 +41,4 @@ std::array<std::array<char, 12>, 14> LevelLayouts::kFirst = std::array<std::arra
      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
 }};
 }
+#pragma clang diagnostic pop

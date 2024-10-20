@@ -1,6 +1,6 @@
-﻿#include "screen_cleaner.hpp"
-#include "../shortcuts/render_colors.hpp"
-#include "../shortcuts/shortcuts.hpp"
+﻿#include "game/rendering/screen_cleaner.hpp"
+#include "game/shortcuts/shortcuts.hpp"
+#include "game/shortcuts/render_colors.hpp"
 
 namespace arkanoid
 {

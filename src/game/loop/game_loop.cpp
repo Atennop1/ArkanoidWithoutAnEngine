@@ -1,4 +1,4 @@
-﻿#include "game_loop.hpp"
+﻿#include "game/loop/game_loop.hpp"
 #include <stdexcept>
 #include <algorithm>
 

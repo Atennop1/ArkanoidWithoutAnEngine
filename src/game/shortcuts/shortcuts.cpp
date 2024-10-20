@@ -1,4 +1,4 @@
-﻿#include "shortcuts.hpp"
+﻿#include "game/shortcuts/shortcuts.hpp"
 
 namespace arkanoid
 {

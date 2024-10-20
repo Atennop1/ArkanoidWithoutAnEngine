@@ -1,4 +1,4 @@
-#include "test_object.hpp"
+#include "game/physics/test_object.hpp"
 
 namespace arkanoid
 {

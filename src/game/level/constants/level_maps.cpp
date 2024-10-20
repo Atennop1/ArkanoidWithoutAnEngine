@@ -1,5 +1,6 @@
-﻿#include "level_maps.hpp"
-#include "level_layouts.hpp"
+﻿#include "game/level/level_map.hpp"
+#include "game/level/constants/level_maps.hpp"
+#include "game/level/constants/level_layouts.hpp"
 
 namespace arkanoid
 {
