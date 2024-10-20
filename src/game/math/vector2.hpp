@@ -9,13 +9,10 @@ struct Vector2
 {
 public:
     Vector2(float x = 0, float y = 0);
-    Vector2(Vector2 &vector) : Vector2(vector.X(), vector.Y()) { }
-    Vector2(Vector2 &&vector) : Vector2(vector.X(), vector.Y()) { }
+    Vector2(Vector2 &vector) : Vector2(vector.x, vector.y) { }
+    Vector2(Vector2 &&vector) : Vector2(vector.x, vector.y) { }
 
-    float X() const { return x; }
-    float Y() const { return y; }
-
-    float Magnitude() const { return std::sqrt(std::pow(X(), 2) + std::pow(Y(), 2)); }
+    float Magnitude() const { return std::sqrt(std::pow(x, 2) + std::pow(y, 2)); }
     float SquaredMagnitude() const { return std::pow(Magnitude(), 2); }
     Vector2 Normalized() const { return *this / Magnitude(); }
 
@@ -48,7 +45,6 @@ public:
     friend Vector2 operator*=(float number, Vector2 vector) { return vector.operator*=(number); }
     friend Vector2 operator/=(float number, Vector2 vector) { return vector.operator/=(number); }
 
-private:
     float x;
     float y;
 };

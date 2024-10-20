@@ -8,10 +8,10 @@ TestObject::TestObject(PhysicalProperties properties, WindowReferences reference
 void TestObject::Update(float delta)
 {
     SDL_Rect rect;
-    rect.x = Properties().position.X();
-    rect.y = Properties().position.Y();
-    rect.w = Properties().size.X();
-    rect.h = Properties().size.Y();
+    rect.x = Properties().position.x;
+    rect.y = Properties().position.y;
+    rect.w = Properties().size.x;
+    rect.h = Properties().size.y;
 
     SDL_SetRenderDrawColor(references_.Renderer(), 255, 255, 255, 255);
     SDL_RenderDrawRect(references_.Renderer(), &rect);
@@ -19,6 +19,6 @@ void TestObject::Update(float delta)
 
 void TestObject::HandleCollisionStart(IPhysicsObject *other)
 {
-    Properties().velocity = Vector2(-Properties().velocity.X(), Properties().velocity.Y());
+    Properties().velocity.x *= -1;
 }
 }

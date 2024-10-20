@@ -42,8 +42,8 @@ void LevelView::DisplayBrick(SDL_Texture *texture, const Vector2 position) const
 
     temp_rect.h = brick_height_ * RenderingConstants::kScaleMultiplier;
     temp_rect.w = brick_width_ * RenderingConstants::kScaleMultiplier;
-    temp_rect.x = position.X() * RenderingConstants::kScaleMultiplier;
-    temp_rect.y = position.Y() * RenderingConstants::kScaleMultiplier;
+    temp_rect.x = position.x * RenderingConstants::kScaleMultiplier;
+    temp_rect.y = position.y * RenderingConstants::kScaleMultiplier;
 
     SDL_RenderCopy(window_references_.Renderer(), texture, nullptr, &temp_rect);
 }

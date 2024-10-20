@@ -10,29 +10,29 @@ Vector2::Vector2(float x, float y)
 
 Vector2 Vector2::operator=(Vector2 &vector)
 {
-    x = vector.X();
-    y = vector.Y();
+    x = vector.x;
+    y = vector.y;
     return *this;
 }
 
 Vector2 Vector2::operator+(Vector2 &other) const
 {
-    return Vector2(X() + other.X(), Y() + other.Y());
+    return Vector2(x + other.x, y + other.y);
 }
 
 Vector2 Vector2::operator-(Vector2 &other) const
 {
-    return Vector2(X() - other.X(), Y() - other.Y());
+    return Vector2(x - other.x, y - other.y);
 }
 
 Vector2 Vector2::operator*(float number) const
 {
-    return Vector2(X() * number, Y() * number);
+    return Vector2(x * number, y * number);
 }
 
 Vector2 Vector2::operator/(float number) const
 {
-    return Vector2(X() / number, Y() / number);
+    return Vector2(x / number, y / number);
 }
 
 Vector2 Vector2::operator+=(Vector2 &vector)
