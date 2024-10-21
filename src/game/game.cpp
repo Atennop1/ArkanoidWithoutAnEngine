@@ -25,14 +25,14 @@ Game::Game(const WindowReferences &window_references)
 
     auto input = SharedPointer(new Input(application_events));
     auto platform_view = SharedPointer(new PlatformView(window_references));
-    auto platform = SharedPointer(new Platform(PhysicalProperties {{ 100 * 6, 150 * 6 }, { 28 * 6, 7 * 6 } }, platform_view));
+    auto platform = SharedPointer(new Platform(PhysicalProperties {{ 110 * 6, 150 * 6 }, { 28 * 6, 7 * 6 } }, platform_view));
     auto platform_controller = SharedPointer(new PlatformController(platform, input));
 
     auto level_view = SharedPointer(new LevelView(window_references));
     auto level = SharedPointer(new Level(LevelMaps::First(), level_view));
 
-    auto test_object = SharedPointer(new TestObject(PhysicalProperties {{ 500, 500 }, { 50, 50 }, { 1, 1 }, { 10, 10} }, window_references));
-    auto test_object2 = SharedPointer(new TestObject(PhysicalProperties {{ 1000, 500 }, { 50, 50 }, { -1, 1 }, { -10, 10} }, window_references));
+    auto test_object = SharedPointer(new TestObject(PhysicalProperties {{ 100, 500 }, { 50, 50 }, { 1, 1 }, { 10, 10} }, window_references));
+    auto test_object2 = SharedPointer(new TestObject(PhysicalProperties {{ 600, 500 }, { 50, 50 }, { -1, 1 }, { -10, 10} }, window_references));
     auto physics_simulation = SharedPointer(new PhysicsSimulation({ test_object, test_object2, platform }));
 
     game_loop_->Add(application_events); // SYSTEM COMPONENT: gets all events from SDL2

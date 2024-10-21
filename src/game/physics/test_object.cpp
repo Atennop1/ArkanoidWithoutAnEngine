@@ -8,8 +8,8 @@ TestObject::TestObject(PhysicalProperties properties, WindowReferences reference
 void TestObject::Update(float delta)
 {
     SDL_Rect rect;
-    rect.x = Properties().position.x;
-    rect.y = Properties().position.y;
+    rect.x = Properties().Left();
+    rect.y = Properties().Bottom();
     rect.w = Properties().size.x;
     rect.h = Properties().size.y;
 
