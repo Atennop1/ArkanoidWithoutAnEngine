@@ -1,4 +1,6 @@
 #include "game/physics/test_object.hpp"
+#include "game/shortcuts/shortcuts.hpp"
+#include "game/shortcuts/render_colors.hpp"
 
 namespace arkanoid
 {
@@ -7,13 +9,8 @@ TestObject::TestObject(PhysicalProperties properties, WindowReferences reference
 
 void TestObject::Update(float delta)
 {
-    SDL_Rect rect;
-    rect.x = Properties().Left();
-    rect.y = Properties().Bottom();
-    rect.w = Properties().size.x;
-    rect.h = Properties().size.y;
-
-    SDL_SetRenderDrawColor(references_.Renderer(), 255, 255, 255, 255);
+    SDL_Rect rect = Shortcuts::PhysicalPropertiesToRect(Properties());
+    Shortcuts::SelectColor(references_.Renderer(), RenderColors::kWhiteColor);
     SDL_RenderDrawRect(references_.Renderer(), &rect);
 }
 

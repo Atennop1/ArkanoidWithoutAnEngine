@@ -1,6 +1,7 @@
 #include "game/level/level_view.hpp"
-#include "game/rendering/rendering_constants.hpp"
 #include "SDL_image.h"
+#include "game/shortcuts/shortcuts.hpp"
+#include "game/rendering/rendering_constants.hpp"
 
 namespace arkanoid
 {
@@ -8,11 +9,10 @@ LevelView::LevelView(const WindowReferences &window_references) : window_referen
 {
     blue_brick_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/blue_brick.png");
     violet_brick_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/violet_brick.png");
+    SDL_QueryTexture(blue_brick_texture_, nullptr, nullptr, &brick_width_, &brick_height_);
 
-    SDL_Rect temp_rect { };
-    SDL_QueryTexture(blue_brick_texture_, nullptr, nullptr, &temp_rect.w, &temp_rect.h);
-    brick_height_ = temp_rect.h;
-    brick_width_ = temp_rect.w;
+    brick_width_ *= RenderingConstants::kScaleMultiplier;
+    brick_height_ *= RenderingConstants::kScaleMultiplier;
 }
 
 LevelView::~LevelView()
@@ -31,20 +31,9 @@ void LevelView::Display(const LevelMap &map) const
                 continue;
 
             SDL_Texture *texture = map[i][j] == 1 ? violet_brick_texture_ : blue_brick_texture_;
-            DisplayBrick(texture, Vector2(level_offset_x_ + (brick_width_ + 1.0f) * j, level_offset_y_ + (brick_height_ + 1.0f) * i));
+            SDL_Rect rect = Shortcuts::PositionAndTextureToRect(Vector2(level_offset_x_ + (brick_width_ + 6.0f) * j, level_offset_y_ + (brick_height_ + 6.0f) * i), texture);
+            SDL_RenderCopy(window_references_.Renderer(), texture, nullptr, &rect);
         }
     }
-}
-
-void LevelView::DisplayBrick(SDL_Texture *texture, const Vector2 position) const
-{
-    SDL_Rect temp_rect { };
-
-    temp_rect.h = brick_height_ * RenderingConstants::kScaleMultiplier;
-    temp_rect.w = brick_width_ * RenderingConstants::kScaleMultiplier;
-    temp_rect.x = position.x * RenderingConstants::kScaleMultiplier;
-    temp_rect.y = position.y * RenderingConstants::kScaleMultiplier;
-
-    SDL_RenderCopy(window_references_.Renderer(), texture, nullptr, &temp_rect);
 }
 }
