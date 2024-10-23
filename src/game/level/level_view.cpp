@@ -1,7 +1,6 @@
 #include "game/level/level_view.hpp"
-#include "SDL_image.h"
 #include "game/shortcuts/shortcuts.hpp"
-#include "game/rendering/rendering_constants.hpp"
+#include "SDL_image.h"
 
 namespace arkanoid
 {
@@ -9,10 +8,6 @@ LevelView::LevelView(const WindowReferences &window_references) : window_referen
 {
     blue_brick_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/blue_brick.png");
     violet_brick_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/violet_brick.png");
-    SDL_QueryTexture(blue_brick_texture_, nullptr, nullptr, &brick_width_, &brick_height_);
-
-    brick_width_ *= RenderingConstants::kScaleMultiplier;
-    brick_height_ *= RenderingConstants::kScaleMultiplier;
 }
 
 LevelView::~LevelView()
@@ -21,17 +16,17 @@ LevelView::~LevelView()
     SDL_DestroyTexture(violet_brick_texture_);
 }
 
-void LevelView::Display(const LevelMap &map) const
+void LevelView::Display(const std::vector<std::vector<SharedPointer<Brick>>>& map) const
 {
-    for (int i = 0; i < 14; i++)
+    for (auto line : map)
     {
-        for (int j = 0; j < 12; j++)
+        for (auto brick : line)
         {
-            if (map[i][j] == 0)
+            if (brick->Type() == BrickType::kNone || brick->IsDestroyed())
                 continue;
 
-            SDL_Texture *texture = map[i][j] == 1 ? violet_brick_texture_ : blue_brick_texture_;
-            SDL_Rect rect = Shortcuts::PositionAndTextureToRect(Vector2(level_offset_x_ + (brick_width_ + 6.0f) * j, level_offset_y_ + (brick_height_ + 6.0f) * i), texture);
+            SDL_Texture *texture = brick->Type() == BrickType::kViolet ? violet_brick_texture_ : blue_brick_texture_;
+            SDL_Rect rect = Shortcuts::PhysicalPropertiesToRect(brick->Properties());
             SDL_RenderCopy(window_references_.Renderer(), texture, nullptr, &rect);
         }
     }

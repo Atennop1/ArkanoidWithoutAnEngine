@@ -13,21 +13,21 @@ void Input::Update(float delta)
 
     for (auto event : events)
     {
-        KeyType key_type = kNone;
+        KeyType key_type = KeyType::kNone;
         switch (event->key.keysym.sym)
         {
             case SDLK_a:
             case SDLK_LEFT:
-                key_type = kLeft;
+                key_type = KeyType::kLeft;
                 break;
 
             case SDLK_d:
             case SDLK_RIGHT:
-                key_type = kRight;
+                key_type = KeyType::kRight;
                 break;
 
             case SDLK_SPACE:
-                key_type = kSpace;
+                key_type = KeyType::kSpace;
                 break;
         }
 

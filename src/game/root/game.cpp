@@ -1,4 +1,4 @@
-﻿#include "game/game.hpp"
+﻿#include "game/root/game.hpp"
 #include "game/loop/time/average_game_time.hpp"
 #include "game/rendering/screen_cleaner.hpp"
 #include "game/rendering/screen_applier.hpp"
@@ -10,7 +10,8 @@
 #include "game/level/level.hpp"
 #include "game/physics/test_object.hpp"
 #include "game/physics/physics_simulation.hpp"
-#include "game/level/constants/level_maps.hpp"
+#include "game/level/level_layouts.hpp"
+#include "game/root/level_factory.hpp"
 
 namespace arkanoid
 {
@@ -28,12 +29,13 @@ Game::Game(const WindowReferences &window_references)
     auto platform = SharedPointer(new Platform(PhysicalProperties {{ 110 * 6, 150 * 6 }, { 28 * 6, 7 * 6 } }, platform_view));
     auto platform_controller = SharedPointer(new PlatformController(platform, input));
 
-    auto level_view = SharedPointer(new LevelView(window_references));
-    auto level = SharedPointer(new Level(LevelMaps::First(), level_view));
-
     auto test_object = SharedPointer(new TestObject(PhysicalProperties {{ 500, 500 }, { 50, 50 }, { 1, 1 }, { 10, 10} }, window_references));
-    auto test_object2 = SharedPointer(new TestObject(PhysicalProperties {{ 1000, 500 }, { 50, 50 }, { -1, 1 }, { -10, 10} }, window_references));
+    auto test_object2 = SharedPointer(new TestObject(PhysicalProperties {{ 1500, 100 }, { 50, 50 }, { -1, 1 }, { -10, 10} }, window_references));
     auto physics_simulation = SharedPointer(new PhysicsSimulation({ test_object, test_object2, platform }));
+
+    auto level_view = SharedPointer(new LevelView(window_references));
+    auto level_factory = LevelFactory();
+    auto level = SharedPointer(new Level(level_factory.MakeMap(LevelLayouts::First(), physics_simulation.Get()), level_view));
 
     game_loop_->Add(application_events); // SYSTEM COMPONENT: gets all events from SDL2
     game_loop_->Add(physics_simulation); // SYSTEM COMPONENT: updates all physics before other logic

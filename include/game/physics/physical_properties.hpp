@@ -8,7 +8,7 @@ namespace arkanoid
 struct PhysicalProperties
 {
 public:
-    explicit PhysicalProperties(Vector2 new_position = { }, Vector2 new_size = { }, Vector2 new_velocity = { }, Vector2 new_acceleration = { })
+    explicit PhysicalProperties(Vector2 new_position = { }, Vector2 new_size = { 1, 1 }, Vector2 new_velocity = { }, Vector2 new_acceleration = { })
         : position(new_position), size(new_size), velocity(new_velocity), acceleration(new_acceleration) { }
 
     float Left() { return position.x - size.x / 2.f; }

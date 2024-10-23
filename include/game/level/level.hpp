@@ -2,21 +2,22 @@
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_LEVEL_HPP_
 
 #include "level_view.hpp"
-#include "level_map.hpp"
 #include "game/loop/objects/game_loop_object.hpp"
+#include "brick.hpp"
 #include "tools/shared_pointer.hpp"
+#include <vector>
 
 namespace arkanoid
 {
 class Level : public IGameLoopObject
 {
 public:
-    Level(const LevelMap &map, const SharedPointer<LevelView> &level_view);
+    Level(const std::vector<std::vector<SharedPointer<Brick>>> &map, const SharedPointer<LevelView> &level_view);
 
     void Update(float delta) override;
 
 private:
-    const LevelMap &map_;
+    std::vector<std::vector<SharedPointer<Brick>>> map_;
     const SharedPointer<LevelView> level_view_;
 };
 }

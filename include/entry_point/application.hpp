@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_ENTRY_POINT_APPLICATION_HPP_
 
 #include "game/rendering/window_references.hpp"
-#include "game/game.hpp"
+#include "game/root/game.hpp"
 
 namespace arkanoid
 {

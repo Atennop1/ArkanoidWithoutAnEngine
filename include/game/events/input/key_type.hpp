@@ -3,7 +3,7 @@
 
 namespace arkanoid
 {
-enum KeyType
+enum class KeyType
 {
     kNone,
     kRight,

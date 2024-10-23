@@ -40,4 +40,11 @@ SDL_Rect Shortcuts::PositionAndTextureToRect(Vector2 position, SDL_Texture *text
 
     return rect;
 }
+
+PhysicalProperties Shortcuts::TextureToPhysicalProperties(SDL_Texture *texture)
+{
+    SDL_Rect rect = { };
+    SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
+    return PhysicalProperties({ }, { float(rect.w), float(rect.h) });
+}
 }

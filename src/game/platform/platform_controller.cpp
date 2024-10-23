@@ -7,8 +7,8 @@ PlatformController::PlatformController(SharedPointer<Platform> &platform, const 
 
 void PlatformController::Update(float delta)
 {
-    const bool kIsLeftKeyPressed = input_->IsKeyPressed(kLeft);
-    const bool kIsRightKeyPressed = input_->IsKeyPressed(kRight);
+    const bool kIsLeftKeyPressed = input_->IsKeyPressed(KeyType::kLeft);
+    const bool kIsRightKeyPressed = input_->IsKeyPressed(KeyType::kRight);
 
     if (kIsLeftKeyPressed ^ kIsRightKeyPressed)
         platform_->Move(Vector2(move_speed_ * (kIsLeftKeyPressed ? -1.0f : 1.0f) * delta, 0.0f));
