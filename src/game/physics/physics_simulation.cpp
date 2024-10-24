@@ -21,7 +21,7 @@ void PhysicsSimulation::Update(float delta)
         {
             for (auto object2 : objects_)
             {
-                if (object == object2)
+                if (auto find_iterator = std::find_if(collisions.begin(), collisions.end(), [&](auto pair) { return pair.first == object.Get(); }); find_iterator != collisions.end() || object == object2)
                     continue;
 
                 if (object->Properties().Right() >= object2->Properties().Left()
