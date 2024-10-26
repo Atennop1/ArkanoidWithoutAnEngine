@@ -14,8 +14,6 @@ public:
     static SDL_Rect PhysicalPropertiesToRect(PhysicalProperties properties);
     static SDL_Rect PositionAndSizeToRect(Vector2 position, Vector2 size);
     static SDL_Rect PositionAndTextureToRect(Vector2 position, SDL_Texture *texture);
-
-    static PhysicalProperties TextureToPhysicalProperties(SDL_Texture *texture);
 };
 }
 

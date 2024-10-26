@@ -11,13 +11,10 @@ class Brick : public IGameObject
 public:
     Brick(PhysicalProperties properties, BrickType type);
 
-    void Destroy() { is_destroyed_ = true; }
-    bool IsDestroyed() { return is_destroyed_; }
     BrickType Type() { return type_; }
 
 private:
     BrickType type_;
-    bool is_destroyed_ = false;
 };
 }
 

@@ -19,7 +19,11 @@ public:
     virtual void HandleCollisionStart(IPhysicsObject* other) { }
     virtual PhysicalProperties& Properties() { return properties_; }
 
+    virtual void Destroy() { is_destroyed_ = true; }
+    virtual bool IsDestroyed() { return is_destroyed_; }
+
 private:
+    bool is_destroyed_ = false;
     PhysicalProperties properties_;
 };
 }

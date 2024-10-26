@@ -28,7 +28,7 @@ Game::Game(const WindowReferences &window_references)
 
     auto input = SharedPointer(new Input(application_events));
     auto platform_view = SharedPointer(new PlatformView(window_references));
-    auto platform = SharedPointer(new Platform(PhysicalProperties { { 103.5 * 6, 150 * 6 }, { 28 * 6, 7 * 6 } }, platform_view));
+    auto platform = SharedPointer(new Platform(PhysicalProperties { { 103.5 * 6, 150 * 6 }, { 28 * 6, 5 * 6 } }, platform_view));
     auto platform_controller = SharedPointer(new PlatformController(platform, input));
     physics_simulation->Add(platform);
 
@@ -37,7 +37,7 @@ Game::Game(const WindowReferences &window_references)
     auto level = SharedPointer(new Level(level_factory.MakeMap(LevelLayouts::First(), physics_simulation.Get()), level_view));
 
     auto ball_view = SharedPointer(new BallView(window_references));
-    auto ball = SharedPointer(new Ball(PhysicalProperties { { 103.5 * 6, 100 * 6 }, { 4 * 6, 4 * 6 }, { 10, -50} }, ball_view));
+    auto ball = SharedPointer(new Ball(PhysicalProperties { { 103.5 * 6, 100 * 6 }, { 4 * 6, 4 * 6 }, { -200, -200} }, ball_view));
     physics_simulation->Add(ball);
 
     game_loop_->Add(application_events); // SYSTEM COMPONENT: gets all events from SDL2

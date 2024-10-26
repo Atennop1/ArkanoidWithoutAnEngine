@@ -14,12 +14,20 @@ void GameLoop::Activate()
         if (!game_time_->IsActive())
             continue;
 
+        for (auto &updatable: objects_)
+        {
+            if (updatable->IsDestroyed())
+            {
+                std::remove(objects_.begin(), objects_.end(), updatable);
+            }
+        }
+
         float delta = game_time_->Delta();
         for (auto &updatable: objects_)
             updatable->Update(delta);
 
         if (!events_->GetEventsOfType(SDL_QUIT).empty())
-          is_active_ = false;
+            is_active_ = false;
     }
 }
 

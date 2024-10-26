@@ -8,6 +8,12 @@ class IGameLoopObject
 public:
     virtual ~IGameLoopObject() = default;
     virtual void Update(float delta) = 0;
+
+    virtual void Destroy() { is_destroyed_ = true; }
+    virtual bool IsDestroyed() { return is_destroyed_; }
+
+private:
+    bool is_destroyed_ = false;
 };
 }
 

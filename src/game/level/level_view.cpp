@@ -22,7 +22,7 @@ void LevelView::Display(const std::vector<std::vector<SharedPointer<Brick>>>& ma
     {
         for (auto brick : line)
         {
-            if (brick->Type() == BrickType::kNone || brick->IsDestroyed())
+            if (brick->Type() == BrickType::kNone)
                 continue;
 
             SDL_Texture *texture = brick->Type() == BrickType::kViolet ? violet_brick_texture_ : blue_brick_texture_;
