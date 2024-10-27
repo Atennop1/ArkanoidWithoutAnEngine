@@ -7,6 +7,9 @@ Level::Level(const std::vector<std::vector<SharedPointer<Brick>>> &map, const Sh
 
 void Level::Update(float delta)
 {
+    for (auto &line : map_)
+        line.erase(std::remove_if(line.begin(), line.end(), [](auto brick) { return brick->IsDestroyed(); }), line.end());
+
     level_view_->Display(map_);
 }
 }

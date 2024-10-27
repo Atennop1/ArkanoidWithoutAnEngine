@@ -10,11 +10,9 @@ void PhysicsSimulation::Update(float delta)
 
     while (last_update_time_ < elapsed_time_)
     {
-        for (auto &physics_object: objects_)
-            if (physics_object->IsDestroyed())
-                std::remove(objects_.begin(), objects_.end(), physics_object), objects_.end();
-
         std::list<std::pair<IPhysicsObject*, IPhysicsObject*>> collisions { };
+        objects_.erase(std::remove_if(objects_.begin(), objects_.end(), [](auto physics_object) { return physics_object->IsDestroyed(); }), objects_.end());
+
         for (auto physics_object : objects_)
         {
             physics_object->Properties().velocity = physics_object->Properties().velocity + physics_object->Properties().acceleration * time_step_;
