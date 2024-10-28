@@ -1,5 +1,5 @@
 #include "game/level/level_view.hpp"
-#include "game/shortcuts/shortcuts.hpp"
+#include "tools/shortcuts/shortcuts.hpp"
 #include "SDL_image.h"
 
 namespace arkanoid

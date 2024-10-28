@@ -2,7 +2,6 @@
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_LEVEL_HPP_
 
 #include "level_view.hpp"
-#include "game/loop/objects/game_loop_object.hpp"
 #include "brick.hpp"
 #include "tools/shared_pointer.hpp"
 #include <vector>

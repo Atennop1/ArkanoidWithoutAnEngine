@@ -1,8 +1,8 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_BRICK_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_BRICK_HPP_
 
-#include "game/loop/objects/game_object.hpp"
 #include "brick_type.hpp"
+#include "engine/loop/objects/game_object.hpp"
 
 namespace arkanoid
 {

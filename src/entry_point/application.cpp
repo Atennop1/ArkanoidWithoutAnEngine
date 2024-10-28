@@ -1,5 +1,5 @@
 ﻿#include "entry_point/application.hpp"
-#include "game/rendering/rendering_constants.hpp"
+#include "engine/rendering/rendering_constants.hpp"
 
 namespace arkanoid
 {

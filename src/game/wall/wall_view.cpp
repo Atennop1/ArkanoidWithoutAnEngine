@@ -1,6 +1,6 @@
 #include <SDL_image.h>
 #include "game/wall/wall_view.hpp"
-#include "game/shortcuts/shortcuts.hpp"
+#include "tools/shortcuts/shortcuts.hpp"
 
 namespace arkanoid
 {

@@ -1,9 +1,9 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_WALL_WALL_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_WALL_WALL_HPP_
 
-#include "game/loop/objects/game_object.hpp"
 #include "wall_view.hpp"
 #include "tools/shared_pointer.hpp"
+#include "engine/loop/objects/game_object.hpp"
 
 namespace arkanoid
 {

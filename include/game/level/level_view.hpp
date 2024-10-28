@@ -1,11 +1,10 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_LEVEL_VIEW_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_LEVEL_VIEW_HPP_
 
-#include "game/rendering/window_references.hpp"
-#include "game/math/vector2.hpp"
 #include "brick.hpp"
 #include "tools/shared_pointer.hpp"
 #include "SDL.h"
+#include "engine/rendering/window_references.hpp"
 #include <vector>
 
 namespace arkanoid

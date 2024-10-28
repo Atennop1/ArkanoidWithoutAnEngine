@@ -2,7 +2,10 @@
 
 namespace arkanoid
 {
-std::vector<std::vector<SharedPointer<Brick>>> LevelFactory::CreateMap(const std::vector<std::vector<BrickType>> &layout, PhysicsSimulation *simulation)
+LevelFactory::LevelFactory(PhysicsSimulation *physics_simulation)
+    : physics_simulation_(physics_simulation) { }
+
+std::vector<std::vector<SharedPointer<Brick>>> LevelFactory::CreateMap(const std::vector<std::vector<BrickType>> &layout)
 {
     auto result = std::vector<std::vector<SharedPointer<Brick>>> { };
 
@@ -17,7 +20,7 @@ std::vector<std::vector<SharedPointer<Brick>>> LevelFactory::CreateMap(const std
             auto position = Vector2(level_offset_x_ + (brick_width_ + 1.0f) * j, level_offset_y_ + (brick_height_ + 1.0f) * i);
             auto brick = SharedPointer(new Brick(PhysicalProperties { position, { float(brick_width_), float(brick_height_) }}, layout[i][j]));
 
-            simulation->Add(brick);
+            physics_simulation_->Add(brick);
             result[i].push_back(brick);
         }
     }

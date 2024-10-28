@@ -3,7 +3,7 @@
 
 #include "platform_view.hpp"
 #include "tools/shared_pointer.hpp"
-#include "game/loop/objects/game_object.hpp"
+#include "engine/loop/objects/game_object.hpp"
 
 namespace arkanoid
 {

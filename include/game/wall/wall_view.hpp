@@ -1,8 +1,8 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_WALL_WALL_VIEW_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_WALL_WALL_VIEW_HPP_
 
-#include "game/rendering/window_references.hpp"
-#include "game/math/vector2.hpp"
+#include "engine/rendering/window_references.hpp"
+#include "engine/math/vector2.hpp"
 
 namespace arkanoid
 {

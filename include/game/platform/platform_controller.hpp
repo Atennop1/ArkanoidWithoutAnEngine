@@ -2,7 +2,7 @@
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_PLATFORM_PLATFORM_CONTROLLER_HPP_
 
 #include "platform.hpp"
-#include "game/events/input/input.hpp"
+#include "engine/events/input/input.hpp"
 
 namespace arkanoid
 {

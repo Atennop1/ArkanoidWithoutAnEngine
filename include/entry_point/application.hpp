@@ -1,8 +1,8 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_ENTRY_POINT_APPLICATION_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_ENTRY_POINT_APPLICATION_HPP_
 
-#include "game/rendering/window_references.hpp"
 #include "game/root/game.hpp"
+#include "engine/rendering/window_references.hpp"
 
 namespace arkanoid
 {
