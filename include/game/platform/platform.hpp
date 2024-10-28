@@ -11,9 +11,10 @@ class Platform : public IGameObject
 {
 public:
     Platform(PhysicalProperties properties, SharedPointer<PlatformView> &platform_view);
-
-    void Update(float delta) override;
     void Move(Vector2 move_vector);
+
+    virtual void Update(float delta) override;
+    virtual void HandleCollisionStart(IPhysicsObject *other) override;
 
 private:
     SharedPointer<PlatformView> platform_view_;

@@ -35,8 +35,8 @@ SDL_Rect Shortcuts::PositionAndTextureToRect(Vector2 position, SDL_Texture *text
 
     rect.h = rect.h * RenderingConstants::kScaleMultiplier;
     rect.w = rect.w * RenderingConstants::kScaleMultiplier;
-    rect.x = position.x - rect.w / 2;
-    rect.y = position.y - rect.h / 2;
+    rect.x = position.x * RenderingConstants::kScaleMultiplier - rect.w / 2;
+    rect.y = position.y * RenderingConstants::kScaleMultiplier - rect.h / 2;
 
     return rect;
 }

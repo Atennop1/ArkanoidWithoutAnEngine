@@ -35,7 +35,7 @@ void Ball::HandleCollisionStart(IPhysicsObject *other)
         return;
     }
 
-    if (abs(min_overlap_x) < abs(min_overlap_y)) { Properties().velocity.x = abs(Properties().velocity.x) * (ball_from_left ? -1 : 1); }
+    if (abs(min_overlap_x) <= abs(min_overlap_y)) { Properties().velocity.x = abs(Properties().velocity.x) * (ball_from_left ? -1 : 1); }
     else { Properties().velocity.y = abs(Properties().velocity.y) * (ball_from_top ? -1 : 1); }
 }
 }

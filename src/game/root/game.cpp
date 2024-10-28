@@ -13,6 +13,9 @@
 #include "game/root/level_factory.hpp"
 #include "game/ball/ball_view.hpp"
 #include "game/ball/ball.hpp"
+#include "game/wall/wall_view.hpp"
+#include "game/wall/wall.hpp"
+#include "game/root/wall_factory.hpp"
 
 namespace arkanoid
 {
@@ -28,17 +31,25 @@ Game::Game(const WindowReferences &window_references)
 
     auto input = SharedPointer(new Input(application_events));
     auto platform_view = SharedPointer(new PlatformView(window_references));
-    auto platform = SharedPointer(new Platform(PhysicalProperties { { 103.5 * 6, 150 * 6 }, { 28 * 6, 5 * 6 } }, platform_view));
+    auto platform = SharedPointer(new Platform(PhysicalProperties { { 103.5, 150 }, { 28, 5 } }, platform_view));
     auto platform_controller = SharedPointer(new PlatformController(platform, input));
     physics_simulation->Add(platform);
 
     auto level_factory = LevelFactory();
     auto level_view = SharedPointer(new LevelView(window_references));
-    auto level = SharedPointer(new Level(level_factory.MakeMap(LevelLayouts::First(), physics_simulation.Get()), level_view));
+    auto level = SharedPointer(new Level(level_factory.CreateMap(LevelLayouts::First(), physics_simulation.Get()), level_view));
 
     auto ball_view = SharedPointer(new BallView(window_references));
-    auto ball = SharedPointer(new Ball(PhysicalProperties { { 103.5 * 6, 100 * 6 }, { 4 * 6, 4 * 6 }, { -200, -200} }, ball_view));
+    auto ball = SharedPointer(new Ball(PhysicalProperties { { 103.5, 100 }, { 4, 4 }, { -35, -35 } }, ball_view));
     physics_simulation->Add(ball);
+
+    auto wall_factory = WallFactory();
+    auto left_wall = wall_factory.CreateWall(window_references, "assets/sprites/left_wall.png", PhysicalProperties { { 4, 101 }, { 4, 200 } });
+    auto up_wall = wall_factory.CreateWall(window_references, "assets/sprites/up_wall.png", PhysicalProperties { { 103, 3 }, { 200, 4 } });
+    auto right_wall = wall_factory.CreateWall(window_references, "assets/sprites/right_wall.png", PhysicalProperties { { 202, 101 }, { 4, 200 } });
+    physics_simulation->Add(left_wall);
+    physics_simulation->Add(up_wall);
+    physics_simulation->Add(right_wall);
 
     game_loop_->Add(application_events); // SYSTEM COMPONENT: gets all events from SDL2
     game_loop_->Add(physics_simulation); // SYSTEM COMPONENT: updates all physics before other logic
@@ -48,6 +59,9 @@ Game::Game(const WindowReferences &window_references)
     game_loop_->Add(platform);
     game_loop_->Add(level);
     game_loop_->Add(ball);
+    game_loop_->Add(left_wall);
+    game_loop_->Add(up_wall);
+    game_loop_->Add(right_wall);
     game_loop_->Add(screen_applier); // SYSTEM COMPONENT: applies all render that was before this line
 }
 

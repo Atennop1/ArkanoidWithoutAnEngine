@@ -12,14 +12,14 @@ namespace arkanoid
 class LevelFactory
 {
 public:
-    std::vector<std::vector<SharedPointer<Brick>>> MakeMap(const std::vector<std::vector<BrickType>> &layout, PhysicsSimulation *simulation);
+    std::vector<std::vector<SharedPointer<Brick>>> CreateMap(const std::vector<std::vector<BrickType>> &layout, PhysicsSimulation *simulation);
 
 private:
-    const float level_offset_x_ = 93.0f;
-    const float level_offset_y_ = 36.0f;
+    const float level_offset_x_ = 15.0f;
+    const float level_offset_y_ = 6.0f;
 
-    int brick_width_ = 15 * 6;
-    int brick_height_ = 7 * 6;
+    int brick_width_ = 15;
+    int brick_height_ = 7;
 };
 }
 
