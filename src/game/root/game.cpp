@@ -36,7 +36,7 @@ Game::Game(const WindowReferences &window_references)
     // -----------------------------------------------------------------------------------------------------------------
 
     auto platform_view = SharedPointer(new PlatformView(window_references));
-    auto platform = SharedPointer(new Platform(PhysicalProperties { { 103.5, 150 }, { 28, 5 } }, platform_view));
+    auto platform = SharedPointer(new Platform(PhysicalProperties { { 55 + 103.5, 150 }, { 28, 5 } }, platform_view));
     auto platform_controller = SharedPointer(new PlatformController(platform, input));
     physics_simulation->Add(platform);
     game_loop_->Add(platform_controller);
@@ -48,14 +48,14 @@ Game::Game(const WindowReferences &window_references)
     game_loop_->Add(level);
 
     auto ball_view = SharedPointer(new BallView(window_references));
-    auto ball = SharedPointer(new Ball(PhysicalProperties { { 103.5, 100 }, { 4, 4 }, { -35, -35 } }, ball_view));
+    auto ball = SharedPointer(new Ball(PhysicalProperties { { 55 + 103.5, 100 }, { 4, 4 }, { -35, -35 } }, ball_view));
     physics_simulation->Add(ball);
     game_loop_->Add(ball);
 
     auto wall_factory = WallFactory(game_loop_.Get(), physics_simulation.Get());
-    auto left_wall = wall_factory.Create(window_references, "assets/sprites/left_wall.png", PhysicalProperties { { 4, 101 }, { 4, 200 } });
-    auto up_wall = wall_factory.Create(window_references, "assets/sprites/up_wall.png", PhysicalProperties { { 103, 3 }, { 200, 4 } });
-    auto right_wall = wall_factory.Create(window_references, "assets/sprites/right_wall.png", PhysicalProperties { { 202, 101 }, { 4, 200 } });
+    auto left_wall = wall_factory.Create(window_references, "assets/sprites/left_wall.png", PhysicalProperties { { 55 + 4, 101 }, { 4, 200 } });
+    auto up_wall = wall_factory.Create(window_references, "assets/sprites/up_wall.png", PhysicalProperties { { 55 + 103, 3 }, { 200, 4 } });
+    auto right_wall = wall_factory.Create(window_references, "assets/sprites/right_wall.png", PhysicalProperties { { 55 + 202, 101 }, { 4, 200 } });
 
     // -----------------------------------------------------------------------------------------------------------------
 

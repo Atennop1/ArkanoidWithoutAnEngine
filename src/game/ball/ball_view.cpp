@@ -16,7 +16,7 @@ BallView::~BallView()
 
 void BallView::Display(Vector2 position) const
 {
-    SDL_Rect rect = Shortcuts::PositionAndTextureToRect(position, ball_texture_);
-    SDL_RenderCopy(window_references_.Renderer(), ball_texture_, nullptr, &rect);
+    SDL_FRect rect = Shortcuts::PositionAndTextureToRect(position, ball_texture_);
+    SDL_RenderCopyF(window_references_.Renderer(), ball_texture_, nullptr, &rect);
 }
 }

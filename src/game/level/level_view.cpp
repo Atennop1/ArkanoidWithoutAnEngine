@@ -26,8 +26,8 @@ void LevelView::Display(const std::vector<std::vector<SharedPointer<Brick>>>& ma
                 continue;
 
             SDL_Texture *texture = brick->Type() == BrickType::kViolet ? violet_brick_texture_ : blue_brick_texture_;
-            SDL_Rect rect = Shortcuts::PositionAndTextureToRect(brick->Properties().position, texture);
-            SDL_RenderCopy(window_references_.Renderer(), texture, nullptr, &rect);
+            SDL_FRect rect = Shortcuts::PositionAndTextureToRect(brick->Properties().position, texture);
+            SDL_RenderCopyF(window_references_.Renderer(), texture, nullptr, &rect);
         }
     }
 }
