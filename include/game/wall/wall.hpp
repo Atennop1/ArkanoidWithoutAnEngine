@@ -1,21 +1,22 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_WALL_WALL_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_WALL_WALL_HPP_
 
+#include <genesis/physics/physical_properties.hpp>
+#include <genesis/memory/shared_pointer.hpp>
+#include <genesis/loop/objects/game_object.hpp>
 #include "wall_view.hpp"
-#include "tools/shared_pointer.hpp"
-#include "engine/loop/objects/game_object.hpp"
 
 namespace arkanoid
 {
-class Wall : public IGameObject
+class Wall : public genesis::IGameObject
 {
 public:
-    Wall(PhysicalProperties physical_properties, SharedPointer<WallView> wall_view);
+    Wall(genesis::PhysicalProperties physical_properties, genesis::SharedPointer<WallView> wall_view);
 
     virtual void Update(float delta) override;
 
 private:
-    SharedPointer<WallView> wall_view_;
+    genesis::SharedPointer<WallView> wall_view_;
 };
 }
 

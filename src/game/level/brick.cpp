@@ -2,6 +2,6 @@
 
 namespace arkanoid
 {
-Brick::Brick(PhysicalProperties properties, BrickType type)
+Brick::Brick(genesis::PhysicalProperties properties, BrickType type)
     : IGameObject(properties), type_(type) { }
 }

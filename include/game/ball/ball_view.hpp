@@ -1,22 +1,23 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_BALL_BALL_VIEW_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_BALL_BALL_VIEW_HPP_
 
-#include "engine/rendering/window_references.hpp"
-#include "engine/math/vector2.hpp"
+#include "genesis/math/vector2.hpp"
+#include "genesis/rendering/window_references.hpp"
+#include "SDL2/SDL.h"
 
 namespace arkanoid
 {
 class BallView
 {
 public:
-    explicit BallView(const WindowReferences &window_references);
+    explicit BallView(genesis::WindowReferences window_references);
     ~BallView();
 
-    void Display(Vector2 position) const;
+    void Display(genesis::Vector2 position) const;
 
 private:
     SDL_Texture *ball_texture_;
-    const WindowReferences &window_references_;
+    genesis::WindowReferences window_references_;
 };
 }
 

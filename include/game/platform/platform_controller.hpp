@@ -2,22 +2,22 @@
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_PLATFORM_PLATFORM_CONTROLLER_HPP_
 
 #include "platform.hpp"
-#include "engine/events/input/input.hpp"
+#include "genesis/events/input.hpp"
 
 namespace arkanoid
 {
-class PlatformController : public IGameLoopObject
+class PlatformController : public genesis::IGameLoopObject
 {
 public:
-    PlatformController(SharedPointer<Platform> &platform, const SharedPointer<Input> &input);
+    PlatformController(genesis::SharedPointer<Platform> &platform, genesis::SharedPointer<genesis::Input> input);
 
     void Update(float delta) override;
 
 private:
     const float move_speed_ = 80.0f;
 
-    SharedPointer<Platform> platform_;
-    const SharedPointer<Input> input_;
+    genesis::SharedPointer<Platform> platform_;
+    genesis::SharedPointer<genesis::Input> input_;
 };
 }
 

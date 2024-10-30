@@ -1,22 +1,23 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_PLATFORM_PLATFORM_VIEW_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_PLATFORM_PLATFORM_VIEW_HPP_
 
-#include "engine/rendering/window_references.hpp"
-#include "engine/math/vector2.hpp"
+#include <SDL2/SDL_render.h>
+#include <genesis/rendering/window_references.hpp>
+#include <genesis/math/vector2.hpp>
 
 namespace arkanoid
 {
 class PlatformView
 {
 public:
-    explicit PlatformView(const WindowReferences &window_references);
+    explicit PlatformView(genesis::WindowReferences window_references);
     ~PlatformView();
 
-    void Display(Vector2 position) const;
+    void Display(genesis::Vector2 position) const;
 
 private:
     SDL_Texture *platform_texture_;
-    const WindowReferences &window_references_;
+    genesis::WindowReferences window_references_;
 };
 }
 

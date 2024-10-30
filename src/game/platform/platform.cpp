@@ -3,10 +3,10 @@
 
 namespace arkanoid
 {
-Platform::Platform(PhysicalProperties properties, SharedPointer<PlatformView> &platform_view)
+Platform::Platform(genesis::PhysicalProperties properties, genesis::SharedPointer<PlatformView> &platform_view)
     : IGameObject(properties), platform_view_(platform_view) { }
 
-void Platform::Move(Vector2 move_vector)
+void Platform::Move(genesis::Vector2 move_vector)
 {
     Properties().position += move_vector;
 }

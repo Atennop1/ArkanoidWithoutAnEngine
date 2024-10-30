@@ -2,7 +2,7 @@
 
 namespace arkanoid
 {
-Level::Level(const std::vector<std::vector<SharedPointer<Brick>>> &map, const SharedPointer<LevelView> &level_view)
+Level::Level(const std::vector<std::vector<genesis::SharedPointer<Brick>>> &map, genesis::SharedPointer<LevelView> level_view)
     : map_(map), level_view_(level_view) { }
 
 void Level::Update(float delta)

@@ -2,7 +2,7 @@
 
 namespace arkanoid
 {
-Wall::Wall(PhysicalProperties physical_properties, SharedPointer<WallView> wall_view)
+Wall::Wall(genesis::PhysicalProperties physical_properties, genesis::SharedPointer<WallView> wall_view)
     : IGameObject(physical_properties), wall_view_(wall_view) { }
 
 void Wall::Update(float delta)

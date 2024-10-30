@@ -4,7 +4,7 @@
 
 namespace arkanoid
 {
-Ball::Ball(PhysicalProperties properties, SharedPointer<BallView> ball_view)
+Ball::Ball(genesis::PhysicalProperties properties, genesis::SharedPointer<BallView> ball_view)
     : IGameObject(properties), ball_view_(ball_view) { }
 
 void Ball::Update(float delta)

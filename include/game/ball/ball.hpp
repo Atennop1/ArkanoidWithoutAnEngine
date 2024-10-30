@@ -1,22 +1,22 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_BALL_BALL_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_BALL_BALL_HPP_
 
-#include "tools/shared_pointer.hpp"
+#include "genesis/memory/shared_pointer.hpp"
+#include "genesis/loop/objects/game_object.hpp"
 #include "ball_view.hpp"
-#include "engine/loop/objects/game_object.hpp"
 
 namespace arkanoid
 {
-class Ball : public IGameObject
+class Ball : public genesis::IGameObject
 {
 public:
-    Ball(PhysicalProperties properties, SharedPointer<BallView> ball_view);
+    Ball(genesis::PhysicalProperties properties, genesis::SharedPointer<BallView> ball_view);
 
-    void Update(float delta);
-    void HandleCollisionStart(IPhysicsObject *other) override;
+    virtual void Update(float delta) override;
+    void HandleCollisionStart(genesis::IPhysicsObject *other) override;
 
 private:
-    SharedPointer<BallView> ball_view_;
+    genesis::SharedPointer<BallView> ball_view_;
 };
 }
 

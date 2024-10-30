@@ -3,8 +3,7 @@
 
 #include "game/level/brick.hpp"
 #include "game/level/brick_type.hpp"
-#include "tools/shared_pointer.hpp"
-#include "engine/physics/physics_simulation.hpp"
+#include <genesis/physics/physics_simulation.hpp>
 #include <vector>
 
 namespace arkanoid
@@ -12,9 +11,9 @@ namespace arkanoid
 class LevelFactory
 {
 public:
-    explicit LevelFactory(PhysicsSimulation *physics_simulation);
+    explicit LevelFactory(genesis::PhysicsSimulation *physics_simulation);
 
-    std::vector<std::vector<SharedPointer<Brick>>> CreateMap(const std::vector<std::vector<BrickType>> &layout);
+    std::vector<std::vector<genesis::SharedPointer<Brick>>> CreateMap(const std::vector<std::vector<BrickType>> &layout);
 
 private:
     const float level_offset_x_ = 55 + 15.0f;
@@ -23,7 +22,7 @@ private:
     const int brick_width_ = 15;
     const int brick_height_ = 7;
 
-    PhysicsSimulation *physics_simulation_;
+    genesis::PhysicsSimulation *physics_simulation_;
 };
 }
 

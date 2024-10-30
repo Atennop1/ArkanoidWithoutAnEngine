@@ -1,23 +1,23 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_PLATFORM_PLATFORM_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_PLATFORM_PLATFORM_HPP_
 
+#include <genesis/loop/objects/game_object.hpp>
+#include <genesis/memory/shared_pointer.hpp>
 #include "platform_view.hpp"
-#include "tools/shared_pointer.hpp"
-#include "engine/loop/objects/game_object.hpp"
 
 namespace arkanoid
 {
-class Platform : public IGameObject
+class Platform : public genesis::IGameObject
 {
 public:
-    Platform(PhysicalProperties properties, SharedPointer<PlatformView> &platform_view);
-    void Move(Vector2 move_vector);
+    Platform(genesis::PhysicalProperties properties, genesis::SharedPointer<PlatformView> &platform_view);
+    void Move(genesis::Vector2 move_vector);
 
     virtual void Update(float delta) override;
-    virtual void HandleCollisionStart(IPhysicsObject *other) override;
+    virtual void HandleCollisionStart(genesis::IPhysicsObject *other) override;
 
 private:
-    SharedPointer<PlatformView> platform_view_;
+    genesis::SharedPointer<PlatformView> platform_view_;
 };
 }
 
