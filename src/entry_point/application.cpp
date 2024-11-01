@@ -6,7 +6,7 @@ namespace arkanoid
 Application::Application()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, 320, 180, SDL_WINDOW_FULLSCREEN);
+    SDL_Window *window = SDL_CreateWindow("Popcorn", 0, 0, 320 * 6, 180 * 6, SDL_WINDOW_FULLSCREEN);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
     window_references_ = genesis::WindowReferences(window, renderer);

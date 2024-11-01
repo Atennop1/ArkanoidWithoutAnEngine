@@ -16,7 +16,7 @@ BallView::~BallView()
 
 void BallView::Display(genesis::Vector2 position) const
 {
-    SDL_FRect rect = genesis::Shortcuts::PositionAndTextureToRect(position, ball_texture_);
+    SDL_FRect rect = genesis::Shortcuts::PositionAndTextureToRect(position, ball_texture_, 6, 6);
     SDL_RenderCopyF(window_references_.Renderer(), ball_texture_, nullptr, &rect);
 }
 }

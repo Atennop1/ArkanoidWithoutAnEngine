@@ -57,22 +57,13 @@ endif()
 
 # Create imported target Genesis::Genesis
 add_library(Genesis::Genesis SHARED IMPORTED)
-add_library(SDL2::SDL2 SHARED IMPORTED)
-add_library(SDL2_image::SDL2_image SHARED IMPORTED)
-
-set_target_properties(SDL2::SDL2 PROPERTIES
-  IMPORTED_IMPLIB "${_IMPORT_PREFIX}/Genesis/windows/lib/SDL2.dll"
-)
-
-set_target_properties(SDL2_image::SDL2_image PROPERTIES
-  IMPORTED_IMPLIB "${_IMPORT_PREFIX}/Genesis/windows/lib/SDL2_image.dll"
-)
 
 set_target_properties(Genesis::Genesis PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "\$<\$<NOT:\$<BOOL:1>>:GENESIS_STATIC_DEFINE>"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/Genesis/windows/include"
-  INTERFACE_LINK_LIBRARIES "SDL2::SDL2;SDL2_image::SDL2_image"
+  IMPORTED_LOCATION "${_IMPORT_PREFIX}/Genesis/windows/lib/Genesis.dll"
   IMPORTED_IMPLIB "${_IMPORT_PREFIX}/Genesis/windows/lib/Genesis.dll"
+  INTERFACE_LINK_LIBRARIES "${_IMPORT_PREFIX}/Genesis/windows/lib/libSDL2_image.a"
 )
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)
