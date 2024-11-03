@@ -57,7 +57,7 @@ set_target_properties(Genesis::Genesis PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "\$<\$<NOT:\$<BOOL:0>>:GENESIS_STATIC_DEFINE>"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/Genesis/linux/include"
   IMPORTED_LOCATION "${_IMPORT_PREFIX}/Genesis/linux/lib/libGenesis.a"
-  INTERFACE_LINK_LIBRARIES "${_IMPORT_PREFIX}/Genesis/linux/lib/libSDL2.a;${_IMPORT_PREFIX}/Genesis/linux/lib/libSDL2_image.a"
+  INTERFACE_LINK_LIBRARIES "${_IMPORT_PREFIX}/Genesis/linux/lib/libSDL2.a"
 )
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)

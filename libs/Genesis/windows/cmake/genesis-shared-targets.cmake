@@ -63,7 +63,7 @@ set_target_properties(Genesis::Genesis PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/Genesis/windows/include"
   IMPORTED_LOCATION "${_IMPORT_PREFIX}/Genesis/windows/lib/Genesis.dll"
   IMPORTED_IMPLIB "${_IMPORT_PREFIX}/Genesis/windows/lib/Genesis.dll"
-  INTERFACE_LINK_LIBRARIES "${_IMPORT_PREFIX}/Genesis/windows/lib/libSDL2_image.a"
+  INTERFACE_LINK_LIBRARIES "imagehlp;dinput8;dxguid;dxerr8;user32;gdi32;winmm;imm32;ole32;oleaut32;shell32;version;uuid;setupapi;hid"
 )
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)
