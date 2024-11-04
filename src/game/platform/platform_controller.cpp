@@ -1,5 +1,4 @@
 ﻿#include "game/platform/platform_controller.hpp"
-#include "SDL2/SDL.h"
 
 namespace arkanoid
 {

@@ -11,6 +11,7 @@
 #include "game/root/wall_factory.hpp"
 #include <genesis/rendering/screen_cleaner.hpp>
 #include <genesis/rendering/screen_applier.hpp>
+#include <genesis/exiting/application_exiter.hpp>
 
 namespace arkanoid
 {
@@ -23,11 +24,13 @@ Game::Game(genesis::WindowReferences window_references)
     auto screen_cleaner = genesis::SharedPointer(new genesis::ScreenCleaner(window_references));
     auto physics_simulation = genesis::SharedPointer(new genesis::PhysicsSimulation());
     auto input = genesis::SharedPointer(new genesis::Input(application_events));
+    auto exiter = genesis::SharedPointer(new genesis::ApplicationExiter(input));
 
     game_loop_->Add(application_events); // SYSTEM COMPONENT: gets all events from SDL2
     game_loop_->Add(physics_simulation); // SYSTEM COMPONENT: updates all physics before other logic
     game_loop_->Add(screen_cleaner); // SYSTEM COMPONENT: clearing all render that was before this line
     game_loop_->Add(input); // SYSTEM COMPONENT: reading input from OS
+    game_loop_->Add(exiter); // SYSTEM COMPONENT: exiting from loop by pressing 'Escape'
 
     // GAME LOGIC PART
     // -----------------------------------------------------------------------------------------------------------------
@@ -50,9 +53,9 @@ Game::Game(genesis::WindowReferences window_references)
     game_loop_->Add(ball);
 
     auto wall_factory = WallFactory(game_loop_.Get(), physics_simulation.Get());
-    auto left_wall = wall_factory.Create(window_references, "assets/sprites/left_wall.png", genesis::PhysicalProperties { { 55 + 4, 101 }, { 4, 200 } });
-    auto up_wall = wall_factory.Create(window_references, "assets/sprites/up_wall.png", genesis::PhysicalProperties { { 55 + 103, 3 }, { 200, 4 } });
-    auto right_wall = wall_factory.Create(window_references, "assets/sprites/right_wall.png", genesis::PhysicalProperties { { 55 + 202, 101 }, { 4, 200 } });
+    wall_factory.Create(window_references, "assets/sprites/left_wall.png", genesis::PhysicalProperties { { 55 + 4, 101 }, { 4, 200 } });
+    wall_factory.Create(window_references, "assets/sprites/up_wall.png", genesis::PhysicalProperties { { 55 + 103, 3 }, { 200, 4 } });
+    wall_factory.Create(window_references, "assets/sprites/right_wall.png", genesis::PhysicalProperties { { 55 + 202, 101 }, { 4, 200 } });
 
     // -----------------------------------------------------------------------------------------------------------------
 

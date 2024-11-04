@@ -60,9 +60,9 @@ add_library(Genesis::Genesis SHARED IMPORTED)
 
 set_target_properties(Genesis::Genesis PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "\$<\$<NOT:\$<BOOL:1>>:GENESIS_STATIC_DEFINE>"
-  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/Genesis/windows/include"
-  IMPORTED_LOCATION "${_IMPORT_PREFIX}/Genesis/windows/lib/Genesis.dll"
-  IMPORTED_IMPLIB "${_IMPORT_PREFIX}/Genesis/windows/lib/Genesis.dll"
+  INTERFACE_INCLUDE_DIRECTORIES "${GENESIS_LIB_DIR}/include;${GENESIS_LIB_DIR}/include/SDL2"
+  IMPORTED_LOCATION "${GENESIS_LIB_DIR}/lib/Genesis.dll"
+  IMPORTED_IMPLIB "${GENESIS_LIB_DIR}/lib/Genesis.dll"
   INTERFACE_LINK_LIBRARIES "imagehlp;dinput8;dxguid;dxerr8;user32;gdi32;winmm;imm32;ole32;oleaut32;shell32;version;uuid;setupapi;hid"
 )
 
