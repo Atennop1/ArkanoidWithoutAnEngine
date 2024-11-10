@@ -16,7 +16,7 @@ WallView::~WallView()
 
 void WallView::Display(genesis::Vector2 position) const
 {
-    SDL_FRect rect = genesis::Shortcuts::PositionAndTextureToRect(position, wall_texture_, 6, 6);
+    SDL_FRect rect = genesis::Shortcuts::PositionAndTextureToRect(window_references_.Window(), position, wall_texture_, 6, 6);
     SDL_RenderCopyF(window_references_.Renderer(), wall_texture_, nullptr, &rect);
 }
 }

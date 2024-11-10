@@ -11,7 +11,7 @@ class Brick : public genesis::IGameObject
 public:
     Brick(genesis::PhysicalProperties properties, BrickType type);
 
-    BrickType Type() { return type_; }
+    BrickType Type() const { return type_; }
 
 private:
     BrickType type_;

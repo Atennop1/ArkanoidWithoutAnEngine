@@ -36,7 +36,7 @@ Game::Game(genesis::WindowReferences window_references)
     // -----------------------------------------------------------------------------------------------------------------
 
     auto platform_view = genesis::SharedPointer(new PlatformView(window_references));
-    auto platform = genesis::SharedPointer(new Platform(genesis::PhysicalProperties { { 55 + 103.5, 150 }, { 28, 5 } }, platform_view));
+    auto platform = genesis::SharedPointer(new Platform(genesis::PhysicalProperties { { 158.5, 30 }, { 28, 5 } }, platform_view));
     auto platform_controller = genesis::SharedPointer(new PlatformController(platform, input));
     physics_simulation->Add(platform);
     game_loop_->Add(platform_controller);
@@ -48,14 +48,14 @@ Game::Game(genesis::WindowReferences window_references)
     game_loop_->Add(level);
 
     auto ball_view = genesis::SharedPointer(new BallView(window_references));
-    auto ball = genesis::SharedPointer(new Ball(genesis::PhysicalProperties { { 55 + 103.5, 100 }, { 4, 4 }, { -35, -35 } }, ball_view));
+    auto ball = genesis::SharedPointer(new Ball(genesis::PhysicalProperties { { 158.5, 80 }, { 4, 4 }, { -35, 35 } }, ball_view));
     physics_simulation->Add(ball);
     game_loop_->Add(ball);
 
     auto wall_factory = WallFactory(game_loop_.Get(), physics_simulation.Get());
-    wall_factory.Create(window_references, "assets/sprites/left_wall.png", genesis::PhysicalProperties { { 55 + 4, 101 }, { 4, 200 } });
-    wall_factory.Create(window_references, "assets/sprites/up_wall.png", genesis::PhysicalProperties { { 55 + 103, 3 }, { 200, 4 } });
-    wall_factory.Create(window_references, "assets/sprites/right_wall.png", genesis::PhysicalProperties { { 55 + 202, 101 }, { 4, 200 } });
+    wall_factory.Create(window_references, "assets/sprites/left_wall.png", genesis::PhysicalProperties { { 59, 79 }, { 4, 200 } });
+    wall_factory.Create(window_references, "assets/sprites/up_wall.png", genesis::PhysicalProperties { { 158, 177 }, { 200, 4 } });
+    wall_factory.Create(window_references, "assets/sprites/right_wall.png", genesis::PhysicalProperties { { 257, 79 }, { 4, 200 } });
 
     // -----------------------------------------------------------------------------------------------------------------
 

@@ -17,7 +17,7 @@ std::vector<std::vector<genesis::SharedPointer<Brick>>> LevelFactory::CreateMap(
             if (layout[i][j] == BrickType::kNone)
                 continue;
 
-            auto position = genesis::Vector2(level_offset_x_ + (brick_width_ + 1.0f) * j, level_offset_y_ + (brick_height_ + 1.0f) * i);
+            auto position = genesis::Vector2(level_offset_x_ + (brick_width_ + 1.0f) * j, level_offset_y_ - (brick_height_ + 1.0f) * i);
             auto brick = genesis::SharedPointer(new Brick(genesis::PhysicalProperties { position, { float(brick_width_), float(brick_height_) }}, layout[i][j]));
 
             physics_simulation_->Add(brick);
