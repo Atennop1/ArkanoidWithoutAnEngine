@@ -1,12 +1,8 @@
 ﻿#include "game/root/game.hpp"
-#include "game/platform/platform_view.hpp"
-#include "game/platform/platform.hpp"
 #include "game/platform/platform_controller.hpp"
-#include "game/level/level_view.hpp"
 #include "game/level/level.hpp"
 #include "game/level/level_layouts.hpp"
 #include "game/root/level_factory.hpp"
-#include "game/ball/ball_view.hpp"
 #include "game/ball/ball.hpp"
 #include "game/root/wall_factory.hpp"
 #include <genesis/rendering/screen_cleaner.hpp>
@@ -15,7 +11,7 @@
 
 namespace arkanoid
 {
-Game::Game(genesis::WindowReferences window_references)
+Game::Game(const genesis::WindowReferences &window_references)
 {
     auto game_time = genesis::SharedPointer<genesis::GameTime>(new genesis::GameTime());
     auto application_events = genesis::SharedPointer(new genesis::ApplicationEvents());
@@ -53,9 +49,9 @@ Game::Game(genesis::WindowReferences window_references)
     game_loop_->Add(ball);
 
     auto wall_factory = WallFactory(game_loop_.Get(), physics_simulation.Get());
-    wall_factory.Create(window_references, "assets/sprites/left_wall.png", genesis::PhysicalProperties { { 59, 79 }, { 4, 200 } });
-    wall_factory.Create(window_references, "assets/sprites/up_wall.png", genesis::PhysicalProperties { { 158, 177 }, { 200, 4 } });
-    wall_factory.Create(window_references, "assets/sprites/right_wall.png", genesis::PhysicalProperties { { 257, 79 }, { 4, 200 } });
+    wall_factory.Create(window_references, "assets/sprites/walls/left_wall.png", genesis::PhysicalProperties { { 59, 79 }, { 4, 200 } });
+    wall_factory.Create(window_references, "assets/sprites/walls/up_wall.png", genesis::PhysicalProperties { { 158, 177 }, { 200, 4 } });
+    wall_factory.Create(window_references, "assets/sprites/walls/right_wall.png", genesis::PhysicalProperties { { 257, 79 }, { 4, 200 } });
 
     // -----------------------------------------------------------------------------------------------------------------
 

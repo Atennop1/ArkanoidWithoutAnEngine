@@ -17,7 +17,7 @@ public:
 
 private:
     const float level_offset_x_ = 70.0f;
-    const float level_offset_y_ = 174.0f;
+    const float level_offset_y_ = 170.0f;
 
     const int brick_width_ = 15;
     const int brick_height_ = 7;

@@ -1,6 +1,6 @@
+#include "game/level/level_view.hpp"
 #include <genesis/shortcuts/shortcuts.hpp>
 #include <SDL2/SDL_image.h>
-#include "game/level/level_view.hpp"
 
 namespace arkanoid
 {
@@ -26,15 +26,8 @@ void LevelView::Display(const std::vector<std::vector<genesis::SharedPointer<Bri
                 continue;
 
             SDL_Texture *texture = brick->Type() == BrickType::kViolet ? violet_brick_texture_ : blue_brick_texture_;
-            //SDL_FRect rect = genesis::Shortcuts::PositionAndTextureToRect(window_references_.Window(), brick->Properties().position, texture, 6, 6);
-
-            SDL_FRect rect;
-            rect.w = 90;
-            rect.h = 42;
-            rect.x = 100;
-            rect.y = 100;
-
-            SDL_RenderCopyF(window_references_.Renderer(), texture, NULL, &rect);
+            SDL_FRect rect = genesis::Shortcuts::PositionAndTextureToRect(window_references_.Window(), brick->Properties().position, texture, 6, 6);
+            SDL_RenderCopyF(window_references_.Renderer(), texture, nullptr, &rect);
         }
     }
 }

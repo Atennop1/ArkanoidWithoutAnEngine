@@ -18,7 +18,7 @@ public:
     void Display(const std::vector<std::vector<genesis::SharedPointer<Brick>>>& map) const;
 
 private:
-    const genesis::WindowReferences &window_references_;
+    genesis::WindowReferences window_references_;
     SDL_Texture *violet_brick_texture_;
     SDL_Texture *blue_brick_texture_;
 };

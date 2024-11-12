@@ -3,17 +3,18 @@
 
 #include "level_view.hpp"
 #include "brick.hpp"
-#include <vector>
 #include <genesis/memory/shared_pointer.hpp>
+#include <genesis/loop/objects/game_loop_object.hpp>
+#include <vector>
 
 namespace arkanoid
 {
 class Level : public genesis::IGameLoopObject
 {
 public:
-    Level(const std::vector<std::vector<genesis::SharedPointer<Brick>>> &map, genesis::SharedPointer<LevelView> level_view);
+    Level(const std::vector<std::vector<genesis::SharedPointer<Brick>>> &map, const genesis::SharedPointer<LevelView> &level_view);
 
-    void Update(float delta) override;
+    virtual void Update(float delta) override;
 
 private:
     std::vector<std::vector<genesis::SharedPointer<Brick>>> map_;

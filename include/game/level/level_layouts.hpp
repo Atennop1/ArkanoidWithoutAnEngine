@@ -1,8 +1,8 @@
 #ifndef ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_LEVEL_LAYOUTS_HPP_
 #define ARKANOIDWITHOUTANENGINE_INCLUDE_GAME_LEVEL_LEVEL_LAYOUTS_HPP_
 
-#include <vector>
 #include "game/level/brick_type.hpp"
+#include <vector>
 
 namespace arkanoid
 {

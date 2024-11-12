@@ -1,10 +1,10 @@
-#include <SDL2/SDL_image.h>
 #include "game/wall/wall_view.hpp"
-#include "genesis/shortcuts/shortcuts.hpp"
+#include <genesis/shortcuts/shortcuts.hpp>
+#include <SDL2/SDL_image.h>
 
 namespace arkanoid
 {
-WallView::WallView(genesis::WindowReferences window_references, const char *texture_file_path) : window_references_(window_references)
+WallView::WallView(const genesis::WindowReferences &window_references, const char *texture_file_path) : window_references_(window_references)
 {
     wall_texture_ = IMG_LoadTexture(window_references_.Renderer(), texture_file_path);
 }

@@ -2,7 +2,7 @@
 
 namespace arkanoid
 {
-PlatformController::PlatformController(genesis::SharedPointer<Platform> &platform, genesis::SharedPointer<genesis::Input> input)
+PlatformController::PlatformController(const genesis::SharedPointer<Platform> &platform, const genesis::SharedPointer<genesis::Input> &input)
     : input_(input), platform_(platform) { }
 
 void PlatformController::Update(float delta)

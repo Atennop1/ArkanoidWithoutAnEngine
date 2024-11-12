@@ -1,10 +1,10 @@
-#include <SDL2/SDL_image.h>
 #include "game/ball/ball_view.hpp"
-#include "genesis/shortcuts/shortcuts.hpp"
+#include <genesis/shortcuts/shortcuts.hpp>
+#include <SDL2/SDL_image.h>
 
 namespace arkanoid
 {
-BallView::BallView(genesis::WindowReferences window_references) : window_references_(window_references)
+BallView::BallView(const genesis::WindowReferences &window_references) : window_references_(window_references)
 {
     ball_texture_ = IMG_LoadTexture(window_references_.Renderer(), "assets/sprites/ball.png");
 }

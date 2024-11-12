@@ -3,14 +3,13 @@
 
 #include <genesis/rendering/window_references.hpp>
 #include <genesis/math/vector2.hpp>
-#include <SDL2/SDL_render.h>
 
 namespace arkanoid
 {
 class WallView
 {
 public:
-    WallView(genesis::WindowReferences window_references, const char *texture_file_path);
+    WallView(const genesis::WindowReferences &window_references, const char *texture_file_path);
     ~WallView();
 
     void Display(genesis::Vector2 position) const;
