@@ -9,6 +9,7 @@ if(WIN32)
     set(Genesis_DIR ${CMAKE_SOURCE_DIR}/libs/Genesis/windows/cmake)
     set(GENESIS_LIB_DIR ${CMAKE_SOURCE_DIR}/libs/Genesis/windows)
     set(ADDITIONAL_APIS setupapi user32 gdi32 winmm imm32 version)
+    set(CMAKE_EXE_LINKER_FLAGS "-static -mwindows")
 
     set(SDL2_IMAGE_LIB "${CMAKE_SOURCE_DIR}/libs/SDL2_image/windows/lib/libSDL2_image.a")
     set(SDL2_IMAGE_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/libs/SDL2_image/windows/include")
