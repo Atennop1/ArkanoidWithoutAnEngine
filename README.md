@@ -12,5 +12,14 @@ ArkanoidWithoutAnEngine is a project I made to learn how to develop games withou
 - CMake
 - [**Genesis**](https://github.com/Atennop1/Genesis)
 
+## Building from source
+### Linux
+```
+git clone https://github.com/Atennop1/ArkanoidWithoutAnEngine.git
+cd ArkanoidWithoutAnEngine
+cmake CMakeLists.txt 
+make
+```
+
 ## Conclusion
 The contribution of this project to my development is hard to overestimate. I learned a huge number of things, tried cross-platform development for the first time, wrote my own smart pointer, made a complex OOP architecture, fought with bugs and linking errors, made my own physics simulation, learned how to make CMake libraries and much, much more. I am proud of this project and how everything turned out, and thanks to it I know where to go next. I want to delve deeper into CMake, learn OpenGL, move away from OOP in favor of procedural programming and make multiplayer in Unreal Engine. I have a lot of plans and I want to follow them, and I leave this project as a good and completed chapter of my career.
