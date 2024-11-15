@@ -1,4 +1,5 @@
 #include "game/level/level.hpp"
+#include <algorithm>
 
 namespace arkanoid
 {
